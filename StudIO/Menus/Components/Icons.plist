@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>file-icons</key>
+	<dict>
+		<key>gulpfile.js</key>
+		<string>E610</string>
+		<key>Cartfile</key>
+		<string>EA98</string>
+		<key>cr</key>
+		<string>E902</string>
+		<key>Dockerfile</key>
+		<string>F106</string>
+		<key>ttf</key>
+		<string>E90F</string>
+		<key>woff2</key>
+		<string>E90F</string>
+		<key>go</key>
+		<string>E624</string>
+		<key>json</key>
+		<string>EABD</string>
+		<key>lua</key>
+		<string>E91B</string>
+		<key>package.json</key>
+		<string>E91C</string>
+		<key>normalize.css</key>
+		<string>EA04</string>
+		<key>php</key>
+		<string>F147</string>
+		<key>yml</key>
+		<string>79</string>
+		<key>Default</key>
+		<string>1F5CC</string>
+	</dict>
+	<key>DevOpicons</key>
+	<dict>
+		<key>.travis.yml</key>
+		<string>E67E</string>
+		<key>swift</key>
+		<string>E655</string>
+		<key>sass</key>
+		<string>E64B</string>
+		<key>py</key>
+		<string>E63C</string>
+		<key>md</key>
+		<string>E63E</string>
+		<key>less</key>
+		<string>E658</string>
+		<key>js</key>
+		<string>E681</string>
+		<key>.gitignore</key>
+		<string>E602</string>
+	</dict>
+</dict>
+</plist>

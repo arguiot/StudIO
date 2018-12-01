@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6856C79F21B23E3800441767 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6856C79E21B23E3800441767 /* FileCell.swift */; };
+		6856C7A121B249FB00441767 /* Icons.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A021B249FB00441767 /* Icons.plist */; };
+		6856C7A321B2586500441767 /* opicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A221B2509400441767 /* opicons.ttf */; };
+		6856C7A421B2586700441767 /* file-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6856C79C21B23DC300441767 /* file-icons.ttf */; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* MasterViewController.swift */; };
 		689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC2021B22F7800D88AAB /* DetailViewController.swift */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6856C79C21B23DC300441767 /* file-icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "file-icons.ttf"; sourceTree = "<group>"; };
+		6856C79E21B23E3800441767 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
+		6856C7A021B249FB00441767 /* Icons.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Icons.plist; sourceTree = "<group>"; };
+		6856C7A221B2509400441767 /* opicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = opicons.ttf; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689BDC1E21B22F7800D88AAB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +48,7 @@
 		6856C79821B236B500441767 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				6856C79D21B23E1D00441767 /* Components */,
 				689BDC1E21B22F7800D88AAB /* MasterViewController.swift */,
 			);
 			path = Menus;
@@ -60,6 +69,25 @@
 				689BDC2721B22F7C00D88AAB /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		6856C79B21B23DAC00441767 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				6856C7A221B2509400441767 /* opicons.ttf */,
+				6856C79C21B23DC300441767 /* file-icons.ttf */,
+				689BDC2521B22F7B00D88AAB /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		6856C79D21B23E1D00441767 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6856C79E21B23E3800441767 /* FileCell.swift */,
+				6856C7A021B249FB00441767 /* Icons.plist */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		689BDC1021B22F7800D88AAB = {
@@ -85,7 +113,7 @@
 				6856C79821B236B500441767 /* Menus */,
 				689BDC1C21B22F7800D88AAB /* AppDelegate.swift */,
 				6856C79A21B236C900441767 /* Storyboards */,
-				689BDC2521B22F7B00D88AAB /* Assets.xcassets */,
+				6856C79B21B23DAC00441767 /* Assets */,
 				689BDC2A21B22F7C00D88AAB /* Info.plist */,
 			);
 			path = StudIO;
@@ -150,6 +178,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				689BDC2921B22F7C00D88AAB /* LaunchScreen.storyboard in Resources */,
+				6856C7A421B2586700441767 /* file-icons.ttf in Resources */,
+				6856C7A321B2586500441767 /* opicons.ttf in Resources */,
+				6856C7A121B249FB00441767 /* Icons.plist in Resources */,
 				689BDC2621B22F7C00D88AAB /* Assets.xcassets in Resources */,
 				689BDC2421B22F7800D88AAB /* Main.storyboard in Resources */,
 			);
@@ -163,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */,
+				6856C79F21B23E3800441767 /* FileCell.swift in Sources */,
 				689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */,
 				689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */,
 			);

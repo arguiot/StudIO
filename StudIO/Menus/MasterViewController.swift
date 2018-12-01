@@ -88,10 +88,10 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell", for: indexPath) as! FileCell
 
         let object = objects[indexPath.row] as! String
-        cell.textLabel!.text = object.description
+        cell.file = object
         return cell
     }
 
