@@ -37,6 +37,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6856C79821B236B500441767 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				689BDC1E21B22F7800D88AAB /* MasterViewController.swift */,
+			);
+			path = Menus;
+			sourceTree = "<group>";
+		};
+		6856C79921B236C100441767 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				689BDC2021B22F7800D88AAB /* DetailViewController.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		6856C79A21B236C900441767 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				689BDC2221B22F7800D88AAB /* Main.storyboard */,
+				689BDC2721B22F7C00D88AAB /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		689BDC1021B22F7800D88AAB = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +81,11 @@
 		689BDC1B21B22F7800D88AAB /* StudIO */ = {
 			isa = PBXGroup;
 			children = (
+				6856C79921B236C100441767 /* Editor */,
+				6856C79821B236B500441767 /* Menus */,
 				689BDC1C21B22F7800D88AAB /* AppDelegate.swift */,
-				689BDC1E21B22F7800D88AAB /* MasterViewController.swift */,
-				689BDC2021B22F7800D88AAB /* DetailViewController.swift */,
-				689BDC2221B22F7800D88AAB /* Main.storyboard */,
+				6856C79A21B236C900441767 /* Storyboards */,
 				689BDC2521B22F7B00D88AAB /* Assets.xcassets */,
-				689BDC2721B22F7C00D88AAB /* LaunchScreen.storyboard */,
 				689BDC2A21B22F7C00D88AAB /* Info.plist */,
 			);
 			path = StudIO;
