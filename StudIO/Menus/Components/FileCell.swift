@@ -41,7 +41,7 @@ class FileCell: UITableViewCell {
         let ic = self.icons
         let split = name.split(separator: ".")
         let ext = String(split[split.count - 1])
-        print(ic.keys)
+        
         for i in ic.keys {
             let dic = ic[i]
             let font = UIFont(name: i, size: 17)
@@ -57,7 +57,6 @@ class FileCell: UITableViewCell {
                     let scalar = UnicodeScalar(Int(dic![n] as! String, radix: 16)!)
                     let char = Character(scalar!)
                     self.icon.text = String(char)
-                    return
                 }
             }
         }
