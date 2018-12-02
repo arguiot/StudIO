@@ -24,8 +24,9 @@ class TextFieldBulletinPage: FeedbackPageBLTNItem {
     
     @objc public var checkURL: Bool = true
     
+    @objc public var placeholder = "Git URL"
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
-        textField = interfaceBuilder.makeTextField(placeholder: "Git URL", returnKey: .done, delegate: self)
+        textField = interfaceBuilder.makeTextField(placeholder: placeholder, returnKey: .done, delegate: self)
         return [textField]
     }
     

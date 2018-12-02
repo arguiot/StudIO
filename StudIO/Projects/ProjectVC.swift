@@ -109,7 +109,7 @@ class ProjectVC: UICollectionViewController {
             new.descriptionText = "Create a local git project that will not be backed up by any git hosting platform."
             new.actionButtonTitle = "Done"
             new.checkURL = false
-            
+            new.placeholder = "Project name"
             var name = ""
             new.textInputHandler = { item, text in
                 name = text!

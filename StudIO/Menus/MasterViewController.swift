@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BLTNBoard
 
 class MasterViewController: UITableViewController {
 
@@ -36,35 +37,29 @@ class MasterViewController: UITableViewController {
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
+    lazy var newFileManager: BLTNItemManager = {
+        let page = TextFieldBulletinPage(title: "New File")
+        page.descriptionText = "Create a new file in \(self.title)"
+        page.actionButtonTitle = "Create"
+        page.checkURL = false
+        page.placeholder = "File name"
+        var text = ""
+        page.textInputHandler = { item, string in
+            text = string!
+        }
+        page.actionHandler = { (item: BLTNActionItem) in
+            self.objects.insert(text, at: 0)
+            
+            self.tableView.reloadData()
+            
+            item.manager?.dismissBulletin(animated: true)
+        }
+        return BLTNItemManager(rootItem: page)
+    }()
+    
     @objc
     func insertNewObject(_ sender: Any) {
-        let alertController = UIAlertController(title: "File name", message: "Enter the desired file name", preferredStyle: .alert)
-        
-        //the confirm action taking the inputs
-        let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
-            
-            //getting the input values from user
-            let name = alertController.textFields?[0].text
-            
-            self.objects.insert(name, at: 0)
-            let indexPath = IndexPath(row: 0, section: 0)
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-            
-        }
-        //the cancel action doing nothing
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-        
-        //adding textfields to our dialog box
-        alertController.addTextField { (textField) in
-            textField.placeholder = "File name"
-        }
-        
-        //adding the action to dialogbox
-        alertController.addAction(confirmAction)
-        alertController.addAction(cancelAction)
-        
-        //finally presenting the dialog box
-        self.present(alertController, animated: true, completion: nil)
+        newFileManager.showBulletin(above: self)
     }
 
     // MARK: - Segues
