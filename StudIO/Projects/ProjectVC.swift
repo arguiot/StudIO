@@ -98,8 +98,8 @@ class ProjectVC: UICollectionViewController {
         page.alternativeButtonTitle = "Start a local repository"
         
         page.actionHandler = { (item: BLTNActionItem) in
-            var clone = BLTNPageItem(title: "Clone")
-            clone = self.clone(clone)
+            var clone = TextFieldBulletinPage(title: "Clone")
+            clone = self.clone(clone) as! TextFieldBulletinPage
             page.next = clone
             item.manager?.displayNextItem()
             
@@ -107,13 +107,34 @@ class ProjectVC: UICollectionViewController {
         return BLTNItemManager(rootItem: page)
     }()
     
-    func clone(_ page: BLTNPageItem) -> BLTNPageItem {
-        let interfaceBuilder = BLTNInterfaceBuilder(appearance: page.appearance, item: page)
-        interfaceBuilder.makeTextField(placeholder: "URL", returnKey: .done)
-        page.makeViewsUnderDescription(with: interfaceBuilder)
-        
+    func clone(_ page: TextFieldBulletinPage) -> BLTNPageItem {
         page.descriptionText = "Enter the Git repository URL you would like to clone."
         page.actionButtonTitle = "Done"
+        
+        var can = false
+        var url = ""
+        page.textInputHandler = { item, text in
+            can = true
+            url = text!
+        }
+        page.actionHandler = { (item: BLTNActionItem) in
+            let done = BLTNPageItem(title: "Done")
+            done.image = #imageLiteral(resourceName: "IntroCompletion")
+            done.shouldStartWithActivityIndicator = true
+            done.appearance.imageViewTintColor = .green
+            done.presentationHandler = { item in
+                item.manager?.displayActivityIndicator()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+                    item.manager?.dismissBulletin(animated: true)
+                    self.collectionView.reloadData()
+                }
+                
+            }
+            if can == true {
+                page.next = done
+                item.manager?.displayNextItem()
+            }
+        }
         return page
     }
     
