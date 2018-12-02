@@ -11,7 +11,7 @@ import BLTNBoard
 
 class ProjectVC: UICollectionViewController {
     
-    let project: [Project] = [Project(project: "Neuron", path: URL(fileURLWithPath: "path/to/project"))]
+    var project: [Project] = [Project(project: "Neuron", path: URL(fileURLWithPath: "path/to/project"))]
     
     
     override func viewDidLoad() {
@@ -103,6 +103,28 @@ class ProjectVC: UICollectionViewController {
             page.next = clone
             item.manager?.displayNextItem()
             
+        }
+        page.alternativeHandler = { item in
+            var new = TextFieldBulletinPage(title: "Local project")
+            new.descriptionText = "Create a local git project that will not be backed up by any git hosting platform."
+            new.actionButtonTitle = "Done"
+            new.checkURL = false
+            
+            var name = ""
+            new.textInputHandler = { item, text in
+                name = text!
+            }
+            
+            new.actionHandler = { (item: BLTNActionItem) in
+                if name != "" {
+                    item.manager?.dismissBulletin(animated: true)
+                    self.project.append(Project(project: name, path: URL(fileURLWithPath: "path/to/project")))
+                    self.collectionView.reloadData()
+                }
+                
+            }
+            page.next = new
+            item.manager?.displayNextItem()
         }
         return BLTNItemManager(rootItem: page)
     }()

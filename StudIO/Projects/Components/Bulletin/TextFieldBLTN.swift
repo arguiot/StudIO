@@ -22,6 +22,8 @@ class TextFieldBulletinPage: FeedbackPageBLTNItem {
     
     @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)? = nil
     
+    @objc public var checkURL: Bool = true
+    
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         textField = interfaceBuilder.makeTextField(placeholder: "Git URL", returnKey: .done, delegate: self)
         return [textField]
@@ -66,7 +68,7 @@ extension TextFieldBulletinPage: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        if isInputValid(text: textField.text) {
+        if isInputValid(text: textField.text) || checkURL == false {
             textInputHandler?(self, textField.text)
         } else {
             descriptionLabel!.textColor = .red
