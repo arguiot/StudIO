@@ -54,6 +54,7 @@
 		6863DF7F21B38FB800911374 /* BLTNBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BLTNBoard.framework; path = Carthage/Build/iOS/BLTNBoard.framework; sourceTree = "<group>"; };
 		6863DF8421B3C60400911374 /* FeedBackBLTN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackBLTN.swift; sourceTree = "<group>"; };
 		6863DF8621B3C62C00911374 /* TextFieldBLTN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBLTN.swift; sourceTree = "<group>"; };
+		6863DF8821B3FABB00911374 /* StudIO.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudIO.entitlements; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689BDC1E21B22F7800D88AAB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +180,7 @@
 		689BDC1B21B22F7800D88AAB /* StudIO */ = {
 			isa = PBXGroup;
 			children = (
+				6863DF8821B3FABB00911374 /* StudIO.entitlements */,
 				6856C7A921B2786D00441767 /* Projects */,
 				6856C79921B236C100441767 /* Editor */,
 				6856C79821B236B500441767 /* Menus */,
@@ -223,6 +225,11 @@
 				TargetAttributes = {
 					689BDC1821B22F7800D88AAB = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -420,6 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -443,6 +451,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
