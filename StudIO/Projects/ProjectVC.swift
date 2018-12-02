@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BLTNBoard
 
 class ProjectVC: UICollectionViewController {
     
@@ -89,4 +90,34 @@ class ProjectVC: UICollectionViewController {
      
      }
      */
+    lazy var bulletinManager: BLTNItemManager = {
+        let page = BLTNPageItem(title: "New Project")
+        page.image = #imageLiteral(resourceName: "Repo")
+        page.descriptionText = "Create a new project in StudIO using the 2 following methods:"
+        page.actionButtonTitle = "Clone repository"
+        page.alternativeButtonTitle = "Start a local repository"
+        
+        page.actionHandler = { (item: BLTNActionItem) in
+            var clone = BLTNPageItem(title: "Clone")
+            clone = self.clone(clone)
+            page.next = clone
+            item.manager?.displayNextItem()
+            
+        }
+        return BLTNItemManager(rootItem: page)
+    }()
+    
+    func clone(_ page: BLTNPageItem) -> BLTNPageItem {
+        let interfaceBuilder = BLTNInterfaceBuilder(appearance: page.appearance, item: page)
+        interfaceBuilder.makeTextField(placeholder: "URL", returnKey: .done)
+        page.makeViewsUnderDescription(with: interfaceBuilder)
+        
+        page.descriptionText = "Enter the Git repository URL you would like to clone."
+        page.actionButtonTitle = "Done"
+        return page
+    }
+    
+    @IBAction func addProject(_ sender: Any) {
+        bulletinManager.showBulletin(above: self)
+    }
 }

@@ -8,11 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="octicons.ttf">
-            <string>octicons</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="9Zu-Yt-PLg">
@@ -52,16 +47,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dri-k0-buN">
-                                            <rect key="frame" x="49.5" y="47.5" width="51" height="55"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="51" id="2Dv-ZQ-dII"/>
-                                                <constraint firstAttribute="height" constant="55" id="J1m-LR-oFz"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="octicons" family="octicons" pointSize="51"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y7F-gI-9OK">
                                             <rect key="frame" x="0.0" y="109" width="150" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -69,11 +54,18 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Repo" translatesAutoresizingMaskIntoConstraints="NO" id="bRO-9u-CRj">
+                                            <rect key="frame" x="50" y="50" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="JRY-8Z-Nhh"/>
+                                                <constraint firstAttribute="height" constant="50" id="b8T-V1-G9O"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="Dri-k0-buN" firstAttribute="centerX" secondItem="ZDU-FK-1dm" secondAttribute="centerX" id="2pf-zg-exA"/>
-                                    <constraint firstItem="Dri-k0-buN" firstAttribute="centerY" secondItem="ZDU-FK-1dm" secondAttribute="centerY" id="RO7-cs-4Kr"/>
+                                    <constraint firstItem="bRO-9u-CRj" firstAttribute="centerX" secondItem="ZDU-FK-1dm" secondAttribute="centerX" id="U3s-IR-IDu"/>
+                                    <constraint firstItem="bRO-9u-CRj" firstAttribute="centerY" secondItem="ZDU-FK-1dm" secondAttribute="centerY" id="ZDI-ub-WW4"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="name" destination="Y7F-gI-9OK" id="jIp-jQ-kXb"/>
@@ -86,7 +78,13 @@
                             <outlet property="delegate" destination="uPa-ME-Fws" id="w2P-nI-uCZ"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Projects" id="ZZz-94-lkW"/>
+                    <navigationItem key="navigationItem" title="Projects" leftItemsSupplementBackButton="YES" id="ZZz-94-lkW">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="LRl-UK-qUv">
+                            <connections>
+                                <action selector="addProject:" destination="uPa-ME-Fws" id="hRK-u3-ZiH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pq7-ih-08Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -101,4 +99,7 @@
             <point key="canvasLocation" x="896" y="142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Repo" width="256" height="256"/>
+    </resources>
 </document>
