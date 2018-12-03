@@ -28,7 +28,8 @@ class MasterViewController: UITableViewController {
         }
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
-       return .lightContent
+        UIApplication.shared.statusBarStyle = .lightContent
+        return .lightContent
     }
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
@@ -41,7 +42,7 @@ class MasterViewController: UITableViewController {
     
     lazy var newFileManager: BLTNItemManager = {
         let page = TextFieldBulletinPage(title: "New File")
-        page.descriptionText = "Create a new file in \(self.title)"
+        page.descriptionText = "Create a new file in \(self.title ?? "UNDEFINED")"
         page.actionButtonTitle = "Create"
         page.checkURL = false
         page.placeholder = "File name"

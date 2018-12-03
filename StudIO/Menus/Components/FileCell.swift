@@ -36,33 +36,40 @@ class FileCell: UITableViewCell {
         return Dictionary<String, Dictionary<String, String>>()
     }
     
-    func setIcon(_ name: String) {
+    func setIcon(_ name: String) -> Bool {
         
         let ic = self.icons
         let split = name.split(separator: ".")
         let ext = String(split[split.count - 1])
         
+        var found = false
+        
         for i in ic.keys {
             let dic = ic[i]
             let font = UIFont(name: i, size: 17)
-            self.icon.font = font
             for n in (dic?.keys)! {
                 if n == name {
+                    self.icon.font = font
                     let scalar = UnicodeScalar(Int(dic![n] as! String, radix: 16)!)
                     let char = Character(scalar!)
                     self.icon.text = String(char)
-                    return
+                    return true
                 }
                 if n == ext {
+                    self.icon.font = font
                     let scalar = UnicodeScalar(Int(dic![n] as! String, radix: 16)!)
                     let char = Character(scalar!)
                     self.icon.text = String(char)
+                    found = true
                 }
             }
         }
-        self.icon.font = UIFont(name: "file-icons", size: 17)
-        let scalar = UnicodeScalar(Int("1F5CC", radix: 16)!)
-        let char = Character(scalar!)
-        self.icon.text = String(char)
+        if found == false {
+            self.icon.font = UIFont(name: "file-icons", size: 17)
+            let scalar = UnicodeScalar(Int("1F5CC", radix: 16)!)
+            let char = Character(scalar!)
+            self.icon.text = String(char)
+        }
+        return true
     }
 }

@@ -35,6 +35,18 @@
 	</dict>
 	<key>DevOpicons</key>
 	<dict>
+		<key>rs</key>
+		<string>E6A8</string>
+		<key>jquery.js</key>
+		<string>E650</string>
+		<key>_config.yml</key>
+		<string>E60D</string>
+		<key>java</key>
+		<string>E638</string>
+		<key>html</key>
+		<string>E636</string>
+		<key>css</key>
+		<string>E649</string>
 		<key>.travis.yml</key>
 		<string>E67E</string>
 		<key>swift</key>
