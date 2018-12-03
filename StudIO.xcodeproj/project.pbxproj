@@ -19,6 +19,9 @@
 		6863DF8121B38FB800911374 /* BLTNBoard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6863DF7F21B38FB800911374 /* BLTNBoard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6863DF8521B3C60400911374 /* FeedBackBLTN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6863DF8421B3C60400911374 /* FeedBackBLTN.swift */; };
 		6863DF8721B3C62C00911374 /* TextFieldBLTN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6863DF8621B3C62C00911374 /* TextFieldBLTN.swift */; };
+		6863DF9121B5496200911374 /* BottomLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6863DF9021B5496200911374 /* BottomLine.xib */; };
+		6863DF9321B54A9800911374 /* BottomLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6863DF9221B54A9800911374 /* BottomLine.swift */; };
+		6863DF9521B54C2A00911374 /* date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6863DF9421B54C2A00911374 /* date.swift */; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* MasterViewController.swift */; };
 		689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC2021B22F7800D88AAB /* DetailViewController.swift */; };
@@ -55,6 +58,9 @@
 		6863DF8421B3C60400911374 /* FeedBackBLTN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackBLTN.swift; sourceTree = "<group>"; };
 		6863DF8621B3C62C00911374 /* TextFieldBLTN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBLTN.swift; sourceTree = "<group>"; };
 		6863DF8821B3FABB00911374 /* StudIO.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudIO.entitlements; sourceTree = "<group>"; };
+		6863DF9021B5496200911374 /* BottomLine.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomLine.xib; sourceTree = "<group>"; };
+		6863DF9221B54A9800911374 /* BottomLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomLine.swift; sourceTree = "<group>"; };
+		6863DF9421B54C2A00911374 /* date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = date.swift; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689BDC1E21B22F7800D88AAB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +95,8 @@
 		6856C79921B236C100441767 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				6863DF8D21B5491A00911374 /* Controllers */,
+				6863DF8C21B5490D00911374 /* Interface */,
 				689BDC2021B22F7800D88AAB /* DetailViewController.swift */,
 			);
 			path = Editor;
@@ -160,6 +168,30 @@
 			path = Bulletin;
 			sourceTree = "<group>";
 		};
+		6863DF8921B5485D00911374 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6863DF9421B54C2A00911374 /* date.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6863DF8C21B5490D00911374 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				6863DF9021B5496200911374 /* BottomLine.xib */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		6863DF8D21B5491A00911374 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6863DF9221B54A9800911374 /* BottomLine.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		689BDC1021B22F7800D88AAB = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +212,7 @@
 		689BDC1B21B22F7800D88AAB /* StudIO */ = {
 			isa = PBXGroup;
 			children = (
+				6863DF8921B5485D00911374 /* Extensions */,
 				6863DF8821B3FABB00911374 /* StudIO.entitlements */,
 				6856C7A921B2786D00441767 /* Projects */,
 				6856C79921B236C100441767 /* Editor */,
@@ -260,6 +293,7 @@
 				6856C7A721B2735200441767 /* Projects.storyboard in Resources */,
 				6856C7A421B2586700441767 /* file-icons.ttf in Resources */,
 				6856C7A321B2586500441767 /* opicons.ttf in Resources */,
+				6863DF9121B5496200911374 /* BottomLine.xib in Resources */,
 				6856C7A121B249FB00441767 /* Icons.plist in Resources */,
 				689BDC2621B22F7C00D88AAB /* Assets.xcassets in Resources */,
 				689BDC2421B22F7800D88AAB /* Main.storyboard in Resources */,
@@ -275,9 +309,11 @@
 			files = (
 				689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */,
 				6856C79F21B23E3800441767 /* FileCell.swift in Sources */,
+				6863DF9321B54A9800911374 /* BottomLine.swift in Sources */,
 				6863DF8521B3C60400911374 /* FeedBackBLTN.swift in Sources */,
 				6863DF8721B3C62C00911374 /* TextFieldBLTN.swift in Sources */,
 				689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */,
+				6863DF9521B54C2A00911374 /* date.swift in Sources */,
 				6856C7B221B27A8000441767 /* ProjectCell.swift in Sources */,
 				6856C7AB21B2788900441767 /* ProjectVC.swift in Sources */,
 				689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */,
