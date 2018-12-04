@@ -26,7 +26,7 @@ class ProjectVC: UICollectionViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let splitViewController = segue.destination as! UISplitViewController
+        let splitViewController = segue.destination as! LightStatus
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         splitViewController.delegate = appDelegate
