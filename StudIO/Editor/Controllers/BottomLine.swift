@@ -11,7 +11,8 @@ import UIKit
 class BottomLine: UIView {
     
 
-    @IBOutlet weak var time: UILabel!
+    
+    @IBOutlet weak var language: UILabel!
     @IBOutlet var contentView: UIView!
     
     override init(frame: CGRect) {
@@ -36,16 +37,12 @@ class BottomLine: UIView {
         
     }
     func initialisation() {
-        updateTime()
         
-        setupTimers()
     }
-    func setupTimers() {
-        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    
+    func setupLanguage(_ file: String) {
+        let arr = file.split(separator: ".")
+        let ext = String(arr[arr.count - 1]).uppercased()
+        language.text = ext
     }
-    @objc func updateTime() {
-        let date = Date()
-        time.text = date.toShortTimeString()
-    }
-
 }
