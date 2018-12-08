@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Editor" customModule="StudIO" customModuleProvider="target">
             <connections>
-                <outlet property="codeView" destination="XoW-Ce-dLS" id="WMC-MK-i3d"/>
+                <outlet property="codeView" destination="5Pw-YW-lR1" id="Lc1-1v-1M7"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="gUd-bB-Dnc"/>
             </connections>
         </placeholder>
@@ -21,17 +21,21 @@
             <rect key="frame" x="0.0" y="0.0" width="640" height="547"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XoW-Ce-dLS">
-                    <rect key="frame" x="32" y="0.0" width="608" height="547"/>
-                    <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
+                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Pw-YW-lR1">
+                    <rect key="frame" x="0.0" y="0.0" width="640" height="547"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="XoW-Ce-dLS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MCS-Jc-6Up"/>
-                <constraint firstItem="XoW-Ce-dLS" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="nXO-Vz-IvP"/>
-                <constraint firstItem="XoW-Ce-dLS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="xe4-V0-64x"/>
-                <constraint firstItem="XoW-Ce-dLS" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="yhX-Gg-mpL"/>
+                <constraint firstItem="5Pw-YW-lR1" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="07y-mM-uRY"/>
+                <constraint firstItem="5Pw-YW-lR1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="L4u-pI-rdv"/>
+                <constraint firstItem="5Pw-YW-lR1" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="UOt-l0-uOC"/>
+                <constraint firstItem="5Pw-YW-lR1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bls-is-5VS"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

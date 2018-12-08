@@ -1,0 +1,64 @@
+<!doctype html>
+
+<head>
+	<meta charset="utf-8" />
+
+	<link rel="stylesheet" href="lib/codemirror.css">
+	<link rel="stylesheet" href="theme/monokai.css">
+	<link rel="stylesheet" href="addon/fold/foldgutter.css">
+	<link rel="stylesheet" href="addon/dialog/dialog.css">
+	<script src="lib/codemirror.js"></script>
+	<script src="mode/meta.js" charset="utf-8"></script>
+	<script src="keymap/sublime.js" charset="utf-8"></script>
+	<script src="addon/search/searchcursor.js"></script>
+	<script src="addon/search/search.js"></script>
+	<script src="addon/dialog/dialog.js"></script>
+	<script src="addon/edit/matchbrackets.js"></script>
+	<script src="addon/edit/closebrackets.js"></script>
+	<script src="addon/comment/comment.js"></script>
+	<script src="addon/wrap/hardwrap.js"></script>
+	<script src="addon/fold/foldcode.js"></script>
+	<script src="addon/fold/brace-fold.js"></script>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			position: fixed;
+			width: 100vw;
+			height: 100vh;
+            background: black;
+		}
+		.CodeMirror {
+			height: 100vh;
+		}
+	</style>
+    <script type="text/javascript">
+        class editor {
+            constructor(ext, value) {
+                const mode = CodeMirror.findModeByExtension(ext)
+                
+                const script = document.createElement('script');
+                script.onload = () => {
+                    this.cm = CodeMirror(document.body, {
+                                         value: value,
+                                         mode: mode.mode,
+                                         theme: "monokai",
+                                         keymap: "sublime",
+                                         smartIndent: true,
+                                         indentUnit: 4,
+                                         lineNumbers: true,
+                                         autoCloseBrackets: true,
+                                         autoCloseTags: true
+                                         });
+                };
+                script.src = `mode/${mode.mode}/${mode.mode}.js`;
+                
+                document.head.appendChild(script);
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>

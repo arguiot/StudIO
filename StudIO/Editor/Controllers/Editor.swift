@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import Highlightr
+import WebKit
 
 class Editor: UIView {
     
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var codeView: UIView!
+    @IBOutlet weak var codeView: WKWebView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +27,6 @@ class Editor: UIView {
     
     private func commonInit() {
         Bundle.main.loadNibNamed("Editor", owner: self, options: nil)
-        print("Loaded view")
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -35,26 +34,32 @@ class Editor: UIView {
         initialisation()
         
     }
-    let textStorage = CodeAttributedString()
     func initialisation() {
-        textStorage.highlightr.setTheme(to: "monokai-sublime")
-        let layoutManager = NSLayoutManager()
-        textStorage.addLayoutManager(layoutManager)
-        
-        let textContainer = NSTextContainer(size: codeView.bounds.size)
-        layoutManager.addTextContainer(textContainer)
-        
-        let textView = UITextView(frame: codeView.frame, textContainer: textContainer)
-        textView.backgroundColor = #colorLiteral(red: 0.1299999952, green: 0.1299999952, blue: 0.1299999952, alpha: 1) // Monokai bg color
-        textView.keyboardType = .emailAddress
-        textView.keyboardAppearance = .dark
-        textView.autocorrectionType = .no
-        textView.autocapitalizationType = .none
-        self.addSubview(textView)
+        let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "EditorView")!
+        codeView.loadFileURL(url, allowingReadAccessTo: url)
+        let request = URLRequest(url: url)
+        codeView.load(request)
+        codeView.navigationDelegate = self
     }
+    
+    var highlightExt: String?
     func highlight(_ lang: String) {
         let arr = lang.split(separator: ".")
         let ext = String(arr[arr.count - 1]).uppercased()
-        textStorage.language = ext
+        highlightExt = ext
+        if codeView.isLoading == false {
+            codeView.evaluateJavaScript("const e = new editor('\(ext)', '')") { (result, error) in
+                print(result, error)
+            }
+        }
+    }
+}
+extension Editor: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if let ext = highlightExt {
+            codeView.evaluateJavaScript("const e = new editor('\(ext)', '')") { (result, error) in
+                print(result, error)
+            }
+        }
     }
 }

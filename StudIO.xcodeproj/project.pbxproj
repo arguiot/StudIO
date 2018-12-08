@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		681A875521BB55F40009B33A /* Highlightr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681A875421BB55F40009B33A /* Highlightr.framework */; };
-		681A875621BB55F40009B33A /* Highlightr.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 681A875421BB55F40009B33A /* Highlightr.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		68162E8821BBE11200CDA628 /* EditorView in Resources */ = {isa = PBXBuildFile; fileRef = 68162E8721BBE11200CDA628 /* EditorView */; };
 		6852C24C21BB53BA00FA40DC /* Editor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6852C24B21BB53BA00FA40DC /* Editor.xib */; };
 		6852C24E21BB542000FA40DC /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852C24D21BB542000FA40DC /* Editor.swift */; };
 		6856C79F21B23E3800441767 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6856C79E21B23E3800441767 /* FileCell.swift */; };
@@ -42,7 +41,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				681A875621BB55F40009B33A /* Highlightr.framework in Embed Frameworks */,
 				6863DF8121B38FB800911374 /* BLTNBoard.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -51,7 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		681A875421BB55F40009B33A /* Highlightr.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Highlightr.framework; path = Carthage/Build/iOS/Highlightr.framework; sourceTree = "<group>"; };
+		68162E8721BBE11200CDA628 /* EditorView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EditorView; sourceTree = "<group>"; };
 		6852C24B21BB53BA00FA40DC /* Editor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Editor.xib; sourceTree = "<group>"; };
 		6852C24D21BB542000FA40DC /* Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
 		6856C79C21B23DC300441767 /* file-icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "file-icons.ttf"; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				681A875521BB55F40009B33A /* Highlightr.framework in Frameworks */,
 				6863DF8021B38FB800911374 /* BLTNBoard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		68162E8621BBCD4400CDA628 /* CodeMirror */ = {
+			isa = PBXGroup;
+			children = (
+				68162E8721BBE11200CDA628 /* EditorView */,
+			);
+			path = CodeMirror;
+			sourceTree = "<group>";
+		};
 		6856C79821B236B500441767 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +111,7 @@
 		6856C79921B236C100441767 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				68162E8621BBCD4400CDA628 /* CodeMirror */,
 				6863DF8D21B5491A00911374 /* Controllers */,
 				6863DF8C21B5490D00911374 /* Interface */,
 				689BDC2021B22F7800D88AAB /* DetailViewController.swift */,
@@ -209,7 +215,6 @@
 		689BDC1021B22F7800D88AAB = {
 			isa = PBXGroup;
 			children = (
-				681A875421BB55F40009B33A /* Highlightr.framework */,
 				6863DF7F21B38FB800911374 /* BLTNBoard.framework */,
 				689BDC1B21B22F7800D88AAB /* StudIO */,
 				689BDC1A21B22F7800D88AAB /* Products */,
@@ -307,6 +312,7 @@
 				689BDC2921B22F7C00D88AAB /* LaunchScreen.storyboard in Resources */,
 				6856C7A721B2735200441767 /* Projects.storyboard in Resources */,
 				6856C7A421B2586700441767 /* file-icons.ttf in Resources */,
+				68162E8821BBE11200CDA628 /* EditorView in Resources */,
 				6856C7A321B2586500441767 /* opicons.ttf in Resources */,
 				6852C24C21BB53BA00FA40DC /* Editor.xib in Resources */,
 				6863DF9121B5496200911374 /* BottomLine.xib in Resources */,
