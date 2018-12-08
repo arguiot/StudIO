@@ -46,6 +46,8 @@ class DetailViewController: UIViewController {
         }
     }
 
-
+    @objc func null(_ sender: Any?) {
+        // null code
+    }
 }
 

@@ -67,6 +67,21 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <keyCommands>
+                        <keyCommand input="f" modifierFlags="1048576" actionName="null" discoverabilityTitle="Find"/>
+                        <keyCommand input="K" modifierFlags="262144" actionName="null" discoverabilityTitle="Delete Line"/>
+                        <keyCommand input="q" modifierFlags="524288" actionName="null" discoverabilityTitle="Wrap lines"/>
+                        <keyCommand modifierFlags="1048576" actionName="null" discoverabilityTitle="Insert line after">
+                            <string key="input" base64-UTF8="YES">
+DQ
+</string>
+                        </keyCommand>
+                        <keyCommand input="" modifierFlags="393216" actionName="null" discoverabilityTitle="Add cursor to the previous line"/>
+                        <keyCommand input="" modifierFlags="393216" actionName="null" discoverabilityTitle="Add cursor to the next line"/>
+                        <keyCommand input="[" modifierFlags="1179648" actionName="null" discoverabilityTitle="Fold"/>
+                        <keyCommand input="]" modifierFlags="1179648" actionName="null" discoverabilityTitle="Unfold"/>
+                        <keyCommand input="h" modifierFlags="1048576" actionName="null" discoverabilityTitle="Find &amp; Replace"/>
+                    </keyCommands>
                     <connections>
                         <outlet property="bottomLine" destination="LAF-hE-Otb" id="7HT-H4-oXb"/>
                         <outlet property="editorView" destination="Hwj-cq-ztk" id="Ahs-hn-QBZ"/>
@@ -161,6 +176,7 @@
             <objects>
                 <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="blackTranslucent" id="DjV-YW-jjY">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.6588235294" green="0.6588235294" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
