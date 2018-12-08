@@ -41,13 +41,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="323.5" width="335" height="20.5"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAF-hE-Otb" customClass="BottomLine" customModule="StudIO" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,15 +48,20 @@
                                     <constraint firstAttribute="height" constant="40" id="OTF-lt-Pok"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hwj-cq-ztk" customClass="Editor" customModule="StudIO" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="563"/>
+                                <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.15686274510000001" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Hwj-cq-ztk" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" id="35e-pI-uem"/>
                             <constraint firstItem="LAF-hE-Otb" firstAttribute="trailing" secondItem="VUw-jc-0yf" secondAttribute="trailing" id="RhV-7B-jDL"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
+                            <constraint firstItem="Hwj-cq-ztk" firstAttribute="trailing" secondItem="VUw-jc-0yf" secondAttribute="trailing" id="UIQ-DM-4Yw"/>
+                            <constraint firstItem="LAF-hE-Otb" firstAttribute="top" secondItem="Hwj-cq-ztk" secondAttribute="bottom" id="fYO-ac-QBa"/>
                             <constraint firstItem="LAF-hE-Otb" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="sDz-YY-GGa"/>
-                            <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
                             <constraint firstItem="LAF-hE-Otb" firstAttribute="bottom" secondItem="VUw-jc-0yf" secondAttribute="bottom" id="tdm-fX-lYE"/>
+                            <constraint firstItem="Hwj-cq-ztk" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="zx1-vt-apl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VUw-jc-0yf"/>
                     </view>
@@ -71,7 +69,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="bottomLine" destination="LAF-hE-Otb" id="7HT-H4-oXb"/>
-                        <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="editorView" destination="Hwj-cq-ztk" id="Ahs-hn-QBZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -163,7 +161,6 @@
             <objects>
                 <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="blackTranslucent" id="DjV-YW-jjY">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.6588235294" green="0.6588235294" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

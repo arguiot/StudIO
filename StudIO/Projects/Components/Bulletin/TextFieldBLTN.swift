@@ -30,6 +30,7 @@ class TextFieldBulletinPage: FeedbackPageBLTNItem {
         textField.autocorrectionType = .no
         textField.keyboardType = .URL
         textField.keyboardAppearance = .dark
+        textField.autocapitalizationType = .none
         return [textField]
     }
     

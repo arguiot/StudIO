@@ -10,23 +10,22 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel! {
-        didSet {
-            file = detailDescriptionLabel.text ?? ""
-        }
-    }
     @IBOutlet weak var bottomLine: BottomLine!
+    @IBOutlet weak var editorView: Editor!
     
     var file: String = ""
 
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = detailItem {
-            if let label = detailDescriptionLabel {
-                label.text = detail
-            }
+            file = detail
             bottomView(detail)
+            codeEditor(detail)
         }
+    }
+    func codeEditor(_ str: String) {
+        let c = editorView
+        c?.highlight(str)
     }
     func bottomView(_ str: String) {
         let b = bottomLine
@@ -35,7 +34,6 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        file = detailDescriptionLabel.text ?? ""
         configureView()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
