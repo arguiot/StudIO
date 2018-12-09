@@ -23,26 +23,37 @@
 		body {
 			margin: 0;
 			padding: 0;
-			position: fixed;
 			width: 100vw;
 			height: 100vh;
-            background: black;
+            background: #272822;
             color: #eee;
 		}
 		.CodeMirror {
-			height: 100vh;
+			height: auto;
             font-size: 26px;
 		}
         textarea#code:focus { text-indent: -9999em; }
         textarea {
             caret-color: transparent !important;
         }
+        .tip {
+            color: #A8A8A8;
+            font-size: 48px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Helvetica;
+        }
 	</style>
     <script type="text/javascript">
         class editor {
             constructor(ext, value) {
                 if (ext == null && value == null) {
-                    document.body.innerHTML = "Open a document"
+                    document.addEventListener("DOMContentLoaded", () => {
+                        // Do something...
+                    })
                 } else {
                     const mode = CodeMirror.findModeByExtension(ext)
                     
@@ -74,5 +85,7 @@
 </head>
 
 <body>
-
+    <div class="tip">
+        Open a document
+    </div>
 </body>
