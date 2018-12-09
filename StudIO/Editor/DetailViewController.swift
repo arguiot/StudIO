@@ -42,6 +42,7 @@ class DetailViewController: UIViewController {
     var detailItem: String? {
         didSet {
             // Update the view.
+            self.title = detailItem
             configureView()
         }
     }
