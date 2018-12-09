@@ -30,7 +30,12 @@
 		}
 		.CodeMirror {
 			height: 100vh;
+            font-size: 26px;
 		}
+        textarea#code:focus { text-indent: -9999em; }
+        textarea {
+            caret-color: transparent !important;
+        }
 	</style>
     <script type="text/javascript">
         class editor {
