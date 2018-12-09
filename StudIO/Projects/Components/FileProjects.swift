@@ -30,4 +30,7 @@ class CreateProject {
         let f = try! home.createSubfolder(named: name)
         return Project(project: name, path: URL(string: f.path)!)
     }
+    func deleteProject(name: String) {
+        try! home.subfolder(atPath: name).delete()
+    }
 }
