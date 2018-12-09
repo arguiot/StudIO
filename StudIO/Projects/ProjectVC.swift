@@ -11,7 +11,7 @@ import BLTNBoard
 
 class ProjectVC: UICollectionViewController {
     
-    var project: [Project] = [Project(project: "Neuron", path: URL(fileURLWithPath: "path/to/project"))]
+    var project: [Project] = LoadProjects().getProjects()
     
     
     override func viewDidLoad() {
@@ -118,7 +118,9 @@ class ProjectVC: UICollectionViewController {
             new.actionHandler = { (item: BLTNActionItem) in
                 if name != "" {
                     item.manager?.dismissBulletin(animated: true)
-                    self.project.append(Project(project: name, path: URL(fileURLWithPath: "path/to/project")))
+                    let n = CreateProject()
+                    let p = n.newLocalProject(name: name)
+                    self.project.append(p)
                     self.collectionView.reloadData()
                 }
                 
