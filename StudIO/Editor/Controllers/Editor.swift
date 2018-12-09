@@ -48,7 +48,7 @@ class Editor: UIView {
         let ext = String(arr[arr.count - 1]).uppercased()
         highlightExt = ext
         if codeView.isLoading == false {
-            codeView.evaluateJavaScript("var e = new editor('\(ext)', '')") { (result, error) in
+            codeView.evaluateJavaScript("document.body.innerHTML = \"\"; var e = new editor('\(ext)', '')") { (result, error) in
                 print(result, error)
             }
         }
@@ -57,7 +57,7 @@ class Editor: UIView {
 extension Editor: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if let ext = highlightExt {
-            codeView.evaluateJavaScript("var e = new editor('\(ext)', '')") { (result, error) in
+            codeView.evaluateJavaScript("document.body.innerHTML = \"\"; var e = new editor('\(ext)', '')") { (result, error) in
                 print(result, error)
             }
         }

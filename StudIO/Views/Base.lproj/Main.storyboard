@@ -155,7 +155,6 @@ DQ
                                 <connections>
                                     <outlet property="icon" destination="POp-nQ-SrK" id="YPS-70-Lnx"/>
                                     <outlet property="name" destination="pCV-eP-3j7" id="fyE-tS-CXq"/>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -190,7 +189,4 @@ DQ
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Tll-UG-LXB"/>
-    </inferredMetricsTieBreakers>
 </document>
