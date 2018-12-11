@@ -12,6 +12,12 @@ class FileCell: UITableViewCell {
 
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var icon: UILabel!
+
+    enum FileFolder {
+        case file
+        case folder
+    }
+    var fileType: FileFolder = .file
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,9 +29,12 @@ class FileCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    var ident: Int = 0
     var file: String? {
         didSet {
-            self.name.text = file
+            let id = Array((0..<ident).map { _ in "    " }).joined(separator: "") // 4 spaces
+            self.name.text = id + (file ?? "")
             setIcon(file ?? "")
         }
     }
