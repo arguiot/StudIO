@@ -35,7 +35,7 @@ class FileCell: UITableViewCell {
         didSet {
             let id = Array((0..<ident).map { _ in "    " }).joined(separator: "") // 4 spaces
             self.name.text = id + (file ?? "")
-            setIcon(file ?? "")
+            _ = setIcon(file ?? "")
         }
     }
     var icons: Dictionary<String, Dictionary<String, String>> {

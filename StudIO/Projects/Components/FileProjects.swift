@@ -19,7 +19,7 @@ class LoadProjects {
         let sub = listFolders()
         var array = [Project]()
         sub.forEach { (folder) in
-            array.append(Project(project: folder.name, path: URL(string: folder.path)!))
+            array.append(Project(project: folder.name, path: folder))
         }
         return array
     }
@@ -28,7 +28,7 @@ class CreateProject {
     let home = try! Folder.home.subfolder(atPath: "Documents")
     func newLocalProject(name: String) -> Project {
         let f = try! home.createSubfolder(named: name)
-        return Project(project: name, path: URL(string: f.path)!)
+        return Project(project: name, path: f)
     }
     func deleteProject(name: String) {
         try! home.subfolder(atPath: name).delete()

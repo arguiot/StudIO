@@ -10,9 +10,9 @@ import Foundation
 
 class Project {
     var name: String
-    var path: URL
+    var path: Folder
     
-    init(project: String, path: URL) {
+    init(project: String, path: Folder) {
         name = project
         self.path = path
     }

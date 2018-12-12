@@ -12,8 +12,8 @@ import BLTNBoard
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
-
+    var objects = [MenuCellStruct]()
+    var LoadManager: LoadFilesMenu!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,10 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        
+        // Load objects
+        objects = LoadManager.loadProject()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         UIApplication.shared.statusBarStyle = .lightContent
@@ -51,7 +55,12 @@ class MasterViewController: UITableViewController {
             text = string!
         }
         page.actionHandler = { (item: BLTNActionItem) in
-            self.objects.insert(text, at: 0)
+            self.objects.insert(MenuCellStruct(
+                type: .file,
+                ident: 0,
+                name: text,
+                path: self.LoadManager.project.files.first
+            ), at: 0)
             
             self.tableView.reloadData()
             
@@ -78,8 +87,8 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell", for: indexPath) as! FileCell
 
-        let object = objects[indexPath.row] as! String
-        cell.file = object
+        let object = objects[indexPath.row]
+        cell.file = object.name
         return cell
     }
 
@@ -97,9 +106,9 @@ class MasterViewController: UITableViewController {
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let object = objects[indexPath.row] as! String
+        let object = objects[indexPath.row]
         let controller = detailViewController
-        controller?.detailItem = object
+        controller?.detailItem = object.name
         controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         controller?.navigationItem.leftItemsSupplementBackButton = true
     }

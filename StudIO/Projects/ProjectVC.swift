@@ -34,7 +34,9 @@ class ProjectVC: UICollectionViewController {
         if let indexPath = collectionView.indexPathsForSelectedItems {
             let row = indexPath[0].row
             let master = splitViewController.viewControllers.first as! UINavigationController
-            master.topViewController!.title = project[row].name
+            let m = master.topViewController as! MasterViewController
+            m.title = project[row].name
+            m.LoadManager = LoadFilesMenu(p: project[row].path)
         }
     }
     
