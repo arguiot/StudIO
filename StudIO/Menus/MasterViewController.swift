@@ -55,12 +55,8 @@ class MasterViewController: UITableViewController {
             text = string!
         }
         page.actionHandler = { (item: BLTNActionItem) in
-            self.objects.insert(MenuCellStruct(
-                type: .file,
-                ident: 0,
-                name: text,
-                path: self.LoadManager.project.files.first
-            ), at: 0)
+            let c = CreateFile(p: self.LoadManager.project)
+            self.objects.insert(c.createFile(name: text), at: 0)
             
             self.tableView.reloadData()
             
