@@ -97,8 +97,17 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let o = objects[indexPath.row]
+            switch o.type {
+            case .file:
+                let f = o.path as! File
+                _ = try? f.delete()
+            case .folder:
+                let f = o.path as! Folder
+                _ = try? f.delete()
+            }
+            objects = LoadManager.loadProject()
+            tableView.reloadData()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
