@@ -56,7 +56,9 @@ class MasterViewController: UITableViewController {
         }
         page.actionHandler = { (item: BLTNActionItem) in
             let c = CreateFile(p: self.LoadManager.project)
-            self.objects.insert(c.createFile(name: text), at: 0)
+            c.createFile(name: text)
+            
+            self.objects = self.LoadManager.loadProject()
             
             self.tableView.reloadData()
             

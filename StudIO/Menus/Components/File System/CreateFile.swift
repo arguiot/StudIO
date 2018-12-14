@@ -15,6 +15,7 @@ class CreateFile {
     }
     func createFile(name: String, i: Int = 0) -> MenuCellStruct {
         let f = try! home.createFile(named: name)
+        
         return MenuCellStruct(type: .file, ident: i, name: name, path: f)
     }
 }
