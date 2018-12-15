@@ -13,14 +13,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var bottomLine: BottomLine!
     @IBOutlet weak var editorView: Editor!
     
-    var file: String = ""
+    var file: File!
 
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = detailItem {
             file = detail
-            bottomView(detail)
-            codeEditor(detail)
+            bottomView(file.name)
+            codeEditor(file.name)
         }
     }
     func codeEditor(_ str: String) {
@@ -39,10 +39,10 @@ class DetailViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    var detailItem: String? {
+    var detailItem: File? {
         didSet {
             // Update the view.
-            self.title = detailItem
+            self.title = detailItem?.nameExcludingExtension
             configureView()
         }
     }

@@ -133,7 +133,7 @@ class MasterViewController: UITableViewController {
             tableView.reloadData()
         } else {
             let controller = detailViewController
-            controller?.detailItem = object.name
+            controller?.detailItem = object.path as! File
             controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             controller?.navigationItem.leftItemsSupplementBackButton = true
         }
