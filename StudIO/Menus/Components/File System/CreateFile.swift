@@ -25,6 +25,6 @@ class CreateFile {
         }
         let f = try! l.createFile(named: n)
         
-        return MenuCellStruct(type: .file, ident: i, name: n, path: f)
+        return MenuCellStruct(type: .file, ident: i, name: n, path: f, toggled: false)
     }
 }

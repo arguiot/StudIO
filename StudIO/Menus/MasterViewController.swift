@@ -119,10 +119,24 @@ class MasterViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let object = objects[indexPath.row]
-        let controller = detailViewController
-        controller?.detailItem = object.name
-        controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        controller?.navigationItem.leftItemsSupplementBackButton = true
+        if object.type == .folder {
+            let folder = object.path as! Folder
+            let array = LoadManager.loadFolders(base: folder, i: object.ident + 1)
+            if (object.toggled == false) {
+                objects.insert(contentsOf: array, at: indexPath.row + 1)
+            } else {
+                let low = indexPath.row + 1
+                let high = low + array.count
+                objects.removeSubrange(low...high - 1)
+            }
+            objects[indexPath.row].toggled = !object.toggled
+            tableView.reloadData()
+        } else {
+            let controller = detailViewController
+            controller?.detailItem = object.name
+            controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+            controller?.navigationItem.leftItemsSupplementBackButton = true
+        }
     }
 
 }

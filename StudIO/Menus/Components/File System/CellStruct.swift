@@ -13,4 +13,5 @@ struct MenuCellStruct {
     var ident: Int
     var name: String
     var path: Any? // File or Folder
+    var toggled: Bool
 }

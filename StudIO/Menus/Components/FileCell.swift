@@ -34,8 +34,15 @@ class FileCell: UITableViewCell {
     var file: String?
     
     func update() {
-        let id = Array((0..<ident).map { _ in "    " }).joined(separator: "") // 4 spaces
-        self.name.text = id + (file ?? "")
+        let id = ident * 20 // 20 px
+        
+        // reset all transformations
+        self.name.transform = CGAffineTransform.identity
+        self.icon.transform = CGAffineTransform.identity
+        
+        
+        self.name.transform = self.name.transform.translatedBy(x: CGFloat(id), y: 0)
+        self.name.text = file ?? ""
         _ = setIcon(file ?? "", i: ident)
     }
     var icons: Dictionary<String, Dictionary<String, String>> {
@@ -50,14 +57,16 @@ class FileCell: UITableViewCell {
         let ic = self.icons
         let split = name.split(separator: ".")
         let ext = String(split[split.count - 1])
-        let id = Array((0..<ident).map { _ in "    " }).joined(separator: "") // 4 spaces
+        
+        let id = ident * 20 // 20 px
+        self.icon.transform = self.icon.transform.translatedBy(x: CGFloat(id), y: 0)
         
         var found = false
         if fileType == .folder {
             self.icon.font = UIFont(name: "octicons", size: 17)
             let scalar = UnicodeScalar(Int("F016", radix: 16)!)
             let char = Character(scalar!)
-            self.icon.text = id + String(char)
+            self.icon.text = String(char)
             return true
         }
         for i in ic.keys {
@@ -68,14 +77,14 @@ class FileCell: UITableViewCell {
                     self.icon.font = font
                     let scalar = UnicodeScalar(Int(dic![n] as! String, radix: 16)!)
                     let char = Character(scalar!)
-                    self.icon.text = id + String(char)
+                    self.icon.text = String(char)
                     return true
                 }
                 if n == ext {
                     self.icon.font = font
                     let scalar = UnicodeScalar(Int(dic![n] as! String, radix: 16)!)
                     let char = Character(scalar!)
-                    self.icon.text = id + String(char)
+                    self.icon.text = String(char)
                     found = true
                 }
             }
@@ -84,7 +93,7 @@ class FileCell: UITableViewCell {
             self.icon.font = UIFont(name: "file-icons", size: 17)
             let scalar = UnicodeScalar(Int("1F5CC", radix: 16)!)
             let char = Character(scalar!)
-            self.icon.text = id + String(char)
+            self.icon.text = String(char)
         }
         return true
     }

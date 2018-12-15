@@ -23,7 +23,8 @@ class LoadFilesMenu {
                 type: .folder,
                 ident: i,
                 name: file.name,
-                path: file
+                path: file,
+                toggled: false
             ))
         }
         array.append(contentsOf: loadFiles(base: base, i: i))
@@ -36,7 +37,8 @@ class LoadFilesMenu {
                 type: .file,
                 ident: i,
                 name: file.name,
-                path: file
+                path: file,
+                toggled: false
             ))
         }
         return array
