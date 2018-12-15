@@ -14,8 +14,17 @@ class CreateFile {
         home = p
     }
     func createFile(name: String, i: Int = 0) -> MenuCellStruct {
-        let f = try! home.createFile(named: name)
+        let s = name.split(separator: "/")
+        let n = String(s.last!)
+        let subfolder = s.dropLast()
+        var l = home
+        subfolder.forEach { (str) in
+            let n = String(str)
+            let sf = try? l.createSubfolderIfNeeded(withName: n)
+            l = sf!
+        }
+        let f = try! l.createFile(named: n)
         
-        return MenuCellStruct(type: .file, ident: i, name: name, path: f)
+        return MenuCellStruct(type: .file, ident: i, name: n, path: f)
     }
 }
