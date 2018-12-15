@@ -87,6 +87,11 @@ class MasterViewController: UITableViewController {
 
         let object = objects[indexPath.row]
         cell.file = object.name
+        cell.fileType = object.type
+        cell.ident = object.ident
+        
+        cell.update() // more optimized than previous method
+        
         return cell
     }
 

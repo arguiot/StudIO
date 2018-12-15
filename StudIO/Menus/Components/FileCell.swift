@@ -31,12 +31,12 @@ class FileCell: UITableViewCell {
     }
     
     var ident: Int = 0
-    var file: String? {
-        didSet {
-            let id = Array((0..<ident).map { _ in "    " }).joined(separator: "") // 4 spaces
-            self.name.text = id + (file ?? "")
-            _ = setIcon(file ?? "", i: ident)
-        }
+    var file: String?
+    
+    func update() {
+        let id = Array((0..<ident).map { _ in "    " }).joined(separator: "") // 4 spaces
+        self.name.text = id + (file ?? "")
+        _ = setIcon(file ?? "", i: ident)
     }
     var icons: Dictionary<String, Dictionary<String, String>> {
         if let path = Bundle.main.path(forResource: "Icons", ofType: "plist") {
