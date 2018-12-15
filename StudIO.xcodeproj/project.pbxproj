@@ -10,6 +10,7 @@
 		6808B18121BD1D8200811058 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808B18021BD1D8200811058 /* Files.swift */; };
 		6808B18321BD1E5200811058 /* FileProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808B18221BD1E5200811058 /* FileProjects.swift */; };
 		68162E8821BBE11200CDA628 /* EditorView in Resources */ = {isa = PBXBuildFile; fileRef = 68162E8721BBE11200CDA628 /* EditorView */; };
+		6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A821B2773F00441767 /* octicons.ttf */; };
 		6852C24C21BB53BA00FA40DC /* Editor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6852C24B21BB53BA00FA40DC /* Editor.xib */; };
 		6852C24E21BB542000FA40DC /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852C24D21BB542000FA40DC /* Editor.swift */; };
 		6856C79F21B23E3800441767 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6856C79E21B23E3800441767 /* FileCell.swift */; };
@@ -337,6 +338,7 @@
 				6856C7A421B2586700441767 /* file-icons.ttf in Resources */,
 				68162E8821BBE11200CDA628 /* EditorView in Resources */,
 				6856C7A321B2586500441767 /* opicons.ttf in Resources */,
+				6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */,
 				6852C24C21BB53BA00FA40DC /* Editor.xib in Resources */,
 				6863DF9121B5496200911374 /* BottomLine.xib in Resources */,
 				6856C7A121B249FB00441767 /* Icons.plist in Resources */,
