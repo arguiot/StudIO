@@ -107,11 +107,19 @@ class MasterViewController: UITableViewController {
             case .file:
                 let f = o.path as! File
                 _ = try? f.delete()
+                
+                objects.remove(at: indexPath.row)
             case .folder:
+                // Toggle
+                if o.toggled == true {
+                    closeFolder(o.path as! Folder, object: o, indexPath: indexPath)
+                }
+                
                 let f = o.path as! Folder
                 _ = try? f.delete()
+                
+                objects.remove(at: indexPath.row)
             }
-            objects = LoadManager.loadProject()
             tableView.reloadData()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -125,9 +133,7 @@ class MasterViewController: UITableViewController {
             if (object.toggled == false) {
                 objects.insert(contentsOf: array, at: indexPath.row + 1)
             } else {
-                let low = indexPath.row + 1
-                let high = low + array.count
-                objects.removeSubrange(low...high - 1)
+                closeFolder(folder, object: object, indexPath: indexPath)
             }
             objects[indexPath.row].toggled = !object.toggled
             tableView.reloadData()
@@ -138,6 +144,19 @@ class MasterViewController: UITableViewController {
             controller?.navigationItem.leftItemsSupplementBackButton = true
         }
     }
-
+    func closeFolder(_ folder: Folder, object: MenuCellStruct, indexPath: IndexPath) {
+        let array = LoadManager.loadFolders(base: folder, i: object.ident + 1)
+        for i in 0..<array.count {
+            let cell = array[i]
+            if cell.type == .folder && cell.toggled == true {
+                closeFolder(cell.path as! Folder, object: cell, indexPath: IndexPath(row: indexPath.row + i, section: 0))
+            }
+        }
+        let low = indexPath.row + 1
+        let high = low + array.count
+        if high >= low {
+            objects.removeSubrange(low...high)
+        }
+    }
 }
 
