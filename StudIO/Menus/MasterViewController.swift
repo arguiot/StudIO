@@ -56,7 +56,7 @@ class MasterViewController: UITableViewController {
         }
         page.actionHandler = { (item: BLTNActionItem) in
             let c = CreateFile(p: self.LoadManager.project)
-            c.createFile(name: text)
+            _ = c.createFile(name: text)
             
             self.objects = self.LoadManager.loadProject()
             
@@ -140,14 +140,14 @@ class MasterViewController: UITableViewController {
             tableView.reloadSections([0], with: .automatic)
         } else {
             let controller = detailViewController
-            controller?.detailItem = object.path as! File
+            controller?.detailItem = object.path as? File
             controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             controller?.navigationItem.leftItemsSupplementBackButton = true
         }
     }
     func closeFolder(_ folder: Folder, object: MenuCellStruct, indexPath: IndexPath) {
         let array = LoadManager.loadFolders(base: folder, i: object.ident + 1)
-        var count = array.count
+        let count = array.count
         
         let row = indexPath.row + 1
         for i in 0...(count - 1) {

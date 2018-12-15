@@ -75,14 +75,14 @@ class FileCell: UITableViewCell {
             for n in (dic?.keys)! {
                 if n == name {
                     self.icon.font = font
-                    let scalar = UnicodeScalar(Int(dic![n] as! String, radix: 16)!)
+                    let scalar = UnicodeScalar(Int(dic![n]!, radix: 16)!)
                     let char = Character(scalar!)
                     self.icon.text = String(char)
                     return true
                 }
                 if n == ext {
                     self.icon.font = font
-                    let scalar = UnicodeScalar(Int(dic![n] as! String, radix: 16)!)
+                    let scalar = UnicodeScalar(Int(dic![n]!, radix: 16)!)
                     let char = Character(scalar!)
                     self.icon.text = String(char)
                     found = true
