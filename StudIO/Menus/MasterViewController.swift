@@ -60,7 +60,7 @@ class MasterViewController: UITableViewController {
             
             self.objects = self.LoadManager.loadProject()
             
-            self.tableView.reloadData()
+            self.tableView.reloadSections([0], with: .automatic)
             
             item.manager?.dismissBulletin(animated: true)
         }
@@ -120,7 +120,7 @@ class MasterViewController: UITableViewController {
                 
                 objects.remove(at: indexPath.row)
             }
-            tableView.reloadData()
+            tableView.reloadSections([0], with: .automatic)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
@@ -132,11 +132,12 @@ class MasterViewController: UITableViewController {
             let array = LoadManager.loadFolders(base: folder, i: object.ident + 1)
             if (object.toggled == false) {
                 objects.insert(contentsOf: array, at: indexPath.row + 1)
+                objects[indexPath.row].toggled = true
             } else {
                 closeFolder(folder, object: object, indexPath: indexPath)
+                objects[indexPath.row].toggled = false
             }
-            objects[indexPath.row].toggled = !object.toggled
-            tableView.reloadData()
+            tableView.reloadSections([0], with: .automatic)
         } else {
             let controller = detailViewController
             controller?.detailItem = object.path as! File
@@ -146,14 +147,18 @@ class MasterViewController: UITableViewController {
     }
     func closeFolder(_ folder: Folder, object: MenuCellStruct, indexPath: IndexPath) {
         let array = LoadManager.loadFolders(base: folder, i: object.ident + 1)
-        for i in 0..<array.count {
-            let cell = array[i]
+        var count = array.count
+        
+        let row = indexPath.row + 1
+        for i in 0...(count - 1) {
+            let cell = self.objects[row + i]
             if cell.type == .folder && cell.toggled == true {
-                closeFolder(cell.path as! Folder, object: cell, indexPath: IndexPath(row: indexPath.row + i, section: 0))
+                closeFolder(cell.path as! Folder, object: cell, indexPath: IndexPath(row: row + i, section: 0))
+                self.tableView.reloadData()
             }
         }
         let low = indexPath.row + 1
-        let high = low + array.count
+        let high = low + count - 1
         if high >= low {
             objects.removeSubrange(low...high)
         }
