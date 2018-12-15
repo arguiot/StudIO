@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #272822;
+    color: #eee;
+}
+.CodeMirror {
+    height: auto;
+    font-size: 26px;
+}
+textarea#code:focus { text-indent: -9999em; }
+textarea {
+    caret-color: transparent !important;
+}
+.tip {
+    color: #A8A8A8;
+    font-size: 48px;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Helvetica;
+    }

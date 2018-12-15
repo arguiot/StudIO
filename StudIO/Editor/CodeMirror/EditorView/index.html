@@ -19,69 +19,8 @@
 	<script src="addon/wrap/hardwrap.js"></script>
 	<script src="addon/fold/foldcode.js"></script>
 	<script src="addon/fold/brace-fold.js"></script>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			width: 100vw;
-			height: 100vh;
-            background: #272822;
-            color: #eee;
-		}
-		.CodeMirror {
-			height: auto;
-            font-size: 26px;
-		}
-        textarea#code:focus { text-indent: -9999em; }
-        textarea {
-            caret-color: transparent !important;
-        }
-        .tip {
-            color: #A8A8A8;
-            font-size: 48px;
-            text-align: center;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Helvetica;
-        }
-	</style>
-    <script type="text/javascript">
-        class editor {
-            constructor(ext, value) {
-                if (ext == null && value == null) {
-                    document.addEventListener("DOMContentLoaded", () => {
-                        // Do something...
-                    })
-                } else {
-                    const mode = CodeMirror.findModeByExtension(ext)
-                    
-                    const script = document.createElement('script');
-                    script.onload = () => {
-                        this.cm = CodeMirror(document.body, {
-                                             value: value,
-                                             mode: mode.mode,
-                                             theme: "monokai",
-                                             keymap: "sublime",
-                                             smartIndent: true,
-                                             indentUnit: 4,
-                                             lineNumbers: true,
-                                             autoCloseBrackets: true,
-                                             autoCloseTags: true
-                                             });
-                    };
-                    script.src = `mode/${mode.mode}/${mode.mode}.js`;
-                    
-                    document.head.appendChild(script);
-                }
-            }
-            clear() {
-                document.body.innerHTML = ""
-            }
-        }
-        var e = new editor(null, null)
-    </script>
+	<link rel="stylesheet" href="lib.css">
+    <script type="text/javascript" src="lib.js"></script>
 </head>
 
 <body>
