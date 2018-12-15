@@ -123,31 +123,28 @@ DQ
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🗌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POp-nQ-SrK">
-                                            <rect key="frame" x="16" y="11" width="19" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="19" id="MzK-zy-LtN"/>
-                                                <constraint firstAttribute="height" constant="22" id="bKl-hK-SqL"/>
-                                            </constraints>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🗌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POp-nQ-SrK">
+                                            <rect key="frame" x="16" y="11" width="343" height="22"/>
                                             <fontDescription key="fontDescription" name="file-icons" family="file-icons" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="File" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCV-eP-3j7">
-                                            <rect key="frame" x="43" y="11" width="316" height="22"/>
+                                            <rect key="frame" x="38" y="11" width="321" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.6588235294" green="0.6588235294" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="pCV-eP-3j7" firstAttribute="trailing" secondItem="37f-cq-3Eg" secondAttribute="trailingMargin" id="LZD-ey-y4V"/>
-                                        <constraint firstItem="POp-nQ-SrK" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="topMargin" id="Qdj-nU-D8x"/>
-                                        <constraint firstItem="POp-nQ-SrK" firstAttribute="bottom" secondItem="37f-cq-3Eg" secondAttribute="bottomMargin" id="oKk-tL-Ppd"/>
-                                        <constraint firstItem="POp-nQ-SrK" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leadingMargin" id="tbU-eo-5Mo"/>
-                                        <constraint firstItem="pCV-eP-3j7" firstAttribute="leading" secondItem="POp-nQ-SrK" secondAttribute="trailing" constant="8" id="vA3-3N-wrj"/>
-                                        <constraint firstItem="pCV-eP-3j7" firstAttribute="bottom" secondItem="37f-cq-3Eg" secondAttribute="bottomMargin" id="yX6-nf-wgy"/>
-                                        <constraint firstItem="pCV-eP-3j7" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="topMargin" id="zXN-Gx-SCG"/>
+                                        <constraint firstItem="pCV-eP-3j7" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leadingMargin" constant="22" id="4AE-Ba-ujN"/>
+                                        <constraint firstItem="POp-nQ-SrK" firstAttribute="trailing" secondItem="37f-cq-3Eg" secondAttribute="trailingMargin" id="J8G-5I-fbQ"/>
+                                        <constraint firstItem="POp-nQ-SrK" firstAttribute="bottom" secondItem="37f-cq-3Eg" secondAttribute="bottomMargin" id="Wqx-cO-XIe"/>
+                                        <constraint firstItem="pCV-eP-3j7" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="topMargin" id="cpW-cG-EEZ"/>
+                                        <constraint firstItem="POp-nQ-SrK" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leadingMargin" id="dZh-jS-Fpg"/>
+                                        <constraint firstItem="pCV-eP-3j7" firstAttribute="trailing" secondItem="37f-cq-3Eg" secondAttribute="trailingMargin" id="eaS-gW-Al8"/>
+                                        <constraint firstItem="pCV-eP-3j7" firstAttribute="bottom" secondItem="37f-cq-3Eg" secondAttribute="bottomMargin" id="ilZ-lB-yLd"/>
+                                        <constraint firstItem="POp-nQ-SrK" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="topMargin" id="qI7-EF-COB"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
