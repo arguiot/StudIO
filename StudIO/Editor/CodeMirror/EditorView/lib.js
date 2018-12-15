@@ -5,8 +5,10 @@ class editor {
                                       // Do something...
                                       })
         } else {
-            const mode = CodeMirror.findModeByExtension(ext)
-            
+            let mode = CodeMirror.findModeByExtension(ext)
+            if (typeof mode == "undefined" || typeof mode.mode == "undefined") {
+            	mode = CodeMirror.findModeByExtension("md") // Using markdown for undefined var
+            }
             const script = document.createElement('script');
             script.onload = () => {
                 this.cm = CodeMirror(document.body, {
@@ -22,7 +24,7 @@ class editor {
                                      });
             };
             script.src = `mode/${mode.mode}/${mode.mode}.js`;
-            
+
             document.head.appendChild(script);
         }
     }
