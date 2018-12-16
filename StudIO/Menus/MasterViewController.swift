@@ -41,6 +41,9 @@ class MasterViewController: UITableViewController {
     }
     @objc
     func goBack(_ send: Any) {
+        let controller = detailViewController
+        controller?.save() // save before quitting
+        
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
