@@ -23,7 +23,7 @@ class DetailViewController: UIViewController {
             codeEditor((file?.name)!)
         }
     }
-    func save() {
+    @objc func save() {
         if let f = self.file {
             editorView.getData({ data in
                 if let d = data {
