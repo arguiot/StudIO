@@ -37,12 +37,12 @@ class editor {
 				this.load(file)
 			}, 16) // Waiting 16ms (~ 1 frame) before rendering for letting WKWebView parse and process everything. Otherwise, we do it again and again.
 		} else {
-			const str = window.atob(file)
+			const str = atobUTF8(file)
 			this.cm.setValue(str)
 		}
 	}
 	save() {
-		return window.btoa(this.cm.getValue())
+		return btoaUTF8(this.cm.getValue())
 	}
 }
 var ed = new editor(null, null)
