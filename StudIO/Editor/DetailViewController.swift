@@ -25,7 +25,16 @@ class DetailViewController: UIViewController {
     }
     func codeEditor(_ str: String) {
         let c = editorView
-        c?.highlight(str)
+        c?.content = try! file.readAsString()
+        let arr = str.split(separator: ".")
+        let ext = String(arr[arr.count - 1]).uppercased()
+        
+        c?.highlightExt = ext
+        
+        c?.highlight(str, code: {
+            c?.loadFile(withContent: (c?.content)!)
+        })
+        
     }
     func bottomView(_ str: String) {
         let b = bottomLine

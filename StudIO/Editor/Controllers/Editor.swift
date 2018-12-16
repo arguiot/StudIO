@@ -43,12 +43,21 @@ class Editor: UIView {
     }
     
     var highlightExt: String?
-    func highlight(_ lang: String) {
+    func highlight(_ lang: String, code:  @escaping () -> Void) {
         let arr = lang.split(separator: ".")
         let ext = String(arr[arr.count - 1]).uppercased()
         highlightExt = ext
         if codeView.isLoading == false {
-            codeView.evaluateJavaScript("document.body.innerHTML = \"\"; var e = new editor('\(ext)', '')") { (result, error) in
+            codeView.evaluateJavaScript("document.body.innerHTML = \"\"; window.e = new editor('\(ext)', '')") { (result, error) in
+                code()
+            }
+        }
+    }
+    var content: String?
+    func loadFile(withContent: String) {
+        content = withContent
+        if codeView.isLoading == false {
+            codeView.evaluateJavaScript("window.e.load('\(content!)')") { (result, error) in
 //                print(result, error)
             }
         }
@@ -57,9 +66,11 @@ class Editor: UIView {
 extension Editor: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if let ext = highlightExt {
-            codeView.evaluateJavaScript("document.body.innerHTML = \"\"; var e = new editor('\(ext)', '')") { (result, error) in
-//                print(result, error)
-            }
+            highlight(ext, code: {
+                if let c = self.content {
+                    self.loadFile(withContent: c)
+                }
+            })
         }
     }
 }
