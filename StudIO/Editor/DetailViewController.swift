@@ -43,12 +43,16 @@ class DetailViewController: UIViewController {
         
         c?.highlight(str, code: {
             c?.loadFile(withContent: (c?.content)!)
+            DispatchQueue.main.async {
+                c?.getLangName({ str in
+                    self.bottomLine.language.text = str
+                })
+            }
         })
         
     }
     func bottomView(_ str: String) {
         let b = bottomLine
-        b?.setupLanguage(str)
         b?.sizeString.text = try? file?.readSize() as! String
     }
     override func viewDidLoad() {

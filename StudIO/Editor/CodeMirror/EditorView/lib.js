@@ -9,6 +9,7 @@ class editor {
 			if (typeof mode == "undefined" || typeof mode.mode == "undefined") {
 				mode = CodeMirror.findModeByExtension("md") // Using markdown for undefined var
 			}
+            this.mode = mode
 			const script = document.createElement('script');
 			script.onload = () => {
 				this.cm = CodeMirror(document.body, {
@@ -44,5 +45,8 @@ class editor {
 	save() {
 		return btoaUTF8(this.cm.getValue())
 	}
+    getLangName() {
+        return this.mode.name
+    }
 }
 var ed = new editor(null, null)

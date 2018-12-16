@@ -71,6 +71,15 @@ class Editor: UIView {
             }
         }
     }
+    
+    func getLangName(_ handler: @escaping (String?) -> Void) {
+        if codeView.isLoading == false {
+            codeView.evaluateJavaScript("window.e.getLangName()") { (result, error) in
+                let str = result as? String
+                handler(str)
+            }
+        }
+    }
 }
 extension Editor: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
