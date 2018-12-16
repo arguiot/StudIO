@@ -53,7 +53,12 @@ class DetailViewController: UIViewController {
     }
     func bottomView(_ str: String) {
         let b = bottomLine
-        b?.sizeString.text = try? file?.readSize() as! String
+        DispatchQueue.global().async {
+            let text = try? self.file?.readSize() as! String
+            DispatchQueue.main.async {
+                b?.sizeString.text = text
+            }
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +71,7 @@ class DetailViewController: UIViewController {
     var detailItem: File? {
         didSet {
             // Update the view.
-            self.title = detailItem?.nameExcludingExtension
+            self.title = detailItem?.name
             configureView()
         }
     }
