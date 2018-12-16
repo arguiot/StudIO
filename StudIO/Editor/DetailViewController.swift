@@ -25,7 +25,8 @@ class DetailViewController: UIViewController {
     }
     func codeEditor(_ str: String) {
         let c = editorView
-        c?.content = try! file.readAsString()
+        c?.content = try! file.read().base64EncodedString()
+        
         let arr = str.split(separator: ".")
         let ext = String(arr[arr.count - 1]).uppercased()
         

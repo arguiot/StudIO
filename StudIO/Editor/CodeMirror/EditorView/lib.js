@@ -37,7 +37,8 @@ class editor {
 				this.load(file)
 			}, 16) // Waiting 16ms (~ 1 frame) before rendering for letting WKWebView parse and process everything. Otherwise, we do it again and again.
 		} else {
-			this.cm.setValue(file)
+			const str = window.atob(file)
+			this.cm.setValue(str)
 		}
 	}
 	save() {
