@@ -49,6 +49,7 @@ class DetailViewController: UIViewController {
     func bottomView(_ str: String) {
         let b = bottomLine
         b?.setupLanguage(str)
+        b?.sizeString.text = try? file?.readSize() as! String
     }
     override func viewDidLoad() {
         super.viewDidLoad()

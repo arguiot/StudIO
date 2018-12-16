@@ -561,6 +561,16 @@ public final class File: FileSystem.Item, FileSystemIterable {
         
         try append(data: data)
     }
+    /**
+     *  Read the size of the file
+     *
+     *
+     *  - throws: `File.Error.readFailed` if the file couldn't be read
+     */
+    public func readSize() throws -> String {
+        let d = try self.read()
+        return d.sizeString()
+    }
     
     /**
      *  Copy this file to a new folder
