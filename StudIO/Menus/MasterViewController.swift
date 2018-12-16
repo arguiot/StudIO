@@ -150,11 +150,13 @@ class MasterViewController: UITableViewController {
         let count = array.count
         
         let row = indexPath.row + 1
-        for i in 0...(count - 1) {
-            let cell = self.objects[row + i]
-            if cell.type == .folder && cell.toggled == true {
-                closeFolder(cell.path as! Folder, object: cell, indexPath: IndexPath(row: row + i, section: 0))
-                self.tableView.reloadData()
+        if count >= 1 {
+            for i in 0...(count - 1) {
+                let cell = self.objects[row + i]
+                if cell.type == .folder && cell.toggled == true {
+                    closeFolder(cell.path as! Folder, object: cell, indexPath: IndexPath(row: row + i, section: 0))
+                    self.tableView.reloadData()
+                }
             }
         }
         let low = indexPath.row + 1
