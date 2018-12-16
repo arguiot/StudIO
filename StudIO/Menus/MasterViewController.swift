@@ -140,6 +140,7 @@ class MasterViewController: UITableViewController {
             tableView.reloadSections([0], with: .automatic)
         } else {
             let controller = detailViewController
+            controller?.save() // saving before opening file
             controller?.detailItem = object.path as? File
             controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             controller?.navigationItem.leftItemsSupplementBackButton = true

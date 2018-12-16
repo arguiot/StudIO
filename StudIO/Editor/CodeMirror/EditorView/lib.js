@@ -42,7 +42,7 @@ class editor {
 		}
 	}
 	save() {
-		return this.cm.getValue()
+		return window.btoa(this.cm.getValue())
 	}
 }
 var ed = new editor(null, null)

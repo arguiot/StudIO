@@ -13,19 +13,28 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var bottomLine: BottomLine!
     @IBOutlet weak var editorView: Editor!
     
-    var file: File!
+    var file: File?
 
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = detailItem {
             file = detail
-            bottomView(file.name)
-            codeEditor(file.name)
+            bottomView((file?.name)!)
+            codeEditor((file?.name)!)
+        }
+    }
+    func save() {
+        if let f = self.file {
+            editorView.getData({ data in
+                if let d = data {
+                    _ = try? f.write(data: d)
+                }
+            })
         }
     }
     func codeEditor(_ str: String) {
         let c = editorView
-        c?.content = try! file.read().base64EncodedString()
+        c?.content = try! file?.read().base64EncodedString()
         
         let arr = str.split(separator: ".")
         let ext = String(arr[arr.count - 1]).uppercased()

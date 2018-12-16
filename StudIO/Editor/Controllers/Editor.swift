@@ -62,6 +62,15 @@ class Editor: UIView {
             }
         }
     }
+    func getData(_ handler: @escaping (Data?) -> Void) {
+        if codeView.isLoading == false {
+            codeView.evaluateJavaScript("window.e.save()") { (result, error) in
+                let str = result as? String
+                let data = Data(base64Encoded: str ?? "")
+                handler(data)
+            }
+        }
+    }
 }
 extension Editor: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
