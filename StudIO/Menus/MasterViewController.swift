@@ -125,6 +125,8 @@ class MasterViewController: UITableViewController {
     }
     
     func move(file: File, path: String) {
+        detailViewController?.save() // saving before doing anything
+        
         let s = path.split(separator: "/")
         let n = String(s.last!)
         let subfolder = s.dropLast()
