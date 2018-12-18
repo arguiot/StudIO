@@ -22,6 +22,7 @@ class ProjectVC: UICollectionViewController {
         
         
         // Do any additional setup after loading the view.
+        bulletinManager = bulletin()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -64,7 +65,9 @@ class ProjectVC: UICollectionViewController {
         return cell
     }
     
-    lazy var bulletinManager: BLTNItemManager = {
+    var bulletinManager: BLTNItemManager!
+    
+    func bulletin() -> BLTNItemManager {
         let page = BLTNPageItem(title: "New Project")
         page.image = #imageLiteral(resourceName: "Repo")
         page.descriptionText = "Create a new project in StudIO using the 2 following methods:"
@@ -103,7 +106,7 @@ class ProjectVC: UICollectionViewController {
             item.manager?.displayNextItem()
         }
         return BLTNItemManager(rootItem: page)
-    }()
+    }
     
     func clone(_ page: TextFieldBulletinPage) -> BLTNPageItem {
         page.descriptionText = "Enter the Git repository URL you would like to clone."
@@ -146,6 +149,7 @@ class ProjectVC: UICollectionViewController {
     }
     
     @IBAction func addProject(_ sender: Any) {
+        bulletinManager = bulletin()
         bulletinManager.showBulletin(above: self)
     }
 }
