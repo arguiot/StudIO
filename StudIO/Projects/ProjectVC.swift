@@ -110,22 +110,31 @@ class ProjectVC: UICollectionViewController {
         page.actionButtonTitle = "Done"
         
         var can = false
-        var url = ""
+        var url: URL?
         page.textInputHandler = { item, text in
             can = true
-            url = text!
+            url = URL(string: text!)
         }
         page.actionHandler = { (item: BLTNActionItem) in
+            // Show new page
             let done = BLTNPageItem(title: "Done")
             done.image = #imageLiteral(resourceName: "IntroCompletion")
             done.shouldStartWithActivityIndicator = true
             done.appearance.imageViewTintColor = .green
             done.presentationHandler = { item in
                 item.manager?.displayActivityIndicator()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
-                    item.manager?.dismissBulletin(animated: true)
-                    self.collectionView.reloadData()
+                DispatchQueue.global().async {
+                    let n = CreateProject()
+                    n.newRemoteProject(url: url!, handler: { p in
+                        self.project.append(p)
+                        DispatchQueue.main.async {
+                            item.manager?.dismissBulletin(animated: true)
+                            self.collectionView.reloadData()
+                        }
+                    })
+                    
                 }
+                
                 
             }
             if can == true {

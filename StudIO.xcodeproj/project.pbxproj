@@ -33,6 +33,8 @@
 		6863DF9721B68F1700911374 /* LightStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6863DF9621B68F1700911374 /* LightStatus.swift */; };
 		6864D06E21C8DF48001F5B18 /* SwiftGit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6864D06D21C8DF48001F5B18 /* SwiftGit2.framework */; };
 		6864D06F21C8DF48001F5B18 /* SwiftGit2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6864D06D21C8DF48001F5B18 /* SwiftGit2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6864D07121C8F13B001F5B18 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6864D07021C8F13B001F5B18 /* Result.framework */; };
+		6864D07221C8F13B001F5B18 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6864D07021C8F13B001F5B18 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* MasterViewController.swift */; };
 		689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC2021B22F7800D88AAB /* DetailViewController.swift */; };
@@ -51,6 +53,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6864D07221C8F13B001F5B18 /* Result.framework in Embed Frameworks */,
 				6864D06F21C8DF48001F5B18 /* SwiftGit2.framework in Embed Frameworks */,
 				6863DF8121B38FB800911374 /* BLTNBoard.framework in Embed Frameworks */,
 			);
@@ -85,6 +88,7 @@
 		6863DF9421B54C2A00911374 /* date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = date.swift; sourceTree = "<group>"; };
 		6863DF9621B68F1700911374 /* LightStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightStatus.swift; sourceTree = "<group>"; };
 		6864D06D21C8DF48001F5B18 /* SwiftGit2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGit2.framework; path = Carthage/Build/iOS/SwiftGit2.framework; sourceTree = "<group>"; };
+		6864D07021C8F13B001F5B18 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689BDC1E21B22F7800D88AAB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6864D07121C8F13B001F5B18 /* Result.framework in Frameworks */,
 				6864D06E21C8DF48001F5B18 /* SwiftGit2.framework in Frameworks */,
 				6863DF8021B38FB800911374 /* BLTNBoard.framework in Frameworks */,
 			);
@@ -240,6 +245,7 @@
 		689BDC1021B22F7800D88AAB = {
 			isa = PBXGroup;
 			children = (
+				6864D07021C8F13B001F5B18 /* Result.framework */,
 				6864D06D21C8DF48001F5B18 /* SwiftGit2.framework */,
 				6863DF7F21B38FB800911374 /* BLTNBoard.framework */,
 				689BDC1B21B22F7800D88AAB /* StudIO */,
