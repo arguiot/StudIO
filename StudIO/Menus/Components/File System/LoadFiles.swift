@@ -32,7 +32,7 @@ class LoadFilesMenu {
     }
     func loadFiles(base: Folder, i: Int) -> [MenuCellStruct] {
         var array = [MenuCellStruct]()
-        base.files.forEach { (file) in
+        base.makeFileSequence(recursive: false, includeHidden: true).forEach { (file) in
             array.append(MenuCellStruct(
                 type: .file,
                 ident: i,
