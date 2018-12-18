@@ -13,23 +13,52 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var bottomLine: BottomLine!
     @IBOutlet weak var editorView: Editor!
     
-    var file: String = ""
+    var file: File?
 
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = detailItem {
             file = detail
-            bottomView(detail)
-            codeEditor(detail)
+            bottomView((file?.name)!)
+            codeEditor((file?.name)!)
+        }
+    }
+    @objc func save() {
+        if let f = self.file {
+            editorView.getData({ data in
+                if let d = data {
+                    _ = try? f.write(data: d)
+                }
+            })
         }
     }
     func codeEditor(_ str: String) {
         let c = editorView
-        c?.highlight(str)
+        c?.content = try! file?.read().base64EncodedString()
+        
+        let arr = str.split(separator: ".")
+        let ext = String(arr[arr.count - 1]).uppercased()
+        
+        c?.highlightExt = ext
+        
+        c?.highlight(str, code: {
+            c?.loadFile(withContent: (c?.content)!)
+            DispatchQueue.main.async {
+                c?.getLangName({ str in
+                    self.bottomLine.language.text = str
+                })
+            }
+        })
+        
     }
     func bottomView(_ str: String) {
         let b = bottomLine
-        b?.setupLanguage(str)
+        DispatchQueue.global().async {
+            let text = try? self.file?.readSize() as! String
+            DispatchQueue.main.async {
+                b?.sizeString.text = text
+            }
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +68,10 @@ class DetailViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    var detailItem: String? {
+    var detailItem: File? {
         didSet {
             // Update the view.
-            self.title = detailItem
+            self.title = detailItem?.name
             configureView()
         }
     }

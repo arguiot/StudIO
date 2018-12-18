@@ -25,12 +25,14 @@ class TextFieldBulletinPage: FeedbackPageBLTNItem {
     @objc public var checkURL: Bool = true
     
     @objc public var placeholder = "Git URL"
+    @objc public var content = ""
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         textField = interfaceBuilder.makeTextField(placeholder: placeholder, returnKey: .done, delegate: self)
         textField.autocorrectionType = .no
         textField.keyboardType = .URL
         textField.keyboardAppearance = .dark
         textField.autocapitalizationType = .none
+        textField.text = content
         return [textField]
     }
     

@@ -12,8 +12,8 @@ import BLTNBoard
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
-
+    var objects = [MenuCellStruct]()
+    var LoadManager: LoadFilesMenu!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,13 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        
+        // Load objects
+        objects = LoadManager.loadProject()
+        
+        // Create Bulleting
+        newFileManager = bulletin()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         UIApplication.shared.statusBarStyle = .lightContent
@@ -37,13 +44,34 @@ class MasterViewController: UITableViewController {
     }
     @objc
     func goBack(_ send: Any) {
+        let controller = detailViewController
+        controller?.save() // save before quitting
+        
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
-    lazy var newFileManager: BLTNItemManager = {
-        let page = TextFieldBulletinPage(title: "New File")
-        page.descriptionText = "Create a new file in \(self.title ?? "UNDEFINED")"
-        page.actionButtonTitle = "Create"
+    var newFileManager: BLTNItemManager!
+    
+    func bulletin(file: File? = nil) -> BLTNItemManager {
+        let root = LoadManager.project.path
+        let subPath = file?.path.dropFirst(root.count)
+        let strP = String(subPath ?? "")
+        var title = ""
+        var desc = ""
+        var action = ""
+        if file != nil {
+            title = "Move / Rename file"
+            desc = "Move or rename your file using the path below."
+            action = "Move / Rename"
+        } else {
+            title = "New File"
+            desc = "Create a new file in \(self.title ?? "UNDEFINED")"
+            action = "Create"
+        }
+        let page = TextFieldBulletinPage(title: title)
+        page.content = strP
+        page.descriptionText = desc
+        page.actionButtonTitle = action
         page.checkURL = false
         page.placeholder = "File name"
         var text = ""
@@ -51,58 +79,64 @@ class MasterViewController: UITableViewController {
             text = string!
         }
         page.actionHandler = { (item: BLTNActionItem) in
-            self.objects.insert(text, at: 0)
+            if file != nil {
+                self.move(file: file!, path: text)
+            } else {
+                let c = CreateFile(p: self.LoadManager.project)
+                _ = c.createFile(name: text)
+            }
+            self.objects = self.LoadManager.loadProject()
             
-            self.tableView.reloadData()
+            self.tableView.reloadSections([0], with: .automatic)
             
             item.manager?.dismissBulletin(animated: true)
         }
         return BLTNItemManager(rootItem: page)
-    }()
+    }
     
     @objc
     func insertNewObject(_ sender: Any) {
+        newFileManager = bulletin()
         newFileManager.showBulletin(above: self)
     }
 
     // MARK: - Table View
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell", for: indexPath) as! FileCell
-
-        let object = objects[indexPath.row] as! String
-        cell.file = object
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    
+    func closeFolder(_ folder: Folder, object: MenuCellStruct, indexPath: IndexPath) {
+        let array = LoadManager.loadFolders(base: folder, i: object.ident + 1)
+        let count = array.count
+        
+        let row = indexPath.row + 1
+        if count >= 1 {
+            for i in 0...(count - 1) {
+                let cell = self.objects[row + i]
+                if cell.type == .folder && cell.toggled == true {
+                    closeFolder(cell.path as! Folder, object: cell, indexPath: IndexPath(row: row + i, section: 0))
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        let low = indexPath.row + 1
+        let high = low + count - 1
+        if high >= low {
+            objects.removeSubrange(low...high)
         }
     }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let object = objects[indexPath.row] as! String
-        let controller = detailViewController
-        controller?.detailItem = object
-        controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        controller?.navigationItem.leftItemsSupplementBackButton = true
+    
+    func move(file: File, path: String) {
+        detailViewController?.save() // saving before doing anything
+        
+        let s = path.split(separator: "/")
+        let n = String(s.last!)
+        let subfolder = s.dropLast()
+        var l = LoadManager.project
+        subfolder.forEach { (str) in
+            let n = String(str)
+            let sf = try? l.createSubfolderIfNeeded(withName: n)
+            l = sf!
+        }
+        try? file.rename(to: n, keepExtension: false)
+        try? file.move(to: l)
     }
-
 }
-

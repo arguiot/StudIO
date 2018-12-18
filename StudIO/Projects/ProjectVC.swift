@@ -11,7 +11,7 @@ import BLTNBoard
 
 class ProjectVC: UICollectionViewController {
     
-    var project: [Project] = [Project(project: "Neuron", path: URL(fileURLWithPath: "path/to/project"))]
+    var project: [Project] = LoadProjects().getProjects()
     
     
     override func viewDidLoad() {
@@ -34,7 +34,9 @@ class ProjectVC: UICollectionViewController {
         if let indexPath = collectionView.indexPathsForSelectedItems {
             let row = indexPath[0].row
             let master = splitViewController.viewControllers.first as! UINavigationController
-            master.topViewController!.title = project[row].name
+            let m = master.topViewController as! MasterViewController
+            m.title = project[row].name
+            m.LoadManager = LoadFilesMenu(p: project[row].path)
         }
     }
     
@@ -48,6 +50,7 @@ class ProjectVC: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
+        project = LoadProjects().getProjects()
         return project.count
     }
     
@@ -56,40 +59,11 @@ class ProjectVC: UICollectionViewController {
         let row = indexPath.row
         
         cell.name.text = project[row].name
+        cell.edit()
         
         return cell
     }
     
-    // MARK: UICollectionViewDelegate
-    
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     }
-     */
     lazy var bulletinManager: BLTNItemManager = {
         let page = BLTNPageItem(title: "New Project")
         page.image = #imageLiteral(resourceName: "Repo")
@@ -118,7 +92,9 @@ class ProjectVC: UICollectionViewController {
             new.actionHandler = { (item: BLTNActionItem) in
                 if name != "" {
                     item.manager?.dismissBulletin(animated: true)
-                    self.project.append(Project(project: name, path: URL(fileURLWithPath: "path/to/project")))
+                    let n = CreateProject()
+                    let p = n.newLocalProject(name: name)
+                    self.project.append(p)
                     self.collectionView.reloadData()
                 }
                 
