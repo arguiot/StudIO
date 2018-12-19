@@ -34,7 +34,7 @@ class CreateProject {
     func newRemoteProject(url: URL, handler: @escaping (Project) -> Void) {
         let hURL = URL(string: home.path)!
         
-        if let name = url.pathComponents.last {
+        if let name = getName(url: url) {
             let pURL = hURL.appendingPathComponent(name, isDirectory: true)
             
             let f = try! home.createSubfolderIfNeeded(withName: name)
@@ -45,12 +45,20 @@ class CreateProject {
                 let p = Project(project: name, path: f)
                 handler(p)
             } else {
-                alert(repo.error?.description ?? "Cloning error")
+                alert(repo.error?.localizedDescription ?? "Cloning error")
             }
         } else {
-            alert("Wrong URL")
+            alert("Wrong URL, please type a valid git URL.")
         }
         
+    }
+    private func getName(url: URL) -> String? {
+        let component = url.pathComponents.last
+        if component?.contains(".git") ?? false {
+            let sub = component?.dropLast(4)
+            return String(sub!)
+        }
+        return component
     }
     func deleteProject(name: String) {
         try! home.subfolder(atPath: name).delete()
