@@ -31,7 +31,7 @@ class CreateProject {
         let f = try! home.createSubfolder(named: name)
         return Project(project: name, path: f)
     }
-    func newRemoteProject(url: URL, handler: @escaping (Project) -> Void) {
+    func newRemoteProject(url: URL, creds: Credentials, handler: @escaping (Project) -> Void) {
         let hURL = URL(string: home.path)!
         
         if let name = getName(url: url) {
@@ -39,7 +39,7 @@ class CreateProject {
             
             let f = try! home.createSubfolderIfNeeded(withName: name)
             
-            let repo = Repository.clone(from: url, to: pURL, credentials: .default, checkoutStrategy: .Safe)
+            let repo = Repository.clone(from: url, to: pURL, credentials: creds, checkoutStrategy: .Safe)
             if case .success(let r) = repo {
                 let p = Project(project: name, path: f)
                 handler(p)

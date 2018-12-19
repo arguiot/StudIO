@@ -133,7 +133,7 @@ class ProjectVC: UICollectionViewController {
                 item.manager?.displayActivityIndicator()
                 DispatchQueue.global().async {
                     let n = CreateProject()
-                    n.newRemoteProject(url: url!, handler: { p in
+                    n.newRemoteProject(url: url!, creds: self.creds, handler: { p in
                         self.project.append(p)
                         DispatchQueue.main.async {
                             item.manager?.dismissBulletin(animated: true)
