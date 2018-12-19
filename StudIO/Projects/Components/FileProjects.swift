@@ -41,11 +41,13 @@ class CreateProject {
             
             let repo = Repository.clone(from: url, to: pURL, credentials: .default, checkoutStrategy: .Safe)
             if case .success(let r) = repo {
-                let remote = r.remote(named: "origin").value
                 let p = Project(project: name, path: f)
                 handler(p)
             } else {
                 alert(repo.error?.localizedDescription ?? "Cloning error")
+                if f.files.count == 0 || f.subfolders.count == 0 {
+                    try? f.delete()
+                }
             }
         } else {
             alert("Wrong URL, please type a valid git URL.")
@@ -54,7 +56,7 @@ class CreateProject {
     }
     private func getName(url: URL) -> String? {
         let component = url.pathComponents.last
-        if component?.contains(".git") ?? false {
+        if component?.lowercased().range(of: ".git") != nil {
             let sub = component?.dropLast(4)
             return String(sub!)
         }
