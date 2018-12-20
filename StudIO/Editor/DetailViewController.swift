@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftGit2
 
 class DetailViewController: UIViewController {
 
@@ -14,7 +15,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var editorView: Editor!
     
     var file: File?
-
+    var repo: Repository?
+    
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = detailItem {
@@ -53,6 +55,11 @@ class DetailViewController: UIViewController {
     }
     func bottomView(_ str: String) {
         let b = bottomLine
+        if let branch = repo?.localBranch(named: "master").value {
+            let commit = repo?.commits(in: branch).next()?.value!
+            let msg = commit?.message
+            b?.lastCommit.text = msg
+        }
         DispatchQueue.global().async {
             let text = try? self.file?.readSize() as! String
             DispatchQueue.main.async {
