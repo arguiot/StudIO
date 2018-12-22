@@ -71,6 +71,9 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         configureView()
+        let image = #imageLiteral(resourceName: "Repo-white").scaleImage(toSize: CGSize(width: 10, height: 10))
+        let gitButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(gitVC(_:)))
+        navigationItem.rightBarButtonItem = gitButton
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -85,6 +88,10 @@ class DetailViewController: UIViewController {
 
     @objc func null(_ sender: Any?) {
         // null code
+    }
+    
+    @objc func gitVC(_ sender: Any?) {
+        
     }
 }
 
