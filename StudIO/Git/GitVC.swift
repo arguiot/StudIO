@@ -41,7 +41,9 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         let branches = repo?.localBranches()
-        if let b = branches?.value {
+        let remotes = repo?.remoteBranches()
+        if var b = branches?.value, let r = remotes?.value {
+            b.append(contentsOf: r)
             return b.count
         } else {
             return 1
@@ -50,7 +52,9 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let branches = repo?.localBranches()
-        if let b = branches?.value {
+        let remotes = repo?.remoteBranches()
+        if var b = branches?.value, let r = remotes?.value {
+            b.append(contentsOf: r)
             return NSAttributedString(string: b[row].name, attributes: [.foregroundColor: UIColor.white])
         } else {
             return NSAttributedString(string: "master", attributes: [.foregroundColor: UIColor.white])
