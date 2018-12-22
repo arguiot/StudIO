@@ -27,9 +27,12 @@ class DetailViewController: UIViewController {
     }
     @objc func save() {
         if let f = self.file {
+            let hash = try? f.read()
             editorView.getData({ data in
                 if let d = data {
-                    _ = try? f.write(data: d)
+                    if d != hash {
+                        _ = try? f.write(data: d)
+                    }
                 }
             })
         }
