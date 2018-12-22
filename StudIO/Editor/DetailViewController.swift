@@ -93,7 +93,7 @@ class DetailViewController: UIViewController {
     @objc func gitVC(_ sender: Any?) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "git", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "GitVC") as! GitVC
-       newViewController.repo = repo
+        newViewController.repo = repo
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
 }

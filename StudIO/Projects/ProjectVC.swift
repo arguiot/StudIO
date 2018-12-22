@@ -39,6 +39,15 @@ class ProjectVC: UICollectionViewController {
             let m = master.topViewController as! MasterViewController
             m.title = project[row].name
             m.LoadManager = LoadFilesMenu(p: project[row].path)
+            
+            // repo
+            let editor = splitViewController.viewControllers.last as! UINavigationController
+            let e = editor.topViewController as! DetailViewController
+            let path = URL(string: project[row].path.path)
+            let repo = Repository.at(path!)
+            if let r = repo.value {
+                e.repo = r
+            }
         }
     }
     

@@ -18,6 +18,7 @@ class GitVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        branchPicker.tintColor = .white
     }
     
 
@@ -47,14 +48,13 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
         }
         
     }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let branches = repo?.localBranches()
         if let b = branches?.value {
-            return b[row].name
+            return NSAttributedString(string: b[row].name, attributes: [.foregroundColor: UIColor.white])
         } else {
-            return "master"
+            return NSAttributedString(string: "master", attributes: [.foregroundColor: UIColor.white])
         }
-        
     }
     
 }
