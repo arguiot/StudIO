@@ -60,5 +60,15 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
             return NSAttributedString(string: "master", attributes: [.foregroundColor: UIColor.white])
         }
     }
-    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let branches = repo?.localBranches()
+        let remotes = repo?.remoteBranches()
+        if var b = branches?.value, let r = remotes?.value {
+            b.append(contentsOf: r)
+            let oid = b[row].oid
+            if (repo?.checkout(oid, strategy: .Safe).value) != nil {
+                print("Checkout: ok")
+            }
+        }
+    }
 }
