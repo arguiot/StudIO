@@ -21,7 +21,22 @@ class GitVC: UIViewController {
         branchPicker.tintColor = .white
     }
     
-
+    @IBAction func push(_ sender: Any) {
+        
+    }
+    
+    @IBAction func fetch(_ sender: Any) {
+        let remotes = repo?.allRemotes().value
+        remotes?.forEach({ (r) in
+            if repo?.fetch(r).value != nil {
+                print("Pull: ok")
+            }
+        })
+    }
+    
+    @IBAction func pull(_ sender: Any) {
+        
+    }
     /*
     // MARK: - Navigation
 
