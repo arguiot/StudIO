@@ -17,13 +17,44 @@
                     <view key="view" contentMode="scaleToFill" id="3E8-c9-FJV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEW-7s-xb7">
+                                <rect key="frame" x="55" y="20" width="320" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="iq7-tI-s7u"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="grP-rr-E8W" id="TNQ-E7-WSd"/>
+                                    <outlet property="delegate" destination="grP-rr-E8W" id="YVf-vJ-mZk"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Branch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0h-90-UnF">
+                                <rect key="frame" x="16" y="55" width="81" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="eXZ-Dj-1AZ"/>
+                                    <constraint firstAttribute="width" constant="81" id="nHq-eK-yTM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="g0h-90-UnF" firstAttribute="top" secondItem="6s6-dv-87s" secondAttribute="top" constant="35" id="Kg1-Ls-Wjb"/>
+                            <constraint firstItem="dEW-7s-xb7" firstAttribute="trailing" secondItem="6s6-dv-87s" secondAttribute="trailing" id="m8v-J4-7Gq"/>
+                            <constraint firstItem="g0h-90-UnF" firstAttribute="leading" secondItem="6s6-dv-87s" secondAttribute="leading" constant="16" id="tdV-Vc-dGJ"/>
+                            <constraint firstItem="dEW-7s-xb7" firstAttribute="top" secondItem="6s6-dv-87s" secondAttribute="top" id="yCz-1o-wX2"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6s6-dv-87s"/>
                     </view>
+                    <connections>
+                        <outlet property="branchPicker" destination="dEW-7s-xb7" id="dO8-4U-VY6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RWA-dU-hGN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="50" y="179"/>
+            <point key="canvasLocation" x="48.799999999999997" y="178.56071964017991"/>
         </scene>
     </scenes>
 </document>

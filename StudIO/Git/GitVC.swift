@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import SwiftGit2
 
 class GitVC: UIViewController {
 
+    @IBOutlet weak var branchPicker: UIPickerView!
+    
+    var repo: Repository?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,4 +31,30 @@ class GitVC: UIViewController {
     }
     */
 
+}
+
+extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        let branches = repo?.localBranches()
+        if let b = branches?.value {
+            return b.count
+        } else {
+            return 1
+        }
+        
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let branches = repo?.localBranches()
+        if let b = branches?.value {
+            return b[row].name
+        } else {
+            return "master"
+        }
+        
+    }
+    
 }
