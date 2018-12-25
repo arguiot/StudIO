@@ -38,6 +38,9 @@
 		6864D06F21C8DF48001F5B18 /* SwiftGit2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6864D06D21C8DF48001F5B18 /* SwiftGit2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6864D07121C8F13B001F5B18 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6864D07021C8F13B001F5B18 /* Result.framework */; };
 		6864D07221C8F13B001F5B18 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6864D07021C8F13B001F5B18 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6872862521D29BA8003F1073 /* ObjectiveGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6872862421D29BA8003F1073 /* ObjectiveGit.framework */; };
+		6872862621D29BA8003F1073 /* ObjectiveGit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6872862421D29BA8003F1073 /* ObjectiveGit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6872862D21D29DE2003F1073 /* NSObject+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 6872862C21D29DE2003F1073 /* NSObject+Push.m */; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* MasterViewController.swift */; };
 		689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC2021B22F7800D88AAB /* DetailViewController.swift */; };
@@ -57,6 +60,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				6864D07221C8F13B001F5B18 /* Result.framework in Embed Frameworks */,
+				6872862621D29BA8003F1073 /* ObjectiveGit.framework in Embed Frameworks */,
 				6864D06F21C8DF48001F5B18 /* SwiftGit2.framework in Embed Frameworks */,
 				6863DF8121B38FB800911374 /* BLTNBoard.framework in Embed Frameworks */,
 			);
@@ -95,6 +99,9 @@
 		6863DF9621B68F1700911374 /* LightStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightStatus.swift; sourceTree = "<group>"; };
 		6864D06D21C8DF48001F5B18 /* SwiftGit2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGit2.framework; path = Carthage/Build/iOS/SwiftGit2.framework; sourceTree = "<group>"; };
 		6864D07021C8F13B001F5B18 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		6872862421D29BA8003F1073 /* ObjectiveGit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectiveGit.framework; path = Carthage/Build/iOS/ObjectiveGit.framework; sourceTree = "<group>"; };
+		6872862B21D29DE2003F1073 /* NSObject+Push.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Push.h"; sourceTree = "<group>"; };
+		6872862C21D29DE2003F1073 /* NSObject+Push.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Push.m"; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689BDC1E21B22F7800D88AAB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6864D07121C8F13B001F5B18 /* Result.framework in Frameworks */,
+				6872862521D29BA8003F1073 /* ObjectiveGit.framework in Frameworks */,
 				6864D06E21C8DF48001F5B18 /* SwiftGit2.framework in Frameworks */,
 				6863DF8021B38FB800911374 /* BLTNBoard.framework in Frameworks */,
 			);
@@ -133,6 +141,7 @@
 		684549C721CE279500CF5E80 /* Git */ = {
 			isa = PBXGroup;
 			children = (
+				6872862A21D29DAE003F1073 /* ObjectiveGit */,
 				684549C821CE27EE00CF5E80 /* GitVC.swift */,
 			);
 			path = Git;
@@ -258,9 +267,19 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		6872862A21D29DAE003F1073 /* ObjectiveGit */ = {
+			isa = PBXGroup;
+			children = (
+				6872862B21D29DE2003F1073 /* NSObject+Push.h */,
+				6872862C21D29DE2003F1073 /* NSObject+Push.m */,
+			);
+			path = ObjectiveGit;
+			sourceTree = "<group>";
+		};
 		689BDC1021B22F7800D88AAB = {
 			isa = PBXGroup;
 			children = (
+				6872862421D29BA8003F1073 /* ObjectiveGit.framework */,
 				6864D07021C8F13B001F5B18 /* Result.framework */,
 				6864D06D21C8DF48001F5B18 /* SwiftGit2.framework */,
 				6863DF7F21B38FB800911374 /* BLTNBoard.framework */,
@@ -337,6 +356,7 @@
 				TargetAttributes = {
 					689BDC1821B22F7800D88AAB = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 1;
@@ -400,6 +420,7 @@
 				6863DF8521B3C60400911374 /* FeedBackBLTN.swift in Sources */,
 				6863DF8721B3C62C00911374 /* TextFieldBLTN.swift in Sources */,
 				689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */,
+				6872862D21D29DE2003F1073 /* NSObject+Push.m in Sources */,
 				6863DF9521B54C2A00911374 /* date.swift in Sources */,
 				6808B18121BD1D8200811058 /* Files.swift in Sources */,
 				6808B18321BD1E5200811058 /* FileProjects.swift in Sources */,
@@ -557,6 +578,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73CCF549YB;
@@ -572,6 +594,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StudIO/Git/ObjectiveGit/NSObject+Push.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -581,6 +605,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73CCF549YB;
@@ -596,6 +621,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StudIO/Git/ObjectiveGit/NSObject+Push.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
