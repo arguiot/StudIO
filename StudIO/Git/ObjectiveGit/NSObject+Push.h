@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <ObjectiveGit/ObjectiveGit.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Push: NSObject
 - (BOOL)push:(NSURL*)url progress:(void(^)(unsigned int current, unsigned int total, size_t bytes, BOOL * _Nonnull stop))progress;
+- (BOOL)pull:(NSURL*)url progress:(void (^)(const git_transfer_progress * _Nonnull, BOOL * _Nonnull))progress;
 @end
 
 NS_ASSUME_NONNULL_END

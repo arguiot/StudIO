@@ -22,11 +22,11 @@ class GitVC: UIViewController {
     }
     
     @objc @IBAction func pushAction(_ sender: Any) {
-        let p: Push = Push()
+        let p = Push()
         let rurl = repo?.directoryURL
-        p.push(rurl!, progress: { (current, total, bytes, stop) in
+        p.push(rurl!) { (current, total, bytes, stop) in
             
-        })
+        }
     }
     
     @IBAction func fetch(_ sender: Any) {
@@ -39,7 +39,11 @@ class GitVC: UIViewController {
     }
     
     @IBAction func pullAction(_ sender: Any) {
-        
+        let p = Push()
+        let rurl = repo?.directoryURL
+        p.pull(rurl!) { (transfer, stop) in
+            
+        }
     }
     /*
     // MARK: - Navigation
