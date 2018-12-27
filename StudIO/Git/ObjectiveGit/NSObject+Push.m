@@ -9,8 +9,8 @@
 #import "NSObject+Push.h"
 #import <ObjectiveGit/ObjectiveGit.h>
 
-@implementation NSObject (Push)
-- (BOOL)push:(NSURL*)url {
+@implementation Push: NSObject
+- (BOOL)push:(NSURL*)url progress:(void(^)(unsigned int current, unsigned int total, size_t bytes, BOOL * _Nonnull stop))progress {
     NSDictionary *userInfo = @{
                                NSLocalizedDescriptionKey: NSLocalizedString(@"Couldn't find repository", nil),
                                NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"The operation timed out.", nil),
@@ -21,11 +21,10 @@
                                      userInfo:userInfo];
     
     GTRepository* repo = [GTRepository repositoryWithURL:url error:&error];
-    git_push_options *opts = (__bridge git_push_options *)(@{});
-    git_strarray arr;
-    git_remote_list(&arr, (__bridge git_repository *)(repo));
-    GTRemote* remote = [GTRemote remoteWithName:@"master" inRepository:repo error:&error];
-    git_remote_push(remote.git_remote, NULL, opts);
+    NSArray<GTBranch *> *branches = [repo branches:&error];
+    NSArray<NSString *> *remotes = [repo remoteNamesWithError:&error];
+    GTRemote* remote = [GTRemote remoteWithName:remotes[0] inRepository:repo error:&error];
+    [repo pushBranches:branches toRemote:remote withOptions:NULL error:NULL progress: progress];
     return true;
 }
 @end

@@ -53,7 +53,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="push:" destination="grP-rr-E8W" eventType="touchUpInside" id="dJH-XN-Z5p"/>
+                                    <action selector="pushAction:" destination="grP-rr-E8W" eventType="touchUpInside" id="rGG-HY-4Xp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAY-Cs-NSh">
@@ -79,7 +79,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="pull:" destination="grP-rr-E8W" eventType="touchUpInside" id="wsA-Cy-JrW"/>
+                                    <action selector="pullAction:" destination="grP-rr-E8W" eventType="touchUpInside" id="oMo-i1-bm4"/>
                                 </connections>
                             </button>
                         </subviews>

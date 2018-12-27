@@ -21,8 +21,12 @@ class GitVC: UIViewController {
         branchPicker.tintColor = .white
     }
     
-    @IBAction func push(_ sender: Any) {
-        
+    @objc @IBAction func pushAction(_ sender: Any) {
+        let p: Push = Push()
+        let rurl = repo?.directoryURL
+        p.push(rurl!, progress: { (current, total, bytes, stop) in
+            
+        })
     }
     
     @IBAction func fetch(_ sender: Any) {
@@ -34,7 +38,7 @@ class GitVC: UIViewController {
         })
     }
     
-    @IBAction func pull(_ sender: Any) {
+    @IBAction func pullAction(_ sender: Any) {
         
     }
     /*
