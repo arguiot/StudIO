@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftGit2
+import BLTNBoard
 
 class GitVC: UIViewController {
 
@@ -20,18 +21,17 @@ class GitVC: UIViewController {
         // Do any additional setup after loading the view.
         branchPicker.tintColor = .white
     }
-    
     @objc @IBAction func pushAction(_ sender: Any) {
         let p = Push()
         let rurl = repo?.directoryURL
         p.push(rurl!) { (current, total, bytes, stop) in
-            
+            print(transfer, stop)
         }
     }
     
     @IBAction func fetch(_ sender: Any) {
         let remotes = repo?.allRemotes().value
-        remotes?.forEach({ (r) in
+        remotes?.forEach({ r in
             if repo?.fetch(r).value != nil {
                 print("Pull: ok")
             }
@@ -42,7 +42,7 @@ class GitVC: UIViewController {
         let p = Push()
         let rurl = repo?.directoryURL
         p.pull(rurl!) { (transfer, stop) in
-            
+            print(transfer, stop)
         }
     }
     /*
