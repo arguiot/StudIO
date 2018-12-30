@@ -41,7 +41,7 @@
     NSArray<GTBranch *> *branches = [repo branches:&error];
     NSArray<NSString *> *remotes = [repo remoteNamesWithError:&error];
     GTRemote* remote = [GTRemote remoteWithName:remotes[0] inRepository:repo error:&error];
-    [repo pullBranch:branches[0] fromRemote:remote withOptions:NULL error:NULL progress:progress];
+    [repo pullBranch:branches[0] fromRemote:remote withOptions:NULL error:&error progress:progress];
     return true;
 }
 @end

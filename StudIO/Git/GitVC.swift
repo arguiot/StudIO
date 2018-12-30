@@ -24,9 +24,18 @@ class GitVC: UIViewController {
     @objc @IBAction func pushAction(_ sender: Any) {
         let p = Push()
         let rurl = repo?.directoryURL
-        p.push(rurl!) { (current, total, bytes, stop) in
-            print(transfer, stop)
+        DispatchQueue.global().async {
+            p.push(rurl!) { (current, total, bytes, stop) in
+                print(current, total, bytes, stop)
+                if stop.pointee.boolValue == true {
+                    DispatchQueue.main.sync {
+                        self.reload()
+                    }
+                }
+            }
         }
+        
+        self.reload()
     }
     
     @IBAction func fetch(_ sender: Any) {
@@ -41,9 +50,29 @@ class GitVC: UIViewController {
     @IBAction func pullAction(_ sender: Any) {
         let p = Push()
         let rurl = repo?.directoryURL
-        p.pull(rurl!) { (transfer, stop) in
-            print(transfer, stop)
+        DispatchQueue.global().async {
+            p.pull(rurl!) { (transfer, stop) in
+                print(transfer, stop)
+                if stop.pointee.boolValue == true {
+                    DispatchQueue.main.sync {
+                        self.reload()
+                    }
+                }
+            }
         }
+        
+        self.reload()
+    }
+    func reload() {
+        let prevVC = self.previousViewController as! DetailViewController
+        prevVC.configureView()
+        
+        let splitViewController = prevVC.splitViewController
+
+        let master = splitViewController?.viewControllers.first as! UINavigationController
+        let m = master.topViewController as! MasterViewController
+        m.objects = m.LoadManager.loadProject()
+        m.tableView.reloadData()
     }
     /*
     // MARK: - Navigation
