@@ -66,7 +66,7 @@ class MasterViewController: UITableViewController {
             action = "Move / Rename"
         } else {
             title = "New File"
-            desc = "Create a new file in \(self.title ?? "UNDEFINED")"
+            desc = "Create a new file or folder in \(self.title ?? "UNDEFINED")"
             action = "Create"
         }
         let page = TextFieldBulletinPage(title: title)
@@ -82,7 +82,7 @@ class MasterViewController: UITableViewController {
         page.actionHandler = { (item: BLTNActionItem) in
             if file != nil {
                 self.move(file: file!, path: text)
-            } else {
+            } else if text != "" {
                 let c = CreateFile(p: self.LoadManager.project)
                 _ = c.createFile(name: text)
             }
