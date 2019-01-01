@@ -38,6 +38,8 @@
 		6864D06F21C8DF48001F5B18 /* SwiftGit2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6864D06D21C8DF48001F5B18 /* SwiftGit2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6864D07121C8F13B001F5B18 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6864D07021C8F13B001F5B18 /* Result.framework */; };
 		6864D07221C8F13B001F5B18 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6864D07021C8F13B001F5B18 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686822ED21DB8DCA0036694B /* GitCommit.xib */; };
+		686822F021DB8E130036694B /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686822EF21DB8E130036694B /* GitCommit.swift */; };
 		6872862521D29BA8003F1073 /* ObjectiveGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6872862421D29BA8003F1073 /* ObjectiveGit.framework */; };
 		6872862621D29BA8003F1073 /* ObjectiveGit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6872862421D29BA8003F1073 /* ObjectiveGit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6872862D21D29DE2003F1073 /* NSObject+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 6872862C21D29DE2003F1073 /* NSObject+Push.m */; };
@@ -100,6 +102,8 @@
 		6863DF9621B68F1700911374 /* LightStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightStatus.swift; sourceTree = "<group>"; };
 		6864D06D21C8DF48001F5B18 /* SwiftGit2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGit2.framework; path = Carthage/Build/iOS/SwiftGit2.framework; sourceTree = "<group>"; };
 		6864D07021C8F13B001F5B18 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		686822ED21DB8DCA0036694B /* GitCommit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GitCommit.xib; sourceTree = "<group>"; };
+		686822EF21DB8E130036694B /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
 		6872862421D29BA8003F1073 /* ObjectiveGit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectiveGit.framework; path = Carthage/Build/iOS/ObjectiveGit.framework; sourceTree = "<group>"; };
 		6872862B21D29DE2003F1073 /* NSObject+Push.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Push.h"; sourceTree = "<group>"; };
 		6872862C21D29DE2003F1073 /* NSObject+Push.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Push.m"; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 			children = (
 				6863DF9021B5496200911374 /* BottomLine.xib */,
 				6852C24B21BB53BA00FA40DC /* Editor.xib */,
+				686822ED21DB8DCA0036694B /* GitCommit.xib */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 			children = (
 				6863DF9221B54A9800911374 /* BottomLine.swift */,
 				6852C24D21BB542000FA40DC /* Editor.swift */,
+				686822EF21DB8E130036694B /* GitCommit.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -399,6 +405,7 @@
 				6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */,
 				6852C24C21BB53BA00FA40DC /* Editor.xib in Resources */,
 				6863DF9121B5496200911374 /* BottomLine.xib in Resources */,
+				686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */,
 				6856C7A121B249FB00441767 /* Icons.plist in Resources */,
 				684549C421CE218F00CF5E80 /* git.storyboard in Resources */,
 				689BDC2621B22F7C00D88AAB /* Assets.xcassets in Resources */,
@@ -414,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68E4544A21C1276B00F945A0 /* CellStruct.swift in Sources */,
+				686822F021DB8E130036694B /* GitCommit.swift in Sources */,
 				6863DF9721B68F1700911374 /* LightStatus.swift in Sources */,
 				68E329D421D9223700231CFC /* ViewControllers.swift in Sources */,
 				689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */,
