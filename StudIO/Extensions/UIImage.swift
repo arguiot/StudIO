@@ -28,4 +28,14 @@ extension UIImage {
         }
         return newImage
     }
+    func inverseImage(cgResult: Bool = false) -> UIImage? {
+        let coreImage = UIKit.CIImage(image: self)
+        guard let filter = CIFilter(name: "CIColorInvert") else { return nil }
+        filter.setValue(coreImage, forKey: kCIInputImageKey)
+        guard let result = filter.value(forKey: kCIOutputImageKey) as? UIKit.CIImage else { return nil }
+        if cgResult { // I've found that UIImage's that are based on CIImages don't work with a lot of calls properly
+            return UIImage(cgImage: CIContext(options: nil).createCGImage(result, from: result.extent)!)
+        }
+        return UIImage(ciImage: result)
+    }
 }

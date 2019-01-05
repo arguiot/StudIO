@@ -74,9 +74,14 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         configureView()
+        // GitVC
         let image = #imageLiteral(resourceName: "Repo-white").scaleImage(toSize: CGSize(width: 10, height: 10))
         let gitButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(gitVC(_:)))
-        navigationItem.rightBarButtonItem = gitButton
+        // Git Panel
+        let pimg = #imageLiteral(resourceName: "branch-icon").scaleImage(toSize: CGSize(width: 6.25, height: 10))
+        let pButton = UIBarButtonItem(image: pimg, style: .plain, target: self, action: #selector(gitPanel(_:)))
+        editorView.gitPanel.isHidden = true
+        navigationItem.rightBarButtonItems = [gitButton, pButton]
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -98,6 +103,11 @@ class DetailViewController: UIViewController {
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "GitVC") as! GitVC
         newViewController.repo = repo
         self.navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    @objc func gitPanel(_ sender: Any?) {
+        let p = editorView.gitPanel
+        p?.isHidden = !(p?.isHidden ?? false)
     }
 }
 
