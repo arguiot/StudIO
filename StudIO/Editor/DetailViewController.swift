@@ -64,9 +64,9 @@ class DetailViewController: UIViewController {
             b?.lastCommit.text = msg
         }
         DispatchQueue.global().async {
-            let text = try? self.file?.readSize() as! String
+            let text = try? self.file?.readSize()
             DispatchQueue.main.async {
-                b?.sizeString.text = text
+                b?.sizeString.text = text as? String
             }
         }
     }
@@ -81,6 +81,7 @@ class DetailViewController: UIViewController {
         let pimg = #imageLiteral(resourceName: "branch-icon").scaleImage(toSize: CGSize(width: 6.25, height: 10))
         let pButton = UIBarButtonItem(image: pimg, style: .plain, target: self, action: #selector(gitPanel(_:)))
         editorView.gitPanel.isHidden = true
+        editorView.gitPanel.repo = repo!
         navigationItem.rightBarButtonItems = [gitButton, pButton]
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {

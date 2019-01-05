@@ -92,7 +92,7 @@ class ProjectVC: UICollectionViewController {
             
         }
         page.alternativeHandler = { item in
-            var new = TextFieldBulletinPage(title: "Local project")
+            let new = TextFieldBulletinPage(title: "Local project")
             new.descriptionText = "Create a local git project that will not be backed up by any git hosting platform."
             new.actionButtonTitle = "Done"
             new.checkURL = false

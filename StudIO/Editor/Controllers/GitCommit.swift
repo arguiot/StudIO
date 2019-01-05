@@ -7,13 +7,15 @@
 //
 
 import UIKit
-import WebKit
+import SwiftGit2
 
 class GitCommit: UIView {
     @IBOutlet var contentView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commitStrip: UITextView!
+    
+    var repo: Repository!
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -37,6 +39,9 @@ class GitCommit: UIView {
     func initialisation() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -54,4 +59,28 @@ class GitCommit: UIView {
     
     @IBAction func commit(_ sender: Any) {
     }
+}
+
+extension GitCommit: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let s = repo.status().value {
+            return s.count
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {
+                return UITableViewCell(style: .default, reuseIdentifier: "cell")
+            }
+            return cell
+        }()
+        if let s = repo.status().value {
+            let row = indexPath.row
+            cell.textLabel?.text = s[row].headToIndex?.newFile?.path
+        }
+        return cell
+    }
+    
 }
