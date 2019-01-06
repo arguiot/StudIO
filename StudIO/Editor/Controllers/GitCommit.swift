@@ -42,6 +42,7 @@ class GitCommit: UIView {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 89
     }
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -76,9 +77,11 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
             }
             return cell
         }()
+        cell.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
         if let s = repo.status().value {
             let row = indexPath.row
-            cell.textLabel?.text = s[row].headToIndex?.newFile?.path
+            cell.textLabel?.text = s[row].indexToWorkDir?.newFile?.path ?? "File without path"
+            cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         }
         return cell
     }
