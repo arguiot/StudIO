@@ -82,8 +82,16 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
             let row = indexPath.row
             cell.textLabel?.text = s[row].indexToWorkDir?.newFile?.path ?? "File without path"
             cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+            cell.accessoryType = .checkmark
         }
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .none
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .checkmark
+    }
 }
