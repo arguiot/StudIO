@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SwiftGit2
 class CreateFile {
     var home: Folder
     init(p: Folder) {
@@ -35,7 +35,6 @@ class CreateFile {
             l = sf!
         }
         let f = try! l.createFile(named: n)
-        
         return MenuCellStruct(type: .file, ident: i, name: n, path: f, toggled: false)
     }
 }

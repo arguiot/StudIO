@@ -108,6 +108,7 @@ class DetailViewController: UIViewController {
     
     @objc func gitPanel(_ sender: Any?) {
         let p = editorView.gitPanel
+        p?.reloadProperties()
         p?.isHidden = !(p?.isHidden ?? false)
     }
 }

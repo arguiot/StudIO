@@ -15,7 +15,7 @@ class GitCommit: UIView {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commitStrip: UITextView!
     
-    var repo: Repository!
+    var repo: Repository?
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -43,6 +43,7 @@ class GitCommit: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 89
+        reloadProperties()
     }
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -59,15 +60,30 @@ class GitCommit: UIView {
     }
     
     @IBAction func commit(_ sender: Any) {
+//        repo.commit(message: commitStrip.text)
     }
+    
+    func reloadProperties() {
+        DispatchQueue.global().async {
+            if let s = self.repo?.status().value {
+                self.status = s
+            } else {
+                self.status = []
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    // properties
+    var status: [StatusEntry] = []
+
 }
 
 extension GitCommit: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let s = repo.status().value {
-            return s.count
-        }
-        return 0
+        return status.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,12 +94,11 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
             return cell
         }()
         cell.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
-        if let s = repo.status().value {
-            let row = indexPath.row
-            cell.textLabel?.text = s[row].indexToWorkDir?.newFile?.path ?? "File without path"
-            cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-            cell.accessoryType = .checkmark
-        }
+        let s = status
+        let row = indexPath.row
+        cell.textLabel?.text = s[row].indexToWorkDir?.newFile?.path ?? (s[row].headToIndex?.newFile?.path ?? "ERROR")
+        cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        cell.accessoryType = .checkmark
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -93,5 +108,6 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .checkmark
+        repo?.add(path: cell?.textLabel?.text ?? "")
     }
 }
