@@ -82,19 +82,62 @@
                                     <action selector="pullAction:" destination="grP-rr-E8W" eventType="touchUpInside" id="oMo-i1-bm4"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RLp-Aa-Dwi">
+                                <rect key="frame" x="24" y="225" width="169" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jDY-My-8Fk"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <connections>
+                                    <action selector="setName:" destination="grP-rr-E8W" eventType="editingDidEnd" id="OSk-bl-T1P"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xv2-pZ-XGY">
+                                <rect key="frame" x="201" y="225" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="YKU-DF-mOL"/>
+                                    <constraint firstAttribute="height" constant="30" id="mvX-2M-GFf"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <connections>
+                                    <action selector="setEmail:" destination="grP-rr-E8W" eventType="editingDidEnd" id="YCj-R3-S0E"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbf-0N-wpg">
+                                <rect key="frame" x="16" y="183" width="194" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="iSh-GY-Qoa"/>
+                                    <constraint firstAttribute="width" constant="194" id="rYZ-2m-wtm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iAY-Cs-NSh" firstAttribute="leading" secondItem="F02-iu-N8D" secondAttribute="trailing" constant="8" id="04x-fn-HwB"/>
+                            <constraint firstItem="6s6-dv-87s" firstAttribute="trailing" secondItem="Xv2-pZ-XGY" secondAttribute="trailing" constant="24" id="1LR-Up-QxA"/>
+                            <constraint firstItem="Xv2-pZ-XGY" firstAttribute="top" secondItem="iAY-Cs-NSh" secondAttribute="bottom" constant="50" id="5t7-yB-keF"/>
+                            <constraint firstItem="Xv2-pZ-XGY" firstAttribute="leading" secondItem="RLp-Aa-Dwi" secondAttribute="trailing" constant="8" id="8ak-Ce-urQ"/>
+                            <constraint firstItem="mbf-0N-wpg" firstAttribute="leading" secondItem="g0h-90-UnF" secondAttribute="leading" id="9P8-xb-Sa7"/>
                             <constraint firstItem="iAY-Cs-NSh" firstAttribute="centerX" secondItem="3E8-c9-FJV" secondAttribute="centerX" id="CZe-ir-23N"/>
                             <constraint firstItem="1Tv-NN-Xrq" firstAttribute="top" secondItem="dEW-7s-xb7" secondAttribute="bottom" constant="25" id="ECo-in-8Se"/>
+                            <constraint firstItem="RLp-Aa-Dwi" firstAttribute="top" secondItem="F02-iu-N8D" secondAttribute="bottom" constant="50" id="JZY-kM-cAc"/>
                             <constraint firstItem="1Tv-NN-Xrq" firstAttribute="leading" secondItem="iAY-Cs-NSh" secondAttribute="trailing" constant="8" id="K5g-zZ-KQh"/>
                             <constraint firstItem="g0h-90-UnF" firstAttribute="top" secondItem="6s6-dv-87s" secondAttribute="top" constant="35" id="Kg1-Ls-Wjb"/>
+                            <constraint firstItem="RLp-Aa-Dwi" firstAttribute="leading" secondItem="6s6-dv-87s" secondAttribute="leading" constant="24" id="PJa-uy-kF1"/>
                             <constraint firstItem="1Tv-NN-Xrq" firstAttribute="leading" secondItem="iAY-Cs-NSh" secondAttribute="trailing" constant="8" id="Voz-4X-XkR"/>
                             <constraint firstItem="iAY-Cs-NSh" firstAttribute="top" secondItem="dEW-7s-xb7" secondAttribute="bottom" constant="25" id="a52-yo-Irq"/>
+                            <constraint firstItem="Xv2-pZ-XGY" firstAttribute="leading" secondItem="RLp-Aa-Dwi" secondAttribute="trailing" constant="8" id="gpS-k4-2Q1"/>
                             <constraint firstItem="dEW-7s-xb7" firstAttribute="trailing" secondItem="6s6-dv-87s" secondAttribute="trailing" id="m8v-J4-7Gq"/>
                             <constraint firstItem="6s6-dv-87s" firstAttribute="trailing" secondItem="1Tv-NN-Xrq" secondAttribute="trailing" id="nMA-mb-Wp9"/>
                             <constraint firstItem="F02-iu-N8D" firstAttribute="leading" secondItem="6s6-dv-87s" secondAttribute="leading" id="q27-1w-7uq"/>
+                            <constraint firstItem="mbf-0N-wpg" firstAttribute="top" secondItem="F02-iu-N8D" secondAttribute="bottom" constant="8" symbolic="YES" id="qBZ-Mm-0mi"/>
                             <constraint firstItem="iAY-Cs-NSh" firstAttribute="leading" secondItem="F02-iu-N8D" secondAttribute="trailing" constant="8" id="qV5-wy-74N"/>
                             <constraint firstItem="F02-iu-N8D" firstAttribute="top" secondItem="dEW-7s-xb7" secondAttribute="bottom" constant="25" id="shG-70-8xU"/>
                             <constraint firstItem="g0h-90-UnF" firstAttribute="leading" secondItem="6s6-dv-87s" secondAttribute="leading" constant="16" id="tdV-Vc-dGJ"/>
@@ -104,6 +147,8 @@
                     </view>
                     <connections>
                         <outlet property="branchPicker" destination="dEW-7s-xb7" id="dO8-4U-VY6"/>
+                        <outlet property="email" destination="Xv2-pZ-XGY" id="2i6-PM-03s"/>
+                        <outlet property="name" destination="RLp-Aa-Dwi" id="uVg-Z9-nDq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RWA-dU-hGN" userLabel="First Responder" sceneMemberID="firstResponder"/>

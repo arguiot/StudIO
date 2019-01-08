@@ -74,6 +74,14 @@ class GitVC: UIViewController {
         m.objects = m.LoadManager.loadProject()
         m.tableView.reloadData()
     }
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var name: UITextField!
+    @IBAction func setGitEmail(_ sender: Any) {
+        UserDefaults.standard.set(email.text, forKey: "email")
+    }
+    @IBAction func setGitName(_ sender: Any) {
+        UserDefaults.standard.set(name.text, forKey: "name")
+    }
     /*
     // MARK: - Navigation
 

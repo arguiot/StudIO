@@ -60,7 +60,16 @@ class GitCommit: UIView {
     }
     
     @IBAction func commit(_ sender: Any) {
-//        repo.commit(message: commitStrip.text)
+        let name = UserDefaults.standard.string(forKey: "name") ?? "StudIO User"
+        let email = UserDefaults.standard.string(forKey: "email") ?? "studio@exemple.com"
+        let sig = Signature(name: name, email: email)
+        if repo?.commit(message: commitStrip.text, signature: sig).value != nil {
+            commitStrip.text = ""
+            self.status = []
+            tableView.reloadData()
+            reloadProperties()
+        }
+        
     }
     
     func reloadProperties() {
