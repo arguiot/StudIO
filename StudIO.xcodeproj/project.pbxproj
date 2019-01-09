@@ -12,6 +12,7 @@
 		6808B18121BD1D8200811058 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808B18021BD1D8200811058 /* Files.swift */; };
 		6808B18321BD1E5200811058 /* FileProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808B18221BD1E5200811058 /* FileProjects.swift */; };
 		68162E8821BBE11200CDA628 /* EditorView in Resources */ = {isa = PBXBuildFile; fileRef = 68162E8721BBE11200CDA628 /* EditorView */; };
+		681D9F7621E604C90054CC5E /* PullPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681D9F7521E604C90054CC5E /* PullPush.swift */; };
 		6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A821B2773F00441767 /* octicons.ttf */; };
 		684549C421CE218F00CF5E80 /* git.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 684549C321CE218F00CF5E80 /* git.storyboard */; };
 		684549C621CE247B00CF5E80 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684549C521CE247B00CF5E80 /* UIImage.swift */; };
@@ -42,7 +43,6 @@
 		686822F021DB8E130036694B /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686822EF21DB8E130036694B /* GitCommit.swift */; };
 		6872862521D29BA8003F1073 /* ObjectiveGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6872862421D29BA8003F1073 /* ObjectiveGit.framework */; };
 		6872862621D29BA8003F1073 /* ObjectiveGit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6872862421D29BA8003F1073 /* ObjectiveGit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6872862D21D29DE2003F1073 /* NSObject+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 6872862C21D29DE2003F1073 /* NSObject+Push.m */; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* MasterViewController.swift */; };
 		689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC2021B22F7800D88AAB /* DetailViewController.swift */; };
@@ -78,6 +78,7 @@
 		6808B18021BD1D8200811058 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		6808B18221BD1E5200811058 /* FileProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProjects.swift; sourceTree = "<group>"; };
 		68162E8721BBE11200CDA628 /* EditorView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EditorView; sourceTree = "<group>"; };
+		681D9F7521E604C90054CC5E /* PullPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullPush.swift; sourceTree = "<group>"; };
 		684549C321CE218F00CF5E80 /* git.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = git.storyboard; sourceTree = "<group>"; };
 		684549C521CE247B00CF5E80 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		684549C821CE27EE00CF5E80 /* GitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitVC.swift; sourceTree = "<group>"; };
@@ -105,8 +106,7 @@
 		686822ED21DB8DCA0036694B /* GitCommit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GitCommit.xib; sourceTree = "<group>"; };
 		686822EF21DB8E130036694B /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
 		6872862421D29BA8003F1073 /* ObjectiveGit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectiveGit.framework; path = Carthage/Build/iOS/ObjectiveGit.framework; sourceTree = "<group>"; };
-		6872862B21D29DE2003F1073 /* NSObject+Push.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Push.h"; sourceTree = "<group>"; };
-		6872862C21D29DE2003F1073 /* NSObject+Push.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Push.m"; sourceTree = "<group>"; };
+		6872862B21D29DE2003F1073 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689BDC1E21B22F7800D88AAB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -279,8 +279,8 @@
 		6872862A21D29DAE003F1073 /* ObjectiveGit */ = {
 			isa = PBXGroup;
 			children = (
-				6872862B21D29DE2003F1073 /* NSObject+Push.h */,
-				6872862C21D29DE2003F1073 /* NSObject+Push.m */,
+				6872862B21D29DE2003F1073 /* Header.h */,
+				681D9F7521E604C90054CC5E /* PullPush.swift */,
 			);
 			path = ObjectiveGit;
 			sourceTree = "<group>";
@@ -432,7 +432,6 @@
 				6863DF8521B3C60400911374 /* FeedBackBLTN.swift in Sources */,
 				6863DF8721B3C62C00911374 /* TextFieldBLTN.swift in Sources */,
 				689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */,
-				6872862D21D29DE2003F1073 /* NSObject+Push.m in Sources */,
 				6863DF9521B54C2A00911374 /* date.swift in Sources */,
 				6808B18121BD1D8200811058 /* Files.swift in Sources */,
 				6808B18321BD1E5200811058 /* FileProjects.swift in Sources */,
@@ -444,6 +443,7 @@
 				6802069D21C6469C000686D1 /* Data.swift in Sources */,
 				689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */,
 				6856C7AF21B2797200441767 /* Project.swift in Sources */,
+				681D9F7621E604C90054CC5E /* PullPush.swift in Sources */,
 				68058E5821C7AFCB0088334E /* TableViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,7 +606,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "StudIO/Git/ObjectiveGit/NSObject+Push.h";
+				SWIFT_OBJC_BRIDGING_HEADER = StudIO/Git/ObjectiveGit/Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -633,7 +633,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "StudIO/Git/ObjectiveGit/NSObject+Push.h";
+				SWIFT_OBJC_BRIDGING_HEADER = StudIO/Git/ObjectiveGit/Header.h;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
