@@ -25,7 +25,10 @@ class GitVC: UIViewController {
         let p = Push()
         let rurl = repo?.directoryURL
         DispatchQueue.global().async {
-            p.push(rurl!) { (current, total, bytes, stop) in
+            let email = UserDefaults.standard.string(forKey: "email")
+            let passwd = UserDefaults.standard.string(forKey: "password")
+            let creds = p.creds(creds: try! GTCredential(userName: email ?? "", password: passwd ?? ""))
+            p.push(rurl!, options: creds) { (current, total, bytes, stop) in
                 print(current, total, bytes, stop)
                 if stop.pointee.boolValue == true {
                     DispatchQueue.main.sync {
@@ -51,7 +54,10 @@ class GitVC: UIViewController {
         let p = Push()
         let rurl = repo?.directoryURL
         DispatchQueue.global().async {
-            p.pull(rurl!) { (transfer, stop) in
+            let email = UserDefaults.standard.string(forKey: "email")
+            let passwd = UserDefaults.standard.string(forKey: "password")
+            let creds = p.creds(creds: try? GTCredential(userName: email ?? "", password: passwd ?? ""))
+            p.pull(rurl!, options: creds) { (transfer, stop) in
                 print(transfer, stop)
                 if stop.pointee.boolValue == true {
                     DispatchQueue.main.sync {
@@ -76,11 +82,15 @@ class GitVC: UIViewController {
     }
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var passwd: UITextField!
     @IBAction func setGitEmail(_ sender: Any) {
         UserDefaults.standard.set(email.text, forKey: "email")
     }
     @IBAction func setGitName(_ sender: Any) {
         UserDefaults.standard.set(name.text, forKey: "name")
+    }
+    @IBAction func setGitPasswd(_ sender: Any) {
+        UserDefaults.standard.set(name.text, forKey: "password")
     }
     /*
     // MARK: - Navigation
