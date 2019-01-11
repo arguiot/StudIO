@@ -56,7 +56,8 @@ class GitVC: UIViewController {
         DispatchQueue.global().async {
             let email = UserDefaults.standard.string(forKey: "email")
             let passwd = UserDefaults.standard.string(forKey: "password")
-            let creds = p.creds(creds: try? GTCredential(userName: email ?? "", password: passwd ?? ""))
+            let git_cred = try? GTCredential(userName: email ?? "", password: passwd ?? "")
+            let creds = p.creds(creds: git_cred)
             p.pull(rurl!, options: creds) { (transfer, stop) in
                 print(transfer, stop)
                 if stop.pointee.boolValue == true {
