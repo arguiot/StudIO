@@ -60,15 +60,20 @@ class GitCommit: UIView {
     }
     
     @IBAction func commit(_ sender: Any) {
-        let name = UserDefaults.standard.string(forKey: "name") ?? "StudIO User"
-        let email = UserDefaults.standard.string(forKey: "email") ?? "studio@exemple.com"
-        let sig = Signature(name: name, email: email)
-        if repo?.commit(message: commitStrip.text, signature: sig).value != nil {
-            commitStrip.text = ""
-            self.status = []
-            tableView.reloadData()
-            reloadProperties()
+        DispatchQueue.global().sync {
+            let name = UserDefaults.standard.string(forKey: "name") ?? "StudIO User"
+            let email = UserDefaults.standard.string(forKey: "email") ?? "studio@exemple.com"
+            let sig = Signature(name: name, email: email)
+            if self.repo?.commit(message: commitStrip.text, signature: sig).value != nil {
+                self.commitStrip.text = ""
+                self.status = []
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                self.reloadProperties()
+            }
         }
+        
         
     }
     
