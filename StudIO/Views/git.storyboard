@@ -91,7 +91,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                                 <connections>
-                                    <action selector="setName:" destination="grP-rr-E8W" eventType="editingDidEnd" id="OSk-bl-T1P"/>
+                                    <action selector="setGitName:" destination="grP-rr-E8W" eventType="editingDidEnd" id="2tu-by-t0w"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xv2-pZ-XGY">
@@ -104,7 +104,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                 <connections>
-                                    <action selector="setEmail:" destination="grP-rr-E8W" eventType="editingDidEnd" id="YCj-R3-S0E"/>
+                                    <action selector="setGitEmail:" destination="grP-rr-E8W" eventType="editingDidEnd" id="Zlp-uF-ivS"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="efC-Zr-29d">

@@ -54,9 +54,9 @@ class GitVC: UIViewController {
         let p = Push()
         let rurl = repo?.directoryURL
         DispatchQueue.global().async {
-            let email = UserDefaults.standard.string(forKey: "email")
-            let passwd = UserDefaults.standard.string(forKey: "password")
-            let git_cred = try? GTCredential(userName: email ?? "", password: passwd ?? "")
+            let email = UserDefaults.standard.string(forKey: "email") ?? ""
+            let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
+            let git_cred = try? GTCredential(userName: email, password: passwd)
             let creds = p.creds(creds: git_cred)
             p.pull(rurl!, options: creds) { (transfer, stop) in
                 print(transfer, stop)

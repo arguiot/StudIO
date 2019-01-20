@@ -37,8 +37,11 @@ class Push: NSObject {
         return true
     }
     func creds(creds: GTCredential?) -> NSDictionary? {
+        let gtcp = GTCredentialProvider { (type, a, b) -> GTCredential? in
+            return creds
+        }
         let d: NSDictionary = [
-            "GTRepositoryRemoteOptionsCredentialProvider": creds?.git_cred()
+            "GTRepositoryRemoteOptionsCredentialProvider": gtcp
         ]
         return d
     }
