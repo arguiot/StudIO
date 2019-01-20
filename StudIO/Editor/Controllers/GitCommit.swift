@@ -111,7 +111,9 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         cell.contentView.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
         let s = status
         let row = indexPath.row
-        cell.textLabel?.text = s[row].indexToWorkDir?.newFile?.path ?? (s[row].headToIndex?.newFile?.path ?? "ERROR")
+        let path = s[row].indexToWorkDir?.newFile?.path ?? (s[row].headToIndex?.newFile?.path ?? "ERROR")
+        self.repo?.add(path: path)
+        cell.textLabel?.text = path
         cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         cell.accessoryType = .checkmark
         return cell
