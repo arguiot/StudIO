@@ -69,8 +69,8 @@ class GitCommit: UIView {
                 self.status = []
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.reloadProperties()
                 }
-                self.reloadProperties()
             }
         }
         
@@ -108,6 +108,7 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
             return cell
         }()
         cell.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
+        cell.contentView.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
         let s = status
         let row = indexPath.row
         cell.textLabel?.text = s[row].indexToWorkDir?.newFile?.path ?? (s[row].headToIndex?.newFile?.path ?? "ERROR")

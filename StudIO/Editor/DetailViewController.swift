@@ -56,7 +56,7 @@ class DetailViewController: UIViewController {
         })
         
     }
-    func bottomView(_ str: String) {
+    func bottomView(_ str: String = "") {
         let b = bottomLine
         if let branch = repo?.localBranch(named: "master").value {
             let commit = repo?.commits(in: branch).next()?.value!
@@ -69,6 +69,10 @@ class DetailViewController: UIViewController {
                 b?.sizeString.text = text as? String
             }
         }
+    }
+    
+    @IBAction func updatedBar() {
+        bottomView()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
