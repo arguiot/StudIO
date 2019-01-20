@@ -86,12 +86,30 @@ class GitCommit: UIView {
             }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.checkButton()
             }
         }
     }
     
     // properties
     var status: [StatusEntry] = []
+    
+    @IBOutlet weak var commitButton: UIButton!
+    func checkButton() {
+        if let s = repo?.status().value {
+            var index = [Any]()
+            s.forEach { (se) in
+                if se.headToIndex != nil {
+                    index.append(se.headToIndex)
+                }
+            }
+            if index.count == 0 {
+                commitButton.isEnabled = false
+            } else {
+                commitButton.isEnabled = true
+            }
+        }
+    }
 
 }
 
@@ -121,10 +139,15 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .none
+        try? GTRepository(gitRepository: (repo?.pointer)!)?.index().removeFile((cell?.textLabel?.text)!)
+        
+        checkButton()
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .checkmark
         repo?.add(path: cell?.textLabel?.text ?? "")
+        
+        checkButton()
     }
 }

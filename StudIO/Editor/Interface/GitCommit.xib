@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GitCommit" customModule="StudIO" customModuleProvider="target">
             <connections>
+                <outlet property="commitButton" destination="cAq-1C-seb" id="pBp-Qt-lqE"/>
                 <outlet property="commitStrip" destination="ROZ-Bb-67o" id="HU9-UY-5GF"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="hmS-Qr-dt1"/>
                 <outlet property="tableView" destination="c15-bd-wGm" id="FnM-Mo-bPE"/>

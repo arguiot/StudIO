@@ -32,6 +32,11 @@ class DetailViewController: UIViewController {
                 if let d = data {
                     if d != hash {
                         _ = try? f.write(data: d)
+                        DispatchQueue.main.async {
+                            self.editorView?.getLangName({ str in
+                                self.bottomLine.language.text = str
+                            })
+                        }
                     }
                 }
             })
@@ -111,9 +116,12 @@ class DetailViewController: UIViewController {
     }
     
     @objc func gitPanel(_ sender: Any?) {
+        save()
+        
         let p = editorView.gitPanel
         p?.reloadProperties()
         p?.isHidden = !(p?.isHidden ?? false)
+        
     }
 }
 
