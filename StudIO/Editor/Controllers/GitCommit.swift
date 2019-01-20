@@ -43,6 +43,8 @@ class GitCommit: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 89
+        tableView.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
+        tableView.backgroundView?.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
         reloadProperties()
     }
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -105,8 +107,10 @@ class GitCommit: UIView {
             }
             if index.count == 0 {
                 commitButton.isEnabled = false
+                commitButton.backgroundColor = #colorLiteral(red: 0.01993954368, green: 0.2427439988, blue: 0.5180901885, alpha: 1)
             } else {
                 commitButton.isEnabled = true
+                commitButton.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
             }
         }
     }
