@@ -139,5 +139,9 @@ class MasterViewController: UITableViewController {
         }
         try? file.rename(to: n, keepExtension: false)
         try? file.move(to: l)
+        let fpath = URL(string: LoadManager.project.path)!
+        if let repo = Repository.at(fpath).value {
+            repo.add(path: path)
+        }
     }
 }

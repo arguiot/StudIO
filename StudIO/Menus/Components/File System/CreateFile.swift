@@ -35,6 +35,10 @@ class CreateFile {
             l = sf!
         }
         let f = try! l.createFile(named: n)
+        let fpath: URL = URL(string: home.path)!
+        if let repo = Repository.at(fpath).value {
+            repo.add(path: f.path)
+        }
         return MenuCellStruct(type: .file, ident: i, name: n, path: f, toggled: false)
     }
 }
