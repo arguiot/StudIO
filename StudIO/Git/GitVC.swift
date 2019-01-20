@@ -91,7 +91,7 @@ class GitVC: UIViewController {
         UserDefaults.standard.set(name.text, forKey: "name")
     }
     @IBAction func setGitPasswd(_ sender: Any) {
-        UserDefaults.standard.set(name.text, forKey: "password")
+        UserDefaults.standard.set(passwd.text, forKey: "password")
     }
     /*
     // MARK: - Navigation
