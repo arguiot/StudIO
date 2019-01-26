@@ -6,7 +6,7 @@
 //  Copyright © 2019 Arthur Guiot. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import SwiftGit2
 
 class Push: NSObject {
@@ -18,7 +18,18 @@ class Push: NSObject {
         do {
             try repo?.push(branches![0], to: remote!, withOptions: options as? [AnyHashable : Any], progress: progress)
         } catch {
-            print("Couldn't push", error.localizedDescription)
+            DispatchQueue.main.sync {
+                let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+                alertWindow.rootViewController = UIViewController()
+                alertWindow.windowLevel = UIWindow.Level.alert + 1
+                alertWindow.makeKeyAndVisible()
+                
+                //1. Create the alert controller.
+                let alert = UIAlertController(title: "Couldn't push", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
+            }
+            
         }
         return true
     }
@@ -31,7 +42,17 @@ class Push: NSObject {
         do {
             try repo?.pull(branches![0], from: remote!, withOptions: options as? [AnyHashable : Any], progress: progress)
         } catch {
-            print("Couldn't pull", error.localizedDescription)
+            DispatchQueue.main.sync {
+                let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+                alertWindow.rootViewController = UIViewController()
+                alertWindow.windowLevel = UIWindow.Level.alert + 1
+                alertWindow.makeKeyAndVisible()
+                
+                //1. Create the alert controller.
+                let alert = UIAlertController(title: "Couldn't pull", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
+            }
         }
         
         return true
