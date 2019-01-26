@@ -31,7 +31,7 @@ class GitVC: UIViewController {
             let email = UserDefaults.standard.string(forKey: "email") ?? ""
             let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
             var creds: NSDictionary? = [:]
-            if (email == "" || passwd == "") {
+            if (email != "" || passwd != "") {
                 let git_cred = try? GTCredential(userName: email, password: passwd)
                 creds = p.creds(creds: git_cred)
             }
@@ -64,7 +64,7 @@ class GitVC: UIViewController {
             let email = UserDefaults.standard.string(forKey: "email") ?? ""
             let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
             var creds: NSDictionary? = [:]
-            if (email == "" || passwd == "") {
+            if (email != "" || passwd != "") {
                 let git_cred = try? GTCredential(userName: email, password: passwd)
                 creds = p.creds(creds: git_cred)
             }
