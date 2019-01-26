@@ -16,7 +16,7 @@ class Push: NSObject {
         let remotes = try! repo?.remoteNames()
         let remote = try? GTRemote(name: (remotes?[0])!, in: repo!)
         do {
-            try repo?.pushBranches(branches!, to: remote!, withOptions: options as! [AnyHashable : Any], progress: progress)
+            try repo?.pushBranches(branches!, to: remote!, withOptions: options as? [AnyHashable : Any], progress: progress)
         } catch {
             print("Couldn't push")
         }
@@ -29,7 +29,7 @@ class Push: NSObject {
         let remotes = try? repo?.remoteNames()
         let remote = try? GTRemote(name: remotes!![0], in: repo!)
         do {
-            try repo?.pull(branches![0], from: remote!, withOptions: options as! [AnyHashable : Any], progress: progress)
+            try repo?.pull(branches![0], from: remote!, withOptions: options as? [AnyHashable : Any], progress: progress)
         } catch {
             print("Couldn't pull")
         }

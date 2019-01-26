@@ -20,14 +20,21 @@ class GitVC: UIViewController {
 
         // Do any additional setup after loading the view.
         branchPicker.tintColor = .white
+        name.text = UserDefaults.standard.string(forKey: "name") ?? ""
+        email.text = UserDefaults.standard.string(forKey: "email") ?? ""
+        passwd.text = UserDefaults.standard.string(forKey: "password") ?? ""
     }
     @objc @IBAction func pushAction(_ sender: Any) {
         let p = Push()
         let rurl = repo?.directoryURL
         DispatchQueue.global().async {
-            let email = UserDefaults.standard.string(forKey: "email")
-            let passwd = UserDefaults.standard.string(forKey: "password")
-            let creds = p.creds(creds: try! GTCredential(userName: email ?? "", password: passwd ?? ""))
+            let email = UserDefaults.standard.string(forKey: "email") ?? ""
+            let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
+            var creds: NSDictionary? = [:]
+            if (email == "" || passwd == "") {
+                let git_cred = try? GTCredential(userName: email, password: passwd)
+                creds = p.creds(creds: git_cred)
+            }
             p.push(rurl!, options: creds) { (current, total, bytes, stop) in
                 print(current, total, bytes, stop)
                 if stop.pointee.boolValue == true {
@@ -56,8 +63,12 @@ class GitVC: UIViewController {
         DispatchQueue.global().async {
             let email = UserDefaults.standard.string(forKey: "email") ?? ""
             let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
-            let git_cred = try? GTCredential(userName: email, password: passwd)
-            let creds = p.creds(creds: git_cred)
+            var creds: NSDictionary? = [:]
+            if (email == "" || passwd == "") {
+                let git_cred = try? GTCredential(userName: email, password: passwd)
+                creds = p.creds(creds: git_cred)
+            }
+            
             p.pull(rurl!, options: creds) { (transfer, stop) in
                 print(transfer, stop)
                 if stop.pointee.boolValue == true {
