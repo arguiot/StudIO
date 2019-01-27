@@ -23,6 +23,8 @@ class GitVC: UIViewController {
         name.text = UserDefaults.standard.string(forKey: "name") ?? ""
         email.text = UserDefaults.standard.string(forKey: "email") ?? ""
         passwd.text = UserDefaults.standard.string(forKey: "password") ?? ""
+        
+        selectCorrectB()
     }
     @objc @IBAction func pushAction(_ sender: Any) {
         let p = Push()
@@ -113,7 +115,21 @@ class GitVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBOutlet weak var nbranch: UITextField!
+    @IBAction func newBranch(_ sender: Any) {
+        let name = nbranch.text
+        let r = GTRepository(gitRepository: (repo?.pointer)!)!
+        
+        do {
+            let lb = try r.localBranches()
+            let oid = lb[0].oid
+            try r.createBranchNamed(name!, from: oid!, message: nil)
+        } catch {
+            let alert = UIAlertController(title: "Couldn't create branch", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        }
+    }
+    
 }
 
 extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -123,9 +139,7 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         let branches = repo?.localBranches()
-        let remotes = repo?.remoteBranches()
-        if var b = branches?.value, let r = remotes?.value {
-            b.append(contentsOf: r)
+        if var b = branches?.value {
             return b.count
         } else {
             return 1
@@ -134,9 +148,7 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let branches = repo?.localBranches()
-        let remotes = repo?.remoteBranches()
-        if var b = branches?.value, let r = remotes?.value {
-            b.append(contentsOf: r)
+        if var b = branches?.value {
             return NSAttributedString(string: b[row].name, attributes: [.foregroundColor: UIColor.white])
         } else {
             return NSAttributedString(string: "master", attributes: [.foregroundColor: UIColor.white])
@@ -144,13 +156,32 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let branches = repo?.localBranches()
-        let remotes = repo?.remoteBranches()
-        if var b = branches?.value, let r = remotes?.value {
-            b.append(contentsOf: r)
+        if var b = branches?.value {
             let oid = b[row].oid
             if (repo?.checkout(oid, strategy: .Safe).value) != nil {
                 print("Checkout: ok")
             }
+        }
+    }
+    func selectCorrectB() {
+        let r = GTRepository(gitRepository: (repo?.pointer)!)
+        let branches = repo?.localBranches()
+        if let b = branches?.value {
+            let name = try? r?.currentBranch().shortName
+            let ns = b.map { $0.shortName }
+            let i = ns.firstIndex(of: name ?? "")
+            let ind = i ?? 0
+            if (ind == 0) {
+                let lb = try? r?.localBranches()
+                let ref = lb!![0].reference
+                do {
+                    try r?.checkoutReference(ref, options: GTCheckoutOptions(strategy: .safe))
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+            }
+            branchPicker.selectRow(ind, inComponent: 0, animated: true)
         }
     }
 }
