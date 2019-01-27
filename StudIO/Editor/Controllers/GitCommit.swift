@@ -66,6 +66,16 @@ class GitCommit: UIView {
             let name = UserDefaults.standard.string(forKey: "name") ?? "StudIO User"
             let email = UserDefaults.standard.string(forKey: "email") ?? "studio@exemple.com"
             let sig = Signature(name: name, email: email)
+            
+            // branches
+            let r = GTRepository(gitRepository: (repo?.pointer)!)
+            let b = try? r?.currentBranch().name
+            if (b == nil) {
+                let branch = repo?.localBranch(named: "master").value
+                let oid = branch?.oid
+                repo?.checkout(oid!, strategy: .Safe)
+            }
+            // commit
             if self.repo?.commit(message: commitStrip.text, signature: sig).value != nil {
                 self.commitStrip.text = ""
                 self.status = []
@@ -75,7 +85,6 @@ class GitCommit: UIView {
                 }
             }
         }
-        
         
     }
     
