@@ -125,8 +125,7 @@ class GitVC: UIViewController {
             let oid = lb[0].oid
             try r.createBranchNamed(name!, from: oid!, message: nil)
         } catch {
-            let alert = UIAlertController(title: "Couldn't create branch", message: error.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            NSObject.alert(t: "Couldn't create branch", m: error.localizedDescription)
         }
     }
     
