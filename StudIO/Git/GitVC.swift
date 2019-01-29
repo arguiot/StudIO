@@ -25,6 +25,13 @@ class GitVC: UIViewController {
         passwd.text = UserDefaults.standard.string(forKey: "password") ?? ""
         
         selectCorrectB()
+        
+        let r = Bundle.main.path(forResource: "last_commit.js", ofType: "")
+        NodeRunner.startEngine(withArguments: [
+            "node",
+            r,
+            nil
+        ])
     }
     @objc @IBAction func pushAction(_ sender: Any) {
         let p = Push()

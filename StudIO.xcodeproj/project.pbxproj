@@ -44,6 +44,12 @@
 		686822F021DB8E130036694B /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686822EF21DB8E130036694B /* GitCommit.swift */; };
 		6872862521D29BA8003F1073 /* ObjectiveGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6872862421D29BA8003F1073 /* ObjectiveGit.framework */; };
 		6872862621D29BA8003F1073 /* ObjectiveGit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6872862421D29BA8003F1073 /* ObjectiveGit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6886CD592200658600FB9DC7 /* NodeMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6886CD582200658500FB9DC7 /* NodeMobile.framework */; };
+		6886CD5A2200658600FB9DC7 /* NodeMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6886CD582200658500FB9DC7 /* NodeMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6886CD5E220065FC00FB9DC7 /* NSObject+NodeRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6886CD5D220065FC00FB9DC7 /* NSObject+NodeRunner.m */; };
+		6886CD632200708C00FB9DC7 /* node_modules in Resources */ = {isa = PBXBuildFile; fileRef = 6886CD602200708B00FB9DC7 /* node_modules */; };
+		6886CD642200708C00FB9DC7 /* last_commit.js in Resources */ = {isa = PBXBuildFile; fileRef = 6886CD612200708C00FB9DC7 /* last_commit.js */; };
+		6886CD652200708C00FB9DC7 /* package-lock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6886CD622200708C00FB9DC7 /* package-lock.json */; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* MasterViewController.swift */; };
 		689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC2021B22F7800D88AAB /* DetailViewController.swift */; };
@@ -66,6 +72,7 @@
 				6864D07221C8F13B001F5B18 /* Result.framework in Embed Frameworks */,
 				6872862621D29BA8003F1073 /* ObjectiveGit.framework in Embed Frameworks */,
 				6864D06F21C8DF48001F5B18 /* SwiftGit2.framework in Embed Frameworks */,
+				6886CD5A2200658600FB9DC7 /* NodeMobile.framework in Embed Frameworks */,
 				6863DF8121B38FB800911374 /* BLTNBoard.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -109,6 +116,12 @@
 		686822EF21DB8E130036694B /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
 		6872862421D29BA8003F1073 /* ObjectiveGit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectiveGit.framework; path = Carthage/Build/iOS/ObjectiveGit.framework; sourceTree = "<group>"; };
 		6872862B21D29DE2003F1073 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		6886CD582200658500FB9DC7 /* NodeMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NodeMobile.framework; sourceTree = "<group>"; };
+		6886CD5C220065FC00FB9DC7 /* NSObject+NodeRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+NodeRunner.h"; sourceTree = "<group>"; };
+		6886CD5D220065FC00FB9DC7 /* NSObject+NodeRunner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NodeRunner.m"; sourceTree = "<group>"; };
+		6886CD602200708B00FB9DC7 /* node_modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = node_modules; sourceTree = "<group>"; };
+		6886CD612200708C00FB9DC7 /* last_commit.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = last_commit.js; sourceTree = "<group>"; };
+		6886CD622200708C00FB9DC7 /* package-lock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689BDC1E21B22F7800D88AAB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +144,7 @@
 				6864D07121C8F13B001F5B18 /* Result.framework in Frameworks */,
 				6872862521D29BA8003F1073 /* ObjectiveGit.framework in Frameworks */,
 				6864D06E21C8DF48001F5B18 /* SwiftGit2.framework in Frameworks */,
+				6886CD592200658600FB9DC7 /* NodeMobile.framework in Frameworks */,
 				6863DF8021B38FB800911374 /* BLTNBoard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +163,7 @@
 		684549C721CE279500CF5E80 /* Git */ = {
 			isa = PBXGroup;
 			children = (
+				6886CD5B2200659E00FB9DC7 /* Node */,
 				6872862A21D29DAE003F1073 /* ObjectiveGit */,
 				684549C821CE27EE00CF5E80 /* GitVC.swift */,
 			);
@@ -288,9 +303,30 @@
 			path = ObjectiveGit;
 			sourceTree = "<group>";
 		};
+		6886CD5B2200659E00FB9DC7 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				6886CD5F2200689D00FB9DC7 /* NodeGit */,
+				6886CD5C220065FC00FB9DC7 /* NSObject+NodeRunner.h */,
+				6886CD5D220065FC00FB9DC7 /* NSObject+NodeRunner.m */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
+		6886CD5F2200689D00FB9DC7 /* NodeGit */ = {
+			isa = PBXGroup;
+			children = (
+				6886CD612200708C00FB9DC7 /* last_commit.js */,
+				6886CD602200708B00FB9DC7 /* node_modules */,
+				6886CD622200708C00FB9DC7 /* package-lock.json */,
+			);
+			path = NodeGit;
+			sourceTree = "<group>";
+		};
 		689BDC1021B22F7800D88AAB = {
 			isa = PBXGroup;
 			children = (
+				6886CD582200658500FB9DC7 /* NodeMobile.framework */,
 				6872862421D29BA8003F1073 /* ObjectiveGit.framework */,
 				6864D07021C8F13B001F5B18 /* Result.framework */,
 				6864D06D21C8DF48001F5B18 /* SwiftGit2.framework */,
@@ -400,6 +436,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6886CD642200708C00FB9DC7 /* last_commit.js in Resources */,
 				689BDC2921B22F7C00D88AAB /* LaunchScreen.storyboard in Resources */,
 				6856C7A721B2735200441767 /* Projects.storyboard in Resources */,
 				6856C7A421B2586700441767 /* file-icons.ttf in Resources */,
@@ -410,6 +447,8 @@
 				6863DF9121B5496200911374 /* BottomLine.xib in Resources */,
 				686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */,
 				6856C7A121B249FB00441767 /* Icons.plist in Resources */,
+				6886CD652200708C00FB9DC7 /* package-lock.json in Resources */,
+				6886CD632200708C00FB9DC7 /* node_modules in Resources */,
 				684549C421CE218F00CF5E80 /* git.storyboard in Resources */,
 				689BDC2621B22F7C00D88AAB /* Assets.xcassets in Resources */,
 				689BDC2421B22F7800D88AAB /* Main.storyboard in Resources */,
@@ -425,6 +464,7 @@
 			files = (
 				68E4544A21C1276B00F945A0 /* CellStruct.swift in Sources */,
 				686822F021DB8E130036694B /* GitCommit.swift in Sources */,
+				6886CD5E220065FC00FB9DC7 /* NSObject+NodeRunner.m in Sources */,
 				6863DF9721B68F1700911374 /* LightStatus.swift in Sources */,
 				68E329D421D9223700231CFC /* ViewControllers.swift in Sources */,
 				689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */,
@@ -598,9 +638,11 @@
 				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73CCF549YB;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = StudIO/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -625,9 +667,11 @@
 				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73CCF549YB;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = StudIO/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

@@ -7,3 +7,4 @@
 //
 
 #import <ObjectiveGit/ObjectiveGit.h>
+#import "NSObject+NodeRunner.h"
