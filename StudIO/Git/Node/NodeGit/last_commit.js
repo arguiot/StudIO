@@ -1,5 +1,3 @@
-var NodeGit = require("nodegit");
-NodeGit.Repository.open("./").then(function (repo) {
-  // Inside of this function we have an open repo
-  console.log(repo)
-});
+const git = require('isomorphic-git');
+const fs = require('fs');
+git.plugins.set('fs', fs)

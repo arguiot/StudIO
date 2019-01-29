@@ -29,8 +29,7 @@ class GitVC: UIViewController {
         let r = Bundle.main.path(forResource: "last_commit.js", ofType: "")
         NodeRunner.startEngine(withArguments: [
             "node",
-            r,
-            nil
+            r
         ])
     }
     @objc @IBAction func pushAction(_ sender: Any) {

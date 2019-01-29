@@ -1,0 +1,5 @@
+github "SwiftGit2/SwiftGit2" "57cada13565bd1ed96f2beb4884fc8533c671758"
+github "alexaubry/BulletinBoard" "3.0.0"
+github "antitypical/Result" "3.2.4"
+github "libgit2/objective-git" "0.14.2"
+github "uber/ios-snapshot-test-case" "4.0.1"

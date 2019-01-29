@@ -47,9 +47,8 @@
 		6886CD592200658600FB9DC7 /* NodeMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6886CD582200658500FB9DC7 /* NodeMobile.framework */; };
 		6886CD5A2200658600FB9DC7 /* NodeMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6886CD582200658500FB9DC7 /* NodeMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6886CD5E220065FC00FB9DC7 /* NSObject+NodeRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6886CD5D220065FC00FB9DC7 /* NSObject+NodeRunner.m */; };
-		6886CD632200708C00FB9DC7 /* node_modules in Resources */ = {isa = PBXBuildFile; fileRef = 6886CD602200708B00FB9DC7 /* node_modules */; };
 		6886CD642200708C00FB9DC7 /* last_commit.js in Resources */ = {isa = PBXBuildFile; fileRef = 6886CD612200708C00FB9DC7 /* last_commit.js */; };
-		6886CD652200708C00FB9DC7 /* package-lock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6886CD622200708C00FB9DC7 /* package-lock.json */; };
+		6886CD67220075F300FB9DC7 /* node_modules in Resources */ = {isa = PBXBuildFile; fileRef = 6886CD66220075F200FB9DC7 /* node_modules */; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* MasterViewController.swift */; };
 		689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC2021B22F7800D88AAB /* DetailViewController.swift */; };
@@ -119,9 +118,8 @@
 		6886CD582200658500FB9DC7 /* NodeMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NodeMobile.framework; sourceTree = "<group>"; };
 		6886CD5C220065FC00FB9DC7 /* NSObject+NodeRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+NodeRunner.h"; sourceTree = "<group>"; };
 		6886CD5D220065FC00FB9DC7 /* NSObject+NodeRunner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NodeRunner.m"; sourceTree = "<group>"; };
-		6886CD602200708B00FB9DC7 /* node_modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = node_modules; sourceTree = "<group>"; };
 		6886CD612200708C00FB9DC7 /* last_commit.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = last_commit.js; sourceTree = "<group>"; };
-		6886CD622200708C00FB9DC7 /* package-lock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
+		6886CD66220075F200FB9DC7 /* node_modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = node_modules; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689BDC1E21B22F7800D88AAB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -316,9 +314,8 @@
 		6886CD5F2200689D00FB9DC7 /* NodeGit */ = {
 			isa = PBXGroup;
 			children = (
+				6886CD66220075F200FB9DC7 /* node_modules */,
 				6886CD612200708C00FB9DC7 /* last_commit.js */,
-				6886CD602200708B00FB9DC7 /* node_modules */,
-				6886CD622200708C00FB9DC7 /* package-lock.json */,
 			);
 			path = NodeGit;
 			sourceTree = "<group>";
@@ -447,10 +444,9 @@
 				6863DF9121B5496200911374 /* BottomLine.xib in Resources */,
 				686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */,
 				6856C7A121B249FB00441767 /* Icons.plist in Resources */,
-				6886CD652200708C00FB9DC7 /* package-lock.json in Resources */,
-				6886CD632200708C00FB9DC7 /* node_modules in Resources */,
 				684549C421CE218F00CF5E80 /* git.storyboard in Resources */,
 				689BDC2621B22F7C00D88AAB /* Assets.xcassets in Resources */,
+				6886CD67220075F300FB9DC7 /* node_modules in Resources */,
 				689BDC2421B22F7800D88AAB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
