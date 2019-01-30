@@ -26,6 +26,12 @@ class GitVC: UIViewController {
         
         selectCorrectB()
         
+        let nodeThread = Thread(target: self, selector: #selector(startNode), object: nil)
+        nodeThread.stackSize = 10 * 1024 * 1024 // 10 Mb
+        nodeThread.qualityOfService = .userInitiated
+        nodeThread.start()
+    }
+    @objc func startNode() {
         let r = Bundle.main.path(forResource: "last_commit.js", ofType: "")
         NodeRunner.startEngine(withArguments: [
             "node",
