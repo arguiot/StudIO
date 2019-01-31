@@ -27,7 +27,7 @@ class GitVC: UIViewController {
         selectCorrectB()
     }
     @objc func startNode(_ sender: Any) {
-        let s = (sender as! GitVC).sender
+        let s = self.sender
         let ressource = s?.ressource
         let argv: Array<String> = (s?.argv)!
         let r = Bundle.main.path(forResource: ressource, ofType: "")

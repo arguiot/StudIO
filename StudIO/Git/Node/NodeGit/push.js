@@ -2,7 +2,7 @@ const git = require('isomorphic-git');
 const fs = require('fs');
 git.plugins.set('fs', fs)
 const http = require('http');
-
+console.log(`Pushing repo at: ${rPath}`)
 async function push() {
 	const rPath = process.argv[2]
 	const email = process.argv[3]
@@ -15,5 +15,4 @@ async function push() {
 		password: passwd
 	})
 	console.log(`Pushed repo at ${rPath} to origin.\nAnswer: ${pushResponse}`)
-}
-push()
+}()
