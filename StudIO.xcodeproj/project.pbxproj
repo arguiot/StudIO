@@ -48,7 +48,7 @@
 		6886CD592200658600FB9DC7 /* NodeMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6886CD582200658500FB9DC7 /* NodeMobile.framework */; };
 		6886CD5A2200658600FB9DC7 /* NodeMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6886CD582200658500FB9DC7 /* NodeMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6886CD5E220065FC00FB9DC7 /* NSObject+NodeRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6886CD5D220065FC00FB9DC7 /* NSObject+NodeRunner.m */; };
-		6886CD642200708C00FB9DC7 /* last_commit.js in Resources */ = {isa = PBXBuildFile; fileRef = 6886CD612200708C00FB9DC7 /* last_commit.js */; };
+		6886CD642200708C00FB9DC7 /* push.js in Resources */ = {isa = PBXBuildFile; fileRef = 6886CD612200708C00FB9DC7 /* push.js */; };
 		6886CD67220075F300FB9DC7 /* node_modules in Resources */ = {isa = PBXBuildFile; fileRef = 6886CD66220075F200FB9DC7 /* node_modules */; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* MasterViewController.swift */; };
@@ -120,7 +120,7 @@
 		6886CD582200658500FB9DC7 /* NodeMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NodeMobile.framework; sourceTree = "<group>"; };
 		6886CD5C220065FC00FB9DC7 /* NSObject+NodeRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+NodeRunner.h"; sourceTree = "<group>"; };
 		6886CD5D220065FC00FB9DC7 /* NSObject+NodeRunner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NodeRunner.m"; sourceTree = "<group>"; };
-		6886CD612200708C00FB9DC7 /* last_commit.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = last_commit.js; sourceTree = "<group>"; };
+		6886CD612200708C00FB9DC7 /* push.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = push.js; sourceTree = "<group>"; };
 		6886CD66220075F200FB9DC7 /* node_modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = node_modules; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -318,7 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				6886CD66220075F200FB9DC7 /* node_modules */,
-				6886CD612200708C00FB9DC7 /* last_commit.js */,
+				6886CD612200708C00FB9DC7 /* push.js */,
 			);
 			path = NodeGit;
 			sourceTree = "<group>";
@@ -436,7 +436,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6886CD642200708C00FB9DC7 /* last_commit.js in Resources */,
+				6886CD642200708C00FB9DC7 /* push.js in Resources */,
 				689BDC2921B22F7C00D88AAB /* LaunchScreen.storyboard in Resources */,
 				6856C7A721B2735200441767 /* Projects.storyboard in Resources */,
 				6856C7A421B2586700441767 /* file-icons.ttf in Resources */,

@@ -25,41 +25,43 @@ class GitVC: UIViewController {
         passwd.text = UserDefaults.standard.string(forKey: "password") ?? ""
         
         selectCorrectB()
-        
-        let nodeThread = Thread(target: self, selector: #selector(startNode), object: nil)
-        nodeThread.stackSize = 10 * 1024 * 1024 // 10 Mb
-        nodeThread.qualityOfService = .userInitiated
-        nodeThread.start()
     }
-    @objc func startNode() {
-        let r = Bundle.main.path(forResource: "last_commit.js", ofType: "")
-        NodeRunner.startEngine(withArguments: [
+    @objc func startNode(_ sender: Any) {
+        let s = (sender as! GitVC).sender
+        let ressource = s?.ressource
+        let argv: Array<String> = (s?.argv)!
+        let r = Bundle.main.path(forResource: ressource, ofType: "")
+        var args: Array<String> = [
             "node",
-            r
-        ])
+            r!
+        ]
+        args.append(contentsOf: argv)
+        NodeRunner.startEngine(withArguments: args)
     }
-    @objc @IBAction func pushAction(_ sender: Any) {
-        let p = Push()
-        let rurl = repo?.directoryURL
-        DispatchQueue.global().async {
-            let email = UserDefaults.standard.string(forKey: "email") ?? ""
-            let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
-            var creds: NSDictionary? = [:]
-            if (email != "" || passwd != "") {
-                let git_cred = try? GTCredential(userName: email, password: passwd)
-                creds = p.creds(creds: git_cred)
-            }
-            p.push(rurl!, options: creds) { (current, total, bytes, stop) in
-                print(current, total, bytes, stop)
-                if stop.pointee.boolValue == true {
-                    DispatchQueue.main.sync {
-                        self.reload()
-                    }
-                }
-            }
+    class Sender {
+        var ressource: String;
+        var argv: Array<String>;
+        init(_ ressource: String, _ argv: Array<String> = []) {
+            self.ressource = ressource
+            self.argv = argv
         }
+    }
+    var sender: Sender!
+    @objc @IBAction func pushAction(_ sender: Any) {
+        let rurl = repo?.directoryURL
+        let email = UserDefaults.standard.string(forKey: "email") ?? ""
+        let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
         
-        self.reload()
+        let arg: Array<String> = [
+            (rurl?.absoluteString)!,
+            email,
+            passwd
+        ]
+        self.sender = Sender("push.js", arg)
+        let nodeThread = Thread(target: self, selector: #selector(self.startNode(_:)), object: nil)
+        nodeThread.stackSize = 10 * 1024 * 1024 // 10 Mb
+        nodeThread.qualityOfService = .background
+        nodeThread.start()
     }
     
     @IBAction func fetch(_ sender: Any) {
