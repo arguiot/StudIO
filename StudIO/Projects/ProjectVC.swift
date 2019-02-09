@@ -28,25 +28,26 @@ class ProjectVC: UICollectionViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let splitViewController = segue.destination as! LightStatus
-        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
-        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-        splitViewController.delegate = appDelegate
-        
-        if let indexPath = collectionView.indexPathsForSelectedItems {
-            let row = indexPath[0].row
-            let master = splitViewController.viewControllers.first as! UINavigationController
-            let m = master.topViewController as! MasterViewController
-            m.title = project[row].name
-            m.LoadManager = LoadFilesMenu(p: project[row].path)
+        if let splitViewController = segue.destination as? LightStatus {
+            let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
+            navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+            splitViewController.delegate = appDelegate
             
-            // repo
-            let editor = splitViewController.viewControllers.last as! UINavigationController
-            let e = editor.topViewController as! DetailViewController
-            let path = URL(string: project[row].path.path)
-            let repo = Repository.at(path!)
-            if let r = repo.value {
-                e.repo = r
+            if let indexPath = collectionView.indexPathsForSelectedItems {
+                let row = indexPath[0].row
+                let master = splitViewController.viewControllers.first as! UINavigationController
+                let m = master.topViewController as! MasterViewController
+                m.title = project[row].name
+                m.LoadManager = LoadFilesMenu(p: project[row].path)
+                
+                // repo
+                let editor = splitViewController.viewControllers.last as! UINavigationController
+                let e = editor.topViewController as! DetailViewController
+                let path = URL(string: project[row].path.path)
+                let repo = Repository.at(path!)
+                if let r = repo.value {
+                    e.repo = r
+                }
             }
         }
     }
@@ -208,5 +209,12 @@ class ProjectVC: UICollectionViewController {
     @IBAction func addProject(_ sender: Any) {
         bulletinManager = bulletin()
         bulletinManager.showBulletin(above: self)
+    }
+    @IBAction func showSettings(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Projects", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "settingsVC")
+        vc.modalPresentationStyle = .formSheet
+        
+        self.present(vc, animated: true, completion: nil)
     }
 }
