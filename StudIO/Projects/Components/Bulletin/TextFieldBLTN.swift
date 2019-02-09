@@ -76,7 +76,9 @@ extension TextFieldBulletinPage: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if isInputValid(text: textField.text) || checkURL == false {
-            textInputHandler?(self, textField.text)
+            if textField.text != "" {
+                textInputHandler?(self, textField.text)
+            }
         } else {
             descriptionLabel!.textColor = .red
             descriptionLabel!.text = "You must valid Git URL to continue."

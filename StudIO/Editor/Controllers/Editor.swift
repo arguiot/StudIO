@@ -13,6 +13,7 @@ class Editor: UIView {
     
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var codeView: WKWebView!
+    @IBOutlet weak var gitPanel: GitCommit!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -16,6 +16,7 @@ class BottomLine: UIView {
     @IBOutlet weak var language: UILabel!
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var sizeString: UILabel!
+    @IBOutlet weak var lastCommit: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftGit2
 
 extension MasterViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,6 +47,12 @@ extension MasterViewController {
         } else {
             let controller = detailViewController
             controller?.save() // saving before opening file
+            
+            // Repo
+            let path = LoadManager.project.path
+            let repo = Repository.at(URL(string: path)!).value!
+            controller?.repo = repo
+            
             controller?.detailItem = object.path as? File
             controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             controller?.navigationItem.leftItemsSupplementBackButton = true

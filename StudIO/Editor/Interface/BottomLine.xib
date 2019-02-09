@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="DKW-UF-qfh"/>
                 <outlet property="language" destination="TwQ-sy-wPl" id="qRJ-oo-EXm"/>
+                <outlet property="lastCommit" destination="Gfv-AH-1vN" id="KbQ-im-S3M"/>
                 <outlet property="sizeString" destination="wbF-01-1dE" id="TNI-rC-euH"/>
             </connections>
         </placeholder>
@@ -24,6 +25,9 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plain Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwQ-sy-wPl">
                     <rect key="frame" x="509" y="7" width="74" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="zIK-70-wQq"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.6588235294" green="0.6588235294" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -45,6 +49,15 @@
                         <constraint firstAttribute="width" constant="1" id="y0S-sY-Ple"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last commit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfv-AH-1vN">
+                    <rect key="frame" x="10" y="7" width="94.5" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="450" id="Zaw-zb-vUb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -54,8 +67,13 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TwQ-sy-wPl" secondAttribute="trailing" constant="4" id="KYr-TY-6Aq"/>
                 <constraint firstItem="TwQ-sy-wPl" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="7" id="PiI-5O-R5L"/>
                 <constraint firstItem="wbF-01-1dE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="7" id="Uh6-BU-knF"/>
+                <constraint firstItem="Gfv-AH-1vN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Vrn-23-MQC"/>
+                <constraint firstItem="Gfv-AH-1vN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="7" id="ayo-dF-KSE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="TwQ-sy-wPl" secondAttribute="bottom" constant="7" id="b0h-rk-dBt"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="wbF-01-1dE" secondAttribute="bottom" constant="7" id="eba-Z5-A10"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="TwQ-sy-wPl" secondAttribute="bottom" constant="7" id="gQK-p6-ZLw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TwQ-sy-wPl" secondAttribute="trailing" constant="4" id="lkf-2y-xlK"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Gfv-AH-1vN" secondAttribute="bottom" constant="7" id="lwt-Wv-fk2"/>
                 <constraint firstItem="UFh-rT-ySH" firstAttribute="leading" secondItem="wbF-01-1dE" secondAttribute="trailing" constant="8" id="veb-N7-Vqt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
