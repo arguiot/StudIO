@@ -92,7 +92,7 @@ class DetailViewController: UIViewController {
         let pButton = UIBarButtonItem(image: pimg, style: .plain, target: self, action: #selector(gitPanel(_:)))
         editorView.gitPanel.isHidden = true
         editorView.gitPanel.repo = repo!
-        navigationItem.rightBarButtonItems = [gitButton, pButton]
+//        navigationItem.rightBarButtonItems = [gitButton, pButton] // Disabling Git functionnalities
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
