@@ -32,7 +32,7 @@ extension Folder {
         let ubiquity = "iCloud.com.ArthurG.StudIO"
         
         let localDocumentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
-        let iCloudDocumentsURL = FileManager.default.url(forUbiquityContainerIdentifier: ubiquity)?.appendingPathComponent("Documents").appendingPathComponent("iTunes File Sharing")
+        let iCloudDocumentsURL = FileManager.default.url(forUbiquityContainerIdentifier: ubiquity)?.appendingPathComponent("Documents")
         
         if let iCloudDocumentsURL = iCloudDocumentsURL {
             var isDir:ObjCBool = false

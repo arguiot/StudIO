@@ -33,7 +33,7 @@ class CreateProject {
         return Project(project: name, path: f)
     }
     func newRemoteProject(url: URL, creds: Credentials, handler: @escaping (Project) -> Void) {
-        let hURL = URL(string: home.path)!
+        let hURL = URL(fileURLWithPath: home.path)
         
         if let name = getName(url: url) {
             let pURL = hURL.appendingPathComponent(name, isDirectory: true)

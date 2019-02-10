@@ -20,9 +20,9 @@ class ProjectVC: UICollectionViewController {
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        DispatchQueue.global().async {
-            Folder.copyDocumentsToiCloudDrive()
-        }
+//        DispatchQueue.global().async {
+//            Folder.copyDocumentsToiCloudDrive()
+//        }
         
         // Do any additional setup after loading the view.
         bulletinManager = bulletin()
@@ -52,6 +52,7 @@ class ProjectVC: UICollectionViewController {
                     e.repo = r
                 } else {
                     print(repo.error?.localizedDescription)
+                // Create empty repo
                 }
             }
         }

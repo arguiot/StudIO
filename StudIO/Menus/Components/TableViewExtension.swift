@@ -50,7 +50,7 @@ extension MasterViewController {
             
             // Repo
             let path = LoadManager.project.path
-            let repo = Repository.at(URL(string: path)!).value!
+            let repo = Repository.at(URL(fileURLWithPath: path)).value!
             controller?.repo = repo
             
             controller?.detailItem = object.path as? File

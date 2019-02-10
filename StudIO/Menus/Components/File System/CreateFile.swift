@@ -35,7 +35,7 @@ class CreateFile {
             l = sf!
         }
         let f = try! l.createFile(named: n)
-        let fpath: URL = URL(string: home.path)!
+        let fpath: URL = URL(fileURLWithPath: home.path)
         if let repo = Repository.at(fpath).value {
             repo.add(path: f.path)
         }
