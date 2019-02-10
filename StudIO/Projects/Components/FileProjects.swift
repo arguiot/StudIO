@@ -27,6 +27,7 @@ class LoadProjects {
     }
 }
 class CreateProject {
+    let home = Folder.icloud
     func newLocalProject(name: String) -> Project {
         let f = try! home.createSubfolder(named: name)
         return Project(project: name, path: f)
