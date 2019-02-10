@@ -10,7 +10,8 @@ import UIKit
 import SwiftGit2
 
 class LoadProjects {
-    let home = try! Folder.home.subfolder(atPath: "Documents")
+//    let home = try! Folder.home.subfolder(atPath: "Documents")
+    let home = Folder.icloud
     
     func listFolders() -> FileSystemSequence<Folder> {
         let sub = home.subfolders
@@ -26,7 +27,6 @@ class LoadProjects {
     }
 }
 class CreateProject {
-    let home = try! Folder.home.subfolder(atPath: "Documents")
     func newLocalProject(name: String) -> Project {
         let f = try! home.createSubfolder(named: name)
         return Project(project: name, path: f)

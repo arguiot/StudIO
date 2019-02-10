@@ -91,7 +91,9 @@ class DetailViewController: UIViewController {
         let pimg = #imageLiteral(resourceName: "branch-icon").scaleImage(toSize: CGSize(width: 6.25, height: 10))
         let pButton = UIBarButtonItem(image: pimg, style: .plain, target: self, action: #selector(gitPanel(_:)))
         editorView.gitPanel.isHidden = true
-        editorView.gitPanel.repo = repo!
+        if let r = repo {
+            editorView.gitPanel.repo = r
+        }
 //        navigationItem.rightBarButtonItems = [gitButton, pButton] // Disabling Git functionnalities
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {

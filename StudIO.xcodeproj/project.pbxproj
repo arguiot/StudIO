@@ -44,6 +44,7 @@
 		6863DF9721B68F1700911374 /* LightStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6863DF9621B68F1700911374 /* LightStatus.swift */; };
 		686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686822ED21DB8DCA0036694B /* GitCommit.xib */; };
 		686822F021DB8E130036694B /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686822EF21DB8E130036694B /* GitCommit.swift */; };
+		68838534220FD4D100330B45 /* iCloudFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68838533220FD4D100330B45 /* iCloudFiles.swift */; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* MasterViewController.swift */; };
 		689BDC2121B22F7800D88AAB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC2021B22F7800D88AAB /* DetailViewController.swift */; };
@@ -96,6 +97,7 @@
 		686822ED21DB8DCA0036694B /* GitCommit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GitCommit.xib; sourceTree = "<group>"; };
 		686822EF21DB8E130036694B /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
 		6872862B21D29DE2003F1073 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		68838533220FD4D100330B45 /* iCloudFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudFiles.swift; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689BDC1E21B22F7800D88AAB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				684549C521CE247B00CF5E80 /* UIImage.swift */,
 				68E329D321D9223700231CFC /* ViewControllers.swift */,
 				6813ED4E21FDC29B007FC120 /* Alert.swift */,
+				68838533220FD4D100330B45 /* iCloudFiles.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				6808B18121BD1D8200811058 /* Files.swift in Sources */,
 				6808B18321BD1E5200811058 /* FileProjects.swift in Sources */,
 				6856C7B221B27A8000441767 /* ProjectCell.swift in Sources */,
+				68838534220FD4D100330B45 /* iCloudFiles.swift in Sources */,
 				68E4544E21C276CB00F945A0 /* CreateFile.swift in Sources */,
 				6856C7AB21B2788900441767 /* ProjectVC.swift in Sources */,
 				6813ED4F21FDC29B007FC120 /* Alert.swift in Sources */,

@@ -10,6 +10,7 @@ import UIKit
 
 extension NSObject {
     static func alert(t: String, m: String) {
+        print(t, m)
         DispatchQueue.main.sync {
             let alertWindow = UIWindow(frame: UIScreen.main.bounds)
             alertWindow.rootViewController = UIViewController()
