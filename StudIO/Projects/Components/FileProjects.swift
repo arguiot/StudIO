@@ -30,6 +30,12 @@ class CreateProject {
     let home = Folder.icloud
     func newLocalProject(name: String) -> Project {
         let f = try! home.createSubfolder(named: name)
+        let url = URL(fileURLWithPath: f.path)
+        do {
+            try GTRepository.initializeEmpty(atFileURL: url, options: nil)
+        } catch {
+            NSObject.alert(t: "Creating Repository", m: error.localizedDescription)
+        }
         return Project(project: name, path: f)
     }
     func newRemoteProject(url: URL, creds: Credentials, handler: @escaping (Project) -> Void) {
