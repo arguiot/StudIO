@@ -34,6 +34,11 @@ extension SettingsVC {
         case .stepper:
             let cell = c as! StepperCell
             cell.name.text = row.title
+            cell.basic = row.basic
+            if let m = row.model {
+                cell.model = m
+            }
+            cell.key = row.key
             return cell
         case .text:
             let cell = c as! TextFieldCell

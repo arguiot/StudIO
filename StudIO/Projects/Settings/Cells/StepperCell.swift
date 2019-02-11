@@ -14,8 +14,18 @@ class StepperCell: UITableViewCell {
     @IBOutlet weak var displayedValue: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
-    var model: (String) -> String = { str in
-        return str
+    var model: (Any) -> String = { dbl in
+        let str = dbl as! Double
+        return String(Int(str))
+    }
+    var basic: String = "0"
+    var key = "" {
+        didSet {
+            let v = UserDefaults.standard.double(forKey: "studio-\(key)") ?? Double(basic)!
+            let modeled = model(v)
+            displayedValue.text = modeled
+            stepper.value = v
+        }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,8 +39,9 @@ class StepperCell: UITableViewCell {
     }
     @IBAction func onChange(_ sender: Any) {
         let value = stepper.value
-        let modeled = model(String(value))
+        let modeled = model(value)
         displayedValue.text = modeled
+        UserDefaults.standard.set(value, forKey: "studio-\(key)")
     }
     
 }

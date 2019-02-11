@@ -33,9 +33,15 @@ class SettingsVC: UITableViewController {
     class Row {
         var title: String
         var type: Row.Types
-        init(name: String, type: Row.Types) {
+        var key: String
+        var basic: String
+        var model: ((Any) -> String)?
+        init(name: String, type: Row.Types, set: String, def: String, model: ((Any) -> String)? = nil) {
             title = name
             self.type = type
+            key = set
+            basic = def
+            self.model = model
         }
         enum Types: String {
             case stepper = "stepperCell"
@@ -56,7 +62,10 @@ class SettingsVC: UITableViewController {
     
     let settings: [Section] = [
         Section(name: "Editor", rows: [
-            Row(name: "Font Size", type: .stepper)
+            Row(name: "Font Size", type: .stepper, set: "font-size", def: "26", model: { dbl in
+                let str = dbl as! Double
+                return "\(Int(str))px"
+            })
         ])
     ]
 }

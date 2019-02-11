@@ -13,6 +13,13 @@ class SliderCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var slider: UISwitch!
     
+    var basic: String = "false"
+    var key = "" {
+        didSet {
+            let v = UserDefaults.standard.bool(forKey: "studio-\(key)") ?? Bool(basic)!
+            slider.setOn(v, animated: false)
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,5 +30,9 @@ class SliderCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    @IBAction func onChange(_ sender: Any) {
+        let value = slider.isOn
+        UserDefaults.standard.set(value, forKey: "studio-\(key)")
+    }
+    
 }

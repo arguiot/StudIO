@@ -13,6 +13,13 @@ class TextFieldCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var textField: UITextField!
     
+    var basic: String = ""
+    var key = "" {
+        didSet {
+            let v = UserDefaults.standard.string(forKey: "studio-\(key)") ?? basic
+            textField.text = v
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,4 +31,8 @@ class TextFieldCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func onChange(_ sender: Any) {
+        let value = textField.text
+        UserDefaults.standard.set(value, forKey: "studio-\(key)")
+    }
 }
