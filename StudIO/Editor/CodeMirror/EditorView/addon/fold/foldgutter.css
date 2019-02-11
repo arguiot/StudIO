@@ -11,6 +11,7 @@
 .CodeMirror-foldgutter-open,
 .CodeMirror-foldgutter-folded {
   cursor: pointer;
+  line-height: 30px;
 }
 .CodeMirror-foldgutter-open:after {
   content: "\25BE";

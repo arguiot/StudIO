@@ -20,8 +20,11 @@ class editor {
 					smartIndent: true,
 					indentUnit: 4,
 					lineNumbers: true,
+                    lineWrapping: true,
 					autoCloseBrackets: true,
-					autoCloseTags: true
+					autoCloseTags: true,
+                    foldGutter: true,
+                    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
 				});
 			};
 			script.src = `mode/${mode.mode}/${mode.mode}.js`;
