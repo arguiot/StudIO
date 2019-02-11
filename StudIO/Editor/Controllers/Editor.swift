@@ -49,7 +49,7 @@ class Editor: UIView {
         let ext = String(arr[arr.count - 1]).uppercased()
         highlightExt = ext
         if codeView.isLoading == false {
-            codeView.evaluateJavaScript("document.body.innerHTML = \"\"; window.e = new editor('\(ext)', '')") { (result, error) in
+            codeView.evaluateJavaScript("document.body.innerHTML = \"\"; window.e = new editor('\(ext)', '');") { (result, error) in
                 code()
             }
         }
@@ -58,7 +58,12 @@ class Editor: UIView {
     func loadFile(withContent: String) {
         content = withContent
         if codeView.isLoading == false {
-            codeView.evaluateJavaScript("window.e.load('\(content!)')") { (result, error) in
+            // Settings
+            let fontSize = UserDefaults.standard.double(forKey: "studio-font-size")
+            
+            let queries = ["window.e.fontSize(\(fontSize))"]
+            let query = queries.joined(separator: ";")
+            codeView.evaluateJavaScript("window.e.load('\(content!)', () => {\(query)});") { (result, error) in
 //                print(result, error)
             }
         }

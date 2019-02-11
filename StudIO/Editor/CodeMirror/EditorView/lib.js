@@ -32,10 +32,15 @@ class editor {
 			document.head.appendChild(script);
 		}
 	}
+	fontSize(v) {
+		if (v > 0) {
+			document.querySelector(".CodeMirror").style["font-size"] = `${v}px`
+		}
+	}
 	clear() {
 		document.body.innerHTML = ""
 	}
-	load(file) {
+	load(file, completion) {
 		if (typeof this.cm == "undefined") {
 			setTimeout(() => {
 				this.load(file)
@@ -43,6 +48,7 @@ class editor {
 		} else {
 			const str = atobUTF8(file)
 			this.cm.setValue(str)
+			completion()
 		}
 	}
 	save() {
