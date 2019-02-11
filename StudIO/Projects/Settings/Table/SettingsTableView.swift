@@ -30,6 +30,8 @@ extension SettingsVC {
         case .slider:
             let cell = c as! SliderCell
             cell.name.text = row.title
+            cell.basic = row.basic
+            cell.key = row.key
             return cell
         case .stepper:
             let cell = c as! StepperCell
@@ -43,6 +45,8 @@ extension SettingsVC {
         case .text:
             let cell = c as! TextFieldCell
             cell.name.text = row.title
+            cell.basic = row.basic
+            cell.key = row.key
             return cell
         }
         return c

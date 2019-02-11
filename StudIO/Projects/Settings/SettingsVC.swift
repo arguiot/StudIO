@@ -65,7 +65,8 @@ class SettingsVC: UITableViewController {
             Row(name: "Font Size", type: .stepper, set: "font-size", def: "26", model: { dbl in
                 let str = dbl as! Double
                 return "\(Int(str))px"
-            })
+            }),
+            Row(name: "Line Wrapping", type: .slider, set: "line-wrapping", def: "true")
         ])
     ]
 }
