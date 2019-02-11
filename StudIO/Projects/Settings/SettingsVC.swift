@@ -30,6 +30,33 @@ class SettingsVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    class Row {
+        var title: String
+        var type: Row.Types
+        init(name: String, type: Row.Types) {
+            title = name
+            self.type = type
+        }
+        enum Types: String {
+            case stepper = "stepperCell"
+            case slider = "sliderCell"
+            case text = "textFieldCell"
+        }
+    }
+    class Section {
+        var title: String
+        var list: [SettingsVC.Row]
+        init(name: String, rows: [SettingsVC.Row]) {
+            title = name
+            list = rows
+        }
+    }
     
-
+    
+    
+    let settings: [Section] = [
+        Section(name: "Editor", rows: [
+            Row(name: "Font Size", type: .stepper)
+        ])
+    ]
 }
