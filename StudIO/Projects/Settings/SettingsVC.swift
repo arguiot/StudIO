@@ -68,7 +68,7 @@ class SettingsVC: UITableViewController {
                 return "\(Int(str))px"
             }),
             Row(name: "Line Wrapping", type: .slider, set: "line-wrapping", def: "true"),
-            Row(name: "Editor Theme", type: .picker, set: "editor-theme", def: "material,monokai,light,dark")
+//            Row(name: "Editor Theme", type: .picker, set: "editor-theme", def: "material,monokai,light,dark")
         ])
     ]
 }
