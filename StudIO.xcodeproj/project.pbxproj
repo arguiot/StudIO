@@ -44,6 +44,7 @@
 		6863DF9721B68F1700911374 /* LightStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6863DF9621B68F1700911374 /* LightStatus.swift */; };
 		686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686822ED21DB8DCA0036694B /* GitCommit.xib */; };
 		686822F021DB8E130036694B /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686822EF21DB8E130036694B /* GitCommit.swift */; };
+		687DA70522127145005491C0 /* PickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687DA70422127145005491C0 /* PickerViewCell.swift */; };
 		68838534220FD4D100330B45 /* iCloudFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68838533220FD4D100330B45 /* iCloudFiles.swift */; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* MasterViewController.swift */; };
@@ -98,6 +99,7 @@
 		686822ED21DB8DCA0036694B /* GitCommit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GitCommit.xib; sourceTree = "<group>"; };
 		686822EF21DB8E130036694B /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
 		6872862B21D29DE2003F1073 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		687DA70422127145005491C0 /* PickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewCell.swift; sourceTree = "<group>"; };
 		68838533220FD4D100330B45 /* iCloudFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudFiles.swift; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				684F81BC220F03D90003B845 /* StepperCell.swift */,
 				684F81BA220F03B60003B845 /* SliderCell.swift */,
 				684F81BE220F03F30003B845 /* TextFieldCell.swift */,
+				687DA70422127145005491C0 /* PickerViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				681D9F7621E604C90054CC5E /* PullPush.swift in Sources */,
 				68058E5821C7AFCB0088334E /* TableViewExtension.swift in Sources */,
 				684F81BF220F03F30003B845 /* TextFieldCell.swift in Sources */,
+				687DA70522127145005491C0 /* PickerViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -130,6 +130,36 @@
                                     <outlet property="textField" destination="l6U-rN-iKG" id="SdN-Jf-kha"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pickerViewCell" rowHeight="60" id="R1s-13-6WX" customClass="PickerViewCell" customModule="StudIO" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="160" width="540" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R1s-13-6WX" id="jDi-TT-7G9">
+                                    <rect key="frame" x="0.0" y="0.0" width="540" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="67h-fW-qbt">
+                                            <rect key="frame" x="220" y="0.0" width="320" height="59"/>
+                                        </pickerView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of property" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cH-Ts-ZYV">
+                                            <rect key="frame" x="20" y="19.5" width="136" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="3cH-Ts-ZYV" firstAttribute="centerY" secondItem="jDi-TT-7G9" secondAttribute="centerY" id="O9T-2O-LY0"/>
+                                        <constraint firstAttribute="bottom" secondItem="67h-fW-qbt" secondAttribute="bottom" id="OTs-Ld-C2w"/>
+                                        <constraint firstItem="3cH-Ts-ZYV" firstAttribute="leading" secondItem="jDi-TT-7G9" secondAttribute="leadingMargin" id="aYx-03-NG1"/>
+                                        <constraint firstAttribute="trailing" secondItem="67h-fW-qbt" secondAttribute="trailing" id="gOa-AE-o2l"/>
+                                        <constraint firstItem="67h-fW-qbt" firstAttribute="top" secondItem="jDi-TT-7G9" secondAttribute="top" id="r3L-kF-DEQ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="name" destination="3cH-Ts-ZYV" id="wFv-iL-GTU"/>
+                                    <outlet property="pickerView" destination="67h-fW-qbt" id="Lwa-fa-Ps4"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>

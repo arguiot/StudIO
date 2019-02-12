@@ -48,6 +48,12 @@ extension SettingsVC {
             cell.basic = row.basic
             cell.key = row.key
             return cell
+        case .picker:
+            let cell = c as! PickerViewCell
+            cell.name.text = row.title
+            cell.basic = row.basic
+            cell.key = row.key
+            return cell
         }
         return c
     }
