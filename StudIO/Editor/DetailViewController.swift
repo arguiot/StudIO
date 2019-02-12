@@ -51,6 +51,12 @@ class DetailViewController: UIViewController {
         
         c?.highlightExt = ext
         
+        c?.settings([
+            "fontSize": UserDefaults.standard.string(forKey: "studio-font-size") ?? "26",
+            "lineWrapping": UserDefaults.standard.string(forKey: "studio-line-wrapping") ?? "false",
+            "theme": UserDefaults.standard.string(forKey: "studio-editor-theme") ?? "monokai"
+        ])
+        
         c?.highlight(str, code: {
             c?.loadFile(withContent: (c?.content)!)
             DispatchQueue.main.async {

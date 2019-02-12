@@ -58,12 +58,7 @@ class Editor: UIView {
     func loadFile(withContent: String) {
         content = withContent
         if codeView.isLoading == false {
-            // Settings
-            let fontSize = UserDefaults.standard.double(forKey: "studio-font-size")
-            
-            let queries = ["window.e.fontSize(\(fontSize))"]
-            let query = queries.joined(separator: ";")
-            codeView.evaluateJavaScript("window.e.load('\(content!)', () => {\(query)});") { (result, error) in
+            codeView.evaluateJavaScript("window.e.load('\(content!)')") { (result, error) in
 //                print(result, error)
             }
         }
@@ -83,6 +78,18 @@ class Editor: UIView {
             codeView.evaluateJavaScript("window.e.getLangName()") { (result, error) in
                 let str = result as? String
                 handler(str)
+            }
+        }
+    }
+    
+    
+    func settings(_ data: [String: String]) {
+        if let json = try? JSONSerialization.data(withJSONObject: data, options: .sortedKeys) {
+            let query = String(data: json, encoding: .ascii)!
+            if codeView.isLoading == false {
+                codeView.evaluateJavaScript("window.EditorSettings = \(query);") { (result, error) in
+                    
+                }
             }
         }
     }
