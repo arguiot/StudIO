@@ -93,6 +93,17 @@ class Editor: UIView {
             }
         }
     }
+    
+    func undo() {
+        if codeView.isLoading == false {
+            codeView.evaluateJavaScript("try{window.e.cm.execCommand('undo')}catch(e){console.log(e)}", completionHandler: nil)
+        }
+    }
+    func redo() {
+        if codeView.isLoading == false {
+            codeView.evaluateJavaScript("try{window.e.cm.execCommand('redo')}catch(e){console.log(e)}", completionHandler: nil)
+        }
+    }
 }
 extension Editor: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

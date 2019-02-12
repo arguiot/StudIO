@@ -101,6 +101,9 @@ class DetailViewController: UIViewController {
             editorView.gitPanel.repo = r
         }
 //        navigationItem.rightBarButtonItems = [gitButton, pButton] // Disabling Git functionnalities
+        let undoButton = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(undo(_:)))
+        let redoButton = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: #selector(redo(_:)))
+        navigationItem.rightBarButtonItems = [undoButton, redoButton].reversed()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -131,6 +134,13 @@ class DetailViewController: UIViewController {
         p?.reloadProperties()
         p?.isHidden = !(p?.isHidden ?? false)
         
+    }
+    
+    @objc func undo(_ sender: Any?) {
+        editorView.undo()
+    }
+    @objc func redo(_ sender: Any?) {
+        editorView.redo()
     }
 }
 
