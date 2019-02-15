@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		68B079332216B27100772FC6 /* Periphery */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 68B079362216B27100772FC6 /* Build configuration list for PBXAggregateTarget "Periphery" */;
+			buildPhases = (
+				68B079372216B27D00772FC6 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Periphery;
+			productName = Periphery;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		6802069D21C6469C000686D1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6802069C21C6469C000686D1 /* Data.swift */; };
 		68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68040211220EC67500789453 /* BLTNBoard.framework */; };
@@ -408,6 +422,9 @@
 							};
 						};
 					};
+					68B079332216B27100772FC6 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 				};
 			};
 			buildConfigurationList = 689BDC1421B22F7800D88AAB /* Build configuration list for PBXProject "StudIO" */;
@@ -424,6 +441,7 @@
 			projectRoot = "";
 			targets = (
 				689BDC1821B22F7800D88AAB /* StudIO */,
+				68B079332216B27100772FC6 /* Periphery */,
 			);
 		};
 /* End PBXProject section */
@@ -490,6 +508,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		68B079372216B27D00772FC6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nperiphery scan --project StudIO.xcodeproj --schemes StudIO --targets StudIO --format xcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -725,6 +760,24 @@
 			};
 			name = Release;
 		};
+		68B079342216B27100772FC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73CCF549YB;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		68B079352216B27100772FC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73CCF549YB;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -742,6 +795,15 @@
 			buildConfigurations = (
 				689BDC2E21B22F7C00D88AAB /* Debug */,
 				689BDC2F21B22F7C00D88AAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68B079362216B27100772FC6 /* Build configuration list for PBXAggregateTarget "Periphery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68B079342216B27100772FC6 /* Debug */,
+				68B079352216B27100772FC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
