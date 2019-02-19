@@ -17,7 +17,7 @@ class editor {
 				this.cm = CodeMirror(document.body, {
 					value: value,
 					mode: mode.mode,
-					theme: "monokai",
+					theme: this.theme,
 					keymap: "sublime",
 					smartIndent: true,
 					indentUnit: 4,
@@ -40,6 +40,13 @@ class editor {
 	settings() {
 		this.lineWrapping = EditorSettings.lineWrapping == true // boolean convert
 		this.theme = EditorSettings.theme
+		this.loadTheme(this.theme)
+	}
+	loadTheme(theme) {
+		const link = document.createElement("link")
+		link.setAttribute("rel", "stylesheet")
+		link.setAttribute("href", `theme/${theme}.css`)
+		document.head.appendChild(link);
 	}
 	fontSize(v) {
 		if (v > 0) {
