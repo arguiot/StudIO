@@ -91,7 +91,7 @@ class GitVC: UIViewController {
 
         let master = splitViewController?.viewControllers.first as! UINavigationController
         let m = master.topViewController as! MasterViewController
-        m.objects = m.LoadManager.loadProject()
+        m.objects = m.LoadManager!.loadProject()
         m.tableView.reloadData()
     }
     @IBOutlet weak var email: UITextField!

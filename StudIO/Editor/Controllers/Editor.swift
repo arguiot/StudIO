@@ -114,5 +114,10 @@ extension Editor: WKNavigationDelegate {
                 }
             })
         }
+        settings([
+            "fontSize": UserDefaults.standard.string(forKey: "studio-font-size") ?? "26",
+            "lineWrapping": UserDefaults.standard.string(forKey: "studio-line-wrapping") ?? "false",
+            "theme": UserDefaults.standard.string(forKey: "studio-editor-theme") ?? "monokai"
+        ])
     }
 }

@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
     @objc func save() {
         if let f = self.file {
             let hash = try? f.read()
-            editorView.getData({ data in
+            editorView?.getData({ data in
                 if let d = data {
                     if d != hash {
                         _ = try? f.write(data: d)
@@ -96,9 +96,9 @@ class DetailViewController: UIViewController {
         // Git Panel
         let pimg = #imageLiteral(resourceName: "branch-icon").scaleImage(toSize: CGSize(width: 6.25, height: 10))
         let pButton = UIBarButtonItem(image: pimg, style: .plain, target: self, action: #selector(gitPanel(_:)))
-        editorView.gitPanel.isHidden = true
+        editorView?.gitPanel.isHidden = true
         if let r = repo {
-            editorView.gitPanel.repo = r
+            editorView?.gitPanel.repo = r
         }
 //        navigationItem.rightBarButtonItems = [gitButton, pButton] // Disabling Git functionnalities
         let undoButton = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(undo(_:)))
@@ -130,17 +130,17 @@ class DetailViewController: UIViewController {
     @objc func gitPanel(_ sender: Any?) {
         save()
         
-        let p = editorView.gitPanel
+        let p = editorView?.gitPanel
         p?.reloadProperties()
         p?.isHidden = !(p?.isHidden ?? false)
         
     }
     
     @objc func undo(_ sender: Any?) {
-        editorView.undo()
+        editorView?.undo()
     }
     @objc func redo(_ sender: Any?) {
-        editorView.redo()
+        editorView?.redo()
     }
 }
 

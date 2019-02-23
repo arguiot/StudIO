@@ -14,7 +14,7 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [MenuCellStruct]()
-    var LoadManager: LoadFilesMenu!
+    var LoadManager: LoadFilesMenu?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class MasterViewController: UITableViewController {
         
         
         // Load objects
-        objects = LoadManager.loadProject()
+        objects = LoadManager?.loadProject() ?? []
         
         // Create Bulleting
         newFileManager = bulletin()
@@ -54,7 +54,7 @@ class MasterViewController: UITableViewController {
     var newFileManager: BLTNItemManager!
     
     func bulletin(file: File? = nil) -> BLTNItemManager {
-        let root = LoadManager.project.path
+        let root = LoadManager!.project.path
         let subPath = file?.path.dropFirst(root.count)
         let strP = String(subPath ?? "")
         var title = ""
@@ -83,10 +83,10 @@ class MasterViewController: UITableViewController {
             if file != nil {
                 self.move(file: file!, path: text)
             } else if text != "" {
-                let c = CreateFile(p: self.LoadManager.project)
+                let c = CreateFile(p: self.LoadManager!.project)
                 _ = c.createFile(name: text)
             }
-            self.objects = self.LoadManager.loadProject()
+            self.objects = self.LoadManager!.loadProject()
             
             self.tableView.reloadSections([0], with: .automatic)
             
@@ -105,7 +105,7 @@ class MasterViewController: UITableViewController {
 
     
     func closeFolder(_ folder: Folder, object: MenuCellStruct, indexPath: IndexPath) {
-        let array = LoadManager.loadFolders(base: folder, i: object.ident + 1)
+        let array = LoadManager!.loadFolders(base: folder, i: object.ident + 1)
         let count = array.count
         
         let row = indexPath.row + 1
@@ -131,7 +131,7 @@ class MasterViewController: UITableViewController {
         let s = path.split(separator: "/")
         let n = String(s.last!)
         let subfolder = s.dropLast()
-        var l = LoadManager.project
+        var l = LoadManager!.project
         subfolder.forEach { (str) in
             let n = String(str)
             let sf = try? l.createSubfolderIfNeeded(withName: n)
@@ -139,7 +139,7 @@ class MasterViewController: UITableViewController {
         }
         try? file.rename(to: n, keepExtension: false)
         try? file.move(to: l)
-        let fpath = URL(fileURLWithPath: LoadManager.project.path)
+        let fpath = URL(fileURLWithPath: LoadManager!.project.path)
         if let repo = Repository.at(fpath).value {
             repo.add(path: path)
         }

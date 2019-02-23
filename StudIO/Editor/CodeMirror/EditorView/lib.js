@@ -40,6 +40,9 @@ class editor {
 	settings() {
 		this.lineWrapping = EditorSettings.lineWrapping == true // boolean convert
 		this.theme = EditorSettings.theme
+		if (typeof this.theme == "undefined") {
+			this.theme = "monokai"
+		}
 		this.loadTheme(this.theme)
 	}
 	loadTheme(theme) {
