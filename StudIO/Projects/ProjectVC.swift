@@ -38,13 +38,13 @@ class ProjectVC: UICollectionViewController {
             if let indexPath = collectionView.indexPathsForSelectedItems {
                 let row = indexPath[0].row
                 let master = splitViewController.viewControllers.first as! UINavigationController
-                let m = master.topViewController as! MasterViewController
+                let m = master.topViewController as! WorkingDirMasterVC
                 m.title = project[row].name
                 m.LoadManager = LoadFilesMenu(p: project[row].path)
                 
                 // repo
                 let editor = splitViewController.viewControllers.last as! UINavigationController
-                let e = editor.topViewController as! DetailViewController
+                let e = editor.topViewController as! WorkingDirDetailVC
                 let p = self.project[row].path
                 let path = URL(fileURLWithPath: p.path)
                 let repo = Repository.at(path)
@@ -84,7 +84,7 @@ class ProjectVC: UICollectionViewController {
     
     var bulletinManager: BLTNItemManager!
     
-    func bulletin() -> BLTNItemManager {
+    func bulletin(goto: Int = 0) -> BLTNItemManager {
         let page = BLTNPageItem(title: "New Project")
         page.image = #imageLiteral(resourceName: "Repo")
         page.descriptionText = "Create a new project in StudIO using the 2 following methods:"
@@ -98,7 +98,7 @@ class ProjectVC: UICollectionViewController {
             item.manager?.displayNextItem()
             
         }
-        page.alternativeHandler = { item in
+        var new: BLTNPageItem {
             let new = TextFieldBulletinPage(title: "Local project")
             new.descriptionText = "Create a local git project that will not be backed up by any git hosting platform."
             new.actionButtonTitle = "Done"
@@ -119,8 +119,15 @@ class ProjectVC: UICollectionViewController {
                 }
                 
             }
+            return new
+        }
+        page.alternativeHandler = { item in
             page.next = new
             item.manager?.displayNextItem()
+        }
+        
+        if goto == 1 {
+            return BLTNItemManager(rootItem: new)
         }
         return BLTNItemManager(rootItem: page)
     }

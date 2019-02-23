@@ -9,7 +9,7 @@
 import UIKit
 import SwiftGit2
 
-extension MasterViewController {
+extension WorkingDirMasterVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -36,7 +36,7 @@ extension MasterViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showEditor" {
             let Ncontroller = segue.destination as! UINavigationController
-            let controller = Ncontroller.topViewController as! DetailViewController
+            let controller = Ncontroller.topViewController as! WorkingDirDetailVC
             detailViewController = controller
             
             controller.save() // saving before opening file
@@ -104,7 +104,7 @@ extension MasterViewController {
             let edit = UITableViewRowAction(style: .normal, title: "Move") { (action, indexPath) in
                 let file = obj.path as! File
                 self.newFileManager = self.bulletin(file: file)
-                self.newFileManager.showBulletin(above: self)
+                self.newFileManager?.showBulletin(above: self)
             }
             array.append(edit)
         }

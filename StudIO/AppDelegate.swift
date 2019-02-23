@@ -13,9 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     var window: UIWindow?
 
-
+    var quickActions: QuickActions<AppShortcut>?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Launch
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         let storyboard = UIStoryboard(name: "Projects", bundle: nil)
@@ -24,6 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
+        
+        
+        // Shortcuts
+        
+        let shortcuts: [Shortcut] = [
+            Shortcut(type: AppShortcut.cloneRepo, title: NSLocalizedString("CloneRepo", comment: ""), subtitle: nil, icon: ShortcutIcon.cloud),
+            Shortcut(type: AppShortcut.localRepo, title: NSLocalizedString("LocalRepo", comment: ""), subtitle: nil, icon: ShortcutIcon.add)
+        ]
+        if let actionHandler = window?.rootViewController as? QuickActionSupport, let bundleIdentifier = Bundle.main.bundleIdentifier {
+            quickActions = QuickActions(application, actionHandler: actionHandler, bundleIdentifier: bundleIdentifier, shortcuts: shortcuts, launchOptions: launchOptions)
+        }
         
         UIApplication.shared.statusBarStyle = .lightContent
         return true
@@ -49,12 +61,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    
+    @available(iOS 9, *)
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Swift.Void) {
+        // This callback is used if your application is already launched in the background, if not application(_:,willFinishLaunchingWithOptions:) or application(_:didFinishLaunchingWithOptions) will be called (handle the shortcut in those callbacks and return `false`)
+        guard let quickActions = quickActions else {
+            return completionHandler(false)
+        }
+        guard let actionHandler = window?.rootViewController as? QuickActionSupport else {
+            return completionHandler(false)
+        }
+        completionHandler(quickActions.handle(actionHandler, shortcutItem: shortcutItem))
+    }
+    
+    
     // MARK: - Split view
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
         guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
-        guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
+        guard let topAsDetailController = secondaryAsNavController.topViewController as? WorkingDirDetailVC else { return false }
         if topAsDetailController.detailItem == nil {
             // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
             return true
@@ -64,3 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 }
 
+enum AppShortcut: String, ShortcutType {
+    case cloneRepo
+    case localRepo
+}

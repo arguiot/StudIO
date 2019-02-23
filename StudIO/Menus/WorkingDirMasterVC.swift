@@ -10,9 +10,9 @@ import UIKit
 import BLTNBoard
 import SwiftGit2
 
-class MasterViewController: UITableViewController {
+class WorkingDirMasterVC: UITableViewController {
 
-    var detailViewController: DetailViewController? = nil
+    var detailViewController: WorkingDirDetailVC? = nil
     var objects = [MenuCellStruct]()
     var LoadManager: LoadFilesMenu?
 
@@ -25,7 +25,7 @@ class MasterViewController: UITableViewController {
         navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? WorkingDirDetailVC
         }
         
         
@@ -51,10 +51,12 @@ class MasterViewController: UITableViewController {
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
-    var newFileManager: BLTNItemManager!
+    var newFileManager: BLTNItemManager?
     
-    func bulletin(file: File? = nil) -> BLTNItemManager {
-        let root = LoadManager!.project.path
+    func bulletin(file: File? = nil) -> BLTNItemManager? {
+        guard let root = LoadManager?.project.path else {
+            return nil
+        }
         let subPath = file?.path.dropFirst(root.count)
         let strP = String(subPath ?? "")
         var title = ""
@@ -98,7 +100,7 @@ class MasterViewController: UITableViewController {
     @objc
     func insertNewObject(_ sender: Any) {
         newFileManager = bulletin()
-        newFileManager.showBulletin(above: self)
+        newFileManager?.showBulletin(above: self)
     }
 
     // MARK: - Table View
