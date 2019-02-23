@@ -43,29 +43,28 @@ class DetailViewController: UIViewController {
         }
     }
     func codeEditor(_ str: String) {
-        let c = editorView
-        c?.content = try! file?.read().base64EncodedString()
+        guard let c = editorView else { return }
+        c.content = try! file?.read().base64EncodedString()
         
         let arr = str.split(separator: ".")
         let ext = String(arr[arr.count - 1]).uppercased()
         
-        c?.highlightExt = ext
+        c.highlightExt = ext
         
-        c?.settings([
+        c.settings([
             "fontSize": UserDefaults.standard.string(forKey: "studio-font-size") ?? "26",
             "lineWrapping": UserDefaults.standard.string(forKey: "studio-line-wrapping") ?? "false",
             "theme": UserDefaults.standard.string(forKey: "studio-editor-theme") ?? "monokai"
-        ])
+            ])
         
-        c?.highlight(str, code: {
-            c?.loadFile(withContent: (c?.content)!)
+        c.highlight(str, code: {
+            c.loadFile(withContent: (c.content)!)
             DispatchQueue.main.async {
-                c?.getLangName({ str in
+                c.getLangName({ str in
                     self.bottomLine.language.text = str
                 })
             }
         })
-        
     }
     func bottomView(_ str: String = "") {
         let b = bottomLine

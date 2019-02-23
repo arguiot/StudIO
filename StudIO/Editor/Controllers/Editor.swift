@@ -86,10 +86,8 @@ class Editor: UIView {
     func settings(_ data: [String: String]) {
         if let json = try? JSONSerialization.data(withJSONObject: data, options: .sortedKeys) {
             let query = String(data: json, encoding: .ascii)!
-            if codeView.isLoading == false {
-                codeView.evaluateJavaScript("window.EditorSettings = \(query);") { (result, error) in
-                    
-                }
+            codeView.evaluateJavaScript("window.EditorSettings = \(query);if (typeof window.e != 'undefined') { window.e.settings() }") { (result, error) in
+                
             }
         }
     }
