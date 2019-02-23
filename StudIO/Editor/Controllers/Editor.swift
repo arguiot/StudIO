@@ -53,6 +53,7 @@ class Editor: UIView {
                 code()
             }
         }
+        code()
     }
     var content: String?
     func loadFile(withContent: String) {

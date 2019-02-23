@@ -44,13 +44,18 @@ class BottomLine: UIView {
     }
     
     func setupLanguage(_ file: String) {
-        let arr = file.split(separator: ".")
-        let ext = String(arr[arr.count - 1]).uppercased()
-        let url = Bundle.main.url(forResource: "meta", withExtension: "js", subdirectory: "EditorView/mode")!
-        let file = try? String(contentsOf: url)
-        let context = JSContext()
-        _ = context?.evaluateScript(file)
-        let name = context?.evaluateScript("CodeMirror.findModeByExtension('\(ext)').name")
-        language.text = name?.toString()
+        DispatchQueue.global().async {
+            let arr = file.split(separator: ".")
+            let ext = String(arr[arr.count - 1]).uppercased()
+            let url = Bundle.main.url(forResource: "meta", withExtension: "js", subdirectory: "EditorView/mode")!
+            let file = try? String(contentsOf: url)
+            let context = JSContext()
+            _ = context?.evaluateScript("var CodeMirror = {}")
+            _ = context?.evaluateScript(file)
+            let name = context?.evaluateScript("CodeMirror.findModeByExtension('\(ext)').name")
+            DispatchQueue.main.sync {
+                self.language.text = name?.toString()
+            }
+        }
     }
 }
