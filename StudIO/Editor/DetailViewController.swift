@@ -105,6 +105,10 @@ class DetailViewController: UIViewController {
         let redoButton = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: #selector(redo(_:)))
         navigationItem.rightBarButtonItems = [undoButton, redoButton].reversed()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        save()
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

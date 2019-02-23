@@ -50,6 +50,9 @@ class editor {
 		link.setAttribute("rel", "stylesheet")
 		link.setAttribute("href", `theme/${theme}.css`)
 		document.head.appendChild(link);
+		if (typeof this.cm != "undefined") {
+			this.cm.setOption("theme", theme)
+		}
 	}
 	fontSize(v) {
 		if (v > 0) {
