@@ -1,0 +1,21 @@
+
+/* Class = "UITableViewController"; title = "Project"; ObjectID = "7bK-jq-Zjz"; */
+"7bK-jq-Zjz.title" = "Project";
+
+/* Class = "UIViewController"; title = "Editor"; ObjectID = "JEX-9P-axG"; */
+"JEX-9P-axG.title" = "Editor";
+
+/* Class = "UILabel"; text = "🗌"; ObjectID = "POp-nQ-SrK"; */
+"POp-nQ-SrK.text" = "🗌";
+
+/* Class = "UINavigationController"; title = "Master"; ObjectID = "RMx-3f-FxP"; */
+"RMx-3f-FxP.title" = "Master";
+
+/* Class = "UINavigationItem"; title = "Master"; ObjectID = "Zdf-7t-Un8"; */
+"Zdf-7t-Un8.title" = "Master";
+
+/* Class = "UINavigationItem"; title = "Detail"; ObjectID = "mOI-FS-AaM"; */
+"mOI-FS-AaM.title" = "Detail";
+
+/* Class = "UILabel"; text = "File"; ObjectID = "pCV-eP-3j7"; */
+"pCV-eP-3j7.text" = "File";

@@ -36,6 +36,9 @@
 		6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A821B2773F00441767 /* octicons.ttf */; };
 		6835AEEE2221188300A0C379 /* QuickActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6835AEED2221188300A0C379 /* QuickActions.swift */; };
 		6835AEF022211F3100A0C379 /* RootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6835AEEF22211F3100A0C379 /* RootVC.swift */; };
+		6835AEF82221260900A0C379 /* Language.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6835AEFA2221260900A0C379 /* Language.strings */; };
+		6835AEFE2221273D00A0C379 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6835AEFD2221273D00A0C379 /* Localize.swift */; };
+		6835AEFF22212AE100A0C379 /* Projects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6835AF0122212AE100A0C379 /* Projects.storyboard */; };
 		684549C421CE218F00CF5E80 /* git.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 684549C321CE218F00CF5E80 /* git.storyboard */; };
 		684549C621CE247B00CF5E80 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684549C521CE247B00CF5E80 /* UIImage.swift */; };
 		684549C921CE27EE00CF5E80 /* GitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684549C821CE27EE00CF5E80 /* GitVC.swift */; };
@@ -48,7 +51,6 @@
 		6856C7A121B249FB00441767 /* Icons.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A021B249FB00441767 /* Icons.plist */; };
 		6856C7A321B2586500441767 /* opicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A221B2509400441767 /* opicons.ttf */; };
 		6856C7A421B2586700441767 /* file-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6856C79C21B23DC300441767 /* file-icons.ttf */; };
-		6856C7A721B2735200441767 /* Projects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A621B2735200441767 /* Projects.storyboard */; };
 		6856C7AB21B2788900441767 /* ProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6856C7AA21B2788900441767 /* ProjectVC.swift */; };
 		6856C7AF21B2797200441767 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6856C7AE21B2797200441767 /* Project.swift */; };
 		6856C7B221B27A8000441767 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6856C7B121B27A8000441767 /* ProjectCell.swift */; };
@@ -90,6 +92,14 @@
 		681D9F7521E604C90054CC5E /* PullPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullPush.swift; sourceTree = "<group>"; };
 		6835AEED2221188300A0C379 /* QuickActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActions.swift; sourceTree = "<group>"; };
 		6835AEEF22211F3100A0C379 /* RootVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootVC.swift; sourceTree = "<group>"; };
+		6835AEF32221252700A0C379 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		6835AEF42221259E00A0C379 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		6835AEF5222125A400A0C379 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		6835AEF92221260900A0C379 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Language.strings; sourceTree = "<group>"; };
+		6835AEFC222126A700A0C379 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Language.strings; sourceTree = "<group>"; };
+		6835AEFD2221273D00A0C379 /* Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
+		6835AF0022212AE100A0C379 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Projects.storyboard; sourceTree = "<group>"; };
+		6835AF0322212AF400A0C379 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Projects.strings; sourceTree = "<group>"; };
 		684549C321CE218F00CF5E80 /* git.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = git.storyboard; sourceTree = "<group>"; };
 		684549C521CE247B00CF5E80 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		684549C821CE27EE00CF5E80 /* GitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitVC.swift; sourceTree = "<group>"; };
@@ -102,7 +112,6 @@
 		6856C79E21B23E3800441767 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		6856C7A021B249FB00441767 /* Icons.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Icons.plist; sourceTree = "<group>"; };
 		6856C7A221B2509400441767 /* opicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = opicons.ttf; sourceTree = "<group>"; };
-		6856C7A621B2735200441767 /* Projects.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Projects.storyboard; sourceTree = "<group>"; };
 		6856C7A821B2773F00441767 /* octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = octicons.ttf; sourceTree = "<group>"; };
 		6856C7AA21B2788900441767 /* ProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectVC.swift; sourceTree = "<group>"; };
 		6856C7AE21B2797200441767 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -178,6 +187,15 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		6835AEF1222124ED00A0C379 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				6835AEFA2221260900A0C379 /* Language.strings */,
+				6835AEFD2221273D00A0C379 /* Localize.swift */,
+			);
+			path = Language;
+			sourceTree = "<group>";
+		};
 		684549C721CE279500CF5E80 /* Git */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,7 +242,7 @@
 				6856C7A521B2732A00441767 /* Components */,
 				689BDC2221B22F7800D88AAB /* Main.storyboard */,
 				689BDC2721B22F7C00D88AAB /* LaunchScreen.storyboard */,
-				6856C7A621B2735200441767 /* Projects.storyboard */,
+				6835AF0122212AE100A0C379 /* Projects.storyboard */,
 				684549C321CE218F00CF5E80 /* git.storyboard */,
 			);
 			path = Views;
@@ -355,6 +373,7 @@
 		689BDC1B21B22F7800D88AAB /* StudIO */ = {
 			isa = PBXGroup;
 			children = (
+				6835AEF1222124ED00A0C379 /* Language */,
 				6863DF8921B5485D00911374 /* Extensions */,
 				6863DF8821B3FABB00911374 /* StudIO.entitlements */,
 				6856C7A921B2786D00441767 /* Projects */,
@@ -440,6 +459,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 689BDC1021B22F7800D88AAB;
 			productRefGroup = 689BDC1A21B22F7800D88AAB /* Products */;
@@ -458,11 +478,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				689BDC2921B22F7C00D88AAB /* LaunchScreen.storyboard in Resources */,
-				6856C7A721B2735200441767 /* Projects.storyboard in Resources */,
+				6835AEFF22212AE100A0C379 /* Projects.storyboard in Resources */,
 				6856C7A421B2586700441767 /* file-icons.ttf in Resources */,
 				68162E8821BBE11200CDA628 /* EditorView in Resources */,
 				6856C7A321B2586500441767 /* opicons.ttf in Resources */,
 				6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */,
+				6835AEF82221260900A0C379 /* Language.strings in Resources */,
 				6852C24C21BB53BA00FA40DC /* Editor.xib in Resources */,
 				6863DF9121B5496200911374 /* BottomLine.xib in Resources */,
 				686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */,
@@ -539,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6835AEFE2221273D00A0C379 /* Localize.swift in Sources */,
 				68E4544A21C1276B00F945A0 /* CellStruct.swift in Sources */,
 				686822F021DB8E130036694B /* GitCommit.swift in Sources */,
 				6863DF9721B68F1700911374 /* LightStatus.swift in Sources */,
@@ -580,10 +602,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		6835AEFA2221260900A0C379 /* Language.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6835AEF92221260900A0C379 /* en */,
+				6835AEFC222126A700A0C379 /* fr */,
+			);
+			name = Language.strings;
+			sourceTree = "<group>";
+		};
+		6835AF0122212AE100A0C379 /* Projects.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6835AF0022212AE100A0C379 /* en */,
+				6835AF0322212AF400A0C379 /* fr */,
+			);
+			name = Projects.storyboard;
+			sourceTree = "<group>";
+		};
 		689BDC2221B22F7800D88AAB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				689BDC2321B22F7800D88AAB /* Base */,
+				6835AEF32221252700A0C379 /* en */,
+				6835AEF42221259E00A0C379 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -592,6 +634,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				689BDC2821B22F7C00D88AAB /* Base */,
+				6835AEF5222125A400A0C379 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -603,6 +646,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -664,6 +708,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

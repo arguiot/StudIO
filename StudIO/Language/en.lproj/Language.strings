@@ -1,0 +1,24 @@
+/* 
+  Language.strings
+  StudIO
+
+  Created by Arthur Guiot on 23/2/19.
+  Copyright © 2019 Arthur Guiot. All rights reserved.
+*/
+"CloneRepo" = "Clone Repo";
+"LocalRepo" = "Local Repo";
+"Clone using custom credentials" = "Clone using custom credentials";
+"Create" = "Create";
+"Done" = "Done";
+"Enter the Git repository URL you would like to clone." = "Enter the Git repository URL you would like to clone.";
+"File name" = "File name";
+"Move / Rename" = "Move / Rename";
+"Move / Rename file" = "Move / Rename file";
+"Move or rename your file using the path below." = "Move or rename your file using the path below.";
+"New File" = "New File";
+"Password" = "Password";
+"Please enter your git password" = "Please enter your git password";
+"Please enter your git username" = "Please enter your git username";
+"Username" = "Username";
+"password" = "password";
+"username" = "username";

@@ -63,20 +63,20 @@ class WorkingDirMasterVC: UITableViewController {
         var desc = ""
         var action = ""
         if file != nil {
-            title = "Move / Rename file"
-            desc = "Move or rename your file using the path below."
-            action = "Move / Rename"
+            title = "Move / Rename file".localized()
+            desc = "Move or rename your file using the path below.".localized()
+            action = "Move / Rename".localized()
         } else {
-            title = "New File"
-            desc = "Create a new file or folder in \(self.title ?? "UNDEFINED")"
-            action = "Create"
+            title = "New File".localized()
+            desc = ("Create a new file or folder in \(self.title ?? "UNDEFINED")").localized()
+            action = "Create".localized()
         }
         let page = TextFieldBulletinPage(title: title)
         page.content = strP
         page.descriptionText = desc
         page.actionButtonTitle = action
         page.checkURL = false
-        page.placeholder = "File name"
+        page.placeholder = "File name".localized()
         var text = ""
         page.textInputHandler = { item, string in
             text = string!

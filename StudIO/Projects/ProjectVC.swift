@@ -135,9 +135,9 @@ class ProjectVC: UICollectionViewController {
     var creds: Credentials = .default
     
     func clone(_ page: TextFieldBulletinPage) -> BLTNPageItem {
-        page.descriptionText = "Enter the Git repository URL you would like to clone."
-        page.actionButtonTitle = "Done"
-        page.alternativeButtonTitle = "Clone using custom credentials"
+        page.descriptionText = "Enter the Git repository URL you would like to clone.".localized()
+        page.actionButtonTitle = "Done".localized()
+        page.alternativeButtonTitle = "Clone using custom credentials".localized()
         
         var can = false
         var url: URL?
@@ -180,11 +180,11 @@ class ProjectVC: UICollectionViewController {
             alertWindow.makeKeyAndVisible()
             
             //1. Create the alert controller.
-            let alert = UIAlertController(title: "Username", message: "Please enter your git username", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Username".localized(), message: "Please enter your git username".localized(), preferredStyle: .alert)
             
             //2. Add the text field. You can configure it however you need.
             alert.addTextField { (textField) in
-                textField.placeholder = "username"
+                textField.placeholder = "username".localized()
             }
             
             // 3. Grab the value from the text field, and print it when the user clicks OK.
@@ -193,11 +193,11 @@ class ProjectVC: UICollectionViewController {
                 let username = textField?.text
                 alertWindow.rootViewController?.dismiss(animated: true, completion: nil)
                 //1. Create the alert controller.
-                let alert = UIAlertController(title: "Password", message: "Please enter your git password", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Password".localized(), message: "Please enter your git password".localized(), preferredStyle: .alert)
                 
                 //2. Add the text field. You can configure it however you need.
                 alert.addTextField { (textField) in
-                    textField.placeholder = "password"
+                    textField.placeholder = "password".localized()
                     textField.isSecureTextEntry = true
                 }
                 
