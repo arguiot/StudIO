@@ -17,11 +17,15 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>362</string>
+	<string>363</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>StudIO needs access to the microphone to be able to attach voice notes.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>StudIO needs access to your photo library for you to be able to attach images.</string>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>iCloud.com.ArthurG.StudIO</key>
