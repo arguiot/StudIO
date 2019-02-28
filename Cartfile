@@ -1,3 +1,4 @@
 github "alexaubry/BulletinBoard"
 github "SwiftGit2/SwiftGit2" "master"
 github "libgit2/objective-git"
+binary "https://raw.githubusercontent.com/Instabug/Instabug-iOS/master/Instabug.json"

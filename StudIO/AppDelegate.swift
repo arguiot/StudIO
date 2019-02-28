@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Instabug
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -38,6 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        // Instabug
+        Instabug.start(withToken: "9d650c1488c48a56f9c9aa0ce9afdbd0", invocationEvents: [.shake, .screenshot])
+        
         return true
     }
     func applicationWillResignActive(_ application: UIApplication) {

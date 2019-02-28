@@ -70,6 +70,7 @@
 		689BDC2421B22F7800D88AAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 689BDC2221B22F7800D88AAB /* Main.storyboard */; };
 		689BDC2621B22F7C00D88AAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 689BDC2521B22F7B00D88AAB /* Assets.xcassets */; };
 		689BDC2921B22F7C00D88AAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 689BDC2721B22F7C00D88AAB /* LaunchScreen.storyboard */; };
+		68BBB7362227862400BBF1DF /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68EF7B85222782FD00CD47D9 /* Instabug.framework */; };
 		68BD16952211735000C5F321 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BD16942211735000C5F321 /* SettingsTableView.swift */; };
 		68E329D421D9223700231CFC /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E329D321D9223700231CFC /* ViewControllers.swift */; };
 		68E4544A21C1276B00F945A0 /* CellStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E4544921C1276B00F945A0 /* CellStruct.swift */; };
@@ -141,6 +142,7 @@
 		68E4544921C1276B00F945A0 /* CellStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellStruct.swift; sourceTree = "<group>"; };
 		68E4544B21C127F400F945A0 /* LoadFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFiles.swift; sourceTree = "<group>"; };
 		68E4544D21C276CB00F945A0 /* CreateFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFile.swift; sourceTree = "<group>"; };
+		68EF7B85222782FD00CD47D9 /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = Carthage/Build/iOS/Instabug.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68BBB7362227862400BBF1DF /* Instabug.framework in Frameworks */,
 				68040216220EC67800789453 /* SwiftGit2.framework in Frameworks */,
 				68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */,
 				68040218220EC67800789453 /* Result.framework in Frameworks */,
@@ -161,6 +164,7 @@
 		68040210220EC67500789453 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68EF7B85222782FD00CD47D9 /* Instabug.framework */,
 				68040214220EC67800789453 /* ObjectiveGit.framework */,
 				68040215220EC67800789453 /* Result.framework */,
 				68040213220EC67800789453 /* SwiftGit2.framework */,
@@ -526,6 +530,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectiveGit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Instabug.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
