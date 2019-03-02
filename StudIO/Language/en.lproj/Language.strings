@@ -5,8 +5,8 @@
   Created by Arthur Guiot on 23/2/19.
   Copyright © 2019 Arthur Guiot. All rights reserved.
 */
-"CloneRepo" = "Clone Repo";
-"LocalRepo" = "Local Repo";
+"Clone Repo" = "Clone Repo";
+"Local Repo" = "Local Repo";
 "Clone using custom credentials" = "Clone using custom credentials";
 "Create" = "Create";
 "Done" = "Done";

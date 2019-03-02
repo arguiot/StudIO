@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         // Shortcuts
         
         let shortcuts: [Shortcut] = [
-            Shortcut(type: AppShortcut.cloneRepo, title: NSLocalizedString("CloneRepo", comment: ""), subtitle: nil, icon: ShortcutIcon.cloud),
-            Shortcut(type: AppShortcut.localRepo, title: NSLocalizedString("LocalRepo", comment: ""), subtitle: nil, icon: ShortcutIcon.add)
+            Shortcut(type: AppShortcut.cloneRepo, title: NSLocalizedString("Clone Repo", comment: ""), subtitle: nil, icon: ShortcutIcon.cloud),
+            Shortcut(type: AppShortcut.localRepo, title: NSLocalizedString("Local Repo", comment: ""), subtitle: nil, icon: ShortcutIcon.add)
         ]
         if let actionHandler = window?.rootViewController as? QuickActionSupport, let bundleIdentifier = Bundle.main.bundleIdentifier {
             quickActions = QuickActions(application, actionHandler: actionHandler, bundleIdentifier: bundleIdentifier, shortcuts: shortcuts, launchOptions: launchOptions)
