@@ -17,6 +17,9 @@ class WorkingDirDetailVC: UIViewController {
     var file: File?
     var repo: Repository?
     
+    var secondWindow: UIWindow?
+    
+    
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = detailItem {
@@ -60,6 +63,11 @@ class WorkingDirDetailVC: UIViewController {
         c.highlight(str, code: {
             self.bottomLine.setupLanguage(str)
         })
+        
+        // Second display
+        if UIScreen.screens.count > 1 {
+            handleScreenConnectNotification()
+        }
     }
     func bottomView(_ str: String = "") {
         let b = bottomLine
@@ -98,6 +106,9 @@ class WorkingDirDetailVC: UIViewController {
         let undoButton = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(undo(_:)))
         let redoButton = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: #selector(redo(_:)))
         navigationItem.rightBarButtonItems = [undoButton, redoButton].reversed()
+        
+        // Double screen
+        observe()
     }
     override func viewWillDisappear(_ animated: Bool) {
         save()

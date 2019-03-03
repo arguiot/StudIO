@@ -30,27 +30,7 @@ extension WorkingDirMasterVC {
         
         return cell
     }
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        return identifier != "showEditor"
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showEditor" {
-            let Ncontroller = segue.destination as! UINavigationController
-            let controller = Ncontroller.topViewController as! WorkingDirDetailVC
-            detailViewController = controller
-            
-            controller.save() // saving before opening file
-            
-            // Repo
-            let path = LoadManager!.project.path
-            let repo = Repository.at(URL(fileURLWithPath: path)).value!
-            controller.repo = repo
-            
-            controller.detailItem = (sender as! MenuCellStruct).path as? File
-            controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-            controller.navigationItem.leftItemsSupplementBackButton = true
-        }
-    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let object = objects[indexPath.row]
         if object.type == .folder {

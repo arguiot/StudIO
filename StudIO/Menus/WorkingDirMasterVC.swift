@@ -34,6 +34,7 @@ class WorkingDirMasterVC: UITableViewController {
         
         // Create Bulleting
         newFileManager = bulletin()
+        
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         UIApplication.shared.statusBarStyle = .lightContent
