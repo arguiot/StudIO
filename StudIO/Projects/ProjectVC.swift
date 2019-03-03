@@ -27,6 +27,9 @@ class ProjectVC: UICollectionViewController {
         // Do any additional setup after loading the view.
         bulletinManager = bulletin()
         setupDrop()
+        
+        let lgpr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        self.collectionView.addGestureRecognizer(lgpr)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -78,9 +81,35 @@ class ProjectVC: UICollectionViewController {
         let row = indexPath.row
         
         cell.name.text = project[row].name
-        cell.edit()
         
         return cell
+    }
+    
+    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
+        if gestureReconizer.state != .ended {
+            return
+        }
+        let p = gestureReconizer.location(in: self.collectionView)
+        
+        if let indexPath = self.collectionView.indexPathForItem(at: p) {
+            // get the cell at indexPath (the one you long pressed)
+            let cell = self.collectionView.cellForItem(at: indexPath) as! ProjectCell
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Delete '\(cell.name.text!)'", style: UIAlertAction.Style.destructive) { result in
+                CreateProject().deleteProject(name: cell.name.text!)
+                self.collectionView.reloadData()
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+            if let pop = alert.popoverPresentationController {
+                pop.sourceView = cell.contentView
+                pop.sourceRect = CGRect(x: cell.contentView.bounds.midX, y: cell.contentView.bounds.midY, width: 0, height: 0)
+            }
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            print("couldn't find index path")
+        }
     }
     
     var bulletinManager: BLTNItemManager!
