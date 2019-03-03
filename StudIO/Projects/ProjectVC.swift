@@ -26,6 +26,7 @@ class ProjectVC: UICollectionViewController {
         
         // Do any additional setup after loading the view.
         bulletinManager = bulletin()
+        setupDrop()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

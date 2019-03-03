@@ -23,7 +23,6 @@
 /* Begin PBXBuildFile section */
 		6802069D21C6469C000686D1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6802069C21C6469C000686D1 /* Data.swift */; };
 		68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68040211220EC67500789453 /* BLTNBoard.framework */; };
-		68040216220EC67800789453 /* SwiftGit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68040213220EC67800789453 /* SwiftGit2.framework */; };
 		68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68040214220EC67800789453 /* ObjectiveGit.framework */; };
 		68040218220EC67800789453 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68040215220EC67800789453 /* Result.framework */; };
 		68058E5821C7AFCB0088334E /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68058E5721C7AFCB0088334E /* TableViewExtension.swift */; };
@@ -63,6 +62,7 @@
 		686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686822ED21DB8DCA0036694B /* GitCommit.xib */; };
 		686822F021DB8E130036694B /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686822EF21DB8E130036694B /* GitCommit.swift */; };
 		687DA70522127145005491C0 /* PickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687DA70422127145005491C0 /* PickerViewCell.swift */; };
+		687EC15B222AB46C00E6B3C3 /* SwiftGit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 687EC15A222AB46C00E6B3C3 /* SwiftGit2.framework */; };
 		68838534220FD4D100330B45 /* iCloudFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68838533220FD4D100330B45 /* iCloudFiles.swift */; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* WorkingDirMasterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* WorkingDirMasterVC.swift */; };
@@ -70,6 +70,10 @@
 		689BDC2421B22F7800D88AAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 689BDC2221B22F7800D88AAB /* Main.storyboard */; };
 		689BDC2621B22F7C00D88AAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 689BDC2521B22F7B00D88AAB /* Assets.xcassets */; };
 		689BDC2921B22F7C00D88AAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 689BDC2721B22F7C00D88AAB /* LaunchScreen.storyboard */; };
+		68B5635A222BB8C900B9E0DD /* DropInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B56359222BB8C900B9E0DD /* DropInteraction.swift */; };
+		68B5635D222BBA7600B9E0DD /* ZipItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B5635C222BBA7600B9E0DD /* ZipItem.swift */; };
+		68B5635F222BBB6000B9E0DD /* FolderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B5635E222BBB6000B9E0DD /* FolderItem.swift */; };
+		68B56361222BC30100B9E0DD /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68B56360222BC30000B9E0DD /* ZipArchive.framework */; };
 		68BBB7362227862400BBF1DF /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68EF7B85222782FD00CD47D9 /* Instabug.framework */; };
 		68BD16952211735000C5F321 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BD16942211735000C5F321 /* SettingsTableView.swift */; };
 		68E329D421D9223700231CFC /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E329D321D9223700231CFC /* ViewControllers.swift */; };
@@ -81,7 +85,6 @@
 /* Begin PBXFileReference section */
 		6802069C21C6469C000686D1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		68040211220EC67500789453 /* BLTNBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BLTNBoard.framework; path = Carthage/Build/iOS/BLTNBoard.framework; sourceTree = "<group>"; };
-		68040213220EC67800789453 /* SwiftGit2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGit2.framework; path = Carthage/Build/iOS/SwiftGit2.framework; sourceTree = "<group>"; };
 		68040214220EC67800789453 /* ObjectiveGit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectiveGit.framework; path = Carthage/Build/iOS/ObjectiveGit.framework; sourceTree = "<group>"; };
 		68040215220EC67800789453 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		68058E5721C7AFCB0088334E /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 		686822EF21DB8E130036694B /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
 		6872862B21D29DE2003F1073 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		687DA70422127145005491C0 /* PickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewCell.swift; sourceTree = "<group>"; };
+		687EC15A222AB46C00E6B3C3 /* SwiftGit2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGit2.framework; path = Carthage/Build/iOS/SwiftGit2.framework; sourceTree = "<group>"; };
 		68838533220FD4D100330B45 /* iCloudFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudFiles.swift; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +141,10 @@
 		689BDC2521B22F7B00D88AAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		689BDC2821B22F7C00D88AAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		689BDC2A21B22F7C00D88AAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68B56359222BB8C900B9E0DD /* DropInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropInteraction.swift; sourceTree = "<group>"; };
+		68B5635C222BBA7600B9E0DD /* ZipItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipItem.swift; sourceTree = "<group>"; };
+		68B5635E222BBB6000B9E0DD /* FolderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderItem.swift; sourceTree = "<group>"; };
+		68B56360222BC30000B9E0DD /* ZipArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZipArchive.framework; path = Carthage/Build/iOS/ZipArchive.framework; sourceTree = "<group>"; };
 		68BD16942211735000C5F321 /* SettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
 		68E329D321D9223700231CFC /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
 		68E4544921C1276B00F945A0 /* CellStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellStruct.swift; sourceTree = "<group>"; };
@@ -150,8 +158,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68B56361222BC30100B9E0DD /* ZipArchive.framework in Frameworks */,
+				687EC15B222AB46C00E6B3C3 /* SwiftGit2.framework in Frameworks */,
 				68BBB7362227862400BBF1DF /* Instabug.framework in Frameworks */,
-				68040216220EC67800789453 /* SwiftGit2.framework in Frameworks */,
 				68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */,
 				68040218220EC67800789453 /* Result.framework in Frameworks */,
 				68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */,
@@ -164,10 +173,11 @@
 		68040210220EC67500789453 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68B56360222BC30000B9E0DD /* ZipArchive.framework */,
+				687EC15A222AB46C00E6B3C3 /* SwiftGit2.framework */,
 				68EF7B85222782FD00CD47D9 /* Instabug.framework */,
 				68040214220EC67800789453 /* ObjectiveGit.framework */,
 				68040215220EC67800789453 /* Result.framework */,
-				68040213220EC67800789453 /* SwiftGit2.framework */,
 				68040211220EC67500789453 /* BLTNBoard.framework */,
 			);
 			name = Frameworks;
@@ -300,6 +310,8 @@
 				6863DF8321B3C5E000911374 /* Bulletin */,
 				6856C7AE21B2797200441767 /* Project.swift */,
 				6808B18221BD1E5200811058 /* FileProjects.swift */,
+				68B5635B222BBA5D00B9E0DD /* Accepted Files */,
+				68B56359222BB8C900B9E0DD /* DropInteraction.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -390,6 +402,15 @@
 				689BDC2A21B22F7C00D88AAB /* Info.plist */,
 			);
 			path = StudIO;
+			sourceTree = "<group>";
+		};
+		68B5635B222BBA5D00B9E0DD /* Accepted Files */ = {
+			isa = PBXGroup;
+			children = (
+				68B5635C222BBA7600B9E0DD /* ZipItem.swift */,
+				68B5635E222BBB6000B9E0DD /* FolderItem.swift */,
+			);
+			path = "Accepted Files";
 			sourceTree = "<group>";
 		};
 		68BD16932211733200C5F321 /* Table */ = {
@@ -531,6 +552,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Instabug.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ZipArchive.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
@@ -566,10 +588,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6835AEFE2221273D00A0C379 /* Localize.swift in Sources */,
+				68B5635A222BB8C900B9E0DD /* DropInteraction.swift in Sources */,
 				68E4544A21C1276B00F945A0 /* CellStruct.swift in Sources */,
 				686822F021DB8E130036694B /* GitCommit.swift in Sources */,
 				6863DF9721B68F1700911374 /* LightStatus.swift in Sources */,
 				68E329D421D9223700231CFC /* ViewControllers.swift in Sources */,
+				68B5635F222BBB6000B9E0DD /* FolderItem.swift in Sources */,
 				689BDC2121B22F7800D88AAB /* WorkingDirDetailVC.swift in Sources */,
 				6852C24E21BB542000FA40DC /* Editor.swift in Sources */,
 				68BD16952211735000C5F321 /* SettingsTableView.swift in Sources */,
@@ -582,6 +606,7 @@
 				6835AEEE2221188300A0C379 /* QuickActions.swift in Sources */,
 				689BDC1F21B22F7800D88AAB /* WorkingDirMasterVC.swift in Sources */,
 				6863DF9521B54C2A00911374 /* date.swift in Sources */,
+				68B5635D222BBA7600B9E0DD /* ZipItem.swift in Sources */,
 				6808B18121BD1D8200811058 /* Files.swift in Sources */,
 				6808B18321BD1E5200811058 /* FileProjects.swift in Sources */,
 				6856C7B221B27A8000441767 /* ProjectCell.swift in Sources */,
