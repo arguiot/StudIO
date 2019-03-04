@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ZipArchive
-
+import Zip
 extension ProjectVC: UIDropInteractionDelegate {
     func setupDrop() {
         view.addInteraction(UIDropInteraction(delegate: self))
@@ -67,15 +66,26 @@ extension ProjectVC: UIDropInteractionDelegate {
     func loadZIP(document: ZipDocument) {
         do {
             let url = try LoadProjects().home.createFile(named: "temp.zip", contents: document.data!)
-            let new = LoadProjects().home
-            SSZipArchive.unzipFile(atPath: url.path, toDestination: new.path, progressHandler: nil, completionHandler: { (str, bool, error) in
-                if let err = error {
-                    NSObject.alert(t: "Drop error", m: err.localizedDescription )
+            
+            let temp = try LoadProjects().home.createSubfolderIfNeeded(withName: "_STUDIO_TEMP")
+            let URLpath = URL(fileURLWithPath: url.path)
+            let URLDest = URL(fileURLWithPath: temp.path)
+            try Zip.unzipFile(URLpath, destination: URLDest, overwrite: true, password: nil, progress: { (progress) in
+                if progress == 1 {
+                    do {
+                        try url.delete()
+                        try temp.subfolder(named: "__MACOSX").delete()
+                        try temp.subfolders.first?.move(to: LoadProjects().home)
+                        try temp.delete()
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                        }
+                    } catch {
+                        NSObject.alert(t: "Drop error", m: error.localizedDescription )
+                        try? temp.delete()
+                        return
+                    }
                 }
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-                try? url.delete()
             })
         } catch {
             NSObject.alert(t: "Drop error", m: error.localizedDescription )

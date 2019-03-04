@@ -75,6 +75,7 @@
 		68B5635F222BBB6000B9E0DD /* FolderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B5635E222BBB6000B9E0DD /* FolderItem.swift */; };
 		68B56363222BE87300B9E0DD /* DoubleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B56362222BE87300B9E0DD /* DoubleScreen.swift */; };
 		68B56365222CB9A800B9E0DD /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B56364222CB9A800B9E0DD /* Compression.swift */; };
+		68B56367222CBB2600B9E0DD /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68B56366222CBB2600B9E0DD /* Zip.framework */; };
 		68BBB7362227862400BBF1DF /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68EF7B85222782FD00CD47D9 /* Instabug.framework */; };
 		68BD16952211735000C5F321 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BD16942211735000C5F321 /* SettingsTableView.swift */; };
 		68E329D421D9223700231CFC /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E329D321D9223700231CFC /* ViewControllers.swift */; };
@@ -145,9 +146,9 @@
 		68B56359222BB8C900B9E0DD /* DropInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropInteraction.swift; sourceTree = "<group>"; };
 		68B5635C222BBA7600B9E0DD /* ZipItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipItem.swift; sourceTree = "<group>"; };
 		68B5635E222BBB6000B9E0DD /* FolderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderItem.swift; sourceTree = "<group>"; };
-		68B56360222BC30000B9E0DD /* ZipArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZipArchive.framework; path = Carthage/Build/iOS/ZipArchive.framework; sourceTree = "<group>"; };
 		68B56362222BE87300B9E0DD /* DoubleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleScreen.swift; sourceTree = "<group>"; };
 		68B56364222CB9A800B9E0DD /* Compression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compression.swift; sourceTree = "<group>"; };
+		68B56366222CBB2600B9E0DD /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zip.framework; path = Carthage/Build/iOS/Zip.framework; sourceTree = "<group>"; };
 		68BD16942211735000C5F321 /* SettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
 		68E329D321D9223700231CFC /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
 		68E4544921C1276B00F945A0 /* CellStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellStruct.swift; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68B56367222CBB2600B9E0DD /* Zip.framework in Frameworks */,
 				687EC15B222AB46C00E6B3C3 /* SwiftGit2.framework in Frameworks */,
 				68BBB7362227862400BBF1DF /* Instabug.framework in Frameworks */,
 				68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */,
@@ -175,7 +177,7 @@
 		68040210220EC67500789453 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				68B56360222BC30000B9E0DD /* ZipArchive.framework */,
+				68B56366222CBB2600B9E0DD /* Zip.framework */,
 				687EC15A222AB46C00E6B3C3 /* SwiftGit2.framework */,
 				68EF7B85222782FD00CD47D9 /* Instabug.framework */,
 				68040214220EC67800789453 /* ObjectiveGit.framework */,
@@ -556,6 +558,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Instabug.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Zip.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (

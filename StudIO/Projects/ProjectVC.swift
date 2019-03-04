@@ -9,7 +9,7 @@
 import UIKit
 import BLTNBoard
 import SwiftGit2
-import ZipArchive
+import Zip
 
 class ProjectVC: UICollectionViewController {
     
@@ -98,26 +98,28 @@ class ProjectVC: UICollectionViewController {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
             // add the actions (buttons)
             alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { (result) in
-                let path = try? LoadProjects().home.subfolder(atPath: cell.name.text!)
-                cell.progressView.isHidden = false
-                SSZipArchive.createZipFile(atPath: LoadProjects().home.path,
-                                           withContentsOfDirectory: path!.path,
-                                           keepParentDirectory: false,
-                                           withPassword: nil,
-                andProgressHandler: { (a, b) in
-                    cell.progressView.setProgress(Float(a / b), animated: true)
-                    if a == b {
-                        let zip = try? LoadProjects().home.file(named: "\(cell.name.text!).zip")
-                        let share = UIActivityViewController(activityItems: [zip!], applicationActivities: nil)
+                do {
+                    let path = try? LoadProjects().home.subfolder(atPath: cell.name.text!)
+                    cell.progressView.isHidden = false
+                    let pathURL = URL(fileURLWithPath: path!.path)
+                    try Zip.quickZipFiles([pathURL], fileName: "\(cell.name.text!).zip", progress: { (progress) in
                         
-                        if let pop = share.popoverPresentationController {
-                            pop.sourceView = cell.contentView
-                            pop.sourceRect = CGRect(x: cell.contentView.bounds.midX, y: cell.contentView.bounds.midY, width: 0, height: 0)
+                        cell.progressView.setProgress(Float(progress), animated: true)
+                        if progress == 1 {
+                            let zip = try? LoadProjects().home.file(named: "\(cell.name.text!).zip")
+                            let share = UIActivityViewController(activityItems: [zip!], applicationActivities: nil)
+                            
+                            if let pop = share.popoverPresentationController {
+                                pop.sourceView = cell.contentView
+                                pop.sourceRect = CGRect(x: cell.contentView.bounds.midX, y: cell.contentView.bounds.midY, width: 0, height: 0)
+                            }
+                            
+                            self.present(share, animated: true)
                         }
-                        
-                        self.present(share, animated: true)
-                    }
-                })
+                    })
+                } catch {
+                    NSObject.alert(t: "Share error", m: error.localizedDescription)
+                }
             }))
             alert.addAction(UIAlertAction(title: "Delete '\(cell.name.text!)'", style: UIAlertAction.Style.destructive) { result in
                 CreateProject().deleteProject(name: cell.name.text!)
