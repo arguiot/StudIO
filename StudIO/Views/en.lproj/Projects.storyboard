@@ -214,6 +214,11 @@
                                                 <constraint firstAttribute="height" constant="50" id="b8T-V1-G9O"/>
                                             </constraints>
                                         </imageView>
+                                        <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E3u-Uz-hgy">
+                                            <rect key="frame" x="20" y="134" width="110" height="3"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="progressTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </progressView>
                                     </subviews>
                                 </view>
                                 <color key="tintColor" red="0.6588235294" green="0.6588235294" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -223,6 +228,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="name" destination="Y7F-gI-9OK" id="jIp-jQ-kXb"/>
+                                    <outlet property="progressView" destination="E3u-Uz-hgy" id="leN-eo-vwn"/>
                                     <segue destination="amk-zz-VJI" kind="presentation" id="gR5-Yx-o3x"/>
                                 </connections>
                             </collectionViewCell>

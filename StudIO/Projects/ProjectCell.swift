@@ -10,4 +10,5 @@ import UIKit
 
 class ProjectCell: UICollectionViewCell {
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
 }
