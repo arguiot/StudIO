@@ -49,14 +49,21 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AGT-kU-fqT">
-                                            <rect key="frame" x="471" y="6" width="49" height="31"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AGT-kU-fqT">
+                                            <rect key="frame" x="471" y="6.5" width="49" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="31" id="1G7-FP-Rmm"/>
+                                                <constraint firstAttribute="width" constant="47" id="dac-ci-mdN"/>
+                                            </constraints>
                                             <connections>
                                                 <action selector="onChange:" destination="8BF-Va-XO3" eventType="valueChanged" id="IEa-K4-EWA"/>
                                             </connections>
                                         </switch>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="AGT-kU-fqT" secondAttribute="trailing" constant="22" id="4pk-ZW-BiK"/>
+                                        <constraint firstItem="AGT-kU-fqT" firstAttribute="centerY" secondItem="IKO-v1-0Lk" secondAttribute="centerY" id="koe-zH-QWK"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="name" destination="Dxq-en-tts" id="Jbv-Tb-1uN"/>
@@ -77,21 +84,30 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kKt-KT-WJT">
-                                            <rect key="frame" x="426" y="8" width="94" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kKt-KT-WJT">
+                                            <rect key="frame" x="426" y="7.5" width="94" height="29"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="94" id="pCG-c4-Ul0"/>
+                                                <constraint firstAttribute="height" constant="29" id="tIb-aS-CwC"/>
+                                            </constraints>
                                             <connections>
                                                 <action selector="onChange:" destination="mFV-eK-463" eventType="valueChanged" id="4h7-tY-tFK"/>
                                             </connections>
                                         </stepper>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUa-yZ-I0W">
-                                            <rect key="frame" x="376" y="12" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUa-yZ-I0W">
+                                            <rect key="frame" x="376" y="11" width="42" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="kKt-KT-WJT" firstAttribute="centerY" secondItem="dGs-5R-cCL" secondAttribute="centerY" id="3mV-ic-Jgv"/>
+                                        <constraint firstItem="zUa-yZ-I0W" firstAttribute="top" secondItem="dGs-5R-cCL" secondAttribute="topMargin" id="5MT-6m-TY6"/>
+                                        <constraint firstItem="zUa-yZ-I0W" firstAttribute="bottom" secondItem="dGs-5R-cCL" secondAttribute="bottomMargin" id="Le2-eb-jSc"/>
+                                        <constraint firstItem="kKt-KT-WJT" firstAttribute="leading" secondItem="zUa-yZ-I0W" secondAttribute="trailing" constant="8" id="NLt-9B-eyA"/>
+                                        <constraint firstAttribute="trailing" secondItem="kKt-KT-WJT" secondAttribute="trailing" constant="20" id="n9S-WY-J9M"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="displayedValue" destination="zUa-yZ-I0W" id="zK4-DA-4ZL"/>
@@ -113,9 +129,12 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-rN-iKG">
-                                            <rect key="frame" x="370" y="6" width="150" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-rN-iKG">
+                                            <rect key="frame" x="370" y="7" width="150" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="dol-BV-ASc"/>
+                                                <constraint firstAttribute="width" constant="150" id="fSQ-Qn-k1s"/>
+                                            </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -124,6 +143,10 @@
                                             </connections>
                                         </textField>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="l6U-rN-iKG" firstAttribute="centerY" secondItem="tfA-xO-yVO" secondAttribute="centerY" id="Aat-py-QH1"/>
+                                        <constraint firstAttribute="trailing" secondItem="l6U-rN-iKG" secondAttribute="trailing" constant="20" id="Sn3-uS-xCW"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="name" destination="xMS-ZL-10J" id="zqV-GL-cDb"/>
