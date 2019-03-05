@@ -98,34 +98,41 @@ class ProjectVC: UICollectionViewController {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
             // add the actions (buttons)
             alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { (result) in
-                do {
-                    let path = try LoadProjects().home.subfolder(atPath: cell.name.text!)
-                    cell.progressView.isHidden = false
-                    let pathURL = URL(fileURLWithPath: path.path)
-                    try Zip.quickZipFiles([pathURL], fileName: "temp", progress: { (progress) in
-                        
-                        cell.progressView.setProgress(Float(progress), animated: true)
-                        if progress == 1 {
-                            do {
-                                let zip = try LoadProjects().home.file(named: "temp.zip")
-                                let zipURL = URL(fileURLWithPath: zip.path)
-                                let share = UIActivityViewController(activityItems: [zipURL], applicationActivities: nil)
-                                
-                                if let pop = share.popoverPresentationController {
-                                    pop.sourceView = cell.contentView
-                                    pop.sourceRect = CGRect(x: cell.contentView.bounds.midX, y: cell.contentView.bounds.midY, width: 0, height: 0)
-                                }
-                                
-                                cell.progressView.isHidden = true
-                                
-                                self.present(share, animated: true)
-                            } catch {
-                                NSObject.alert(t: "Share error", m: error.localizedDescription)
-                            }
+                let name = cell.name.text!
+                DispatchQueue.global().async {
+                    do {
+                        let path = try LoadProjects().home.subfolder(atPath: name)
+                        DispatchQueue.main.sync {
+                            cell.progressView.isHidden = false
                         }
-                    })
-                } catch {
-                    NSObject.alert(t: "Share error", m: error.localizedDescription)
+                        let pathURL = URL(fileURLWithPath: path.path)
+                        try Zip.quickZipFiles([pathURL], fileName: "temp", progress: { (progress) in
+                            DispatchQueue.main.sync {
+                                cell.progressView.setProgress(Float(progress), animated: true)
+                            }
+                            if progress == 1 {
+                                do {
+                                    let zip = try LoadProjects().home.file(named: "temp.zip")
+                                    let zipURL = URL(fileURLWithPath: zip.path)
+                                    let share = UIActivityViewController(activityItems: [zipURL], applicationActivities: nil)
+                                    
+                                    if let pop = share.popoverPresentationController {
+                                        pop.sourceView = cell.contentView
+                                        pop.sourceRect = CGRect(x: cell.contentView.bounds.midX, y: cell.contentView.bounds.midY, width: 0, height: 0)
+                                    }
+                                    DispatchQueue.main.async {
+                                        cell.progressView.isHidden = true
+                                        
+                                        self.present(share, animated: true)
+                                    }
+                                } catch {
+                                    NSObject.alert(t: "Share error", m: error.localizedDescription)
+                                }
+                            }
+                        })
+                    } catch {
+                        NSObject.alert(t: "Share error", m: error.localizedDescription)
+                    }
                 }
             }))
             alert.addAction(UIAlertAction(title: "Delete '\(cell.name.text!)'", style: UIAlertAction.Style.destructive) { result in
