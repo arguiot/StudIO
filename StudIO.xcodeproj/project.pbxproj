@@ -33,6 +33,10 @@
 		68190017220EE346003E0972 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68190016220EE346003E0972 /* SettingsVC.swift */; };
 		681D9F7621E604C90054CC5E /* PullPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681D9F7521E604C90054CC5E /* PullPush.swift */; };
 		6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A821B2773F00441767 /* octicons.ttf */; };
+		682BD983222FE5CA00FD471C /* Linux.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682BD982222FE5CA00FD471C /* Linux.storyboard */; };
+		682BD986222FE6BA00FD471C /* TerminalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BD985222FE6BA00FD471C /* TerminalVC.swift */; };
+		682BD989222FE7C500FD471C /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BD988222FE7C500FD471C /* Terminal.swift */; };
+		682BD98C222FE98C00FD471C /* DelayedUITask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BD98B222FE98C00FD471C /* DelayedUITask.swift */; };
 		6835AEEE2221188300A0C379 /* QuickActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6835AEED2221188300A0C379 /* QuickActions.swift */; };
 		6835AEF022211F3100A0C379 /* RootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6835AEEF22211F3100A0C379 /* RootVC.swift */; };
 		6835AEF82221260900A0C379 /* Language.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6835AEFA2221260900A0C379 /* Language.strings */; };
@@ -96,6 +100,10 @@
 		68162E8721BBE11200CDA628 /* EditorView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EditorView; sourceTree = "<group>"; };
 		68190016220EE346003E0972 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		681D9F7521E604C90054CC5E /* PullPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullPush.swift; sourceTree = "<group>"; };
+		682BD982222FE5CA00FD471C /* Linux.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Linux.storyboard; sourceTree = "<group>"; };
+		682BD985222FE6BA00FD471C /* TerminalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalVC.swift; sourceTree = "<group>"; };
+		682BD988222FE7C500FD471C /* Terminal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terminal.swift; sourceTree = "<group>"; };
+		682BD98B222FE98C00FD471C /* DelayedUITask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedUITask.swift; sourceTree = "<group>"; };
 		6835AEED2221188300A0C379 /* QuickActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActions.swift; sourceTree = "<group>"; };
 		6835AEEF22211F3100A0C379 /* RootVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootVC.swift; sourceTree = "<group>"; };
 		6835AEF32221252700A0C379 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -205,6 +213,32 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		682BD984222FE62A00FD471C /* Linux */ = {
+			isa = PBXGroup;
+			children = (
+				682BD987222FE76200FD471C /* Terminal */,
+				682BD985222FE6BA00FD471C /* TerminalVC.swift */,
+			);
+			path = Linux;
+			sourceTree = "<group>";
+		};
+		682BD987222FE76200FD471C /* Terminal */ = {
+			isa = PBXGroup;
+			children = (
+				682BD98A222FE96D00FD471C /* Utilities */,
+				682BD988222FE7C500FD471C /* Terminal.swift */,
+			);
+			path = Terminal;
+			sourceTree = "<group>";
+		};
+		682BD98A222FE96D00FD471C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				682BD98B222FE98C00FD471C /* DelayedUITask.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		6835AEF1222124ED00A0C379 /* Language */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +296,7 @@
 				689BDC2721B22F7C00D88AAB /* LaunchScreen.storyboard */,
 				6835AF0122212AE100A0C379 /* Projects.storyboard */,
 				684549C321CE218F00CF5E80 /* git.storyboard */,
+				682BD982222FE5CA00FD471C /* Linux.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -398,6 +433,7 @@
 				6835AEF1222124ED00A0C379 /* Language */,
 				6863DF8921B5485D00911374 /* Extensions */,
 				6863DF8821B3FABB00911374 /* StudIO.entitlements */,
+				682BD984222FE62A00FD471C /* Linux */,
 				6856C7A921B2786D00441767 /* Projects */,
 				684549C721CE279500CF5E80 /* Git */,
 				6856C79921B236C100441767 /* Editor */,
@@ -510,6 +546,7 @@
 			files = (
 				689BDC2921B22F7C00D88AAB /* LaunchScreen.storyboard in Resources */,
 				6835AEFF22212AE100A0C379 /* Projects.storyboard in Resources */,
+				682BD983222FE5CA00FD471C /* Linux.storyboard in Resources */,
 				6856C7A421B2586700441767 /* file-icons.ttf in Resources */,
 				68162E8821BBE11200CDA628 /* EditorView in Resources */,
 				6856C7A321B2586500441767 /* opicons.ttf in Resources */,
@@ -597,13 +634,16 @@
 				68B5635A222BB8C900B9E0DD /* DropInteraction.swift in Sources */,
 				68E4544A21C1276B00F945A0 /* CellStruct.swift in Sources */,
 				686822F021DB8E130036694B /* GitCommit.swift in Sources */,
+				682BD986222FE6BA00FD471C /* TerminalVC.swift in Sources */,
 				6863DF9721B68F1700911374 /* LightStatus.swift in Sources */,
 				68E329D421D9223700231CFC /* ViewControllers.swift in Sources */,
 				68B5635F222BBB6000B9E0DD /* FolderItem.swift in Sources */,
 				689BDC2121B22F7800D88AAB /* WorkingDirDetailVC.swift in Sources */,
 				6852C24E21BB542000FA40DC /* Editor.swift in Sources */,
 				68BD16952211735000C5F321 /* SettingsTableView.swift in Sources */,
+				682BD98C222FE98C00FD471C /* DelayedUITask.swift in Sources */,
 				6856C79F21B23E3800441767 /* FileCell.swift in Sources */,
+				682BD989222FE7C500FD471C /* Terminal.swift in Sources */,
 				6863DF9321B54A9800911374 /* BottomLine.swift in Sources */,
 				68190017220EE346003E0972 /* SettingsVC.swift in Sources */,
 				684549C621CE247B00CF5E80 /* UIImage.swift in Sources */,
