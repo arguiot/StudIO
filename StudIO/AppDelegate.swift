@@ -93,3 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         return false
     }
 }
+enum AppShortcut: String, ShortcutType {
+    case cloneRepo
+    case localRepo
+}

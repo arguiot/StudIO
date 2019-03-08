@@ -24,7 +24,7 @@ class ProjectVC: UICollectionViewController {
 //        DispatchQueue.global().async {
 //            Folder.copyDocumentsToiCloudDrive()
 //        }
-        
+        SummoniSH().getProvider()
         // Do any additional setup after loading the view.
         bulletinManager = bulletin()
         setupDrop()

@@ -31,6 +31,7 @@
 		6813ED4F21FDC29B007FC120 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6813ED4E21FDC29B007FC120 /* Alert.swift */; };
 		68162E8821BBE11200CDA628 /* EditorView in Resources */ = {isa = PBXBuildFile; fileRef = 68162E8721BBE11200CDA628 /* EditorView */; };
 		68190017220EE346003E0972 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68190016220EE346003E0972 /* SettingsVC.swift */; };
+		681B2C4D2232398500BEDBF7 /* SummoniSH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681B2C4C2232398500BEDBF7 /* SummoniSH.swift */; };
 		681D9F7621E604C90054CC5E /* PullPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681D9F7521E604C90054CC5E /* PullPush.swift */; };
 		6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A821B2773F00441767 /* octicons.ttf */; };
 		682BD983222FE5CA00FD471C /* Linux.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682BD982222FE5CA00FD471C /* Linux.storyboard */; };
@@ -96,6 +97,7 @@
 		6813ED4E21FDC29B007FC120 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		68162E8721BBE11200CDA628 /* EditorView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EditorView; sourceTree = "<group>"; };
 		68190016220EE346003E0972 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		681B2C4C2232398500BEDBF7 /* SummoniSH.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummoniSH.swift; sourceTree = "<group>"; };
 		681D9F7521E604C90054CC5E /* PullPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullPush.swift; sourceTree = "<group>"; };
 		682BD982222FE5CA00FD471C /* Linux.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Linux.storyboard; sourceTree = "<group>"; };
 		6835AEED2221188300A0C379 /* QuickActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActions.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		682BD984222FE62A00FD471C /* Linux */ = {
 			isa = PBXGroup;
 			children = (
+				681B2C4C2232398500BEDBF7 /* SummoniSH.swift */,
 			);
 			path = Linux;
 			sourceTree = "<group>";
@@ -484,6 +487,9 @@
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -632,6 +638,7 @@
 				68838534220FD4D100330B45 /* iCloudFiles.swift in Sources */,
 				68E4544E21C276CB00F945A0 /* CreateFile.swift in Sources */,
 				6856C7AB21B2788900441767 /* ProjectVC.swift in Sources */,
+				681B2C4D2232398500BEDBF7 /* SummoniSH.swift in Sources */,
 				6835AEF022211F3100A0C379 /* RootVC.swift in Sources */,
 				6813ED4F21FDC29B007FC120 /* Alert.swift in Sources */,
 				68E4544C21C127F400F945A0 /* LoadFiles.swift in Sources */,
