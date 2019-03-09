@@ -28,7 +28,7 @@ class WorkingDirDetailVC: UIViewController {
             codeEditor((file?.name)!)
         }
     }
-    @objc func save() {
+    @objc func save(_ sender: Any? = nil) {
         if let f = self.file {
             let hash = try? f.read()
             editorView?.getData({ data in
@@ -105,7 +105,12 @@ class WorkingDirDetailVC: UIViewController {
 //        navigationItem.rightBarButtonItems = [gitButton, pButton] // Disabling Git functionnalities
         let undoButton = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(undo(_:)))
         let redoButton = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: #selector(redo(_:)))
+        
         navigationItem.rightBarButtonItems = [undoButton, redoButton].reversed()
+        
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save(_:)))
+        
+        navigationItem.leftBarButtonItems = [saveButton]
         
         // Double screen
         observe()
