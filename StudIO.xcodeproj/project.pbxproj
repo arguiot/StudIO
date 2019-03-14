@@ -70,6 +70,7 @@
 		689BDC2421B22F7800D88AAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 689BDC2221B22F7800D88AAB /* Main.storyboard */; };
 		689BDC2621B22F7C00D88AAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 689BDC2521B22F7B00D88AAB /* Assets.xcassets */; };
 		689BDC2921B22F7C00D88AAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 689BDC2721B22F7C00D88AAB /* LaunchScreen.storyboard */; };
+		68B3B4EF2239F9BA00B85A67 /* PanelKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68B3B4EE2239F9BA00B85A67 /* PanelKit.framework */; };
 		68B5635A222BB8C900B9E0DD /* DropInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B56359222BB8C900B9E0DD /* DropInteraction.swift */; };
 		68B5635D222BBA7600B9E0DD /* ZipItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B5635C222BBA7600B9E0DD /* ZipItem.swift */; };
 		68B5635F222BBB6000B9E0DD /* FolderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B5635E222BBB6000B9E0DD /* FolderItem.swift */; };
@@ -143,6 +144,7 @@
 		689BDC2521B22F7B00D88AAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		689BDC2821B22F7C00D88AAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		689BDC2A21B22F7C00D88AAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68B3B4EE2239F9BA00B85A67 /* PanelKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PanelKit.framework; path = Carthage/Build/iOS/PanelKit.framework; sourceTree = "<group>"; };
 		68B56359222BB8C900B9E0DD /* DropInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropInteraction.swift; sourceTree = "<group>"; };
 		68B5635C222BBA7600B9E0DD /* ZipItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipItem.swift; sourceTree = "<group>"; };
 		68B5635E222BBB6000B9E0DD /* FolderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderItem.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68B3B4EF2239F9BA00B85A67 /* PanelKit.framework in Frameworks */,
 				68B56367222CBB2600B9E0DD /* Zip.framework in Frameworks */,
 				687EC15B222AB46C00E6B3C3 /* SwiftGit2.framework in Frameworks */,
 				68BBB7362227862400BBF1DF /* Instabug.framework in Frameworks */,
@@ -177,6 +180,7 @@
 		68040210220EC67500789453 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68B3B4EE2239F9BA00B85A67 /* PanelKit.framework */,
 				68B56366222CBB2600B9E0DD /* Zip.framework */,
 				687EC15A222AB46C00E6B3C3 /* SwiftGit2.framework */,
 				68EF7B85222782FD00CD47D9 /* Instabug.framework */,
@@ -559,6 +563,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Instabug.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Zip.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PanelKit.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
