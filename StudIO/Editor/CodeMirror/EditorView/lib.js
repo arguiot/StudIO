@@ -79,6 +79,11 @@ class editor {
     getLangName() {
         return this.mode.name
     }
+    
+    insertSnippet(snippet) {
+        const str = atobUTF8(snippet)
+        this.cm.replaceSelection(str)
+    }
 }
 var ed = new editor(null, null)
 
