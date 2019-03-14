@@ -108,8 +108,8 @@ class WorkingDirDetailVC: UIViewController {
         
         navigationItem.rightBarButtonItems = [undoButton, redoButton].reversed()
         
-        var saveIcon = #imageLiteral(resourceName: "save-regular")
-        saveIcon = saveIcon.scaleImage(toSize: CGSize(width: 18 / 2, height: 20 / 2)) ?? saveIcon
+        var saveIcon = #imageLiteral(resourceName: "save-icon")
+        saveIcon = saveIcon.scaleImage(toSize: CGSize(width: 24 / 2, height: 24 / 2)) ?? saveIcon
         let saveButton = UIBarButtonItem(image: saveIcon, style: .plain, target: self, action: #selector(save(_:)))
         
         navigationItem.leftBarButtonItems = [saveButton]
