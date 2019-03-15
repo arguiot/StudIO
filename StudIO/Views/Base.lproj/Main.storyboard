@@ -41,31 +41,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtt-GP-nOg">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <subviews>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Jh-zI-1Cn">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
-                                        <connections>
-                                            <segue destination="C1l-fy-EzO" kind="embed" identifier="containerEditorSegue" id="9dB-nJ-Uax"/>
-                                        </connections>
-                                    </containerView>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAF-hE-Otb" customClass="BottomLine" customModule="StudIO" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="822" width="414" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="6Jh-zI-1Cn" firstAttribute="leading" secondItem="gtt-GP-nOg" secondAttribute="leading" id="FUk-9h-EGh"/>
-                                    <constraint firstAttribute="bottom" secondItem="6Jh-zI-1Cn" secondAttribute="bottom" id="htj-ZB-elS"/>
-                                    <constraint firstAttribute="trailing" secondItem="6Jh-zI-1Cn" secondAttribute="trailing" id="idT-6v-9gJ"/>
-                                    <constraint firstItem="6Jh-zI-1Cn" firstAttribute="top" secondItem="gtt-GP-nOg" secondAttribute="top" id="rdA-P7-gGm"/>
+                                    <constraint firstAttribute="height" constant="40" id="OTF-lt-Pok"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hwj-cq-ztk" customClass="Editor" customModule="StudIO" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="734"/>
+                                <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="gtt-GP-nOg" secondAttribute="bottom" id="NQm-KS-08L"/>
-                            <constraint firstItem="gtt-GP-nOg" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="pFe-xX-y4P"/>
-                            <constraint firstItem="gtt-GP-nOg" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" id="pfc-EH-pqQ"/>
-                            <constraint firstItem="gtt-GP-nOg" firstAttribute="trailing" secondItem="VUw-jc-0yf" secondAttribute="trailing" id="um8-Bu-KvI"/>
+                            <constraint firstItem="Hwj-cq-ztk" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" id="35e-pI-uem"/>
+                            <constraint firstItem="LAF-hE-Otb" firstAttribute="trailing" secondItem="VUw-jc-0yf" secondAttribute="trailing" id="RhV-7B-jDL"/>
+                            <constraint firstItem="Hwj-cq-ztk" firstAttribute="trailing" secondItem="VUw-jc-0yf" secondAttribute="trailing" id="UIQ-DM-4Yw"/>
+                            <constraint firstItem="LAF-hE-Otb" firstAttribute="top" secondItem="Hwj-cq-ztk" secondAttribute="bottom" id="fYO-ac-QBa"/>
+                            <constraint firstItem="LAF-hE-Otb" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="sDz-YY-GGa"/>
+                            <constraint firstItem="LAF-hE-Otb" firstAttribute="bottom" secondItem="VUw-jc-0yf" secondAttribute="bottom" id="tdm-fX-lYE"/>
+                            <constraint firstItem="Hwj-cq-ztk" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="zx1-vt-apl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VUw-jc-0yf"/>
                     </view>
@@ -87,13 +83,13 @@ DQ
                         <keyCommand input="h" modifierFlags="1048576" actionName="null" discoverabilityTitle="Find &amp; Replace"/>
                     </keyCommands>
                     <connections>
-                        <outlet property="containerView" destination="6Jh-zI-1Cn" id="Ty4-SO-ql3"/>
-                        <outlet property="wrapperView" destination="gtt-GP-nOg" id="wQI-1k-Dw5"/>
+                        <outlet property="bottomLine" destination="LAF-hE-Otb" id="7HT-H4-oXb"/>
+                        <outlet property="editorView" destination="Hwj-cq-ztk" id="Ahs-hn-QBZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="668" y="695"/>
+            <point key="canvasLocation" x="708" y="128.18590704647679"/>
         </scene>
         <!--git-->
         <scene sceneID="03Y-TW-hn4">
@@ -197,48 +193,6 @@ DQ
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-45" y="129"/>
-        </scene>
-        <!--Container View-->
-        <scene sceneID="utc-46-hoP">
-            <objects>
-                <viewController id="C1l-fy-EzO" customClass="containerView" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mPH-fN-5Ka">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="elf-0f-glg" customClass="BottomLine" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="734" width="414" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="H4E-TY-Dr7"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8b-hj-byC" customClass="Editor" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="734"/>
-                                <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="b8b-hj-byC" firstAttribute="leading" secondItem="elf-0f-glg" secondAttribute="leading" id="1xV-i5-OI7"/>
-                            <constraint firstItem="elf-0f-glg" firstAttribute="leading" secondItem="mPH-fN-5Ka" secondAttribute="leading" id="9Iy-7F-rkp"/>
-                            <constraint firstItem="elf-0f-glg" firstAttribute="top" secondItem="b8b-hj-byC" secondAttribute="bottom" id="BWO-YC-ps8"/>
-                            <constraint firstItem="elf-0f-glg" firstAttribute="bottom" secondItem="mPH-fN-5Ka" secondAttribute="bottomMargin" id="Ceg-dY-sdB"/>
-                            <constraint firstItem="b8b-hj-byC" firstAttribute="trailing" secondItem="elf-0f-glg" secondAttribute="trailing" id="J8p-kU-P3b"/>
-                            <constraint firstItem="b8b-hj-byC" firstAttribute="top" secondItem="mPH-fN-5Ka" secondAttribute="top" id="efn-Oh-ArM"/>
-                            <constraint firstAttribute="trailing" secondItem="elf-0f-glg" secondAttribute="trailing" id="rFt-jC-Vul"/>
-                            <constraint firstItem="elf-0f-glg" firstAttribute="top" secondItem="b8b-hj-byC" secondAttribute="bottom" id="vz3-pS-YP3"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="l4H-fF-FUR"/>
-                    </view>
-                    <connections>
-                        <outlet property="bottomBar" destination="elf-0f-glg" id="wGh-0x-9MD"/>
-                        <outlet property="editorView" destination="b8b-hj-byC" id="8pC-N8-Hhy"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a5Z-BI-9gY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="668" y="86"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

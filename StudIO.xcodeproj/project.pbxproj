@@ -64,7 +64,6 @@
 		687DA70522127145005491C0 /* PickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687DA70422127145005491C0 /* PickerViewCell.swift */; };
 		687EC15B222AB46C00E6B3C3 /* SwiftGit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 687EC15A222AB46C00E6B3C3 /* SwiftGit2.framework */; };
 		68838534220FD4D100330B45 /* iCloudFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68838533220FD4D100330B45 /* iCloudFiles.swift */; };
-		6893DEDE223BA28C0077F57B /* SnippetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6893DEDC223BA28C0077F57B /* SnippetsVC.swift */; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* WorkingDirMasterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* WorkingDirMasterVC.swift */; };
 		689BDC2121B22F7800D88AAB /* WorkingDirDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC2021B22F7800D88AAB /* WorkingDirDetailVC.swift */; };
@@ -138,7 +137,6 @@
 		687DA70422127145005491C0 /* PickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewCell.swift; sourceTree = "<group>"; };
 		687EC15A222AB46C00E6B3C3 /* SwiftGit2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGit2.framework; path = Carthage/Build/iOS/SwiftGit2.framework; sourceTree = "<group>"; };
 		68838533220FD4D100330B45 /* iCloudFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudFiles.swift; sourceTree = "<group>"; };
-		6893DEDC223BA28C0077F57B /* SnippetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetsVC.swift; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689BDC1E21B22F7800D88AAB /* WorkingDirMasterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingDirMasterVC.swift; sourceTree = "<group>"; };
@@ -423,7 +421,6 @@
 			isa = PBXGroup;
 			children = (
 				68B3B4F12239FBA100B85A67 /* PanelManager.swift */,
-				6893DEDC223BA28C0077F57B /* SnippetsVC.swift */,
 			);
 			name = Panels;
 			path = ../Panels;
@@ -618,7 +615,6 @@
 				68B3B4F22239FBA100B85A67 /* PanelManager.swift in Sources */,
 				68E4544A21C1276B00F945A0 /* CellStruct.swift in Sources */,
 				686822F021DB8E130036694B /* GitCommit.swift in Sources */,
-				6893DEDE223BA28C0077F57B /* SnippetsVC.swift in Sources */,
 				6863DF9721B68F1700911374 /* LightStatus.swift in Sources */,
 				68E329D421D9223700231CFC /* ViewControllers.swift in Sources */,
 				68B5635F222BBB6000B9E0DD /* FolderItem.swift in Sources */,
