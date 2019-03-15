@@ -11,15 +11,26 @@ import PanelKit
 
 extension WorkingDirDetailVC: PanelManager {
     var panels: [PanelViewController] {
-        return []
+        snippetPanel = PanelViewController(with: snippet, in: self)
+        return [snippetPanel!]
     }
     
     var panelContentWrapperView: UIView {
-        return self.view
+        return wrapperView
     }
     
     var panelContentView: UIView {
-        return self.editorView
+        return self.containerView
+    }
+    
+    func maximumNumberOfPanelsPinned(at side: PanelPinSide) -> Int {
+        return panels.count
+    }
+    var allowPanelPinning: Bool {
+        return panelContentWrapperView.bounds.width > 700
+    }
+    var allowFloatingPanels: Bool {
+        return panelContentWrapperView.bounds.width > 700
     }
 }
 
