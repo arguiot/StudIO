@@ -8,12 +8,24 @@
 
 import UIKit
 
-class SnippetsVC: UIViewController {
+class SnippetsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var snippets: [Snippet] = [
+        Snippet(n: "Test Snippet", c: """
+for (let i = 0; i < a; i++) {
 
+}
+""", l: "js", co: .red)
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let array = UserDefaults.standard.array(forKey: "studio-snippets") ?? snippets
+        let sn = array as? [Snippet]
+        snippets = sn ?? snippets
     }
     
 
@@ -29,5 +41,15 @@ class SnippetsVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return snippets.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SnippetCell", for: indexPath) as! SnippetCell
+        let row = indexPath.row
+        let data = snippets[row]
+        return data.setup(cell: cell)
+    }
 }

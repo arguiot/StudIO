@@ -1,23 +1,17 @@
 //
-//  FileCell.swift
+//  SnippetCell.swift
 //  StudIO
 //
-//  Created by Arthur Guiot on 1/12/18.
-//  Copyright © 2018 Arthur Guiot. All rights reserved.
+//  Created by Arthur Guiot on 16/3/19.
+//  Copyright © 2019 Arthur Guiot. All rights reserved.
 //
 
 import UIKit
 
-class FileCell: UITableViewCell {
+class SnippetCell: UITableViewCell {
 
-    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var icon: UILabel!
-
-    enum FileFolder {
-        case file
-        case folder
-    }
-    var fileType: FileFolder = .file
+    @IBOutlet weak var name: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,11 +24,11 @@ class FileCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    var ident: Int = 0
-    var file: String?
-    
+    var ident = 0
+    var snippet = ""
+    var l = ""
     func update() {
-        let id = ident * 20 // 20 px
+        let id = ident * 20
         
         // reset all transformations
         self.name.transform = CGAffineTransform.identity
@@ -42,9 +36,10 @@ class FileCell: UITableViewCell {
         
         
         self.name.transform = self.name.transform.translatedBy(x: CGFloat(id), y: 0)
-        self.name.text = file ?? ""
-        _ = setIcon(file ?? "", i: ident)
+        self.name.text = snippet 
+        _ = setIcon(l , i: ident)
     }
+    
     var icons: Dictionary<String, Dictionary<String, String>> {
         if let path = Bundle.main.path(forResource: "Icons", ofType: "plist") {
             return NSDictionary(contentsOfFile: path) as! Dictionary<String, Dictionary<String, String>>
@@ -52,7 +47,7 @@ class FileCell: UITableViewCell {
         return Dictionary<String, Dictionary<String, String>>()
     }
     
-    func setIcon(_ name: String, i: Int) -> Bool {
+    func setIcon(_ name: String, i: Int = 0) -> Bool {
         
         let ic = self.icons
         let split = name.split(separator: ".")
@@ -62,13 +57,7 @@ class FileCell: UITableViewCell {
         self.icon.transform = self.icon.transform.translatedBy(x: CGFloat(id), y: 0)
         
         var found = false
-        if fileType == .folder {
-            self.icon.font = UIFont(name: "octicons", size: 17)
-            let scalar = UnicodeScalar(Int("F016", radix: 16)!)
-            let char = Character(scalar!)
-            self.icon.text = String(char)
-            return true
-        }
+
         for i in ic.keys {
             let dic = ic[i]
             let font = UIFont(name: i, size: 17)
