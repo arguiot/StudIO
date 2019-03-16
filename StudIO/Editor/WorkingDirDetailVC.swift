@@ -19,6 +19,41 @@ class WorkingDirDetailVC: UIViewController {
     
     var secondWindow: UIWindow?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        updatedBar()
+        configureView()
+        // GitVC
+        let image = #imageLiteral(resourceName: "Repo-white").scaleImage(toSize: CGSize(width: 10, height: 10))
+        let gitButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(gitVC(_:)))
+        // Git Panel
+        let pimg = #imageLiteral(resourceName: "branch-icon").scaleImage(toSize: CGSize(width: 6.25, height: 10))
+        let pButton = UIBarButtonItem(image: pimg, style: .plain, target: self, action: #selector(gitPanel(_:)))
+        editorView?.gitPanel.isHidden = true
+        if let r = repo {
+            editorView?.gitPanel.repo = r
+        }
+        //        navigationItem.rightBarButtonItems = [gitButton, pButton] // Disabling Git functionnalities
+        let undoButton = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(undo(_:)))
+        let redoButton = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: #selector(redo(_:)))
+        
+        snippetButton = UIBarButtonItem(title: "Snippets", style: .plain, target: self, action: #selector(showSnippet(_:)))
+        
+        navigationItem.rightBarButtonItems = [snippetButton, undoButton, redoButton].reversed()
+        
+        var saveIcon = #imageLiteral(resourceName: "save-icon")
+        saveIcon = saveIcon.scaleImage(toSize: CGSize(width: 24 / 2, height: 24 / 2)) ?? saveIcon
+        let saveButton = UIBarButtonItem(image: saveIcon, style: .plain, target: self, action: #selector(save(_:)))
+        
+        navigationItem.leftBarButtonItems = [saveButton]
+        
+        // Double screen
+        observe()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        save()
+    }
     
     func configureView() {
         // Update the user interface for the detail item.
@@ -87,39 +122,6 @@ class WorkingDirDetailVC: UIViewController {
     @IBAction func updatedBar() {
         bottomView()
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        updatedBar()
-        configureView()
-        // GitVC
-        let image = #imageLiteral(resourceName: "Repo-white").scaleImage(toSize: CGSize(width: 10, height: 10))
-        let gitButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(gitVC(_:)))
-        // Git Panel
-        let pimg = #imageLiteral(resourceName: "branch-icon").scaleImage(toSize: CGSize(width: 6.25, height: 10))
-        let pButton = UIBarButtonItem(image: pimg, style: .plain, target: self, action: #selector(gitPanel(_:)))
-        editorView?.gitPanel.isHidden = true
-        if let r = repo {
-            editorView?.gitPanel.repo = r
-        }
-//        navigationItem.rightBarButtonItems = [gitButton, pButton] // Disabling Git functionnalities
-        let undoButton = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(undo(_:)))
-        let redoButton = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: #selector(redo(_:)))
-        
-        navigationItem.rightBarButtonItems = [undoButton, redoButton].reversed()
-        
-        var saveIcon = #imageLiteral(resourceName: "save-icon")
-        saveIcon = saveIcon.scaleImage(toSize: CGSize(width: 24 / 2, height: 24 / 2)) ?? saveIcon
-        let saveButton = UIBarButtonItem(image: saveIcon, style: .plain, target: self, action: #selector(save(_:)))
-        
-        navigationItem.leftBarButtonItems = [saveButton]
-        
-        // Double screen
-        observe()
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        save()
-    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -157,6 +159,23 @@ class WorkingDirDetailVC: UIViewController {
     }
     @objc func redo(_ sender: Any?) {
         editorView?.redo()
+    }
+    
+    var snippets: SnippetsVC?
+    var snippetButton: UIBarButtonItem!
+    
+    @objc func showSnippet(_ sender: Any?) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "SnippetsVC") as! SnippetsVC
+        vc.preferredContentSize = CGSize(width: 320, height: 400)
+        showPopover(vc, from: snippetButton)
+    }
+    
+    func showPopover(_ vc: UIViewController, from barButtonItem: UIBarButtonItem) {
+        
+        vc.modalPresentationStyle = .popover
+        vc.popoverPresentationController?.barButtonItem = barButtonItem
+        
+        present(vc, animated: true, completion: nil)
     }
 }
 
