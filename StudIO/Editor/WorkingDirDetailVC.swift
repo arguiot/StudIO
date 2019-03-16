@@ -162,11 +162,12 @@ class WorkingDirDetailVC: UIViewController {
     }
     
     var snippetButton: UIBarButtonItem!
-    
+    weak var snippetVC: snippetController?
     @objc func showSnippet(_ sender: Any?) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "snippetController") as! snippetController
-        vc.preferredContentSize = CGSize(width: 320, height: 400)
-        showPopover(vc, from: snippetButton)
+        snippetVC = storyboard?.instantiateViewController(withIdentifier: "snippetController") as? snippetController
+        snippetVC?.preferredContentSize = CGSize(width: 320, height: 400)
+        
+        showPopover(snippetVC!, from: snippetButton)
     }
     
     func showPopover(_ vc: UIViewController, from barButtonItem: UIBarButtonItem) {

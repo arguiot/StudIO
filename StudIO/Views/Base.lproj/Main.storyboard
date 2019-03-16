@@ -171,6 +171,9 @@ DQ
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="D75-0N-jhG"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="d6V-cc-mhP" id="g9C-8b-U63"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeT-GY-OvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
