@@ -46,7 +46,7 @@ class WorkingDirDetailVC: UIViewController {
         saveIcon = saveIcon.scaleImage(toSize: CGSize(width: 24 / 2, height: 24 / 2)) ?? saveIcon
         let saveButton = UIBarButtonItem(image: saveIcon, style: .plain, target: self, action: #selector(save(_:)))
         
-        navigationItem.leftBarButtonItems = [saveButton]
+        navigationItem.leftBarButtonItems?.append(contentsOf: [saveButton])
         
         // Double screen
         observe()
