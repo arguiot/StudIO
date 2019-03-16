@@ -161,11 +161,10 @@ class WorkingDirDetailVC: UIViewController {
         editorView?.redo()
     }
     
-    var snippets: SnippetsVC?
     var snippetButton: UIBarButtonItem!
     
     @objc func showSnippet(_ sender: Any?) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "SnippetsVC") as! SnippetsVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: "snippetController") as! snippetController
         vc.preferredContentSize = CGSize(width: 320, height: 400)
         showPopover(vc, from: snippetButton)
     }

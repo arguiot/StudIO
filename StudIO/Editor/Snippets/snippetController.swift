@@ -1,5 +1,5 @@
 //
-//  SnippetsVC.swift
+//  snippetController.swift
 //  StudIO
 //
 //  Created by Arthur Guiot on 16/3/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SnippetsVC: UIViewController {
+class snippetController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,9 +17,6 @@ class SnippetsVC: UIViewController {
     }
     
 
-    @IBAction func exit(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     /*
     // MARK: - Navigation
 

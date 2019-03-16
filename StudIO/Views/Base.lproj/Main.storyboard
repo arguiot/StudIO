@@ -91,45 +91,56 @@ DQ
             </objects>
             <point key="canvasLocation" x="708" y="128.18590704647679"/>
         </scene>
-        <!--Snippets-->
-        <scene sceneID="3U6-Ov-M5p">
+        <!--Snippet Controller-->
+        <scene sceneID="UIR-l1-IVZ">
             <objects>
-                <viewController storyboardIdentifier="SnippetsVC" title="Snippets" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3g5-hw-kyb" customClass="SnippetsVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="w5g-ES-Y7Y">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                <navigationController storyboardIdentifier="snippetController" id="uRN-gX-b8b" customClass="snippetController" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d4n-Im-z2c">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="fZz-TP-S2Z" kind="relationship" relationship="rootViewController" id="kSS-6f-39j"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nbq-iR-FkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-357" y="1008"/>
+        </scene>
+        <!--Snippets-->
+        <scene sceneID="09J-fA-uzm">
+            <objects>
+                <viewController storyboardIdentifier="SnippetsVC" id="fZz-TP-S2Z" customClass="SnippetsVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GR5-tV-DcK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hd5-GL-f9y">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="Snippets" id="hwP-yd-TN1">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Rm-7f-Wdz"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UVI-FK-bcY">
-                                <rect key="frame" x="0.0" y="44" width="320" height="356"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d6V-cc-mhP">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="UVI-FK-bcY" secondAttribute="bottom" id="Dhm-y1-nqI"/>
-                            <constraint firstItem="UVI-FK-bcY" firstAttribute="top" secondItem="Hd5-GL-f9y" secondAttribute="bottom" id="E8K-l1-k1E"/>
-                            <constraint firstItem="UVI-FK-bcY" firstAttribute="trailing" secondItem="sty-b9-cGa" secondAttribute="trailing" id="OpD-WX-IGR"/>
-                            <constraint firstItem="Hd5-GL-f9y" firstAttribute="leading" secondItem="w5g-ES-Y7Y" secondAttribute="leading" id="b0l-Ma-DFg"/>
-                            <constraint firstItem="Hd5-GL-f9y" firstAttribute="top" secondItem="w5g-ES-Y7Y" secondAttribute="top" id="bT3-mP-Y79"/>
-                            <constraint firstAttribute="trailing" secondItem="Hd5-GL-f9y" secondAttribute="trailing" id="pec-kM-4L2"/>
-                            <constraint firstItem="UVI-FK-bcY" firstAttribute="leading" secondItem="sty-b9-cGa" secondAttribute="leading" id="upW-Qq-rJL"/>
+                            <constraint firstItem="d6V-cc-mhP" firstAttribute="trailing" secondItem="1ix-r7-b8u" secondAttribute="trailing" id="8yh-VU-qWA"/>
+                            <constraint firstItem="d6V-cc-mhP" firstAttribute="leading" secondItem="1ix-r7-b8u" secondAttribute="leading" id="XEg-50-6fm"/>
+                            <constraint firstAttribute="bottom" secondItem="d6V-cc-mhP" secondAttribute="bottom" id="u5P-1I-f4A"/>
+                            <constraint firstItem="d6V-cc-mhP" firstAttribute="top" secondItem="1ix-r7-b8u" secondAttribute="top" id="wkE-Dz-vqk"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="sty-b9-cGa"/>
+                        <viewLayoutGuide key="safeArea" id="1ix-r7-b8u"/>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="400"/>
+                    <navigationItem key="navigationItem" title="Snippets" id="UPq-lH-ra3">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="c57-gj-oxu">
+                            <connections>
+                                <action selector="exit:" destination="fZz-TP-S2Z" id="XUm-Ds-Bsp"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="D75-0N-jhG"/>
+                    </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Lf-4a-WBO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XeT-GY-OvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="705.79710144927537" y="862.5"/>
+            <point key="canvasLocation" x="786.95652173913049" y="1007.8125"/>
         </scene>
         <!--git-->
         <scene sceneID="03Y-TW-hn4">
