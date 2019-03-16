@@ -91,23 +91,37 @@ DQ
             </objects>
             <point key="canvasLocation" x="708" y="128.18590704647679"/>
         </scene>
-        <!--SnippetsVC-->
+        <!--Snippets-->
         <scene sceneID="3U6-Ov-M5p">
             <objects>
-                <viewController storyboardIdentifier="SnippetsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3g5-hw-kyb" customClass="SnippetsVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SnippetsVC" title="Snippets" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3g5-hw-kyb" customClass="SnippetsVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w5g-ES-Y7Y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1I-Dz-b0D">
-                                <rect key="frame" x="139" y="190" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hd5-GL-f9y">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Snippets" id="hwP-yd-TN1">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Rm-7f-Wdz"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UVI-FK-bcY">
+                                <rect key="frame" x="0.0" y="44" width="320" height="356"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="UVI-FK-bcY" secondAttribute="bottom" id="Dhm-y1-nqI"/>
+                            <constraint firstItem="UVI-FK-bcY" firstAttribute="top" secondItem="Hd5-GL-f9y" secondAttribute="bottom" id="E8K-l1-k1E"/>
+                            <constraint firstItem="UVI-FK-bcY" firstAttribute="trailing" secondItem="sty-b9-cGa" secondAttribute="trailing" id="OpD-WX-IGR"/>
+                            <constraint firstItem="Hd5-GL-f9y" firstAttribute="leading" secondItem="w5g-ES-Y7Y" secondAttribute="leading" id="b0l-Ma-DFg"/>
+                            <constraint firstItem="Hd5-GL-f9y" firstAttribute="top" secondItem="w5g-ES-Y7Y" secondAttribute="top" id="bT3-mP-Y79"/>
+                            <constraint firstAttribute="trailing" secondItem="Hd5-GL-f9y" secondAttribute="trailing" id="pec-kM-4L2"/>
+                            <constraint firstItem="UVI-FK-bcY" firstAttribute="leading" secondItem="sty-b9-cGa" secondAttribute="leading" id="upW-Qq-rJL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="sty-b9-cGa"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -115,7 +129,7 @@ DQ
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Lf-4a-WBO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="707" y="863"/>
+            <point key="canvasLocation" x="705.79710144927537" y="862.5"/>
         </scene>
         <!--git-->
         <scene sceneID="03Y-TW-hn4">
