@@ -54,38 +54,34 @@ for (let i = 0; i < a; i++) {
         return data.setup(cell: cell)
     }
     
-    var selectedRow: IndexPath!
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRow = indexPath
+        let row = indexPath.row
+        let snippet = snippets[row]
+        
+        NotificationCenter.default.post(name: .init("insertSnippet"), object: nil, userInfo: ["selected": snippet])
     }
 }
 
 
 extension WorkingDirDetailVC {
-    @IBAction func insertSnippet(_ sender: Any?) {
-        DispatchQueue.main.async {
-            let container = self.snippetVC
-            let vc = container?.topViewController as! SnippetsVC
-            
-            let indexPath = vc.selectedRow
-            let tableView = vc.tableView
-            
-            let row = indexPath?.row
-            let snippet = vc.snippets[row ?? 0]
-            
-            let data = snippet.content.data(using: .utf8)
-            let content = data?.base64EncodedString()
-            let js = """
-            try {
-            window.e.insertSnippet("\(content)")
+    @objc func insertSnippet(notification: Notification) {
+        let d = notification.userInfo
+        let snippet = d?["selected"] as! Snippet
+        
+        let data = snippet.content.data(using: .utf8)
+        let content = data?.base64EncodedString()
+        let js = """
+        try {
+            window.e.insertSnippet("\(content ?? "")")
+        } catch(e) {
+            console.log(e)
+        }
+        """
+        self.editorView.codeView.evaluateJavaScript(js) { (result, error) in
+            if error != nil {
+                NSObject.alert(t: "Snippet error", m: error?.localizedDescription ?? "Couldn't insert snippet")
             }
-            """
-            self.editorView.codeView.evaluateJavaScript(js) { (result, error) in
-                if let e = error {
-                    NSObject.alert(t: "Snippet error", m: error?.localizedDescription ?? "Couldn't insert snippet")
-                }
-                self.dismiss(animated: true, completion: nil)
-            }
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }

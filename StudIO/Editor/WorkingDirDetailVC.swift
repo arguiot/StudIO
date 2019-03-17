@@ -48,6 +48,9 @@ class WorkingDirDetailVC: UIViewController {
         
         navigationItem.leftBarButtonItems?.append(contentsOf: [saveButton])
         
+        
+        // Listen for events
+        NotificationCenter.default.addObserver(self, selector: #selector(insertSnippet(notification:)), name: .init("insertSnippet"), object: nil)
         // Double screen
         observe()
     }
