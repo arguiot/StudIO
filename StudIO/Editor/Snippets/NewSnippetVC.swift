@@ -20,7 +20,7 @@ class NewSnippetVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        self.preferredContentSize = CGSize(width: 415, height: 800)
         setupColorSlider()
         setupEditor()
     }
@@ -38,6 +38,9 @@ class NewSnippetVC: UIViewController {
     
     func setupEditor() {
         guard let c = codeView else { return }
+        
+        c.codeView.scrollView.delegate = self
+        
         c.content = ""
         
         c.gitPanel.isHidden = true
@@ -78,4 +81,10 @@ class NewSnippetVC: UIViewController {
     }
     */
 
+}
+
+extension NewSnippetVC: UIScrollViewDelegate {
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        scrollView.pinchGestureRecognizer?.isEnabled = false // disable zooming
+    }
 }

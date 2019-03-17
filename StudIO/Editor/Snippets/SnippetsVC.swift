@@ -21,7 +21,9 @@ for (let i = 0; i < a; i++) {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.preferredContentSize = CGSize(width: 320, height: 400)
+        
         // Do any additional setup after loading the view.
         
         let array = UserDefaults.standard.array(forKey: "studio-snippets") ?? snippets
