@@ -46,7 +46,7 @@ class Editor: UIView {
     var highlightExt: String?
     func highlight(_ lang: String, code:  @escaping () -> Void) {
         let arr = lang.split(separator: ".")
-        let ext = String(arr[arr.count - 1]).uppercased()
+        let ext = String(arr.last ?? "").uppercased()
         highlightExt = ext
         if codeView.isLoading == false {
             codeView.evaluateJavaScript("document.body.innerHTML = \"\"; window.e = new editor('\(ext)', '');") { (result, error) in

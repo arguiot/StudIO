@@ -213,6 +213,9 @@ DQ
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="updateHighlight:" destination="alt-dQ-G5s" eventType="editingDidEnd" id="RWJ-pS-TAZ"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUh-Fu-q82">
                                         <rect key="frame" x="20" y="30" width="45" height="21"/>
@@ -249,22 +252,43 @@ DQ
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cc6-xV-baa">
+                                        <rect key="frame" x="20" y="183" width="83" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="27" id="z9w-vi-i9H"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cr2-oB-1vm" customClass="Editor" customModule="StudIO" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="230" width="418" height="575"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="575" id="EgN-S7-PZP"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Cr2-oB-1vm" firstAttribute="top" secondItem="cc6-xV-baa" secondAttribute="bottom" constant="20" id="4Dw-yf-eoY"/>
                                     <constraint firstItem="MYk-P9-A5i" firstAttribute="top" secondItem="L94-an-ruj" secondAttribute="bottom" constant="16" id="4dP-qs-BVF"/>
                                     <constraint firstAttribute="trailing" secondItem="MYk-P9-A5i" secondAttribute="trailing" constant="20" id="6Ly-b6-4AH"/>
                                     <constraint firstItem="q4s-bx-FMr" firstAttribute="leading" secondItem="VtX-aI-YkP" secondAttribute="leading" constant="20" id="8Qv-Mq-2yh"/>
+                                    <constraint firstItem="cc6-xV-baa" firstAttribute="top" secondItem="azS-8e-3gU" secondAttribute="bottom" constant="45" id="GKe-G9-1Ee"/>
                                     <constraint firstItem="7YK-7z-wkT" firstAttribute="top" secondItem="VtX-aI-YkP" secondAttribute="top" constant="25" id="IaK-Us-4oc"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cr2-oB-1vm" secondAttribute="trailing" id="NNw-M1-5jN"/>
                                     <constraint firstItem="q4s-bx-FMr" firstAttribute="top" secondItem="OUh-Fu-q82" secondAttribute="bottom" constant="20" id="OqM-fE-ba5"/>
                                     <constraint firstItem="azS-8e-3gU" firstAttribute="top" secondItem="q4s-bx-FMr" secondAttribute="bottom" constant="25" id="QH2-3H-mfd"/>
                                     <constraint firstAttribute="trailing" secondItem="L94-an-ruj" secondAttribute="trailing" constant="20" id="Sh5-rk-Pot"/>
+                                    <constraint firstItem="cc6-xV-baa" firstAttribute="leading" secondItem="VtX-aI-YkP" secondAttribute="leading" constant="20" id="UJl-qb-RAT"/>
                                     <constraint firstItem="azS-8e-3gU" firstAttribute="leading" secondItem="VtX-aI-YkP" secondAttribute="leading" constant="20" id="WtT-Gg-nVG"/>
-                                    <constraint firstAttribute="bottom" secondItem="L94-an-ruj" secondAttribute="bottom" constant="707" id="YoZ-mI-Mfj"/>
+                                    <constraint firstAttribute="bottom" secondItem="Cr2-oB-1vm" secondAttribute="bottom" id="YMx-dr-DWf"/>
                                     <constraint firstItem="7YK-7z-wkT" firstAttribute="leading" secondItem="VtX-aI-YkP" secondAttribute="leading" constant="198" id="c48-TW-vrp"/>
                                     <constraint firstItem="L94-an-ruj" firstAttribute="top" secondItem="7YK-7z-wkT" secondAttribute="bottom" constant="16" id="d6e-M0-10J"/>
                                     <constraint firstItem="OUh-Fu-q82" firstAttribute="top" secondItem="VtX-aI-YkP" secondAttribute="top" constant="30" id="ewh-8J-VHq"/>
                                     <constraint firstAttribute="trailing" secondItem="7YK-7z-wkT" secondAttribute="trailing" constant="20" id="pAL-sb-s0y"/>
                                     <constraint firstItem="OUh-Fu-q82" firstAttribute="leading" secondItem="VtX-aI-YkP" secondAttribute="leading" constant="20" id="vfG-kV-th6"/>
+                                    <constraint firstItem="Cr2-oB-1vm" firstAttribute="leading" secondItem="VtX-aI-YkP" secondAttribute="leading" id="wRQ-z9-f3I"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -278,6 +302,7 @@ DQ
                         <viewLayoutGuide key="safeArea" id="ZZp-sz-8lV"/>
                     </view>
                     <connections>
+                        <outlet property="codeView" destination="Cr2-oB-1vm" id="Wl9-N8-pye"/>
                         <outlet property="colorView" destination="MYk-P9-A5i" id="RNh-gP-MwH"/>
                         <outlet property="lang" destination="L94-an-ruj" id="nw8-LM-tjc"/>
                         <outlet property="name" destination="7YK-7z-wkT" id="ZKv-Wi-CJ0"/>
