@@ -10,13 +10,20 @@ import UIKit
 
 class SnippetsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var snippets: [Snippet] = [
-        Snippet(n: "Test Snippet", c: """
-for (let i = 0; i < a; i++) {
-
-}
-""", l: "js", co: .red)
-    ]
+    var snippets: [Snippet] = [] {
+        didSet {
+            var encoded: [[String: String]] = [[:]]
+            snippets.forEach { (sn) in
+                encoded.append([
+                    "name": sn.name,
+                    "content": sn.content,
+                    "language": sn.language,
+                    "color": sn.color.hex
+                ])
+            }
+            UserDefaults.standard.set(encoded, forKey: "studio-snippets")
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -26,9 +33,21 @@ for (let i = 0; i < a; i++) {
         
         // Do any additional setup after loading the view.
         
-        let array = UserDefaults.standard.array(forKey: "studio-snippets") ?? snippets
-        let sn = array as? [Snippet]
-        snippets = sn ?? snippets
+        var array = [Snippet]()
+        
+        if let encoded = UserDefaults.standard.array(forKey: "studio-snippets") as? [[String: String]] {
+            encoded.forEach { (sn) in
+                if (sn.keys.count >= 4) { // make sure that sn is a snippet with 4 (or more) keys (name, content, language, ...)
+                    let color = UIColor.hexStringToUIColor(hex: sn["color"]!)
+                    array.append(Snippet(n: sn["name"]!,
+                                         c: sn["content"]!,
+                                         l: sn["language"]!,
+                                         co: color))
+                }
+            }
+        }
+
+        snippets = array
     }
     
 

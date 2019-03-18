@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Snippet {
+class Snippet: NSObject {
     var name: String
     var content: String
     var language: String
