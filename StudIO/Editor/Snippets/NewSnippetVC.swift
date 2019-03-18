@@ -23,10 +23,6 @@ class NewSnippetVC: UIViewController {
         self.preferredContentSize = CGSize(width: 415, height: 800)
         setupColorSlider()
         setupEditor()
-        
-        
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction(_:)))
-        navigationItem.rightBarButtonItems?.append(doneButton)
     }
     
     
@@ -81,11 +77,11 @@ class NewSnippetVC: UIViewController {
         }
     }
     
-    @objc func doneAction(_ sender: Any?) {
+    @IBAction func saveSnippet(_ sender: Any) {
         guard let n = name.text else { return }
         
         if n == "" {
-            NSObject.alert(t: "Name error", m: "Can't be an empty string")
+            name.placeHolderColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
             return
         }
         codeView.getData({ (data) in
@@ -95,7 +91,7 @@ class NewSnippetVC: UIViewController {
             
             let snippet = Snippet(n: n, c: c, l: l, co: self.color)
             
-            let snippetVC = self.navigationController?.topViewController as! SnippetsVC
+            let snippetVC = self.navigationController?.viewControllers.first as! SnippetsVC
             snippetVC.snippets.append(snippet)
             
             self.navigationController?.popViewController(animated: true)

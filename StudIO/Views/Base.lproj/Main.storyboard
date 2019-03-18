@@ -301,6 +301,13 @@ DQ
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZZp-sz-8lV"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Create snippet" id="c3w-2P-AL8">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="VJF-ij-kHB">
+                            <connections>
+                                <action selector="saveSnippet:" destination="alt-dQ-G5s" id="j1E-7G-nZv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="codeView" destination="Cr2-oB-1vm" id="Wl9-N8-pye"/>
                         <outlet property="colorView" destination="MYk-P9-A5i" id="RNh-gP-MwH"/>

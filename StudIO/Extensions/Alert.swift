@@ -11,7 +11,7 @@ import UIKit
 extension NSObject {
     static func alert(t: String, m: String) {
         print(t, m)
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             let alertWindow = UIWindow(frame: UIScreen.main.bounds)
             alertWindow.rootViewController = UIViewController()
             alertWindow.windowLevel = UIWindow.Level.alert + 1
@@ -24,7 +24,7 @@ extension NSObject {
         }
     }
     static func alert(t: String, m: String, completion: @escaping (String?) -> Void) {
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             let alertWindow = UIWindow(frame: UIScreen.main.bounds)
             alertWindow.rootViewController = UIViewController()
             alertWindow.windowLevel = UIWindow.Level.alert + 1
