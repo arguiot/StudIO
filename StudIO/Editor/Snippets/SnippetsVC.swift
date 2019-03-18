@@ -81,6 +81,21 @@ class SnippetsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         NotificationCenter.default.post(name: .init("insertSnippet"), object: nil, userInfo: ["selected": snippet])
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let row = indexPath.row
+        let snippet = snippets[row]
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            self.snippets.remove(at: row)
+            self.tableView.reloadData()
+        }
+        
+        return [delete]
+    }
 }
 
 
