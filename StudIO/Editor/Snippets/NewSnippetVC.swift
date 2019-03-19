@@ -44,7 +44,7 @@ class NewSnippetVC: UIViewController {
     func setupEditor() {
         guard let c = codeView else { return }
         
-        c.codeView.scrollView.delegate = self
+//        c.codeView.scrollView.delegate = self
         
         c.content = ""
         
@@ -99,8 +99,8 @@ class NewSnippetVC: UIViewController {
     }
 }
 
-extension NewSnippetVC: UIScrollViewDelegate {
-    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-        scrollView.pinchGestureRecognizer?.isEnabled = false // disable zooming
-    }
-}
+//extension NewSnippetVC: UIScrollViewDelegate {
+//    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+//        scrollView.pinchGestureRecognizer?.isEnabled = false // disable zooming
+//    }
+//}
