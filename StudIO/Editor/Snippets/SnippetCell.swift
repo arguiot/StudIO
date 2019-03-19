@@ -51,7 +51,8 @@ class SnippetCell: UITableViewCell {
         
         let ic = self.icons
         let split = name.split(separator: ".")
-        let ext = String(split[split.count - 1])
+        guard let last = split.last else { return false }
+        let ext = String(last)
         
         let id = i * 20 // 20 px
         self.icon.transform = self.icon.transform.translatedBy(x: CGFloat(id), y: 0)

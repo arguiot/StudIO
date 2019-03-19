@@ -22,6 +22,10 @@ class SnippetsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 ])
             }
             UserDefaults.standard.set(encoded, forKey: "studio-snippets")
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -91,7 +95,6 @@ class SnippetsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             self.snippets.remove(at: row)
-            self.tableView.reloadData()
         }
         
         return [delete]
