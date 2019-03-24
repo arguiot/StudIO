@@ -96,14 +96,18 @@ class NewSnippetVC: UIViewController {
             }
             self.navigationItem.rightBarButtonItems?.last?.title = "Loading..."
             
-            self.getSnippetContent(input: c, completion: { (c) in
-                let snippet = Snippet(n: n, c: c, l: l, co: self.color)
-                
-                let snippetVC = self.navigationController?.viewControllers.first as! SnippetsVC
-                snippetVC.snippets.append(snippet)
-                
-                self.navigationController?.popViewController(animated: true)
-            })
+            DispatchQueue.global().async {
+                self.getSnippetContent(input: c, completion: { (c) in
+                    DispatchQueue.main.sync {
+                        let snippet = Snippet(n: n, c: c, l: l, co: self.color)
+                        
+                        let snippetVC = self.navigationController?.viewControllers.first as! SnippetsVC
+                        snippetVC.snippets.append(snippet)
+                        
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                })
+            }
         })
     }
     
