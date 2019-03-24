@@ -15,6 +15,7 @@ class NewSnippetVC: UIViewController {
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var lang: UITextField!
     @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var gist: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,16 +87,40 @@ class NewSnippetVC: UIViewController {
         }
         codeView.getData({ (data) in
             guard let d = data else { return }
-            guard let c = String(data: d, encoding: .utf8) else { return }
+            guard var c = String(data: d, encoding: .utf8) else { return }
             guard let l = self.lang.text else { return }
             
-            let snippet = Snippet(n: n, c: c, l: l, co: self.color)
+            guard let g = self.gist.text else { return }
+            if c == "" {
+                c = g
+            }
+            self.navigationItem.rightBarButtonItems?.last?.title = "Loading..."
             
-            let snippetVC = self.navigationController?.viewControllers.first as! SnippetsVC
-            snippetVC.snippets.append(snippet)
-            
-            self.navigationController?.popViewController(animated: true)
+            self.getSnippetContent(input: c, completion: { (c) in
+                let snippet = Snippet(n: n, c: c, l: l, co: self.color)
+                
+                let snippetVC = self.navigationController?.viewControllers.first as! SnippetsVC
+                snippetVC.snippets.append(snippet)
+                
+                self.navigationController?.popViewController(animated: true)
+            })
         })
+    }
+    
+    func getSnippetContent(input: String, completion: @escaping (String) -> Void) {
+        let services: [SnippetService] = [
+            GitHubGist()
+        ]
+        
+        for service in services {
+            if service.isOk(input) {
+                service.download(str: input) { (str) in
+                    completion(str)
+                }
+                return
+            }
+        }
+        completion(input)
     }
 }
 

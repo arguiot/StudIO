@@ -262,6 +262,13 @@ DQ
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gist, URL, ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j1I-2U-J1t">
+                                <rect key="frame" x="194" y="284" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -296,13 +303,14 @@ DQ
                     <connections>
                         <outlet property="codeView" destination="ZFU-WT-Yu6" id="4Yd-LU-NYc"/>
                         <outlet property="colorView" destination="OxU-ml-ZXa" id="gMr-uq-TgY"/>
+                        <outlet property="gist" destination="j1I-2U-J1t" id="XSt-OM-sdW"/>
                         <outlet property="lang" destination="D3m-af-0L5" id="hHU-o2-hJx"/>
                         <outlet property="name" destination="7s3-sR-zHX" id="IJk-kt-ytX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rZF-S6-Ecn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1929" y="996"/>
+            <point key="canvasLocation" x="1928.985507246377" y="995.75892857142856"/>
         </scene>
         <!--git-->
         <scene sceneID="03Y-TW-hn4">

@@ -8,10 +8,11 @@
 
 import Foundation
 
-class GitHubGist {
+class GitHubGist: SnippetService {
     static let regex = "^(http|https):\\/\\/gist\\.github\\.com\\/\\w*\\/[0-9a-f]{32}\\/?$"
-    static func isOk(_ str: String) -> Bool {
-        return str.match(patternString: regex)
+    
+    func isOk(_ str: String) -> Bool {
+        return str.match(patternString: GitHubGist.regex)
     }
     
     func download(str: String, completion: @escaping (String) -> Void) {
