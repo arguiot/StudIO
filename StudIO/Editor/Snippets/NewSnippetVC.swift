@@ -113,7 +113,8 @@ class NewSnippetVC: UIViewController {
     
     func getSnippetContent(input: String, completion: @escaping (String) -> Void) {
         let services: [SnippetService] = [
-            GitHubGist()
+            GitHubGist(),
+            GitlabSnippets()
         ]
         
         for service in services {

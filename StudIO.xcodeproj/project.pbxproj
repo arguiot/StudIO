@@ -41,6 +41,7 @@
 		6835AEFE2221273D00A0C379 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6835AEFD2221273D00A0C379 /* Localize.swift */; };
 		6835AEFF22212AE100A0C379 /* Projects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6835AF0122212AE100A0C379 /* Projects.storyboard */; };
 		6838E26422477DDB00BF1A44 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838E26322477DDB00BF1A44 /* Services.swift */; };
+		683CF2652247A9D400EB75FC /* GitLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683CF2642247A9D400EB75FC /* GitLab.swift */; };
 		684549C421CE218F00CF5E80 /* git.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 684549C321CE218F00CF5E80 /* git.storyboard */; };
 		684549C621CE247B00CF5E80 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684549C521CE247B00CF5E80 /* UIImage.swift */; };
 		684549C921CE27EE00CF5E80 /* GitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684549C821CE27EE00CF5E80 /* GitVC.swift */; };
@@ -120,6 +121,7 @@
 		6835AF0022212AE100A0C379 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Projects.storyboard; sourceTree = "<group>"; };
 		6835AF0322212AF400A0C379 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Projects.strings; sourceTree = "<group>"; };
 		6838E26322477DDB00BF1A44 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		683CF2642247A9D400EB75FC /* GitLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitLab.swift; sourceTree = "<group>"; };
 		684549C321CE218F00CF5E80 /* git.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = git.storyboard; sourceTree = "<group>"; };
 		684549C521CE247B00CF5E80 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		684549C821CE27EE00CF5E80 /* GitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitVC.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				682CF2A12243B15700207563 /* Gist.swift */,
 				6838E26322477DDB00BF1A44 /* Services.swift */,
+				683CF2642247A9D400EB75FC /* GitLab.swift */,
 			);
 			path = "Snippets Services";
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				68E4544A21C1276B00F945A0 /* CellStruct.swift in Sources */,
 				686822F021DB8E130036694B /* GitCommit.swift in Sources */,
 				68A62CBD223CD46C0040225E /* snippetController.swift in Sources */,
+				683CF2652247A9D400EB75FC /* GitLab.swift in Sources */,
 				6863DF9721B68F1700911374 /* LightStatus.swift in Sources */,
 				68E329D421D9223700231CFC /* ViewControllers.swift in Sources */,
 				68B5635F222BBB6000B9E0DD /* FolderItem.swift in Sources */,

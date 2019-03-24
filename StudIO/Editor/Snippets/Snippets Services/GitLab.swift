@@ -1,18 +1,19 @@
 //
-//  Gist.swift
+//  GitLab.swift
 //  StudIO
 //
-//  Created by Arthur Guiot on 21/3/19.
+//  Created by Arthur Guiot on 24/3/19.
 //  Copyright © 2019 Arthur Guiot. All rights reserved.
 //
 
+
 import Foundation
 
-class GitHubGist: SnippetService {
-    static let regex = "^(http|https):\\/\\/gist\\.github\\.com\\/\\w*\\/[0-9a-f]{32}\\/?$"
+class GitlabSnippets: SnippetService {
+    static let regex = "^(http|https):\\/\\/gitlab\\.com\\/snippets\\/[0-9]{1,}\\/?$"
     
     func isOk(_ str: String) -> Bool {
-        return str.match(patternString: GitHubGist.regex)
+        return str.match(patternString: GitlabSnippets.regex)
     }
     
     func download(str: String, completion: @escaping (String) -> Void) {
@@ -27,21 +28,9 @@ class GitHubGist: SnippetService {
             }
         }
         
-        let query = "https://api.github.com/gists/\(id)"
+        let query = "https://gitlab.com/api/v4/snippets/\(id)/raw"
         
-        dJSON(str: query) { (dic) in
-            let files = dic["files"] as! [String: Any]
-            
-            let keys = Array(files.keys)
-            
-            let first = String(keys[0])
-            
-            let dFiles = files[first] as! [String: Any]
-            let url = dFiles["raw_url"] as! String
-            
-            self.down(load: url, completion: completion)
-            
-        }
+        self.down(load: query, completion: completion)
     }
     
     func dJSON(str: String, completion: @escaping ([String: Any]) -> Void) {
@@ -57,7 +46,7 @@ class GitHubGist: SnippetService {
                     // Something went wrong
                 }
             }
-        }.resume()
+            }.resume()
     }
     
     func down(load: String, completion: @escaping (String) -> Void) {
@@ -67,6 +56,6 @@ class GitHubGist: SnippetService {
                 let str = String(data: data!, encoding: .utf8)
                 completion(str ?? "")
             }
-        }.resume()
+            }.resume()
     }
 }
