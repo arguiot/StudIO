@@ -28,34 +28,31 @@ class GitlabSnippets: SnippetService {
             }
         }
         
+        
+        
         let query = "https://gitlab.com/api/v4/snippets/\(id)/raw"
         
         self.down(load: query, completion: completion)
     }
     
-    func dJSON(str: String, completion: @escaping ([String: Any]) -> Void) {
-        URLSession.shared.dataTask(with: URL(string: str)!) { (data, response, error) -> Void in
+    func down(load: String, completion: @escaping (String) -> Void) {
+        let ob = Obfuscator()
+        let privateToken = ob.reveal(key: ObfuscatedConstants.obfuscatedGitlab)
+        
+        var request = URLRequest(url: URL(string: load)!)
+        request.setValue(privateToken, forHTTPHeaderField: "PRIVATE-TOKEN")
+        
+        URLSession.shared.downloadTask(with: request) { (location, response, error) -> Void in
             // Check if data was received successfully
-            if error == nil && data != nil {
+            if error == nil && location != nil {
                 do {
-                    // Convert to dictionary where keys are of type String, and values are of any type
-                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: Any]
-                    
-                    completion(json)
+                    let str = try NSString(contentsOfFile: location!.path, encoding: String.Encoding.utf8.rawValue) as String
+                    completion(str)
                 } catch {
                     // Something went wrong
                 }
+                
             }
-            }.resume()
-    }
-    
-    func down(load: String, completion: @escaping (String) -> Void) {
-        URLSession.shared.dataTask(with: URL(string: load)!) { (data, response, error) -> Void in
-            // Check if data was received successfully
-            if error == nil && data != nil {
-                let str = String(data: data!, encoding: .utf8)
-                completion(str ?? "")
-            }
-            }.resume()
+        }.resume()
     }
 }

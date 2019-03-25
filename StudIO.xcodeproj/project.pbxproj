@@ -42,6 +42,7 @@
 		6835AEFF22212AE100A0C379 /* Projects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6835AF0122212AE100A0C379 /* Projects.storyboard */; };
 		6838E26422477DDB00BF1A44 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838E26322477DDB00BF1A44 /* Services.swift */; };
 		683CF2652247A9D400EB75FC /* GitLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683CF2642247A9D400EB75FC /* GitLab.swift */; };
+		683CF2672248F81900EB75FC /* Obfuscator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683CF2662248F81900EB75FC /* Obfuscator.swift */; };
 		684549C421CE218F00CF5E80 /* git.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 684549C321CE218F00CF5E80 /* git.storyboard */; };
 		684549C621CE247B00CF5E80 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684549C521CE247B00CF5E80 /* UIImage.swift */; };
 		684549C921CE27EE00CF5E80 /* GitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684549C821CE27EE00CF5E80 /* GitVC.swift */; };
@@ -122,6 +123,7 @@
 		6835AF0322212AF400A0C379 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Projects.strings; sourceTree = "<group>"; };
 		6838E26322477DDB00BF1A44 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		683CF2642247A9D400EB75FC /* GitLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitLab.swift; sourceTree = "<group>"; };
+		683CF2662248F81900EB75FC /* Obfuscator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obfuscator.swift; sourceTree = "<group>"; };
 		684549C321CE218F00CF5E80 /* git.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = git.storyboard; sourceTree = "<group>"; };
 		684549C521CE247B00CF5E80 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		684549C821CE27EE00CF5E80 /* GitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitVC.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 				68B56364222CB9A800B9E0DD /* Compression.swift */,
 				68E59354223FA68D008C86C7 /* textField.swift */,
 				682CF2A32243B1EE00207563 /* Regex.swift */,
+				683CF2662248F81900EB75FC /* Obfuscator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				68E59355223FA68D008C86C7 /* textField.swift in Sources */,
 				68B5635D222BBA7600B9E0DD /* ZipItem.swift in Sources */,
 				6890AD33223E431700D6EDBD /* NewSnippetVC.swift in Sources */,
+				683CF2672248F81900EB75FC /* Obfuscator.swift in Sources */,
 				68E59357223FAEB9008C86C7 /* colors.swift in Sources */,
 				6808B18121BD1D8200811058 /* Files.swift in Sources */,
 				6808B18321BD1E5200811058 /* FileProjects.swift in Sources */,
