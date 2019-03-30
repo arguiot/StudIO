@@ -31,7 +31,53 @@ class StudIO_UI_Tests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-                
+        let app = XCUIApplication()
+        app.navigationBars["Projects"].buttons["Add"].tap()
+        app.buttons["Clone repository"].tap()
+        let gtURL = app.textFields.firstMatch
+        tapElementAndWaitForKeyboardToAppear(element: gtURL)
+        gtURL.typeText("https://github.com/arguiot/Neuron")
+        
+        app.children(matching: .window).element(boundBy: 0).buttons["Done"].tap()
+        sleep(12)
+        app.collectionViews.cells.otherElements.containing(.image, identifier:"Repo-white").element.tap()
+        app.tables/*@START_MENU_TOKEN@*/.cells.staticTexts["neuron_ml"]/*[[".cells.staticTexts[\"neuron_ml\"]",".staticTexts[\"neuron_ml\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
+        sleep(1)
+        let tablesQuery = app.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["core"]/*[[".cells.staticTexts[\"core\"]",".staticTexts[\"core\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
+        sleep(1)
+        tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["data"]/*[[".cells.staticTexts[\"data\"]",".staticTexts[\"data\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
+        sleep(1)
+        tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["createml.py"]/*[[".cells.staticTexts[\"createml.py\"]",".staticTexts[\"createml.py\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
+        sleep(3)
+        
+        app.navigationBars["createml.py"].buttons["Neuron"].tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["neuron_ml"]/*[[".cells.staticTexts[\"neuron_ml\"]",".staticTexts[\"neuron_ml\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
+        
+        let cancelButton = app.navigationBars["Neuron"].buttons["Cancel"]
+        cancelButton.tap()
+        
+        let collectionViewsQuery = app.collectionViews
+        let repoWhiteElement = collectionViewsQuery.cells.otherElements.containing(.image, identifier:"Repo-white").element
+        
+        repoWhiteElement.press(forDuration: 2)
+        
+        app.sheets.buttons["Delete 'Neuron'"].tap()
+
     }
 
+}
+
+extension XCTestCase {
+    
+    func tapElementAndWaitForKeyboardToAppear(element: XCUIElement) {
+        let keyboard = XCUIApplication().keyboards.element
+        while (true) {
+            element.tap()
+            if keyboard.exists {
+                break;
+            }
+            RunLoop.current.run(until: NSDate(timeIntervalSinceNow: 0.5) as Date)
+        }
+    }
 }
