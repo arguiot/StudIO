@@ -1,6 +1,7 @@
 github "alexaubry/BulletinBoard"
 github "SwiftGit2/SwiftGit2"
-github "libgit2/objective-git"
+# github "libgit2/objective-git"
+binary "https://studiocode.app/other/objectivegit.json"
 binary "https://raw.githubusercontent.com/Instabug/Instabug-iOS/master/Instabug.json"
 github "marmelroy/Zip"
 github "gizmosachin/ColorSlider" >= 4.3
