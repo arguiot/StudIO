@@ -80,6 +80,8 @@
 		68A62CBD223CD46C0040225E /* snippetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A62CBC223CD46B0040225E /* snippetController.swift */; };
 		68A62CBF223CFFCB0040225E /* SnippetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A62CBE223CFFCB0040225E /* SnippetCell.swift */; };
 		68A62CC1223D01D20040225E /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A62CC0223D01D20040225E /* Snippet.swift */; };
+		68B4B2D9224F6A4A00036712 /* StudIO_UI_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4B2D8224F6A4A00036712 /* StudIO_UI_Tests.swift */; };
+		68B4B2E1224F6A7000036712 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4B2E0224F6A7000036712 /* SnapshotHelper.swift */; };
 		68B5635A222BB8C900B9E0DD /* DropInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B56359222BB8C900B9E0DD /* DropInteraction.swift */; };
 		68B5635D222BBA7600B9E0DD /* ZipItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B5635C222BBA7600B9E0DD /* ZipItem.swift */; };
 		68B5635F222BBB6000B9E0DD /* FolderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B5635E222BBB6000B9E0DD /* FolderItem.swift */; };
@@ -96,6 +98,16 @@
 		68E59355223FA68D008C86C7 /* textField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E59354223FA68D008C86C7 /* textField.swift */; };
 		68E59357223FAEB9008C86C7 /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E59356223FAEB9008C86C7 /* colors.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		68B4B2DB224F6A4A00036712 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 689BDC1121B22F7800D88AAB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 689BDC1821B22F7800D88AAB;
+			remoteInfo = StudIO;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6802069C21C6469C000686D1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -166,6 +178,10 @@
 		68A62CBC223CD46B0040225E /* snippetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = snippetController.swift; sourceTree = "<group>"; };
 		68A62CBE223CFFCB0040225E /* SnippetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCell.swift; sourceTree = "<group>"; };
 		68A62CC0223D01D20040225E /* Snippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
+		68B4B2D6224F6A4A00036712 /* StudIO UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StudIO UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68B4B2D8224F6A4A00036712 /* StudIO_UI_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudIO_UI_Tests.swift; sourceTree = "<group>"; };
+		68B4B2DA224F6A4A00036712 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68B4B2E0224F6A7000036712 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		68B56359222BB8C900B9E0DD /* DropInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropInteraction.swift; sourceTree = "<group>"; };
 		68B5635C222BBA7600B9E0DD /* ZipItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipItem.swift; sourceTree = "<group>"; };
 		68B5635E222BBB6000B9E0DD /* FolderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderItem.swift; sourceTree = "<group>"; };
@@ -195,6 +211,13 @@
 				68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */,
 				68040218220EC67800789453 /* Result.framework in Frameworks */,
 				68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68B4B2D3224F6A4A00036712 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				689BDC1B21B22F7800D88AAB /* StudIO */,
+				68B4B2D7224F6A4A00036712 /* StudIO UI Tests */,
 				689BDC1A21B22F7800D88AAB /* Products */,
 				68040210220EC67500789453 /* Frameworks */,
 			);
@@ -431,6 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				689BDC1921B22F7800D88AAB /* StudIO.app */,
+				68B4B2D6224F6A4A00036712 /* StudIO UI Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -451,6 +476,16 @@
 				689BDC2A21B22F7C00D88AAB /* Info.plist */,
 			);
 			path = StudIO;
+			sourceTree = "<group>";
+		};
+		68B4B2D7224F6A4A00036712 /* StudIO UI Tests */ = {
+			isa = PBXGroup;
+			children = (
+				68B4B2E0224F6A7000036712 /* SnapshotHelper.swift */,
+				68B4B2D8224F6A4A00036712 /* StudIO_UI_Tests.swift */,
+				68B4B2DA224F6A4A00036712 /* Info.plist */,
+			);
+			path = "StudIO UI Tests";
 			sourceTree = "<group>";
 		};
 		68B5635B222BBA5D00B9E0DD /* Accepted Files */ = {
@@ -515,6 +550,24 @@
 			productReference = 689BDC1921B22F7800D88AAB /* StudIO.app */;
 			productType = "com.apple.product-type.application";
 		};
+		68B4B2D5224F6A4A00036712 /* StudIO UI Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68B4B2DF224F6A4A00036712 /* Build configuration list for PBXNativeTarget "StudIO UI Tests" */;
+			buildPhases = (
+				68B4B2D2224F6A4A00036712 /* Sources */,
+				68B4B2D3224F6A4A00036712 /* Frameworks */,
+				68B4B2D4224F6A4A00036712 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68B4B2DC224F6A4A00036712 /* PBXTargetDependency */,
+			);
+			name = "StudIO UI Tests";
+			productName = "StudIO UI Tests";
+			productReference = 68B4B2D6224F6A4A00036712 /* StudIO UI Tests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -537,6 +590,10 @@
 					68B079332216B27100772FC6 = {
 						CreatedOnToolsVersion = 10.1;
 					};
+					68B4B2D5224F6A4A00036712 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 689BDC1821B22F7800D88AAB;
+					};
 				};
 			};
 			buildConfigurationList = 689BDC1421B22F7800D88AAB /* Build configuration list for PBXProject "StudIO" */;
@@ -555,6 +612,7 @@
 			targets = (
 				689BDC1821B22F7800D88AAB /* StudIO */,
 				68B079332216B27100772FC6 /* Periphery */,
+				68B4B2D5224F6A4A00036712 /* StudIO UI Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -578,6 +636,13 @@
 				684549C421CE218F00CF5E80 /* git.storyboard in Resources */,
 				689BDC2621B22F7C00D88AAB /* Assets.xcassets in Resources */,
 				689BDC2421B22F7800D88AAB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68B4B2D4224F6A4A00036712 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,7 +771,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68B4B2D2224F6A4A00036712 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68B4B2D9224F6A4A00036712 /* StudIO_UI_Tests.swift in Sources */,
+				68B4B2E1224F6A7000036712 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		68B4B2DC224F6A4A00036712 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 689BDC1821B22F7800D88AAB /* StudIO */;
+			targetProxy = 68B4B2DB224F6A4A00036712 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6835AEFA2221260900A0C379 /* Language.strings */ = {
@@ -938,6 +1020,44 @@
 			};
 			name = Release;
 		};
+		68B4B2DD224F6A4A00036712 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73CCF549YB;
+				INFOPLIST_FILE = "StudIO UI Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ArthurG.StudIO.StudIO-UI-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StudIO;
+			};
+			name = Debug;
+		};
+		68B4B2DE224F6A4A00036712 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73CCF549YB;
+				INFOPLIST_FILE = "StudIO UI Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ArthurG.StudIO.StudIO-UI-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StudIO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -964,6 +1084,15 @@
 			buildConfigurations = (
 				68B079342216B27100772FC6 /* Debug */,
 				68B079352216B27100772FC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68B4B2DF224F6A4A00036712 /* Build configuration list for PBXNativeTarget "StudIO UI Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68B4B2DD224F6A4A00036712 /* Debug */,
+				68B4B2DE224F6A4A00036712 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
