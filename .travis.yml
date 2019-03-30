@@ -1,0 +1,8 @@
+language: objective-c
+osx_image: xcode10.1
+install:
+  - carthage update --platform=ios
+  - find . -type f -name "*/sys/*.*" -print0 | xargs -0 sed -i '' -e 's/#include "git2/#include "../g'
+  - bundle install
+script:
+  - fastlane screenshots

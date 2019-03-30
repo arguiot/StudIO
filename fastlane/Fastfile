@@ -11,9 +11,10 @@
 #
 
 # Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+update_fastlane
 
 default_platform(:ios)
+setup_travis
 
 platform :ios do
   desc "Generate new localized screenshots"

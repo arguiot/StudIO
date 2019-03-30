@@ -37,7 +37,7 @@ class StudIO_UI_Tests: XCTestCase {
         let gtURL = app.textFields.firstMatch
         tapElementAndWaitForKeyboardToAppear(element: gtURL)
         gtURL.typeText("https://github.com/arguiot/Neuron")
-        
+        snapshot("Git Clone")
         app.children(matching: .window).element(boundBy: 0).buttons["Done"].tap()
         sleep(12)
         app.collectionViews.cells.otherElements.containing(.image, identifier:"Repo-white").element.tap()
@@ -48,9 +48,10 @@ class StudIO_UI_Tests: XCTestCase {
         sleep(1)
         tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["data"]/*[[".cells.staticTexts[\"data\"]",".staticTexts[\"data\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
         sleep(1)
+        snapshot("Menu")
         tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["createml.py"]/*[[".cells.staticTexts[\"createml.py\"]",".staticTexts[\"createml.py\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
         sleep(3)
-        
+        snapshot("CreateML")
         app.navigationBars["createml.py"].buttons["Neuron"].tap()
         tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["neuron_ml"]/*[[".cells.staticTexts[\"neuron_ml\"]",".staticTexts[\"neuron_ml\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
         
@@ -63,7 +64,7 @@ class StudIO_UI_Tests: XCTestCase {
         repoWhiteElement.press(forDuration: 2)
         
         app.sheets.buttons["Delete 'Neuron'"].tap()
-
+        snapshot("Share Sheet")
     }
 
 }
