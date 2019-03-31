@@ -1,0 +1,3 @@
+[submodule "codemirror.next"]
+	path = codemirror.next
+	url = git://github.com/codemirror/codemirror.next.git
