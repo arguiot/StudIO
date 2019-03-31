@@ -1,0 +1,27 @@
+{
+  "name": "cmlib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "rollup -c rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arguiot/StudIO.git"
+  },
+  "author": "Arthur Guiot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arguiot/StudIO/issues"
+  },
+  "homepage": "https://github.com/arguiot/StudIO#readme",
+  "devDependencies": {
+    "rollup": "^1.7.4",
+    "rollup-plugin-commonjs": "^9.2.2",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-typescript2": "^0.20.1",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.1"
+  }
+}
