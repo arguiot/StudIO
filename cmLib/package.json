@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "rollup -c rollup.config.js"
+    "test": "rollup -w -c rollup.config.js"
   },
   "repository": {
     "type": "git",
@@ -17,11 +17,11 @@
   },
   "homepage": "https://github.com/arguiot/StudIO#readme",
   "devDependencies": {
-    "rollup": "^1.7.4",
-    "rollup-plugin-commonjs": "^9.2.2",
-    "rollup-plugin-node-resolve": "^4.0.1",
-    "rollup-plugin-typescript2": "^0.20.1",
-    "ts-node": "^8.0.3",
-    "typescript": "^3.4.1"
+    "rollup": "^1.1.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-typescript2": "^0.19.2",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3"
   }
 }
