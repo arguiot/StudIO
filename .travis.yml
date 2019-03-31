@@ -1,6 +1,7 @@
 language: objective-c
 osx_image: xcode10.1
 install:
+  - fastlane spaceauth
   - carthage update --platform ios --verbose
   - npm install replace -g
   - find ./Carthage/Build/iOS/ObjectiveGit.framework/Headers/git2/sys -exec replace '#include "git2' '#include "..' {} +
