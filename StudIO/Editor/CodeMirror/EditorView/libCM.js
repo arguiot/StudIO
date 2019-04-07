@@ -10145,8 +10145,8 @@
 	var multipleSelections_1 = multipleSelections.multipleSelections;
 
 	var lib = createCommonjsModule(function (module, exports) {
+	var _this = commonjsGlobal;
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var _a;
 
 
 
@@ -10158,28 +10158,113 @@
 
 
 
-	var mode = src$4.legacyMode({ mode: javascript_1({ indentUnit: 2 }, {}) });
-	var isMac = /Mac/.test(navigator.platform);
-	var state = src$1.EditorState.create({ doc: "\"use strict\";\nconst {readFile} = require(\"fs\");\n\nreadFile(\"package.json\", \"utf8\", (err, data) => {\n  console.log(data);\n});", extensions: [
-	        src$3.lineNumbers(),
-	        history.history(),
-	        specialChars.specialChars(),
-	        multipleSelections.multipleSelections(),
-	        mode,
-	        matchbrackets.matchBrackets(),
-	        keymap.keymap((_a = {
-	                "Mod-z": history.undo,
-	                "Mod-Shift-z": history.redo,
-	                "Mod-u": function (view) { return history.undoSelection(view) || true; }
-	            },
-	            _a[isMac ? "Mod-Shift-u" : "Alt-u"] = history.redoSelection,
-	            _a["Ctrl-y"] = isMac ? undefined : history.redo,
-	            _a["Shift-Tab"] = commands.indentSelection,
-	            _a)),
-	        keymap.keymap(commands.baseKeymap),
-	    ] });
-	var view = window.view = new src$2.EditorView({ state: state });
-	document.querySelector("#editor").appendChild(view.dom);
+	var editor = /** @class */ (function () {
+	    function editor(ext, value) {
+	        var _this = this;
+	        var _a;
+	        this.cm = src$1.EditorState.create({
+	            doc: value, extensions: [
+	                src$3.lineNumbers(),
+	                history.history(),
+	                specialChars.specialChars(),
+	                multipleSelections.multipleSelections(),
+	                mode,
+	                matchbrackets.matchBrackets(),
+	                keymap.keymap((_a = {
+	                        "Mod-z": history.undo,
+	                        "Mod-Shift-z": history.redo,
+	                        "Mod-u": function (view) { return history.undoSelection(view) || true; }
+	                    },
+	                    _a[isMac ? "Mod-Shift-u" : "Alt-u"] = history.redoSelection,
+	                    _a["Ctrl-y"] = isMac ? undefined : history.redo,
+	                    _a["Shift-Tab"] = commands.indentSelection,
+	                    _a)),
+	                keymap.keymap(commands.baseKeymap),
+	            ]
+	        });
+	        if (ext == null && value == null) {
+	            document.addEventListener("DOMContentLoaded", function () {
+	                // Do something...
+	            });
+	        }
+	        else {
+	            // let mode = CodeMirror.findModeByExtension(ext)
+	            // if (typeof mode == "undefined" || typeof mode.mode == "undefined") {
+	            //     mode = CodeMirror.findModeByExtension("md") // Using markdown for undefined var
+	            // }
+	            // this.mode = mode
+	            this.settings();
+	            var script = document.createElement('script');
+	            script.onload = function () {
+	                var mode = src$4.legacyMode({ mode: javascript_1({ indentUnit: 2 }, {}) });
+	                var isMac = /Mac/.test(navigator.platform);
+	                var view = window.view = new src$2.EditorView({}(_this).cm);
+	            };
+	            document.querySelector("#editor").appendChild(view.dom);
+	            // after settings
+	            this.fontSize(EditorSettings.fontSize);
+	        }
+	        script.src = "mode/" + mode.mode + "/" + mode.mode + ".js";
+	        document.head.appendChild(script);
+	    }
+	    return editor;
+	}());
+	settings();
+	{
+	    commonjsGlobal.lineWrapping = EditorSettings.lineWrapping == true; // boolean convert
+	    commonjsGlobal.theme = EditorSettings.theme;
+	    if (typeof commonjsGlobal.theme == "undefined") {
+	        commonjsGlobal.theme = "monokai";
+	    }
+	    commonjsGlobal.loadTheme(commonjsGlobal.theme);
+	}
+	loadTheme(theme);
+	{
+	    var link = document.createElement("link");
+	    link.setAttribute("rel", "stylesheet");
+	    link.setAttribute("href", "theme/" + theme + ".css");
+	    document.head.appendChild(link);
+	    if (typeof commonjsGlobal.cm != "undefined") {
+	        commonjsGlobal.cm.setOption("theme", theme);
+	    }
+	}
+	fontSize(v);
+	{
+	    if (v > 0) {
+	        document.querySelector(".codemirror").style["font-size"] = v + "px";
+	    }
+	}
+	clear();
+	{
+	    document.body.innerHTML = "";
+	}
+	load(file);
+	{
+	    if (typeof commonjsGlobal.cm == "undefined") {
+	        setTimeout(function () {
+	            _this.load(file);
+	        }, 16); // Waiting 16ms (~ 1 frame) before rendering for letting WKWebView parse and process everything. Otherwise, we do it again and again.
+	    }
+	    else {
+	        var str = atobUTF8(file);
+	        commonjsGlobal.cm.setValue(str);
+	    }
+	}
+	save();
+	{
+	    return btoaUTF8(commonjsGlobal.cm.getValue());
+	}
+	getLangName();
+	{
+	    return commonjsGlobal.mode.name;
+	}
+	insertSnippet(snippet);
+	{
+	    var str = atobUTF8(snippet);
+	    commonjsGlobal.cm.replaceSelection(str);
+	}
+	var ed = new editor(null, null);
+	var EditorSettings = {};
 	});
 
 	var lib$1 = unwrapExports(lib);

@@ -1,36 +1,102 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var _a;
-var src_1 = require("../codemirror.next/state/src");
-var src_2 = require("../codemirror.next/view/src/");
-var keymap_1 = require("../codemirror.next/keymap/src/keymap");
-var history_1 = require("../codemirror.next/history/src/history");
-var index_1 = require("../codemirror.next/gutter/src/index");
-var commands_1 = require("../codemirror.next/commands/src/commands");
-var index_2 = require("../codemirror.next/legacy-modes/src/index");
-var matchbrackets_1 = require("../codemirror.next/matchbrackets/src/matchbrackets");
-var javascript_1 = require("../codemirror.next/legacy-modes/src/javascript");
-var special_chars_1 = require("../codemirror.next/special-chars/src/special-chars");
-var multiple_selections_1 = require("../codemirror.next/multiple-selections/src/multiple-selections");
-var mode = index_2.legacyMode({ mode: javascript_1.default({ indentUnit: 2 }, {}) });
-var isMac = /Mac/.test(navigator.platform);
-var state = src_1.EditorState.create({ doc: "\"use strict\";\nconst {readFile} = require(\"fs\");\n\nreadFile(\"package.json\", \"utf8\", (err, data) => {\n  console.log(data);\n});", extensions: [
-        index_1.lineNumbers(),
-        history_1.history(),
-        special_chars_1.specialChars(),
-        multiple_selections_1.multipleSelections(),
-        mode,
-        matchbrackets_1.matchBrackets(),
-        keymap_1.keymap((_a = {
-                "Mod-z": history_1.undo,
-                "Mod-Shift-z": history_1.redo,
-                "Mod-u": function (view) { return history_1.undoSelection(view) || true; }
-            },
-            _a[isMac ? "Mod-Shift-u" : "Alt-u"] = history_1.redoSelection,
-            _a["Ctrl-y"] = isMac ? undefined : history_1.redo,
-            _a["Shift-Tab"] = commands_1.indentSelection,
-            _a)),
-        keymap_1.keymap(commands_1.baseKeymap),
-    ] });
-var view = window.view = new src_2.EditorView({ state: state });
-document.querySelector("#editor").appendChild(view.dom);
+import {EditorState, EditorView, EditorSelection, keymap, history, redo, redoSelection, undo, undoSelection, lineNumbers, baseKeymap, indentSelection, legacyMode, matchBrackets, javascript, specialChars, multipleSelections} from "./libBin.js"
+class editor {
+	constructor(ext, value) {
+		if (ext == null && value == null) {
+			document.addEventListener("DOMContentLoaded", () => {
+				// Do something...
+			})
+		} else {
+			let mode = CodeMirror.findModeByExtension(ext)
+			if (typeof mode == "undefined" || typeof mode.mode == "undefined") {
+				mode = CodeMirror.findModeByExtension("md") // Using markdown for undefined var
+			}
+            this.mode = mode
+			this.settings()
+
+			const script = document.createElement('script');
+			script.onload = () => {
+				let mode = legacyMode({ mode: javascript({ indentUnit: 2 }, {}) })
+
+                let isMac = /Mac/.test(navigator.platform)
+
+				this.cm = EditorState.create({
+					doc: value, extensions: [
+						lineNumbers(),
+						history(),
+						specialChars(),
+						multipleSelections(),
+						mode,
+						matchBrackets(),
+						keymap({
+							"Mod-z": undo,
+							"Mod-Shift-z": redo,
+							"Mod-u": view => undoSelection(view) || true,
+							[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
+							"Ctrl-y": isMac ? undefined : redo,
+							"Shift-Tab": indentSelection
+						}),
+						keymap(baseKeymap),
+					]
+				})
+				let view = window.view = new EditorView({ state: this.cm })
+                document.querySelector("#editor").appendChild(view.dom)
+
+				// after settings
+				this.fontSize(EditorSettings.fontSize)
+			};
+			script.src = `mode/${mode.mode}/${mode.mode}.js`;
+
+			document.head.appendChild(script);
+		}
+	}
+	settings() {
+		this.lineWrapping = EditorSettings.lineWrapping == true // boolean convert
+		this.theme = EditorSettings.theme
+		if (typeof this.theme == "undefined") {
+			this.theme = "monokai"
+		}
+		this.loadTheme(this.theme)
+	}
+	loadTheme(theme) {
+		const link = document.createElement("link")
+		link.setAttribute("rel", "stylesheet")
+		link.setAttribute("href", `theme/${theme}.css`)
+		document.head.appendChild(link);
+		if (typeof this.cm != "undefined") {
+			this.cm.setOption("theme", theme)
+		}
+	}
+	fontSize(v) {
+		if (v > 0) {
+			document.querySelector(".codemirror").style["font-size"] = `${v}px`
+		}
+	}
+
+	clear() {
+		document.body.innerHTML = ""
+	}
+	load(file) {
+		if (typeof this.cm == "undefined") {
+			setTimeout(() => {
+				this.load(file)
+			}, 16) // Waiting 16ms (~ 1 frame) before rendering for letting WKWebView parse and process everything. Otherwise, we do it again and again.
+		} else {
+			const str = atobUTF8(file)
+			this.cm.setValue(str)
+		}
+	}
+	save() {
+		return btoaUTF8(this.cm.getValue())
+	}
+    getLangName() {
+        return this.mode.name
+    }
+
+    insertSnippet(snippet) {
+        const str = atobUTF8(snippet)
+        this.cm.replaceSelection(str)
+    }
+}
+var ed = new editor(null, null)
+
+var EditorSettings = {}
