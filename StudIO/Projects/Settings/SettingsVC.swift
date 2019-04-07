@@ -9,13 +9,27 @@
 import UIKit
 
 class SettingsVC: UITableViewController {
-
+    
+    var settings: [Section]!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissController))
         navigationItem.rightBarButtonItem = done
+        
+        defaults()
+        
+        settings = [
+            Section(name: "Editor", rows: [
+                Row(name: "Font Size", type: .stepper, set: "font-size", def: "26", model: { dbl in
+                    let str = dbl as! Double
+                    return "\(Int(str))px"
+                }),
+                Row(name: "Line Wrapping", type: .slider, set: "line-wrapping", def: "true"),
+                Row(name: "Editor Theme", type: .picker, set: "editor-theme", def: Themes.theme.joined(separator: ","))
+                ])
+        ]
     }
     
     @objc func dismissController() {
@@ -59,18 +73,17 @@ class SettingsVC: UITableViewController {
         }
     }
     
-    
-    
-    let settings: [Section] = [
-        Section(name: "Editor", rows: [
-            Row(name: "Font Size", type: .stepper, set: "font-size", def: "26", model: { dbl in
-                let str = dbl as! Double
-                return "\(Int(str))px"
-            }),
-            Row(name: "Line Wrapping", type: .slider, set: "line-wrapping", def: "true"),
-            Row(name: "Editor Theme", type: .picker, set: "editor-theme", def: Themes.theme.joined(separator: ","))
-        ])
-    ]
+    func defaults() {
+        if UserDefaults.standard.object(forKey: "studio-font-size") == nil {
+            UserDefaults.standard.set(26, forKey: "studio-font-size")
+        }
+        if UserDefaults.standard.object(forKey: "studio-line-wrapping") == nil {
+            UserDefaults.standard.set(true, forKey: "studio-line-wrapping")
+        }
+        if UserDefaults.standard.object(forKey: "studio-editor-theme") == nil {
+            UserDefaults.standard.set("monokai", forKey: "studio-editor-theme")
+        }
+    }
 }
 
 
