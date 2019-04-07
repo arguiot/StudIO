@@ -1,11 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('style-mod'), require('w3c-keyname')) :
-	typeof define === 'function' && define.amd ? define(['style-mod', 'w3c-keyname'], factory) :
-	(global = global || self, global.StudIO = factory(global.styleMod, global.w3cKeyname));
-}(this, function (styleMod, w3cKeyname) { 'use strict';
-
-	styleMod = styleMod && styleMod.hasOwnProperty('default') ? styleMod['default'] : styleMod;
-	w3cKeyname = w3cKeyname && w3cKeyname.hasOwnProperty('default') ? w3cKeyname['default'] : w3cKeyname;
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global = global || self, global.StudIO = factory());
+}(this, function () { 'use strict';
 
 	var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -1841,6 +1838,137 @@
 	var src_10$1 = src$1.ChangedRange;
 	var src_11 = src$1.Transaction;
 	var src_12 = src$1.Slot;
+
+	function sym(name, random) {
+	  return typeof Symbol == "undefined"
+	    ? "__" + name + (random ? Math.floor(Math.random() * 1e8) : "")
+	    : random ? Symbol(name) : Symbol.for(name)
+	}
+
+	const COUNT = sym("\u037c"), SET = sym("styleSet", 1), DATA = sym("data", 1);
+	const top = typeof global == "undefined" ? window : global;
+
+	// :: (Object<Style>, number, ?{priority: ?number}) → Object<string>
+	// names for them. Instances of this class bind the property names
+	// from `spec` to CSS class names that assign the styles in the
+	// corresponding property values.
+	//
+	// A style module can only be used in a given DOM root after it has
+	// been _mounted_ there with `StyleModule.mount`.
+	//
+	// By default, rules are defined in the order in which they are
+	// mounted, making those mounted later take precedence in case of an
+	// otherwise equal selector precedence. You can pass 0 for low
+	// priority or 2 for high priority as second argument to explicitly
+	// move the rules above or below rules with default priority. Within a
+	// priority level, rules remain defined in mount order.
+	//
+	// Style modules should be created once and stored somewhere, as
+	// opposed to re-creating them every time you need them. The amount of
+	// CSS rules generated for a given DOM root is bounded by the amount
+	// of style modules that were used. To avoid leaking rules, don't
+	// create these dynamically, but treat them as one-time allocations.
+	function StyleModule(spec, options) {
+	  let priority = options && options.priority;
+	  if (priority == null) priority = 1;
+	  if (priority < 0 || priority > 2 || +priority != priority) throw new RangeError("Invalid priority: " + priority)
+	  this[DATA] = {rules: [], mounted: [], priority};
+	  top[COUNT] = top[COUNT] || 1;
+	  for (let name in spec) {
+	    let className = this[name] = "\u037c" + (top[COUNT]++).toString(36);
+	    renderStyle("." + className, spec[name], this[DATA].rules);
+	  }
+	}
+
+	// :: (union<Document, ShadowRoot>, Object<string>)
+	//
+	// Mount the given module in the given DOM root, which ensures that
+	// the CSS rules defined by the module are available in that context.
+	//
+	// This function can be called multiple times with the same arguments
+	// cheaply—rules are only added to the document once per root.
+	StyleModule.mount = function(root, module) {
+	  let data = module[DATA];
+	  if (data.mounted.indexOf(root) > -1) return
+	  ;(root[SET] || new StyleSet(root)).mount(data.rules, data.priority);
+	  data.mounted.push(root);
+	};
+
+	StyleModule.prototype = Object.create(null);
+
+	class StyleSet {
+	  constructor(root) {
+	    this.root = root;
+	    root[SET] = this;
+	    this.styleTag = (root.ownerDocument || root).createElement("style");
+	    let target = root.head || root;
+	    target.insertBefore(this.styleTag, target.firstChild);
+	    this.insertPos = [0, 0, 0];
+	    this.rules = [];
+	  }
+
+	  mount(rules, priority) {
+	    let pos = this.insertPos[priority]
+	    ;this.rules.splice(pos, 0, ...rules);
+	    let sheet = this.styleTag.sheet;
+	    if (sheet) {
+	      for (let i = 0; i < rules.length; i++)
+	        sheet.insertRule(rules[i], pos++);
+	    } else {
+	      this.styleTag.textContent = this.rules.join("\n");
+	    }
+	    for (let i = priority; i < this.insertPos.length; i++)
+	      this.insertPos[i] += rules.length;
+	  }
+	}
+
+	function renderStyle(selector, spec, output) {
+	  if (typeof spec != "object") throw new RangeError("Expected style object, got " + JSON.stringify(spec))
+	  let props = [];
+	  for (let prop in spec) {
+	    if (/^@/.test(prop)) {
+	      let local = [];
+	      renderStyle(selector, spec[prop], local);
+	      output.push(prop + " {" + local.join(" ") + "}");
+	    } else if (/&/.test(prop)) {
+	      renderStyle(prop.replace(/&/g, selector), spec[prop], output);
+	    } else {
+	      if (typeof spec[prop] == "object") throw new RangeError("The value of a property (" + prop + ") should be a primitive value.")
+	      props.push(prop.replace(/_.*/, "").replace(/[A-Z]/g, l => "-" + l.toLowerCase()) + ": " + spec[prop]);
+	    }
+	  }
+	  if (props.length) output.push(selector + " {" + props.join("; ") + "}");
+	}
+
+	// Style::Object<union<Style,string>>
+	//
+	// A style is an object that, in the simple case, maps CSS property
+	// names to strings holding their values, as in `{color: "red",
+	// fontWeight: "bold"}`. The property names can be given in
+	// camel-case—the library will insert a dash before capital letters
+	// when converting them to CSS.
+	//
+	// If you include an underscore in a property name, it and everything
+	// after it will be removed from the output, which can be useful when
+	// providing a property multiple times, for browser compatibility
+	// reasons.
+	//
+	// A property in a style object can also be a sub-selector, which
+	// extends the current context to add a pseudo-selector or a child
+	// selector. Such a property should contain a `&` character, which
+	// will be replaced by the current selector. For example `{"&:before":
+	// {content: '"hi"'}}`. Sub-selectors and regular properties can
+	// freely be mixed in a given object. Any property containing a `&` is
+	// assumed to be a sub-selector.
+	//
+	// Finally, a property can specify an @-block to be wrapped around the
+	// styles defined inside the object that's the property's value. For
+	// example to create a media query you can do `{"@media screen and
+	// (min-width: 400px)": {...}}`.
+
+	var styleMod = /*#__PURE__*/Object.freeze({
+		StyleModule: StyleModule
+	});
 
 	var browser = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -7390,6 +7518,138 @@
 	var src_15 = src$2.DOMPos;
 	var src_16 = src$2.Slot;
 
+	var base = {
+	  8: "Backspace",
+	  9: "Tab",
+	  10: "Enter",
+	  12: "NumLock",
+	  13: "Enter",
+	  16: "Shift",
+	  17: "Control",
+	  18: "Alt",
+	  20: "CapsLock",
+	  27: "Escape",
+	  32: " ",
+	  33: "PageUp",
+	  34: "PageDown",
+	  35: "End",
+	  36: "Home",
+	  37: "ArrowLeft",
+	  38: "ArrowUp",
+	  39: "ArrowRight",
+	  40: "ArrowDown",
+	  44: "PrintScreen",
+	  45: "Insert",
+	  46: "Delete",
+	  59: ";",
+	  61: "=",
+	  91: "Meta",
+	  92: "Meta",
+	  106: "*",
+	  107: "+",
+	  108: ",",
+	  109: "-",
+	  110: ".",
+	  111: "/",
+	  144: "NumLock",
+	  145: "ScrollLock",
+	  160: "Shift",
+	  161: "Shift",
+	  162: "Control",
+	  163: "Control",
+	  164: "Alt",
+	  165: "Alt",
+	  173: "-",
+	  186: ";",
+	  187: "=",
+	  188: ",",
+	  189: "-",
+	  190: ".",
+	  191: "/",
+	  192: "`",
+	  219: "[",
+	  220: "\\",
+	  221: "]",
+	  222: "'",
+	  229: "q"
+	};
+	var base_1 = base;
+
+	var shift = {
+	  48: ")",
+	  49: "!",
+	  50: "@",
+	  51: "#",
+	  52: "$",
+	  53: "%",
+	  54: "^",
+	  55: "&",
+	  56: "*",
+	  57: "(",
+	  59: ";",
+	  61: "+",
+	  173: "_",
+	  186: ":",
+	  187: "+",
+	  188: "<",
+	  189: "_",
+	  190: ">",
+	  191: "?",
+	  192: "~",
+	  219: "{",
+	  220: "|",
+	  221: "}",
+	  222: "\"",
+	  229: "Q"
+	};
+	var shift_1 = shift;
+
+	var chrome = typeof navigator != "undefined" && /Chrome\/(\d+)/.exec(navigator.userAgent);
+	var safari = typeof navigator != "undefined" && /Apple Computer/.test(navigator.vendor);
+	var gecko = typeof navigator != "undefined" && /Gecko\/\d+/.test(navigator.userAgent);
+	var mac = typeof navigator != "undefined" && /Mac/.test(navigator.platform);
+	var brokenModifierNames = chrome && (mac || +chrome[1] < 57) || gecko && mac;
+
+	// Fill in the digit keys
+	for (var i = 0; i < 10; i++) base[48 + i] = base[96 + i] = String(i);
+
+	// The function keys
+	for (var i = 1; i <= 24; i++) base[i + 111] = "F" + i;
+
+	// And the alphabetic keys
+	for (var i = 65; i <= 90; i++) {
+	  base[i] = String.fromCharCode(i + 32);
+	  shift[i] = String.fromCharCode(i);
+	}
+
+	// For each code that doesn't have a shift-equivalent, copy the base name
+	for (var code in base) if (!shift.hasOwnProperty(code)) shift[code] = base[code];
+
+	var keyName = function(event) {
+	  // Don't trust event.key in Chrome when there are modifiers until
+	  // they fix https://bugs.chromium.org/p/chromium/issues/detail?id=633838
+	  var ignoreKey = brokenModifierNames && (event.ctrlKey || event.altKey || event.metaKey) ||
+	    safari && event.shiftKey && event.key && event.key.length == 1;
+	  var name = (!ignoreKey && event.key) ||
+	    (event.shiftKey ? shift : base)[event.keyCode] ||
+	    event.key || "Unidentified";
+	  // Edge sometimes produces wrong names (Issue #3)
+	  if (name == "Esc") name = "Escape";
+	  if (name == "Del") name = "Delete";
+	  // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8860571/
+	  if (name == "Left") name = "ArrowLeft";
+	  if (name == "Up") name = "ArrowUp";
+	  if (name == "Right") name = "ArrowRight";
+	  if (name == "Down") name = "ArrowDown";
+	  return name
+	};
+
+	var w3cKeyname = {
+		base: base_1,
+		shift: shift_1,
+		keyName: keyName
+	};
+
 	var keymap = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
 
@@ -9898,7 +10158,7 @@
 
 
 
-	var mode = src$4.legacyMode({ mode: javascript_1.default({ indentUnit: 2 }, {}) });
+	var mode = src$4.legacyMode({ mode: javascript_1({ indentUnit: 2 }, {}) });
 	var isMac = /Mac/.test(navigator.platform);
 	var state = src$1.EditorState.create({ doc: "\"use strict\";\nconst {readFile} = require(\"fs\");\n\nreadFile(\"package.json\", \"utf8\", (err, data) => {\n  console.log(data);\n});", extensions: [
 	        src$3.lineNumbers(),

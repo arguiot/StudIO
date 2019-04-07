@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "rollup -w -c rollup.config.js"
+	"install": "cd ../codemirror.next && npm i",
+    "build": "tsc lib.ts -t 'ES5'; rollup -c rollup.config.js && sed -i -e 's/javascript_1.default/javascript_1/g' ../StudIO/Editor/CodeMirror/EditorView/libCM.js && rm ../StudIO/Editor/CodeMirror/EditorView/libCM.js-e"
   },
   "repository": {
     "type": "git",
