@@ -1,4 +1,23 @@
-import {EditorState, EditorView, EditorSelection, keymap, history, redo, redoSelection, undo, undoSelection, lineNumbers, baseKeymap, indentSelection, legacyMode, matchBrackets, javascript, specialChars, multipleSelections} from "./libBin.js"
+import libCM from "./libBin.js"
+
+const EditorState = libCM.EditorState
+const EditorView = libCM.EditorView
+const EditorSelection = libCM.EditorSelection
+const keymap = libCM.keymap
+const history = libCM.history
+const redo = libCM.redo
+const redoSelection = libCM.redoSelection
+const undo = libCM.undo
+const undoSelection = libCM.undoSelection
+const lineNumbers = libCM.lineNumbers
+const baseKeymap = libCM.baseKeymap
+const indentSelection = libCM.indentSelection
+const legacyMode = libCM.legacyMode
+const matchBrackets = libCM.matchBrackets
+const javascript = libCM.javascript
+const specialChars = libCM.specialChars
+const multipleSelections = libCM.multipleSelections
+
 class editor {
 	constructor(ext, value) {
 		if (ext == null && value == null) {
@@ -6,52 +25,58 @@ class editor {
 				// Do something...
 			})
 		} else {
-			let mode = CodeMirror.findModeByExtension(ext)
-			if (typeof mode == "undefined" || typeof mode.mode == "undefined") {
-				mode = CodeMirror.findModeByExtension("md") // Using markdown for undefined var
-			}
-            this.mode = mode
+			// let mode = CodeMirror.findModeByExtension(ext)
+			// if (typeof mode == "undefined" || typeof mode.mode == "undefined") {
+			// 	mode = CodeMirror.findModeByExtension("md") // Using markdown for undefined var
+			// }
 			this.settings()
 
-			const script = document.createElement('script');
-			script.onload = () => {
-				let mode = legacyMode({ mode: javascript({ indentUnit: 2 }, {}) })
+			// const script = document.createElement('script');
+			// script.onload = () => {
+			//
+			// };
+			// script.src = `mode/${mode.mode}/${mode.mode}.js`;
 
-                let isMac = /Mac/.test(navigator.platform)
+			// document.head.appendChild(script);
 
-				this.cm = EditorState.create({
-					doc: value, extensions: [
-						lineNumbers(),
-						history(),
-						specialChars(),
-						multipleSelections(),
-						mode,
-						matchBrackets(),
-						keymap({
-							"Mod-z": undo,
-							"Mod-Shift-z": redo,
-							"Mod-u": view => undoSelection(view) || true,
-							[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
-							"Ctrl-y": isMac ? undefined : redo,
-							"Shift-Tab": indentSelection
-						}),
-						keymap(baseKeymap),
-					]
-				})
-				let view = window.view = new EditorView({ state: this.cm })
-                document.querySelector("#editor").appendChild(view.dom)
+			let mode = legacyMode({ mode: javascript({ indentUnit: 2 }, {}) })
+			this.mode = mode
 
-				// after settings
-				this.fontSize(EditorSettings.fontSize)
-			};
-			script.src = `mode/${mode.mode}/${mode.mode}.js`;
+			let isMac = /Mac/.test(navigator.platform)
 
-			document.head.appendChild(script);
+			this.cm = EditorState.create({
+				doc: value, extensions: [
+					lineNumbers(),
+					history(),
+					specialChars(),
+					multipleSelections(),
+					mode,
+					matchBrackets(),
+					keymap({
+						"Mod-z": undo,
+						"Mod-Shift-z": redo,
+						"Mod-u": view => undoSelection(view) || true,
+						[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
+						"Ctrl-y": isMac ? undefined : redo,
+						"Shift-Tab": indentSelection
+					}),
+					keymap(baseKeymap),
+				]
+			})
+			let view = window.view = new EditorView({ state: this.cm })
+			document.querySelector("#editor").appendChild(view.dom)
+
+			// after settings
+			// this.fontSize(EditorSettings.fontSize)
 		}
 	}
 	settings() {
-		this.lineWrapping = EditorSettings.lineWrapping == true // boolean convert
-		this.theme = EditorSettings.theme
+		try {
+			this.lineWrapping = EditorSettings.lineWrapping == true // boolean convert
+			this.theme = EditorSettings.theme
+		} catch(e) {
+			console.warn(e)
+		}
 		if (typeof this.theme == "undefined") {
 			this.theme = "monokai"
 		}
@@ -97,6 +122,6 @@ class editor {
         this.cm.replaceSelection(str)
     }
 }
-var ed = new editor(null, null)
+var ed = new editor("md", "test")
 
 var EditorSettings = {}
