@@ -3,17 +3,18 @@ body {
     padding: 0;
     width: 100vw;
     height: 100vh;
-    background: #272822;
-    color: #eee;
+    /* background: #272822; */
+    /* color: #eee; */
 }
-.CodeMirror {
-    height: auto;
-    font-size: 26px;
+
+.codemirror {
+    min-height: 100vh;
+	height: 100vh;
+    overflow: auto;
+    width: 100vw;
+    margin: 0;
 }
-textarea#code:focus { text-indent: -9999em; }
-textarea {
-    caret-color: transparent !important;
-}
+
 .tip {
     color: #A8A8A8;
     font-size: 48px;
@@ -25,12 +26,31 @@ textarea {
     font-family: Helvetica;
 }
 
-
 /* Markdown */
-.cm-header { font-family: arial; }
-.cm-header-1 { font-size: 150%; }
-.cm-header-2 { font-size: 130%; }
-.cm-header-3 { font-size: 120%; }
-.cm-header-4 { font-size: 110%; }
-.cm-header-5 { font-size: 100%; }
-.cm-header-6 { font-size: 90%; }
+.cm-header {
+    font-family: arial;
+}
+
+.cm-header-1 {
+    font-size: 150%;
+}
+
+.cm-header-2 {
+    font-size: 130%;
+}
+
+.cm-header-3 {
+    font-size: 120%;
+}
+
+.cm-header-4 {
+    font-size: 110%;
+}
+
+.cm-header-5 {
+    font-size: 100%;
+}
+
+.cm-header-6 {
+    font-size: 90%;
+}
