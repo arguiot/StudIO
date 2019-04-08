@@ -19,7 +19,8 @@ const specialChars = libCM.specialChars
 const multipleSelections = libCM.multipleSelections
 
 class editor {
-	constructor(ext, value) {
+	constructor(ext, value, settings = {}) {
+		this.EditorSettings = settings
 		if (ext == null && value == null) {
 			document.addEventListener("DOMContentLoaded", () => {
 				// Do something...
@@ -72,8 +73,8 @@ class editor {
 	}
 	settings() {
 		try {
-			this.lineWrapping = EditorSettings.lineWrapping == true // boolean convert
-			this.theme = EditorSettings.theme
+			this.lineWrapping = this.EditorSettings.lineWrapping == true // boolean convert
+			this.theme = this.EditorSettings.theme
 		} catch(e) {
 			console.warn(e)
 		}
@@ -122,6 +123,6 @@ class editor {
         this.cm.replaceSelection(str)
     }
 }
-var ed = new editor("md", "test")
-
-var EditorSettings = {}
+export default {
+	editor: editor
+}
