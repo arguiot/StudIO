@@ -32,7 +32,7 @@ export default {
 	output: {
 		format: "umd",
 		file: "../StudIO/Editor/CodeMirror/EditorView/libCM.js",
-		sourcemap: true,
+		sourcemap: false,
 		name: "StudIO"
 	},
 	plugins: [
