@@ -535,7 +535,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 689BDC2D21B22F7C00D88AAB /* Build configuration list for PBXNativeTarget "StudIO" */;
 			buildPhases = (
-				6804020E220EC2BA00789453 /* ShellScript */,
+				68F28192225B698E00074D4E /* Build TypeScript editor */,
+				6804020E220EC2BA00789453 /* Increment build */,
 				689BDC1521B22F7800D88AAB /* Sources */,
 				689BDC1621B22F7800D88AAB /* Frameworks */,
 				689BDC1721B22F7800D88AAB /* Resources */,
@@ -649,7 +650,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6804020E220EC2BA00789453 /* ShellScript */ = {
+		6804020E220EC2BA00789453 /* Increment build */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -658,6 +659,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Increment build";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -707,6 +709,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nperiphery scan --project StudIO.xcodeproj --schemes StudIO --targets StudIO --format xcode\n";
+		};
+		68F28192225B698E00074D4E /* Build TypeScript editor */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build TypeScript editor";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"${PROJECT_DIR}/cmLib\"\n\nnpm run build\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
