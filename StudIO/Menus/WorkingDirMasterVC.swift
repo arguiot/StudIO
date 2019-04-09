@@ -78,7 +78,7 @@ class WorkingDirMasterVC: UITableViewController {
         page.actionButtonTitle = action
         page.checkURL = false
         page.placeholder = "File name".localized()
-        var text = ""
+        var text = strP
         page.textInputHandler = { item, string in
             text = string!
         }
