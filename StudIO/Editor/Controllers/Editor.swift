@@ -49,7 +49,7 @@ class Editor: UIView {
         let ext = String(arr.last ?? "").uppercased()
         highlightExt = ext
         if codeView.isLoading == false {
-            codeView.evaluateJavaScript("document.body.innerHTML = \"\"; window.e = new editor('\(ext)', '');") { (result, error) in
+            codeView.evaluateJavaScript("window.ed.clear(); window.e = new StudIO.editor('\(ext)', '');") { (result, error) in
                 code()
             }
         }

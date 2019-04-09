@@ -10279,7 +10279,7 @@
 		}
 
 		clear() {
-			document.body.innerHTML = "";
+			document.body.innerHTML = "<div id=editor></div>";
 		}
 		load(file) {
 			if (typeof this.cm == "undefined") {
