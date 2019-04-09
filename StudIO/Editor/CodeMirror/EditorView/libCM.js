@@ -10157,6 +10157,7 @@
 
 
 
+
 	exports.default = {
 	    EditorState: src$1.EditorState,
 	    EditorView: src$2.EditorView,
@@ -10174,7 +10175,8 @@
 	    matchBrackets: matchbrackets.matchBrackets,
 	    javascript: javascript_1,
 	    specialChars: specialChars.specialChars,
-	    multipleSelections: multipleSelections.multipleSelections
+	    multipleSelections: multipleSelections.multipleSelections,
+	    text: src.Text
 	};
 	});
 
@@ -10197,6 +10199,7 @@
 	const javascript = libCM.javascript;
 	const specialChars$1 = libCM.specialChars;
 	const multipleSelections$1 = libCM.multipleSelections;
+	const text$1 = libCM.text;
 
 	class editor {
 		constructor(ext, value, settings = {}) {
@@ -10288,11 +10291,14 @@
 				}, 16); // Waiting 16ms (~ 1 frame) before rendering for letting WKWebView parse and process everything. Otherwise, we do it again and again.
 			} else {
 				const str = atobUTF8(file);
-				this.cm.setValue(str);
+
+				const doc = text$1.of(str, "\n");
+				window.view.state.doc = doc;
+				window.view.setState(window.view.state);
 			}
 		}
 		save() {
-			return btoaUTF8(this.cm.getValue())
+			return btoaUTF8(window.view.state.doc.text.join("\n"))
 		}
 	    getLangName() {
 	        return this.mode.name
@@ -10304,7 +10310,8 @@
 	    }
 	}
 	var lib = {
-		editor: editor
+		editor: editor,
+		Text: text$1
 	};
 
 	return lib;

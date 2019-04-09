@@ -11,6 +11,7 @@ var matchbrackets_1 = require("../codemirror.next/matchbrackets/src/matchbracket
 var javascript_1 = require("../codemirror.next/legacy-modes/src/javascript");
 var special_chars_1 = require("../codemirror.next/special-chars/src/special-chars");
 var multiple_selections_1 = require("../codemirror.next/multiple-selections/src/multiple-selections");
+var src_3 = require("../codemirror.next/doc/src");
 exports.default = {
     EditorState: src_1.EditorState,
     EditorView: src_2.EditorView,
@@ -28,5 +29,6 @@ exports.default = {
     matchBrackets: matchbrackets_1.matchBrackets,
     javascript: javascript_1.default,
     specialChars: special_chars_1.specialChars,
-    multipleSelections: multiple_selections_1.multipleSelections
+    multipleSelections: multiple_selections_1.multipleSelections,
+    text: src_3.Text
 };

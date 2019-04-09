@@ -9,7 +9,7 @@ import { matchBrackets } from "../codemirror.next/matchbrackets/src/matchbracket
 import javascript from "../codemirror.next/legacy-modes/src/javascript"
 import { specialChars } from "../codemirror.next/special-chars/src/special-chars"
 import { multipleSelections } from "../codemirror.next/multiple-selections/src/multiple-selections"
-
+import { Text } from "../codemirror.next/doc/src"
 export default {
 	EditorState: EditorState,
 	EditorView: EditorView,
@@ -27,5 +27,6 @@ export default {
 	matchBrackets: matchBrackets,
 	javascript: javascript,
 	specialChars: specialChars,
-	multipleSelections: multipleSelections
+	multipleSelections: multipleSelections,
+	text: Text
 }

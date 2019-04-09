@@ -17,6 +17,7 @@ const matchBrackets = libCM.matchBrackets
 const javascript = libCM.javascript
 const specialChars = libCM.specialChars
 const multipleSelections = libCM.multipleSelections
+const text = libCM.text
 
 class editor {
 	constructor(ext, value, settings = {}) {
@@ -108,11 +109,14 @@ class editor {
 			}, 16) // Waiting 16ms (~ 1 frame) before rendering for letting WKWebView parse and process everything. Otherwise, we do it again and again.
 		} else {
 			const str = atobUTF8(file)
-			this.cm.setValue(str)
+
+			const doc = text.of(str, "\n")
+			window.view.state.doc = doc
+			window.view.setState(window.view.state)
 		}
 	}
 	save() {
-		return btoaUTF8(this.cm.getValue())
+		return btoaUTF8(window.view.state.doc.text.join("\n"))
 	}
     getLangName() {
         return this.mode.name
@@ -124,5 +128,6 @@ class editor {
     }
 }
 export default {
-	editor: editor
+	editor: editor,
+	Text: text
 }
