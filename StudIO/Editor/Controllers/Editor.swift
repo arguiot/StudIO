@@ -64,12 +64,12 @@ class Editor: UIView {
             }
         }
     }
-    func getData(_ handler: @escaping (Data?) -> Void) {
+    func getData(_ handler: @escaping (Data?, Error?) -> Void) {
         if codeView.isLoading == false {
             codeView.evaluateJavaScript("window.e.save()") { (result, error) in
                 let str = result as? String
                 let data = Data(base64Encoded: str ?? "")
-                handler(data)
+                handler(data, error)
             }
         }
     }

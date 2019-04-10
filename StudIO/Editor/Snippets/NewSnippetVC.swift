@@ -70,7 +70,7 @@ class NewSnippetVC: UIViewController {
         
         let ext = lang.text ?? "c"
         
-        c.getData { (data) in
+        c.getData { data, error  in
             let str = data?.base64EncodedString()
             c.highlight(ext, code: {
                 c.loadFile(withContent: str ?? "")
@@ -85,7 +85,7 @@ class NewSnippetVC: UIViewController {
             name.placeHolderColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
             return
         }
-        codeView.getData({ (data) in
+        codeView.getData({ data, error  in
             guard let d = data else { return }
             guard var c = String(data: d, encoding: .utf8) else { return }
             guard let l = self.lang.text else { return }
