@@ -8,9 +8,9 @@ body {
 }
 
 .codemirror {
-    min-height: 100vh;
+    /* min-height: 100vh;
 	height: 100vh;
-    overflow: auto;
+    overflow: auto; */
     width: 100vw;
     margin: 0;
 }

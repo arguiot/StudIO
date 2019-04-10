@@ -90,7 +90,7 @@ class editor {
 		link.setAttribute("href", `theme/${theme}.css`)
 		document.head.appendChild(link);
 		if (typeof this.cm != "undefined") {
-			this.cm.setOption("theme", theme)
+			// this.cm.setOption("theme", theme)
 		}
 	}
 	fontSize(v) {
