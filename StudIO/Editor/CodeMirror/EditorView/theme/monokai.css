@@ -35,3 +35,7 @@
 .codemirror-matching-bracket {
   text-decoration: underline;
 }
+
+body {
+	background: #272822
+}
