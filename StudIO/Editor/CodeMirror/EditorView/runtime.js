@@ -1,3 +1,3 @@
-var ed = new StudIO.editor("md", "test")
+var ed = new StudIO.editor()
 
 var EditorSettings = {}
