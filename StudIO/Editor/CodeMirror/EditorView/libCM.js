@@ -10196,7 +10196,6 @@
 	const indentSelection = libCM.indentSelection;
 	const legacyMode = libCM.legacyMode;
 	const matchBrackets = libCM.matchBrackets;
-	const javascript = libCM.javascript;
 	const specialChars$1 = libCM.specialChars;
 	const multipleSelections$1 = libCM.multipleSelections;
 	const text$1 = libCM.text;
@@ -10209,46 +10208,44 @@
 					// Do something...
 				});
 			} else {
-				// let mode = CodeMirror.findModeByExtension(ext)
-				// if (typeof mode == "undefined" || typeof mode.mode == "undefined") {
-				// 	mode = CodeMirror.findModeByExtension("md") // Using markdown for undefined var
-				// }
+				let mode = CodeMirror.findModeByExtension(ext);
+				if (typeof mode == "undefined" || typeof mode.mode == "undefined") {
+					mode = CodeMirror.findModeByExtension("md"); // Using markdown for undefined var
+				}
 				this.settings();
 
-				// const script = document.createElement('script');
-				// script.onload = () => {
-				//
-				// };
-				// script.src = `mode/${mode.mode}/${mode.mode}.js`;
+				const script = document.createElement('script');
+				script.onload = () => {
+					let mode = legacyMode({ mode: ExportedMode({ indentUnit: 2 }, {}) });
+					this.mode = mode;
 
-				// document.head.appendChild(script);
+					let isMac = /Mac/.test(navigator.platform);
 
-				let mode = legacyMode({ mode: javascript({ indentUnit: 2 }, {}) });
-				this.mode = mode;
+					this.cm = EditorState.create({
+						doc: value, extensions: [
+							lineNumbers(),
+							history$1(),
+							specialChars$1(),
+							multipleSelections$1(),
+							mode,
+							matchBrackets(),
+							keymap$1({
+								"Mod-z": undo,
+								"Mod-Shift-z": redo,
+								"Mod-u": view => undoSelection(view) || true,
+								[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
+								"Ctrl-y": isMac ? undefined : redo,
+								"Shift-Tab": indentSelection
+							}),
+							keymap$1(baseKeymap),
+						]
+					});
+					let view = window.view = new EditorView({ state: this.cm });
+					document.querySelector("#editor").appendChild(view.dom);
+				};
+				script.src = `mode/${mode.mode}/${mode.mode}.js`;
 
-				let isMac = /Mac/.test(navigator.platform);
-
-				this.cm = EditorState.create({
-					doc: value, extensions: [
-						lineNumbers(),
-						history$1(),
-						specialChars$1(),
-						multipleSelections$1(),
-						mode,
-						matchBrackets(),
-						keymap$1({
-							"Mod-z": undo,
-							"Mod-Shift-z": redo,
-							"Mod-u": view => undoSelection(view) || true,
-							[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
-							"Ctrl-y": isMac ? undefined : redo,
-							"Shift-Tab": indentSelection
-						}),
-						keymap$1(baseKeymap),
-					]
-				});
-				let view = window.view = new EditorView({ state: this.cm });
-				document.querySelector("#editor").appendChild(view.dom);
+				document.head.appendChild(script);
 
 				// after settings
 				// this.fontSize(EditorSettings.fontSize)
