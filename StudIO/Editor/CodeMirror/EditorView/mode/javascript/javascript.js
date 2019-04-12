@@ -3,7 +3,7 @@
 
 "use strict";
 
-export default function(config, parserConfig) {
+function ExportedMode(config, parserConfig) {
   var indentUnit = config.indentUnit;
   var statementIndent = parserConfig.statementIndent;
   var jsonldMode = parserConfig.jsonld;
