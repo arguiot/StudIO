@@ -107,7 +107,8 @@ extension CheatCodeVC: UISearchBarDelegate {
         let url = cht.getLink(question: searchBar.text ?? "", language: lang.text ?? "js")
         cht.down(load: url) { (str) in
             DispatchQueue.main.async {
-                self.codeView.loadFile(withContent: str)
+                let base64 = str.data(using: .utf8)?.base64EncodedString()
+                self.codeView.loadFile(withContent: base64 ?? "")
             }
         }
     }
