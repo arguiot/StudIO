@@ -21,8 +21,8 @@ class ChtSH {
     }
     func down(load: String, completion: @escaping (String) -> Void) {
         
-        let request = URLRequest(url: URL(string: load)!)
-        
+        var request = URLRequest(url: URL(string: load)!)
+        request.setValue("curl/7.54.0", forHTTPHeaderField: "User-Agent")
         URLSession.shared.downloadTask(with: request) { (location, response, error) -> Void in
             // Check if data was received successfully
             if error == nil && location != nil {
