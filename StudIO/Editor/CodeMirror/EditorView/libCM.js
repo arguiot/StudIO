@@ -10216,13 +10216,19 @@
 
 				const script = document.createElement('script');
 				script.onload = () => {
-					let mode = legacyMode({ mode: ExportedMode({ indentUnit: 2 }, {}) });
+					var m = null;
+
+					m = ExportedMode({ indentUnit: 2 });
+					let mode = legacyMode({
+						mode: m
+					});
 					this.mode = mode;
 
 					let isMac = /Mac/.test(navigator.platform);
 
 					this.cm = EditorState.create({
-						doc: value, extensions: [
+						doc: value,
+						extensions: [
 							lineNumbers(),
 							history$1(),
 							specialChars$1(),
@@ -10240,7 +10246,9 @@
 							keymap$1(baseKeymap),
 						]
 					});
-					let view = window.view = new EditorView({ state: this.cm });
+					let view = window.view = new EditorView({
+						state: this.cm
+					});
 					document.querySelector("#editor").appendChild(view.dom);
 				};
 				script.src = `mode/${mode.mode}/${mode.mode}.js`;
@@ -10255,7 +10263,7 @@
 			try {
 				this.lineWrapping = this.EditorSettings.lineWrapping == true; // boolean convert
 				this.theme = this.EditorSettings.theme;
-			} catch(e) {
+			} catch (e) {
 				console.warn(e);
 			}
 			if (typeof this.theme == "undefined") {
@@ -10295,14 +10303,14 @@
 		save() {
 			return btoaUTF8(window.view.state.doc.text.join("\n"))
 		}
-	    getLangName() {
-	        return this.mode.name
-	    }
+		getLangName() {
+			return this.mode.name
+		}
 
-	    insertSnippet(snippet) {
-	        const str = atobUTF8(snippet);
-	        this.cm.replaceSelection(str);
-	    }
+		insertSnippet(snippet) {
+			const str = atobUTF8(snippet);
+			this.cm.replaceSelection(str);
+		}
 	}
 	var lib = {
 		editor: editor,
