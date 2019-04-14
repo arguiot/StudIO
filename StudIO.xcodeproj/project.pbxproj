@@ -91,7 +91,6 @@
 		68B56363222BE87300B9E0DD /* DoubleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B56362222BE87300B9E0DD /* DoubleScreen.swift */; };
 		68B56365222CB9A800B9E0DD /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B56364222CB9A800B9E0DD /* Compression.swift */; };
 		68B56367222CBB2600B9E0DD /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68B56366222CBB2600B9E0DD /* Zip.framework */; };
-		68BBB7362227862400BBF1DF /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68EF7B85222782FD00CD47D9 /* Instabug.framework */; };
 		68BD16952211735000C5F321 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BD16942211735000C5F321 /* SettingsTableView.swift */; };
 		68D62A4B223C80B6005EACCB /* SnippetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D62A4A223C80B6005EACCB /* SnippetsVC.swift */; };
 		68E329D421D9223700231CFC /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E329D321D9223700231CFC /* ViewControllers.swift */; };
@@ -213,7 +212,6 @@
 				6890AD31223E42CF00D6EDBD /* ColorSlider.framework in Frameworks */,
 				68B56367222CBB2600B9E0DD /* Zip.framework in Frameworks */,
 				687EC15B222AB46C00E6B3C3 /* SwiftGit2.framework in Frameworks */,
-				68BBB7362227862400BBF1DF /* Instabug.framework in Frameworks */,
 				68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */,
 				68040218220EC67800789453 /* Result.framework in Frameworks */,
 				68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */,
@@ -689,7 +687,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectiveGit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Instabug.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Zip.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ColorSlider.framework",
 			);
