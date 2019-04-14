@@ -14,6 +14,8 @@ class CheatCodeVC: UIViewController {
 
     @IBOutlet weak var lang: UITextField!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var toggleSwitch: UISwitch!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,7 @@ class CheatCodeVC: UIViewController {
         setupEditor()
         
         searchBar.delegate = self
+        lang.delegate = self
     }
     
     @IBOutlet weak var codeView: Editor!
@@ -62,36 +65,44 @@ class CheatCodeVC: UIViewController {
                 c.loadFile(withContent: str ?? "")
             })
         }
+        
+        searchBarTextDidEndEditing(self.searchBar)
+    }
+    @IBAction func updateComments(_ sender: Any) {
+        searchBarTextDidEndEditing(self.searchBar)
+    }
+    @IBAction func updateSearch(_ sender: Any) {
+        searchBarTextDidEndEditing(self.searchBar)
     }
     
     @IBAction func saveSnippet(_ sender: Any) {
         guard let n = searchBar.text else { return }
-        
+        guard let l = lang.text else { return }
         if n == "" {
             return
         }
         self.navigationItem.rightBarButtonItems?.last?.title = "Loading..."
         
         DispatchQueue.global().async {
-            
+            self.getSnippetContent { (c) in
+                DispatchQueue.main.sync {
+                    let snippet = Snippet(n: n, c: c, l: l, co: .black)
+                    
+                    let snippetVC = self.navigationController?.viewControllers.first as! SnippetsVC
+                    snippetVC.snippets.append(snippet)
+                    
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
         }
     }
     
-    func getSnippetContent(input: String, completion: @escaping (String) -> Void) {
-        let services: [SnippetService] = [
-            GitHubGist(),
-            GitlabSnippets()
-        ]
-        
-        for service in services {
-            if service.isOk(input) {
-                service.download(str: input) { (str) in
-                    completion(str)
-                }
-                return
-            }
+    func getSnippetContent(completion: @escaping (String) -> Void) {
+        codeView.getData { (data) in
+            guard let d = data else { return }
+            let str = String(data: d, encoding: .utf8)
+            completion(str ?? "")
         }
-        completion(input)
     }
 }
 
@@ -103,13 +114,24 @@ class CheatCodeVC: UIViewController {
 
 extension CheatCodeVC: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        doneButton.title = "Loading..."
         let cht = ChtSH()
-        let url = cht.getLink(question: searchBar.text ?? "", language: lang.text ?? "js")
-        cht.down(load: url) { (str) in
-            DispatchQueue.main.async {
-                let base64 = str.data(using: .utf8)?.base64EncodedString()
-                self.codeView.loadFile(withContent: base64 ?? "")
+        let url = cht.getLink(question: searchBar.text ?? "", language: lang.text ?? "js", comments: !toggleSwitch.isOn)
+        DispatchQueue.global().async {
+            cht.down(load: url) { (str) in
+                DispatchQueue.main.async {
+                    let base64 = str.data(using: .utf8)?.base64EncodedString()
+                    self.codeView.loadFile(withContent: base64 ?? "")
+                    self.doneButton.title = "Done"
+                }
             }
         }
+    }
+}
+
+extension CheatCodeVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
