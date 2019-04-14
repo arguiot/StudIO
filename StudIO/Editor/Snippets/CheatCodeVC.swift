@@ -83,17 +83,13 @@ class CheatCodeVC: UIViewController {
         }
         self.navigationItem.rightBarButtonItems?.last?.title = "Loading..."
         
-        DispatchQueue.global().async {
-            self.getSnippetContent { (c) in
-                DispatchQueue.main.sync {
-                    let snippet = Snippet(n: n, c: c, l: l, co: .black)
-                    
-                    let snippetVC = self.navigationController?.viewControllers.first as! SnippetsVC
-                    snippetVC.snippets.append(snippet)
-                    
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }
+        self.getSnippetContent { (c) in
+            let snippet = Snippet(n: n, c: c, l: l, co: .black)
+            
+            let snippetVC = self.navigationController?.viewControllers.first as! SnippetsVC
+            snippetVC.snippets.append(snippet)
+            
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
