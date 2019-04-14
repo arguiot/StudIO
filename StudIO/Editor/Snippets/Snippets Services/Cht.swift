@@ -9,7 +9,7 @@
 import Foundation
 
 class ChtSH {
-    func getLink(question: String, language: String, comments: Bool = true) -> String {
+    func getLink(question: String, language: String, comments: Bool = false) -> String {
         let l = language.lowercased().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let q = question.lowercased().replace(pattern: " ", template: "+").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         var t = "?T"
