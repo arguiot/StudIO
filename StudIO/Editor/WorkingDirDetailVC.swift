@@ -184,5 +184,11 @@ class WorkingDirDetailVC: UIViewController {
         
         present(vc, animated: true, completion: nil)
     }
+    
+    @IBOutlet var accessory: SmartKeyboard!
+    
+    override var inputAccessoryView: UIView? {
+        return accessory
+    }
 }
 

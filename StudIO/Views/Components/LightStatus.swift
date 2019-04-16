@@ -9,7 +9,19 @@
 import UIKit
 
 class LightStatus: UISplitViewController {
+    override func viewDidLoad() {
+        // do something
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    override var inputAccessoryView: UIView? {
+        guard let nv = self.viewControllers.last as? UINavigationController else {
+            return UIView(frame: .init(x: 0, y: 0, width: 0, height: 0))
+        }
+        guard let detail = nv.viewControllers.first as? WorkingDirDetailVC else {
+            return UIView(frame: .init(x: 0, y: 0, width: 0, height: 0))
+        }
+        return detail.accessory
     }
 }

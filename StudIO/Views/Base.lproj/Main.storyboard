@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -20,7 +20,7 @@
             <objects>
                 <navigationController title="Master" id="RMx-3f-FxP" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="blackTranslucent" id="Pmd-2v-anx">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.6588235294117647" green="0.6588235294117647" blue="0.6588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -38,18 +38,18 @@
             <objects>
                 <viewController title="Editor" id="JEX-9P-axG" customClass="WorkingDirDetailVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="svH-Pt-448">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAF-hE-Otb" customClass="BottomLine" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="822" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="696" width="414" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="OTF-lt-Pok"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hwj-cq-ztk" customClass="Editor" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="734"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="632"/>
                                 <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -83,20 +83,47 @@ DQ
                         <keyCommand input="h" modifierFlags="1048576" actionName="null" discoverabilityTitle="Find &amp; Replace"/>
                     </keyCommands>
                     <connections>
+                        <outlet property="accessory" destination="aMW-SG-rzj" id="gyX-bf-TKp"/>
                         <outlet property="bottomLine" destination="LAF-hE-Otb" id="7HT-H4-oXb"/>
                         <outlet property="editorView" destination="Hwj-cq-ztk" id="Ahs-hn-QBZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="aMW-SG-rzj" customClass="SmartKeyboard" customModule="StudIO" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVe-J2-8Ee">
+                            <rect key="frame" x="12" y="10" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="GNL-Pf-DTL"/>
+                                <constraint firstAttribute="width" constant="30" id="qL2-NB-cq4"/>
+                            </constraints>
+                            <state key="normal" image="bulb"/>
+                            <connections>
+                                <action selector="cheatCode:" destination="aMW-SG-rzj" eventType="touchUpInside" id="2hh-gq-bMw"/>
+                                <action selector="cheatCode:" destination="cju-fm-7VM" eventType="touchUpInside" id="LsQ-cx-l2G"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="au1-nt-v4x" firstAttribute="bottom" secondItem="yVe-J2-8Ee" secondAttribute="bottom" constant="10" id="UKu-68-nUt"/>
+                        <constraint firstItem="yVe-J2-8Ee" firstAttribute="leading" secondItem="au1-nt-v4x" secondAttribute="leading" constant="12" id="bv6-LZ-ut3"/>
+                        <constraint firstItem="yVe-J2-8Ee" firstAttribute="top" secondItem="au1-nt-v4x" secondAttribute="top" constant="10" id="uCM-WN-0Yn"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="au1-nt-v4x"/>
+                </view>
+                <exit id="cju-fm-7VM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="708" y="128.18590704647679"/>
+            <point key="canvasLocation" x="787" y="263"/>
         </scene>
         <!--Snippet Controller-->
         <scene sceneID="UIR-l1-IVZ">
             <objects>
                 <navigationController storyboardIdentifier="snippetController" id="uRN-gX-b8b" customClass="snippetController" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d4n-Im-z2c">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -112,18 +139,18 @@ DQ
             <objects>
                 <viewController storyboardIdentifier="SnippetsVC" id="fZz-TP-S2Z" customClass="SnippetsVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GR5-tV-DcK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d6V-cc-mhP">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SnippetCell" id="1Hv-jx-P8U" customClass="SnippetCell" customModule="StudIO" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Hv-jx-P8U" id="tZd-A5-gLo">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🗌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7P-px-NcG">
@@ -188,11 +215,11 @@ DQ
             <objects>
                 <viewController title="Create snippet" id="alt-dQ-G5s" customClass="NewSnippetVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fkM-JT-KOc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miU-gw-6aL">
-                                <rect key="frame" x="20" y="205" width="42" height="21"/>
+                                <rect key="frame" x="20" y="181" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="1qo-UR-CEE"/>
                                 </constraints>
@@ -201,7 +228,7 @@ DQ
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6f5-Hq-9WQ">
-                                <rect key="frame" x="20" y="123" width="45" height="21"/>
+                                <rect key="frame" x="20" y="99" width="45" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ENT-b1-Fil"/>
                                 </constraints>
@@ -210,7 +237,7 @@ DQ
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of the snippet" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7s3-sR-zHX">
-                                <rect key="frame" x="194" y="123" width="200" height="30"/>
+                                <rect key="frame" x="194" y="99" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ofZ-a6-t2N"/>
                                     <constraint firstAttribute="width" constant="200" id="tv5-wk-VGM"/>
@@ -220,7 +247,7 @@ DQ
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2br-KA-AIA">
-                                <rect key="frame" x="20" y="164" width="76" height="21"/>
+                                <rect key="frame" x="20" y="140" width="76" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="X9N-B6-IuF"/>
                                 </constraints>
@@ -229,7 +256,7 @@ DQ
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Language extension (ex: js for JavaScript)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D3m-af-0L5">
-                                <rect key="frame" x="194" y="163" width="200" height="30"/>
+                                <rect key="frame" x="194" y="139" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="BOK-xl-HiL"/>
                                     <constraint firstAttribute="height" constant="30" id="Y7E-pt-BDn"/>
@@ -242,11 +269,11 @@ DQ
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFU-WT-Yu6" customClass="Editor" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="321" width="414" height="575"/>
+                                <rect key="frame" x="0.0" y="297" width="414" height="439"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxU-ml-ZXa">
-                                <rect key="frame" x="194" y="205" width="200" height="30"/>
+                                <rect key="frame" x="194" y="181" width="200" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="2py-54-OxY"/>
@@ -254,7 +281,7 @@ DQ
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hf3-Zo-u9m">
-                                <rect key="frame" x="20" y="286" width="83" height="27"/>
+                                <rect key="frame" x="20" y="262" width="83" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="O1c-H7-bBI"/>
                                 </constraints>
@@ -263,7 +290,7 @@ DQ
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gist, URL, ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j1I-2U-J1t">
-                                <rect key="frame" x="194" y="284" width="200" height="30"/>
+                                <rect key="frame" x="194" y="260" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="ZML-R6-iMl"/>
                                     <constraint firstAttribute="height" constant="30" id="m1E-ZY-hfX"/>
@@ -344,7 +371,7 @@ DQ
             <objects>
                 <tableViewController title="Project" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="WorkingDirMasterVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7i-6Z-zg0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -354,7 +381,7 @@ DQ
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🗌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POp-nQ-SrK">
@@ -407,7 +434,7 @@ DQ
             <objects>
                 <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="blackTranslucent" id="DjV-YW-jjY">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.6588235294" green="0.6588235294" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -421,6 +448,9 @@ DQ
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bulb" width="384" height="384"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mXQ-Ca-nUI"/>
     </inferredMetricsTieBreakers>

@@ -46,6 +46,7 @@
 		684549C421CE218F00CF5E80 /* git.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 684549C321CE218F00CF5E80 /* git.storyboard */; };
 		684549C621CE247B00CF5E80 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684549C521CE247B00CF5E80 /* UIImage.swift */; };
 		684549C921CE27EE00CF5E80 /* GitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684549C821CE27EE00CF5E80 /* GitVC.swift */; };
+		6845D0A72265E0730008150D /* SmartKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6845D0A62265E0730008150D /* SmartKeyboard.swift */; };
 		684F81BB220F03B60003B845 /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684F81BA220F03B60003B845 /* SliderCell.swift */; };
 		684F81BD220F03D90003B845 /* StepperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684F81BC220F03D90003B845 /* StepperCell.swift */; };
 		684F81BF220F03F30003B845 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684F81BE220F03F30003B845 /* TextFieldCell.swift */; };
@@ -139,6 +140,7 @@
 		684549C321CE218F00CF5E80 /* git.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = git.storyboard; sourceTree = "<group>"; };
 		684549C521CE247B00CF5E80 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		684549C821CE27EE00CF5E80 /* GitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitVC.swift; sourceTree = "<group>"; };
+		6845D0A62265E0730008150D /* SmartKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartKeyboard.swift; sourceTree = "<group>"; };
 		684F81BA220F03B60003B845 /* SliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
 		684F81BC220F03D90003B845 /* StepperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperCell.swift; sourceTree = "<group>"; };
 		684F81BE220F03F30003B845 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				6863DF9221B54A9800911374 /* BottomLine.swift */,
 				6852C24D21BB542000FA40DC /* Editor.swift */,
 				686822EF21DB8E130036694B /* GitCommit.swift */,
+				6845D0A62265E0730008150D /* SmartKeyboard.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				68A62CBD223CD46C0040225E /* snippetController.swift in Sources */,
 				683CF2652247A9D400EB75FC /* GitLab.swift in Sources */,
 				6863DF9721B68F1700911374 /* LightStatus.swift in Sources */,
+				6845D0A72265E0730008150D /* SmartKeyboard.swift in Sources */,
 				68E329D421D9223700231CFC /* ViewControllers.swift in Sources */,
 				68B5635F222BBB6000B9E0DD /* FolderItem.swift in Sources */,
 				689BDC2121B22F7800D88AAB /* WorkingDirDetailVC.swift in Sources */,
