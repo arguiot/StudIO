@@ -35,8 +35,12 @@ class editor {
 			const script = document.createElement('script');
 			script.onload = () => {
 				var m = null
+				try {
+					m = ExportedMode({ indentUnit: 2 })
+				} catch {
+					m = ExportedMode({ indentUnit: 2 }, {})
+				}
 
-				m = ExportedMode({ indentUnit: 2 })
 				let mode = legacyMode({
 					mode: m
 				})
