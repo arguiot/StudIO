@@ -83,38 +83,11 @@ DQ
                         <keyCommand input="h" modifierFlags="1048576" actionName="null" discoverabilityTitle="Find &amp; Replace"/>
                     </keyCommands>
                     <connections>
-                        <outlet property="accessory" destination="aMW-SG-rzj" id="gyX-bf-TKp"/>
                         <outlet property="bottomLine" destination="LAF-hE-Otb" id="7HT-H4-oXb"/>
                         <outlet property="editorView" destination="Hwj-cq-ztk" id="Ahs-hn-QBZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="aMW-SG-rzj" customClass="SmartKeyboard" customModule="StudIO" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVe-J2-8Ee">
-                            <rect key="frame" x="12" y="10" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="GNL-Pf-DTL"/>
-                                <constraint firstAttribute="width" constant="30" id="qL2-NB-cq4"/>
-                            </constraints>
-                            <state key="normal" image="bulb"/>
-                            <connections>
-                                <action selector="cheatCode:" destination="aMW-SG-rzj" eventType="touchUpInside" id="2hh-gq-bMw"/>
-                                <action selector="cheatCode:" destination="cju-fm-7VM" eventType="touchUpInside" id="LsQ-cx-l2G"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="au1-nt-v4x" firstAttribute="bottom" secondItem="yVe-J2-8Ee" secondAttribute="bottom" constant="10" id="UKu-68-nUt"/>
-                        <constraint firstItem="yVe-J2-8Ee" firstAttribute="leading" secondItem="au1-nt-v4x" secondAttribute="leading" constant="12" id="bv6-LZ-ut3"/>
-                        <constraint firstItem="yVe-J2-8Ee" firstAttribute="top" secondItem="au1-nt-v4x" secondAttribute="top" constant="10" id="uCM-WN-0Yn"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="au1-nt-v4x"/>
-                </view>
-                <exit id="cju-fm-7VM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="787" y="263"/>
         </scene>
@@ -352,17 +325,39 @@ DQ
             </objects>
             <point key="canvasLocation" x="1449" y="70"/>
         </scene>
-        <!--Light Status-->
+        <!--Editor SplitVC-->
         <scene sceneID="Nki-YV-4Qg">
             <objects>
-                <splitViewController id="H1p-Uh-vWS" customClass="LightStatus" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController id="H1p-Uh-vWS" customClass="EditorSplitVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <connections>
+                        <outlet property="accessory" destination="QTT-vS-s35" id="gP5-l5-Q94"/>
                         <segue destination="RMx-3f-FxP" kind="relationship" relationship="masterViewController" id="BlO-5A-QYV"/>
                         <segue destination="vC3-pB-5Vb" kind="relationship" relationship="detailViewController" id="Tll-UG-LXB"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="QTT-vS-s35" customClass="SmartKeyboard" customModule="StudIO" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vl-a8-6Jr">
+                            <rect key="frame" x="12" y="10" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="nOT-VW-uht"/>
+                                <constraint firstAttribute="height" constant="30" id="zlO-9l-uHH"/>
+                            </constraints>
+                            <state key="normal" image="bulb"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="7vl-a8-6Jr" secondAttribute="bottom" constant="10" id="QgI-tu-P9a"/>
+                        <constraint firstItem="7vl-a8-6Jr" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="10" id="Qv4-c2-xyc"/>
+                        <constraint firstItem="7vl-a8-6Jr" firstAttribute="leading" secondItem="VVK-Fb-8vw" secondAttribute="leading" constant="12" id="nIc-pC-3v6"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="VVK-Fb-8vw"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="-856" y="-330"/>
         </scene>
@@ -452,6 +447,6 @@ DQ
         <image name="bulb" width="384" height="384"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mXQ-Ca-nUI"/>
+        <segue reference="Tll-UG-LXB"/>
     </inferredMetricsTieBreakers>
 </document>
