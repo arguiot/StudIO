@@ -10,17 +10,19 @@ import UIKit
 
 class EditorSplitVC: UISplitViewController {
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
         
-//        let obj: [String: Any] = ["keyboard": accessory]
-//
-//        var formatString = "|-[keyboard]-|"
-//        var constraints = NSLayoutConstraint.constraints(withVisualFormat: formatString, options: .alignAllTop, metrics: nil, views: obj)
-//
-//        formatString = "H:[keyboard]-|"
-//        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: formatString, options: .alignAllTop, metrics: nil, views: obj))
-//
-//        NSLayoutConstraint.activate(constraints)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
         
         let height = UIScreen.main.bounds.height
         let width = UIScreen.main.bounds.width
@@ -35,8 +37,25 @@ class EditorSplitVC: UISplitViewController {
     }
     @IBOutlet var accessory: SmartKeyboard!
     
-    @objc func keyboardWasShown() {
+    @objc func keyboardWillShow(_ notification: Notification) {
+        accessory.isHidden = false
         
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let height = UIScreen.main.bounds.height
+            let width = UIScreen.main.bounds.width
+            
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            
+            accessory.frame = CGRect(x: 0, y: height - 50 - keyboardHeight, width: width, height: 50)
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        accessory.isHidden = true
         
+        let height = UIScreen.main.bounds.height
+        let width = UIScreen.main.bounds.width
+        accessory.frame = CGRect(x: 0, y: height - 50, width: width, height: 50)
     }
 }
