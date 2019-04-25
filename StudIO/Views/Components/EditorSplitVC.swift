@@ -12,14 +12,23 @@ class EditorSplitVC: UISplitViewController {
     override func viewDidLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: UIResponder.keyboardDidShowNotification, object: nil)
         
-        let obj: [String: Any] = ["keyboard": accessory]
+//        let obj: [String: Any] = ["keyboard": accessory]
+//
+//        var formatString = "|-[keyboard]-|"
+//        var constraints = NSLayoutConstraint.constraints(withVisualFormat: formatString, options: .alignAllTop, metrics: nil, views: obj)
+//
+//        formatString = "H:[keyboard]-|"
+//        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: formatString, options: .alignAllTop, metrics: nil, views: obj))
+//
+//        NSLayoutConstraint.activate(constraints)
         
-        let formatString = "|-[keyboard]-|"
-        let constraints = NSLayoutConstraint.constraints(withVisualFormat: formatString, options: .alignAllTop, metrics: nil, views: obj)
+        let height = UIScreen.main.bounds.height
+        let width = UIScreen.main.bounds.width
+        accessory.frame = CGRect(x: 0, y: height - 50, width: width, height: 50)
         
-        NSLayoutConstraint.activate(constraints)
+        self.view.addSubview(accessory)
         
-        accessory.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[view]-|", options: NSLayoutConstraint.FormatOptions.alignAllCenterY, metrics: nil, views: obj))
+        accessory.isHidden = true
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
