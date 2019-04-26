@@ -10311,9 +10311,10 @@
 			return this.mode.name
 		}
 
-		insertSnippet(snippet) {
+		insertSnippet(snippet, replaceLine = false) {
 			const str = atobUTF8(snippet);
-			this.cm.replaceSelection(str);
+			document.querySelector(".codemirror-content").focus();
+			document.execCommand('insertText', false, str);
 		}
 	}
 	var lib = {
