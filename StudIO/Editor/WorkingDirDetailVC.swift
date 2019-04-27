@@ -94,6 +94,9 @@ class WorkingDirDetailVC: UIViewController {
         let arr = str.split(separator: ".")
         let ext = String(arr[arr.count - 1]).uppercased()
         
+        let editorSplit = self.splitViewController as! EditorSplitVC
+        editorSplit.accessory.extension = ext
+        
         c.highlightExt = ext
         
         c.settings([

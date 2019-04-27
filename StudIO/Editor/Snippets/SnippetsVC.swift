@@ -83,7 +83,7 @@ class SnippetsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row
         let snippet = snippets[row]
         
-        NotificationCenter.default.post(name: .init("insertSnippet"), object: nil, userInfo: ["selected": snippet])
+        NotificationCenter.default.post(name: .init("insertSnippet"), object: nil, userInfo: ["selected": snippet, "dismiss": true])
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -116,11 +116,15 @@ extension WorkingDirDetailVC {
             console.log(e)
         }
         """
-        self.editorView.codeView.evaluateJavaScript(js) { (result, error) in
-            if error != nil {
-                NSObject.alert(t: "Snippet error", m: error?.localizedDescription ?? "Couldn't insert snippet")
+        DispatchQueue.main.async {
+            self.editorView.codeView.evaluateJavaScript(js) { (result, error) in
+                if error != nil {
+                    NSObject.alert(t: "Snippet error", m: error?.localizedDescription ?? "Couldn't insert snippet")
+                }
+                if d?.keys.contains("dismiss") ?? false {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
-            self.dismiss(animated: true, completion: nil)
         }
     }
 }

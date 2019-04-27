@@ -59,7 +59,7 @@ class CheatCodeVC: UIViewController {
         
         let ext = lang.text ?? "c"
         
-        c.getData { (data) in
+        c.getData { (data, error) in
             let str = data?.base64EncodedString()
             c.highlight(ext, code: {
                 c.loadFile(withContent: str ?? "")
@@ -94,7 +94,7 @@ class CheatCodeVC: UIViewController {
     }
     
     func getSnippetContent(completion: @escaping (String) -> Void) {
-        codeView.getData { (data) in
+        codeView.getData { (data, error)  in
             guard let d = data else { return }
             let str = String(data: d, encoding: .utf8)
             completion(str ?? "")
