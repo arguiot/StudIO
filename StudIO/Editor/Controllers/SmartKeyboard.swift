@@ -26,20 +26,20 @@ class SmartKeyboard: UIView {
         state = !state
         
         if (state == true) {
-            questionInput.center.y -= self.bounds.height
+            questionInput.center.y += self.bounds.height
             questionInput.alpha = 0
             UIView.animate(withDuration: 0.5) {
-                self.questionInput.center.y += self.bounds.height
+                self.questionInput.center.y -= self.bounds.height
                 self.questionInput.alpha = 1
                 self.bulb.tintColor = .blue
             }
         } else {
             UIView.animate(withDuration: 0.5, animations: {
-                self.questionInput.center.y -= self.bounds.height
+                self.questionInput.center.y += self.bounds.height
                 self.questionInput.alpha = 0
                 self.bulb.tintColor = .black
             }) { (done) in
-                self.questionInput.center.y += self.bounds.height
+                self.questionInput.center.y -= self.bounds.height
             }
             
         }
