@@ -36,7 +36,9 @@ class SmartKeyboard: UIView {
                 self.bulb.tintColor = .blue
             }
         } else {
-            load()
+            if questionInput.text != "" {
+                load()
+            }
             UIView.animate(withDuration: 0.5, animations: {
                 self.questionInput.center.y += self.bounds.height
                 self.questionInput.alpha = 0
@@ -50,7 +52,7 @@ class SmartKeyboard: UIView {
     }
     func load() {
         let cht = ChtSH()
-        let url = cht.getLink(question: questionInput.text ?? "", language: self.extension, comments: false)
+        let url = cht.getLink(question: questionInput.text ?? "", language: self.extension, comments: true)
         DispatchQueue.global().async {
             cht.down(load: url) { (str) in
                 let snippet = Snippet(n: "smartCheatCode", c: str, l: self.extension)
