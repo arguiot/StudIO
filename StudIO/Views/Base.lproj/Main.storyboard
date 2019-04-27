@@ -338,14 +338,20 @@ DQ
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="QTT-vS-s35" customClass="SmartKeyboard" customModule="StudIO" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ask your question here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Poa-3S-WET">
+                            <rect key="frame" x="53" y="10" width="341" height="40"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vl-a8-6Jr">
-                            <rect key="frame" x="12" y="10" width="30" height="30"/>
+                            <rect key="frame" x="0.0" y="5" width="45" height="45"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="nOT-VW-uht"/>
-                                <constraint firstAttribute="height" constant="30" id="zlO-9l-uHH"/>
+                                <constraint firstAttribute="height" constant="45" id="6h8-Mg-pgx"/>
+                                <constraint firstAttribute="width" constant="45" id="yO9-dd-cID"/>
                             </constraints>
                             <color key="tintColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" image="bulb"/>
@@ -353,21 +359,15 @@ DQ
                                 <action selector="cheatCode:" destination="QTT-vS-s35" eventType="touchUpInside" id="mQ4-AB-UFP"/>
                             </connections>
                         </button>
-                        <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ask your question here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Poa-3S-WET">
-                            <rect key="frame" x="50" y="10" width="344" height="30"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="Poa-3S-WET" secondAttribute="bottom" constant="10" id="5Nf-DX-m1d"/>
-                        <constraint firstItem="Poa-3S-WET" firstAttribute="leading" secondItem="7vl-a8-6Jr" secondAttribute="trailing" constant="8" id="GVR-js-lbY"/>
-                        <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="7vl-a8-6Jr" secondAttribute="bottom" constant="10" id="QgI-tu-P9a"/>
-                        <constraint firstItem="7vl-a8-6Jr" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="10" id="Qv4-c2-xyc"/>
-                        <constraint firstItem="7vl-a8-6Jr" firstAttribute="leading" secondItem="VVK-Fb-8vw" secondAttribute="leading" constant="12" id="nIc-pC-3v6"/>
+                        <constraint firstItem="Poa-3S-WET" firstAttribute="leading" secondItem="7vl-a8-6Jr" secondAttribute="trailing" constant="8" id="cak-Ak-d29"/>
+                        <constraint firstItem="7vl-a8-6Jr" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="5" id="crf-PE-bpQ"/>
+                        <constraint firstItem="7vl-a8-6Jr" firstAttribute="leading" secondItem="VVK-Fb-8vw" secondAttribute="leading" id="nG5-FC-XZb"/>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="trailing" secondItem="Poa-3S-WET" secondAttribute="trailing" constant="20" id="poj-l1-W42"/>
+                        <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="7vl-a8-6Jr" secondAttribute="bottom" constant="10" id="tQZ-1c-xiG"/>
                         <constraint firstItem="Poa-3S-WET" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="10" id="zSm-ns-nrB"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="VVK-Fb-8vw"/>

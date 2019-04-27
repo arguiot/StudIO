@@ -26,7 +26,7 @@ class EditorSplitVC: UISplitViewController {
         
         let height = UIScreen.main.bounds.height
         let width = UIScreen.main.bounds.width
-        accessory.frame = CGRect(x: 0, y: height - 50, width: width, height: 50)
+        accessory.frame = CGRect(x: 0, y: height - 60, width: width, height: 60)
         
         self.view.addSubview(accessory)
         
@@ -47,7 +47,7 @@ class EditorSplitVC: UISplitViewController {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             
-            accessory.frame = CGRect(x: 0, y: height - 50 - keyboardHeight, width: width, height: 50)
+            accessory.frame = CGRect(x: 0, y: height - 60 - keyboardHeight, width: width, height: 60)
         }
     }
     
@@ -56,6 +56,6 @@ class EditorSplitVC: UISplitViewController {
         
         let height = UIScreen.main.bounds.height
         let width = UIScreen.main.bounds.width
-        accessory.frame = CGRect(x: 0, y: height - 50, width: width, height: 50)
+        accessory.frame = CGRect(x: 0, y: height - 60, width: width, height: 60)
     }
 }
