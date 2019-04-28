@@ -35,5 +35,3 @@ const d = new Catch(err => {
 		const content = await rawResponse.json();
 	})();
 })
-
-undefinedF()
