@@ -329,11 +329,11 @@ DQ
             <objects>
                 <viewController title="Cheat Code" id="1Pt-Jw-f4T" customClass="CheatCodeVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DcG-mx-0g7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for code answer" translatesAutoresizingMaskIntoConstraints="NO" id="ftA-r3-dzB">
-                                <rect key="frame" x="0.0" y="88" width="364" height="56"/>
+                                <rect key="frame" x="0.0" y="64" width="364" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="ETt-go-hBX"/>
                                 </constraints>
@@ -344,7 +344,7 @@ DQ
                                 </scopeButtonTitles>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfY-CI-h5z">
-                                <rect key="frame" x="20" y="178" width="76" height="21"/>
+                                <rect key="frame" x="20" y="154" width="76" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="05D-87-Dff"/>
                                     <constraint firstAttribute="width" constant="76" id="m5T-vb-17S"/>
@@ -354,7 +354,7 @@ DQ
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Language extension (ex: js for JavaScript)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Yj-BM-DVw">
-                                <rect key="frame" x="194" y="173" width="200" height="30"/>
+                                <rect key="frame" x="194" y="149" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Lkm-8y-FH1"/>
                                     <constraint firstAttribute="height" constant="30" id="Mtu-Ya-Iy5"/>
@@ -368,11 +368,11 @@ DQ
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tB-3a-bFU" customClass="Editor" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="279" width="414" height="617"/>
+                                <rect key="frame" x="0.0" y="255" width="414" height="481"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJo-tM-hqE">
-                                <rect key="frame" x="20" y="234" width="84" height="21"/>
+                                <rect key="frame" x="20" y="210" width="84" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="84" id="R8e-My-bxc"/>
                                     <constraint firstAttribute="height" constant="21" id="Zoj-JW-scT"/>
@@ -382,7 +382,7 @@ DQ
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZI-4r-Lm2">
-                                <rect key="frame" x="345" y="228" width="49" height="31"/>
+                                <rect key="frame" x="345" y="204" width="49" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="P9J-6S-ana"/>
                                     <constraint firstAttribute="width" constant="47" id="jx4-56-ZK3"/>
@@ -392,7 +392,7 @@ DQ
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upU-Jr-EKo">
-                                <rect key="frame" x="372" y="101" width="30" height="30"/>
+                                <rect key="frame" x="372" y="77" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="N7p-hw-8qM"/>
                                     <constraint firstAttribute="height" constant="30" id="ehe-Na-Vf0"/>
@@ -486,10 +486,18 @@ DQ
                                 <action selector="cheatCode:" destination="QTT-vS-s35" eventType="touchUpInside" id="mQ4-AB-UFP"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vew-o0-Uzi" customClass="CompletionView" customModule="StudIO" customModuleProvider="target">
+                            <rect key="frame" x="53" y="5" width="341" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="Poa-3S-WET" secondAttribute="bottom" constant="10" id="5Nf-DX-m1d"/>
+                        <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="vew-o0-Uzi" secondAttribute="bottom" constant="5" id="9ky-o5-YsR"/>
+                        <constraint firstItem="VVK-Fb-8vw" firstAttribute="trailing" secondItem="vew-o0-Uzi" secondAttribute="trailing" constant="20" id="EW3-Zl-Kwe"/>
+                        <constraint firstItem="vew-o0-Uzi" firstAttribute="leading" secondItem="7vl-a8-6Jr" secondAttribute="trailing" constant="8" id="HXq-iu-8n9"/>
+                        <constraint firstItem="vew-o0-Uzi" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="5" id="Vo6-99-IY4"/>
                         <constraint firstItem="Poa-3S-WET" firstAttribute="leading" secondItem="7vl-a8-6Jr" secondAttribute="trailing" constant="8" id="cak-Ak-d29"/>
                         <constraint firstItem="7vl-a8-6Jr" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="5" id="crf-PE-bpQ"/>
                         <constraint firstItem="7vl-a8-6Jr" firstAttribute="leading" secondItem="VVK-Fb-8vw" secondAttribute="leading" id="nG5-FC-XZb"/>
@@ -500,6 +508,7 @@ DQ
                     <viewLayoutGuide key="safeArea" id="VVK-Fb-8vw"/>
                     <connections>
                         <outlet property="bulb" destination="7vl-a8-6Jr" id="pSw-Eh-gRW"/>
+                        <outlet property="completionView" destination="vew-o0-Uzi" id="jFq-EU-RLC"/>
                         <outlet property="questionInput" destination="Poa-3S-WET" id="Rym-rl-T6l"/>
                     </connections>
                 </view>
@@ -589,6 +598,7 @@ DQ
         </scene>
     </scenes>
     <resources>
+        <image name="IntroCompletion" width="128" height="128"/>
         <image name="bulb" width="384" height="384"/>
     </resources>
     <inferredMetricsTieBreakers>

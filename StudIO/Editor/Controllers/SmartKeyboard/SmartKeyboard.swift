@@ -17,7 +17,8 @@ class SmartKeyboard: UIView {
         // Drawing code
     }
     */
-
+    @IBOutlet weak var completionView: CompletionView!
+    
     @IBOutlet weak var bulb: UIButton!
     @IBOutlet weak var questionInput: UITextField!
     var state = false
@@ -25,6 +26,7 @@ class SmartKeyboard: UIView {
     var `extension` = "js"
     @IBAction func cheatCode(_ sender: Any) {
         questionInput.isHidden = state
+        completionView.isHidden = !state
         state = !state
         
         if (state == true) {
