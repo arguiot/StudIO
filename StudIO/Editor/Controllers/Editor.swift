@@ -41,6 +41,8 @@ class Editor: UIView {
         let request = URLRequest(url: url)
         codeView.load(request)
         codeView.navigationDelegate = self
+        
+        codeView.hack_removeInputAccessory()
     }
     
     var highlightExt: String?
