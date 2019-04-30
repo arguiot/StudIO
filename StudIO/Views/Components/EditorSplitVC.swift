@@ -60,4 +60,27 @@ class EditorSplitVC: UISplitViewController {
         let width = UIScreen.main.bounds.width
         accessory.frame = CGRect(x: 0, y: height - 60, width: width, height: 60)
     }
+    
+    func findKeyboardView() -> UIView? {
+        var result: UIView? = nil
+        
+        let windows = UIApplication.shared.windows
+        for window in windows {
+            if window.description.hasPrefix("<UITextEffectsWindow") {
+                for subview in window.subviews {
+                    if subview.description.hasPrefix("<UIInputSetContainerView") {
+                        for sv in subview.subviews {
+                            if sv.description.hasPrefix("<UIInputSetHostView") {
+                                result = sv
+                                break
+                            }
+                        }
+                        break
+                    }
+                }
+                break
+            }
+        }
+        return result
+    }
 }
