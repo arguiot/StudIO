@@ -468,7 +468,7 @@ DQ
                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ask your question here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Poa-3S-WET">
+                        <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ask your question here" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Poa-3S-WET">
                             <rect key="frame" x="53" y="10" width="341" height="40"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -490,16 +490,25 @@ DQ
                             <rect key="frame" x="53" y="5" width="341" height="50"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Aq1-as-fcK">
+                            <rect key="frame" x="12" y="17" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="Rpn-LK-aR4"/>
+                                <constraint firstAttribute="height" constant="20" id="un0-bT-lbw"/>
+                            </constraints>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="Poa-3S-WET" secondAttribute="bottom" constant="10" id="5Nf-DX-m1d"/>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="vew-o0-Uzi" secondAttribute="bottom" constant="5" id="9ky-o5-YsR"/>
+                        <constraint firstItem="Aq1-as-fcK" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="17" id="Axr-kQ-Ah9"/>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="trailing" secondItem="vew-o0-Uzi" secondAttribute="trailing" constant="20" id="EW3-Zl-Kwe"/>
                         <constraint firstItem="vew-o0-Uzi" firstAttribute="leading" secondItem="7vl-a8-6Jr" secondAttribute="trailing" constant="8" id="HXq-iu-8n9"/>
                         <constraint firstItem="vew-o0-Uzi" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="5" id="Vo6-99-IY4"/>
                         <constraint firstItem="Poa-3S-WET" firstAttribute="leading" secondItem="7vl-a8-6Jr" secondAttribute="trailing" constant="8" id="cak-Ak-d29"/>
                         <constraint firstItem="7vl-a8-6Jr" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="5" id="crf-PE-bpQ"/>
+                        <constraint firstItem="Aq1-as-fcK" firstAttribute="leading" secondItem="VVK-Fb-8vw" secondAttribute="leading" constant="12" id="dgb-nD-oSg"/>
                         <constraint firstItem="7vl-a8-6Jr" firstAttribute="leading" secondItem="VVK-Fb-8vw" secondAttribute="leading" id="nG5-FC-XZb"/>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="trailing" secondItem="Poa-3S-WET" secondAttribute="trailing" constant="20" id="poj-l1-W42"/>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="7vl-a8-6Jr" secondAttribute="bottom" constant="10" id="tQZ-1c-xiG"/>
@@ -509,6 +518,7 @@ DQ
                     <connections>
                         <outlet property="bulb" destination="7vl-a8-6Jr" id="pSw-Eh-gRW"/>
                         <outlet property="completionView" destination="vew-o0-Uzi" id="jFq-EU-RLC"/>
+                        <outlet property="loader" destination="Aq1-as-fcK" id="ZC0-uN-F48"/>
                         <outlet property="questionInput" destination="Poa-3S-WET" id="Rym-rl-T6l"/>
                     </connections>
                 </view>

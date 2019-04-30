@@ -20,6 +20,8 @@ class SmartKeyboard: UIView {
     */
     @IBOutlet weak var completionView: CompletionView!
     
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    
     @IBOutlet weak var bulb: UIButton!
     @IBOutlet weak var questionInput: UITextField!
     var state = false
@@ -54,12 +56,22 @@ class SmartKeyboard: UIView {
         
     }
     func load() {
+        bulb.isHidden = true
+        loader.isHidden = false
+        loader.startAnimating()
+        
         let cht = ChtSH()
         let url = cht.getLink(question: questionInput.text ?? "", language: self.extension, comments: true)
         DispatchQueue.global().async {
             cht.down(load: url) { (str) in
                 let snippet = Snippet(n: "smartCheatCode", c: str, l: self.extension)
                 NotificationCenter.default.post(name: .init("insertSnippet"), object: nil, userInfo: ["selected": snippet])
+                
+                DispatchQueue.main.sync {
+                    self.bulb.isHidden = false
+                    self.loader.isHidden = true
+                    self.loader.stopAnimating()
+                }
             }
         }
     }

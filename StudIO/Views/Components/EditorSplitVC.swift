@@ -40,6 +40,8 @@ class EditorSplitVC: UISplitViewController {
     @objc func keyboardWillShow(_ notification: Notification) {
         accessory.isHidden = false
         
+        accessory.loader.isHidden = true
+        
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let height = UIScreen.main.bounds.height
             let width = UIScreen.main.bounds.width
