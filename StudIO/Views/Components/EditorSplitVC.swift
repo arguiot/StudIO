@@ -50,6 +50,8 @@ class EditorSplitVC: UISplitViewController {
             let keyboardHeight = keyboardRectangle.height
             
             accessory.frame = CGRect(x: 0, y: height - 60 - keyboardHeight, width: width, height: 60)
+            
+            self.findKeyboardView()?.isHidden = true
         }
     }
     
@@ -62,20 +64,30 @@ class EditorSplitVC: UISplitViewController {
     }
     
     func findKeyboardView() -> UIView? {
-        var result: UIView? = nil
+        let result: UIView? = nil
         
         let windows = UIApplication.shared.windows
+        
+        let prefixes = [
+            "<UIInputSetContainerView",
+            "<UIInputSetHostView",
+            "<_UIKBCompatInputView",
+            "<UIKeyboardAutomatic",
+            "<UIKeyboardImpl",
+        ]
         for window in windows {
-            if window.description.hasPrefix("<UITextEffectsWindow") {
-                for subview in window.subviews {
-                    if subview.description.hasPrefix("<UIInputSetContainerView") {
-                        for sv in subview.subviews {
-                            if sv.description.hasPrefix("<UIInputSetHostView") {
-                                result = sv
-                                break
-                            }
+            if window.description.hasPrefix("<UIRemoteKeyboardWindow") {
+                var last = window.subviews
+                for p in prefixes {
+                    for s in last {
+                        if s.description.hasPrefix(p) {
+                            last = s.subviews
                         }
-                        break
+                    }
+                }
+                for s in last {
+                    if s.description.hasPrefix("<UIKeyboardAssistantBar") {
+                        return s
                     }
                 }
                 break
