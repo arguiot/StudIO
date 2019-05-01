@@ -498,7 +498,7 @@ DQ
                             </constraints>
                         </activityIndicatorView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.79607843137254897" green="0.80784313725490198" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="Poa-3S-WET" secondAttribute="bottom" constant="10" id="5Nf-DX-m1d"/>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="vew-o0-Uzi" secondAttribute="bottom" constant="5" id="9ky-o5-YsR"/>
