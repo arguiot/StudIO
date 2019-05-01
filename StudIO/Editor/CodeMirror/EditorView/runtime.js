@@ -21,7 +21,7 @@ const d = new Catch(err => {
 		userAgent: userAgent
 	};
 	(async () => {
-		const rawResponse = await fetch('https://studio-editor-error.herokuapp.com/', {
+		const rawResponse = await fetch('https://errors.studiocode.app/', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
