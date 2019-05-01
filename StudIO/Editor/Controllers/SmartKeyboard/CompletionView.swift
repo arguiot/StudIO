@@ -39,7 +39,35 @@ class CompletionView: UIView {
         initialisation()
         
     }
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     func initialisation() {
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: scrollView.contentSize.height)
+    }
+}
+
+
+extension Editor {
+    @IBAction func keyTouch(_ sender: Any) {
+        let button = sender as! UIButton
+        let content = button.currentTitle
         
+        let data = content?.data(using: .utf8)
+        let c = data?.base64EncodedString()
+        let js = """
+        try {
+        window.e.insertSnippet("\(c ?? "")")
+        } catch(e) {
+        console.log(e)
+        }
+        """
+        DispatchQueue.main.async {
+            self.codeView.evaluateJavaScript(js) { (result, error) in
+                if error != nil {
+                    NSObject.alert(t: "Key error", m: error?.localizedDescription ?? "Couldn't insert key")
+                }
+            }
+        }
     }
 }
