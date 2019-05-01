@@ -22,3 +22,16 @@ extension UIViewController {
         return nil
     }
 }
+extension UIView {
+    //Get Parent View Controller from any view
+    var parentViewController: UIViewController {
+        var responder: UIResponder? = self
+        while !(responder is UIViewController) {
+            responder = responder?.next
+            if nil == responder {
+                break
+            }
+        }
+        return (responder as? UIViewController)!
+    }
+}

@@ -45,6 +45,11 @@ class CompletionView: UIView {
     func initialisation() {
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: scrollView.contentSize.height)
     }
+    
+    
+    @IBOutlet weak var complete1: UIButton!
+    @IBOutlet weak var complete2: UIButton!
+    @IBOutlet weak var complete3: UIButton!
 }
 
 
@@ -69,5 +74,17 @@ extension Editor {
                 }
             }
         }
+    }
+    
+    
+    // Completion Engine
+    func setAutoCompletions(key1: String, key2: String, key3: String) {
+        let detailVC = self.parentViewController as! WorkingDirDetailVC
+        let editorVC = detailVC.splitViewController as! EditorSplitVC
+        let smartKeyboard = editorVC.accessory
+        let completion = smartKeyboard?.completionView
+        completion?.complete1.setTitle(key1, for: .normal)
+        completion?.complete2.setTitle(key2, for: .normal)
+        completion?.complete3.setTitle(key3, for: .normal)
     }
 }
