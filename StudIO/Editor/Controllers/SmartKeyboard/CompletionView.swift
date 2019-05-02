@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class CompletionView: UIView {
 
@@ -53,7 +54,8 @@ class CompletionView: UIView {
 }
 
 
-extension Editor {
+extension Editor: WKScriptMessageHandler {
+    
     @IBAction func keyTouch(_ sender: Any) {
         let button = sender as! UIButton
         let content = button.currentTitle
@@ -86,5 +88,23 @@ extension Editor {
         completion?.complete1.setTitle(key1, for: .normal)
         completion?.complete2.setTitle(key2, for: .normal)
         completion?.complete3.setTitle(key3, for: .normal)
+    }
+    func setListen() {
+        let userContentController = codeView.configuration.userContentController
+        if isScriptAdded == false {
+            userContentController.add(self, name: "completion")
+            
+            isScriptAdded = true
+        }
+    }
+    
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        switch message.name {
+        case "completion":
+            let keys = message.body as! [String]
+            self.setAutoCompletions(key1: keys[0], key2: keys[1], key3: keys[2])
+        default:
+            break
+        }
     }
 }

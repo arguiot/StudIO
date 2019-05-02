@@ -136,6 +136,10 @@ class editor {
 		document.querySelector(".codemirror-content").focus()
 		document.execCommand('insertText', false, str)
 	}
+
+	setCompletion(a, b, c) {
+		window.webkit.messageHandlers.completion.postMessage([a, b, c])
+	}
 }
 export default {
 	editor: editor,

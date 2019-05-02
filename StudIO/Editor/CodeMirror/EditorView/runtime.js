@@ -4,7 +4,7 @@ var EditorSettings = {}
 
 const d = new Catch(err => {
 	// Do something when there is an error
-	const name = err.errObj.message
+	const name = err.errObj.message || err.err
 	const {
 		src,
 		line,

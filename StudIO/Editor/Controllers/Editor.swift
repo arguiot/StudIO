@@ -57,10 +57,15 @@ class Editor: UIView {
         }
         code()
     }
+    // Completion Script
+    var isScriptAdded = false
+    
+    
     var content: String?
     func loadFile(withContent: String) {
         content = withContent
         if codeView.isLoading == false {
+            self.setListen()
             codeView.evaluateJavaScript("window.e.load('\(content!)')") { (result, error) in
 //                print(result, error)
             }
@@ -121,4 +126,6 @@ extension Editor: WKNavigationDelegate {
             "theme": UserDefaults.standard.string(forKey: "studio-editor-theme") ?? "monokai"
         ])
     }
+    
+    
 }
