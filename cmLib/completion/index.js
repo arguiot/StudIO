@@ -39,6 +39,26 @@ class Completion {
 
 		return [currentWord, firsts.a[0], firsts.b[0]]
 	}
+
+	getLastToken(view) {
+		const domPos = view.domAtPos(view.state.selection.ranges[0].anchor)
+		const content = domPos.node.textContent
+		const index = domPos.offset - 1
+
+		let out = ""
+		for (let i = 0; true; i++) {
+			const newI = index - i
+
+			if (newI <= 0) break
+
+			const letter = content[newI]
+
+			if (letter == " ") break
+
+			out += letter
+		}
+		return out
+	}
 }
 
 export default Completion

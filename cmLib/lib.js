@@ -18,6 +18,7 @@ const specialChars = libCM.specialChars
 const multipleSelections = libCM.multipleSelections
 const text = libCM.text
 
+import completion from "./completion/index.js"
 class editor {
 	constructor(ext, value, settings = {}) {
 		this.EditorSettings = settings
@@ -143,5 +144,6 @@ class editor {
 }
 export default {
 	editor: editor,
-	Text: text
+	Text: text,
+	Completion: completion
 }
