@@ -486,7 +486,7 @@ DQ
                                 <action selector="cheatCode:" destination="QTT-vS-s35" eventType="touchUpInside" id="mQ4-AB-UFP"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vew-o0-Uzi" customClass="CompletionView" customModule="StudIO" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vew-o0-Uzi">
                             <rect key="frame" x="53" y="5" width="341" height="50"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
@@ -517,7 +517,7 @@ DQ
                     <viewLayoutGuide key="safeArea" id="VVK-Fb-8vw"/>
                     <connections>
                         <outlet property="bulb" destination="7vl-a8-6Jr" id="pSw-Eh-gRW"/>
-                        <outlet property="completionView" destination="vew-o0-Uzi" id="jFq-EU-RLC"/>
+                        <outlet property="completionView" destination="vew-o0-Uzi" id="s8J-d8-jus"/>
                         <outlet property="loader" destination="Aq1-as-fcK" id="ZC0-uN-F48"/>
                         <outlet property="questionInput" destination="Poa-3S-WET" id="Rym-rl-T6l"/>
                     </connections>

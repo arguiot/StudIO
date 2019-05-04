@@ -25,6 +25,7 @@
 		68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68040211220EC67500789453 /* BLTNBoard.framework */; };
 		68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68040214220EC67800789453 /* ObjectiveGit.framework */; };
 		68040218220EC67800789453 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68040215220EC67800789453 /* Result.framework */; };
+		6804474F227DADDD00DBB5AA /* CompletionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6804474E227DADDD00DBB5AA /* CompletionView.storyboard */; };
 		68058E5821C7AFCB0088334E /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68058E5721C7AFCB0088334E /* TableViewExtension.swift */; };
 		6808B18121BD1D8200811058 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808B18021BD1D8200811058 /* Files.swift */; };
 		6808B18321BD1E5200811058 /* FileProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808B18221BD1E5200811058 /* FileProjects.swift */; };
@@ -68,7 +69,6 @@
 		6863DF9721B68F1700911374 /* EditorSplitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6863DF9621B68F1700911374 /* EditorSplitVC.swift */; };
 		686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686822ED21DB8DCA0036694B /* GitCommit.xib */; };
 		686822F021DB8E130036694B /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686822EF21DB8E130036694B /* GitCommit.swift */; };
-		687BA441227719DD007AE0B3 /* CompletionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 687BA440227719DD007AE0B3 /* CompletionView.xib */; };
 		687BA443227719F3007AE0B3 /* CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687BA442227719F3007AE0B3 /* CompletionView.swift */; };
 		687DA70522127145005491C0 /* PickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687DA70422127145005491C0 /* PickerViewCell.swift */; };
 		687EC15B222AB46C00E6B3C3 /* SwiftGit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 687EC15A222AB46C00E6B3C3 /* SwiftGit2.framework */; };
@@ -119,6 +119,7 @@
 		68040211220EC67500789453 /* BLTNBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BLTNBoard.framework; path = Carthage/Build/iOS/BLTNBoard.framework; sourceTree = "<group>"; };
 		68040214220EC67800789453 /* ObjectiveGit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectiveGit.framework; path = Carthage/Build/iOS/ObjectiveGit.framework; sourceTree = "<group>"; };
 		68040215220EC67800789453 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		6804474E227DADDD00DBB5AA /* CompletionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CompletionView.storyboard; sourceTree = "<group>"; };
 		68058E5721C7AFCB0088334E /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
 		6808B18021BD1D8200811058 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		6808B18221BD1E5200811058 /* FileProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProjects.swift; sourceTree = "<group>"; };
@@ -169,7 +170,6 @@
 		686822ED21DB8DCA0036694B /* GitCommit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GitCommit.xib; sourceTree = "<group>"; };
 		686822EF21DB8E130036694B /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
 		6872862B21D29DE2003F1073 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
-		687BA440227719DD007AE0B3 /* CompletionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletionView.xib; sourceTree = "<group>"; };
 		687BA442227719F3007AE0B3 /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 		687DA70422127145005491C0 /* PickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewCell.swift; sourceTree = "<group>"; };
 		687EC15A222AB46C00E6B3C3 /* SwiftGit2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGit2.framework; path = Carthage/Build/iOS/SwiftGit2.framework; sourceTree = "<group>"; };
@@ -429,7 +429,7 @@
 				6863DF9021B5496200911374 /* BottomLine.xib */,
 				6852C24B21BB53BA00FA40DC /* Editor.xib */,
 				686822ED21DB8DCA0036694B /* GitCommit.xib */,
-				687BA440227719DD007AE0B3 /* CompletionView.xib */,
+				6804474E227DADDD00DBB5AA /* CompletionView.storyboard */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -660,10 +660,10 @@
 				6856C7A421B2586700441767 /* file-icons.ttf in Resources */,
 				68162E8821BBE11200CDA628 /* EditorView in Resources */,
 				6856C7A321B2586500441767 /* opicons.ttf in Resources */,
+				6804474F227DADDD00DBB5AA /* CompletionView.storyboard in Resources */,
 				6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */,
 				6835AEF82221260900A0C379 /* Language.strings in Resources */,
 				6852C24C21BB53BA00FA40DC /* Editor.xib in Resources */,
-				687BA441227719DD007AE0B3 /* CompletionView.xib in Resources */,
 				6863DF9121B5496200911374 /* BottomLine.xib in Resources */,
 				686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */,
 				6856C7A121B249FB00441767 /* Icons.plist in Resources */,

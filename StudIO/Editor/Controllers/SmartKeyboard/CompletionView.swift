@@ -9,9 +9,7 @@
 import UIKit
 import WebKit
 
-class CompletionView: UIView {
-
-    @IBOutlet var contentView: UIView!
+class CompletionView: UIViewController {
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -19,38 +17,27 @@ class CompletionView: UIView {
         // Drawing code
     }
     */
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-    
-    
-    private func commonInit() {
-        Bundle.main.loadNibNamed("CompletionView", owner: self, options: nil)
-        
-        addSubview(contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        
-        initialisation()
-        
-    }
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    func initialisation() {
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: scrollView.contentSize.height)
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(setCompletes(notification:)), name: .init("setAutoComplete"), object: nil)
     }
     
     
     @IBOutlet weak var complete1: UIButton!
     @IBOutlet weak var complete2: UIButton!
     @IBOutlet weak var complete3: UIButton!
+    
+    @objc func setCompletes(notification: Notification) {
+        let keys = notification.userInfo!["titles"] as! [String]
+        let key1 = keys[0]
+        let key2 = keys[1]
+        let key3 = keys[2]
+        complete1.setTitle(key1, for: .normal)
+        complete2.setTitle(key2, for: .normal)
+        complete3.setTitle(key3, for: .normal)
+    }
 }
 
 
@@ -85,9 +72,10 @@ extension Editor: WKScriptMessageHandler {
         let editorVC = detailVC.splitViewController as! EditorSplitVC
         let smartKeyboard = editorVC.accessory
         let completion = smartKeyboard?.completionView
-        completion?.complete1.setTitle(key1, for: .normal)
-        completion?.complete2.setTitle(key2, for: .normal)
-        completion?.complete3.setTitle(key3, for: .normal)
+        
+        NotificationCenter.default.post(name: .init("setAutoComplete"), object: nil, userInfo: ["titles": [
+            key1, key2, key3
+            ]])
     }
     func setListen() {
         let userContentController = codeView.configuration.userContentController

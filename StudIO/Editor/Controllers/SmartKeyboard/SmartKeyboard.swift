@@ -11,14 +11,13 @@ import WebKit
 
 class SmartKeyboard: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    func commonInit() {
+        let st = UIStoryboard(name: "CompletionView", bundle: nil)
+        let vc = st.instantiateInitialViewController() as! CompletionView
+        completionView.addSubview(vc.view)
     }
-    */
-    @IBOutlet weak var completionView: CompletionView!
+    
+    @IBOutlet weak var completionView: UIView!
     
     @IBOutlet weak var loader: UIActivityIndicatorView!
     
