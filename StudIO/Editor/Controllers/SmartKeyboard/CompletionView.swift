@@ -101,8 +101,8 @@ extension Editor: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         switch message.name {
         case "completion":
-            let keys = message.body as! [String]
-            self.setAutoCompletions(key1: keys[0], key2: keys[1], key3: keys[2])
+            let keys = message.body as? [String]
+            self.setAutoCompletions(key1: keys?[0] ?? "", key2: keys?[1] ?? "", key3: keys?[2] ?? "")
         default:
             break
         }

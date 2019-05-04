@@ -73,6 +73,8 @@ class editor {
 					state: this.cm
 				})
 				document.querySelector("#editor").appendChild(view.dom)
+
+				this.listenForAutomcompletion()
 			};
 			script.src = `mode/${mode.mode}/${mode.mode}.js`;
 
@@ -138,6 +140,14 @@ class editor {
 		document.execCommand('insertText', false, str)
 	}
 
+	listenForAutomcompletion() {
+		this.c = new completion(window.view.state.doc.text.join("\n"))
+		document.querySelector(".codemirror-content").addEventListener("input", e => {
+			const currentWord = this.c.getLastToken()
+			const suggestions = this.c.getSuggestions(currentWord, window.view.state.doc.toString())
+			this.setCompletion(...suggestions)
+		})
+	}
 	setCompletion(a, b, c) {
 		window.webkit.messageHandlers.completion.postMessage([a, b, c])
 	}

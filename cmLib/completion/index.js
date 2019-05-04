@@ -10,6 +10,8 @@ class Completion {
 		return new Promise(function(resolve, reject) {
 			resolve(str.replace(/[^\w\d\s]/g, "")
 				.replace(/\s{2,}/g, " ")
+				.split("\n")
+				.join(" ")
 				.split(" "))
 		});
 	}
@@ -29,10 +31,11 @@ class Completion {
 			b: []
 		}
 		this.set.forEach(token => {
-			const score = levenshtein(currentWord, token)
-			if (firsts.a == [] || firsts.a[1] <= score) {
+			// const score = levenshtein(currentWord, token)
+			const score = token.indexOf(currentWord) != -1 ? 1 : -1
+			if (firsts.a.length == 0 || firsts.a[1] >= score) {
 				firsts.a = [token, score]
-			} else if (firsts.b == [] || firsts.b[1] <= score) {
+			} else if (firsts.b.length == 0 || firsts.b[1] >= score) {
 				firsts.b = [token, score]
 			}
 		})
@@ -40,24 +43,27 @@ class Completion {
 		return [currentWord, firsts.a[0], firsts.b[0]]
 	}
 
-	getLastToken(view) {
-		const domPos = view.domAtPos(view.state.selection.ranges[0].anchor)
-		const content = domPos.node.textContent
-		const index = domPos.offset - 1
+	getLastToken() {
+		const index = window.view.state.selection.ranges[0].anchor
+		const content = window.view.state.doc.toString()
 
-		let out = ""
+		let out = content[index]
 		for (let i = 0; true; i++) {
 			const newI = index - i
 
-			if (newI <= 0) break
-
+			if (newI == 0) break
+			if (newI < 0) {
+				newI = content.length - 1
+			}
 			const letter = content[newI]
 
 			if (letter == " ") break
-
-			out += letter
+			if (letter == "\n") break
+			if (typeof letter != "undefined") {
+				out += letter
+			}
 		}
-		return out
+		return out.split("").reverse().join("")
 	}
 }
 
