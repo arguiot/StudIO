@@ -37,9 +37,13 @@ class editor {
 			script.onload = () => {
 				var m = null
 				try {
-					m = ExportedMode({ indentUnit: 2 })
+					m = ExportedMode({
+						indentUnit: 2
+					})
 				} catch {
-					m = ExportedMode({ indentUnit: 2 }, {})
+					m = ExportedMode({
+						indentUnit: 2
+					}, {})
 				}
 
 				let mode = legacyMode({
@@ -137,6 +141,11 @@ class editor {
 	insertSnippet(snippet, replaceLine = false) {
 		const str = atobUTF8(snippet)
 		document.querySelector(".codemirror-content").focus()
+		if (replaceLine === true) {
+			for (var i = 0; i < this.c.getLastToken().length; i++) {
+				document.execCommand('delete')
+			}
+		}
 		document.execCommand('insertText', false, str)
 	}
 

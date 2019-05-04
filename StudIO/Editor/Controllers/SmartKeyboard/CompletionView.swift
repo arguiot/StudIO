@@ -64,7 +64,7 @@ extension Editor: WKScriptMessageHandler {
         let c = data?.base64EncodedString()
         let js = """
         try {
-        window.e.insertSnippet("\(c ?? "")")
+        window.e.insertSnippet("\(c ?? "")", true)
         } catch(e) {
         console.log(e)
         }

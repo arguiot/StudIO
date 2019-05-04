@@ -47,7 +47,7 @@ class Completion {
 		const index = window.view.state.selection.ranges[0].anchor
 		const content = window.view.state.doc.toString()
 
-		let out = content[index]
+		let out = ""
 		for (let i = 0; true; i++) {
 			const newI = index - i
 
