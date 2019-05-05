@@ -25,6 +25,8 @@ class StudIO_UI_Tests: XCTestCase {
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        Springboard.deleteMyApp()
+        super.tearDown()
     }
 
     func testExample() {
@@ -32,6 +34,7 @@ class StudIO_UI_Tests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         let app = XCUIApplication()
+
         app.navigationBars["Projects"].buttons["Add"].tap()
         app.buttons["Clone repository"].tap()
         let gtURL = app.textFields.firstMatch
@@ -54,19 +57,17 @@ class StudIO_UI_Tests: XCTestCase {
         snapshot("CreateML")
         app.navigationBars["createml.py"].buttons["Neuron"].tap()
         tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["neuron_ml"]/*[[".cells.staticTexts[\"neuron_ml\"]",".staticTexts[\"neuron_ml\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
-        
+
         let cancelButton = app.navigationBars["Neuron"].buttons["Cancel"]
         cancelButton.tap()
-        
+
         let collectionViewsQuery = app.collectionViews
         let repoWhiteElement = collectionViewsQuery.cells.otherElements.containing(.image, identifier:"Repo-white").element
-        
-        repoWhiteElement.press(forDuration: 2)
-        
-        app.sheets.buttons["Delete 'Neuron'"].tap()
-        snapshot("Share Sheet")
-    }
 
+        repoWhiteElement.press(forDuration: 2)
+
+        app.sheets.buttons["Delete 'Neuron'"].tap()
+    }
 }
 
 extension XCTestCase {
@@ -79,6 +80,31 @@ extension XCTestCase {
                 break;
             }
             RunLoop.current.run(until: NSDate(timeIntervalSinceNow: 0.5) as Date)
+        }
+    }
+}
+
+class Springboard {
+    
+    static let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+    
+    /**
+     Terminate and delete the app via springboard
+     */
+    class func deleteMyApp() {
+        XCUIApplication().terminate()
+        
+        // Force delete the app from the springboard
+        let icon = springboard.icons["Citizen"]
+        if icon.exists {
+            let iconFrame = icon.frame
+            let springboardFrame = springboard.frame
+            icon.press(forDuration: 1.3)
+            
+            // Tap the little "X" button at approximately where it is. The X is not exposed directly
+            springboard.coordinate(withNormalizedOffset: CGVector(dx: (iconFrame.minX + 3) / springboardFrame.maxX, dy: (iconFrame.minY + 3) / springboardFrame.maxY)).tap()
+            
+            springboard.alerts.buttons["Delete"].tap()
         }
     }
 }
