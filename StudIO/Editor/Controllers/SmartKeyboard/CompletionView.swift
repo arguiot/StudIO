@@ -9,39 +9,6 @@
 import UIKit
 import WebKit
 
-class CompletionView: UIViewController {
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-
-    override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(setCompletes(notification:)), name: .init("setAutoComplete"), object: nil)
-//        collectionView.dataSource = self
-        collectionView.reloadData()
-    }
-    
-    
-    @IBOutlet weak var complete1: UIButton!
-    @IBOutlet weak var complete2: UIButton!
-    @IBOutlet weak var complete3: UIButton!
-    
-    @objc func setCompletes(notification: Notification) {
-        let keys = notification.userInfo!["titles"] as! [String]
-        let key1 = keys[0]
-        let key2 = keys[1]
-        let key3 = keys[2]
-        complete1.setTitle(key1, for: .normal)
-        complete2.setTitle(key2, for: .normal)
-        complete3.setTitle(key3, for: .normal)
-    }
-}
-
 
 extension Editor: WKScriptMessageHandler {
     
@@ -103,15 +70,7 @@ extension EditorSplitVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cells.count
     }
-    var cells: [CompletionFeature] {
-        return [
-            CompletionFeature(title: "{", type: .small),
-            CompletionFeature(title: "}", type: .small),
-            CompletionFeature(title: "", type: .large),
-            CompletionFeature(title: "", type: .large),
-            CompletionFeature(title: "", type: .large)
-        ]
-    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let row = indexPath.row
         let feature = cells[row]
@@ -126,5 +85,16 @@ extension EditorSplitVC: UICollectionViewDataSource {
             cell.button.setTitle(feature.title, for: .normal)
             return cell
         }
+    }
+    
+    @objc func setCompletes(notification: Notification) {
+        let keys = notification.userInfo!["titles"] as! [String]
+        let key1 = keys[0]
+        let key2 = keys[1]
+        let key3 = keys[2]
+        self.cells[2] = CompletionFeature(title: key1, type: .large)
+        self.cells[3] = CompletionFeature(title: key2, type: .large)
+        self.cells[4] = CompletionFeature(title: key3, type: .large)
+        accessory.completionView.reloadData()
     }
 }

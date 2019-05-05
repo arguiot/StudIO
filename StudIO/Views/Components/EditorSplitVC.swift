@@ -31,6 +31,8 @@ class EditorSplitVC: UISplitViewController {
         self.view.addSubview(accessory)
         
         accessory.isHidden = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setCompletes(notification:)), name: .init("setAutoComplete"), object: nil)
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -95,4 +97,14 @@ class EditorSplitVC: UISplitViewController {
         }
         return result
     }
+    
+    
+    // Completion Cells
+    var cells: [CompletionFeature] = [
+        CompletionFeature(title: "{", type: .small),
+        CompletionFeature(title: "}", type: .small),
+        CompletionFeature(title: "", type: .large),
+        CompletionFeature(title: "", type: .large),
+        CompletionFeature(title: "", type: .large)
+    ]
 }
