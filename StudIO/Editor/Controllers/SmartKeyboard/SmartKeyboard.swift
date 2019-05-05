@@ -14,6 +14,7 @@ class SmartKeyboard: UIView {
     func commonInit() {
         let st = UIStoryboard(name: "CompletionView", bundle: nil)
         let vc = st.instantiateInitialViewController() as! CompletionView
+        vc.view.frame = CGRect(x: 0, y: 0, width: completionView.frame.width, height: completionView.frame.height)
         completionView.addSubview(vc.view)
     }
     
