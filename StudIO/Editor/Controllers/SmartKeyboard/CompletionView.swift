@@ -19,10 +19,11 @@ class CompletionView: UIViewController {
     */
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(setCompletes(notification:)), name: .init("setAutoComplete"), object: nil)
         collectionView.dataSource = self
+        collectionView.reloadData()
     }
     
     
@@ -100,13 +101,30 @@ extension Editor: WKScriptMessageHandler {
 
 extension CompletionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return cells.count
     }
-    
+    var cells: [CompletionFeature] {
+        return [
+            CompletionFeature(title: "{", type: .small),
+            CompletionFeature(title: "}", type: .small),
+            CompletionFeature(title: "", type: .large),
+            CompletionFeature(title: "", type: .large),
+            CompletionFeature(title: "", type: .large)
+        ]
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.cellForItem(at: indexPath)
-        return cell!
+        let row = indexPath.row
+        let feature = cells[row]
+        switch feature.type {
+        case .large:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LargeCell", for: indexPath) as! LargeCompleletionCell
+            
+            cell.button.setTitle(feature.title, for: .normal)
+            return cell
+        default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SmallCell", for: indexPath) as! SmallCompleletionCell
+            cell.button.setTitle(feature.title, for: .normal)
+            return cell
+        }
     }
-    
-    
 }

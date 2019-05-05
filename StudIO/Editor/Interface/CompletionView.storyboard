@@ -29,7 +29,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="nTW-Z5-Ej6">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SmallCell" id="nTW-Z5-Ej6" customClass="SmallCompleletionCell" customModule="StudIO" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="35" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -66,47 +66,12 @@
                                             <constraint firstAttribute="trailing" secondItem="VP1-R3-9nl" secondAttribute="trailing" id="Y9V-ws-ex2"/>
                                         </constraints>
                                         <size key="customSize" width="35" height="50"/>
+                                        <connections>
+                                            <outlet property="button" destination="VP1-R3-9nl" id="qIr-48-hNz"/>
+                                        </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="X2J-fO-zsR">
-                                        <rect key="frame" x="45" y="0.0" width="35" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="35" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6y-jX-EMW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="35" height="50"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                    <state key="normal" title="}">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="keyTouch:" destination="Ad1-P0-ivk" eventType="touchUpInside" id="eQn-pT-Zn2"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="j6y-jX-EMW" secondAttribute="trailing" id="TLd-v2-rgb"/>
-                                            <constraint firstAttribute="bottom" secondItem="j6y-jX-EMW" secondAttribute="bottom" id="fUw-6D-Rmn"/>
-                                            <constraint firstItem="j6y-jX-EMW" firstAttribute="top" secondItem="X2J-fO-zsR" secondAttribute="top" id="gGf-m6-XJC"/>
-                                            <constraint firstItem="j6y-jX-EMW" firstAttribute="leading" secondItem="X2J-fO-zsR" secondAttribute="leading" id="vih-Ri-9fC"/>
-                                        </constraints>
-                                        <size key="customSize" width="35" height="50"/>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="LUA-Qp-uHp">
-                                        <rect key="frame" x="90" y="0.0" width="150" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LargeCell" id="LUA-Qp-uHp" customClass="LargeCompleletionCell" customModule="StudIO" customModuleProvider="target">
+                                        <rect key="frame" x="45" y="0.0" width="150" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
@@ -139,78 +104,9 @@
                                             <constraint firstAttribute="bottom" secondItem="eTb-CJ-DDN" secondAttribute="bottom" id="zAE-nY-q5D"/>
                                         </constraints>
                                         <size key="customSize" width="150" height="50"/>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SR6-jw-LT9">
-                                        <rect key="frame" x="250" y="0.0" width="150" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfl-wq-ddN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
-                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="-1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="keyTouch:" destination="Ad1-P0-ivk" eventType="touchUpInside" id="iaa-hy-7o7"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="Qfl-wq-ddN" firstAttribute="top" secondItem="SR6-jw-LT9" secondAttribute="top" id="J1h-LJ-m5x"/>
-                                            <constraint firstItem="Qfl-wq-ddN" firstAttribute="leading" secondItem="SR6-jw-LT9" secondAttribute="leading" id="Tj9-wK-MPp"/>
-                                            <constraint firstAttribute="bottom" secondItem="Qfl-wq-ddN" secondAttribute="bottom" id="ouE-xG-KEv"/>
-                                            <constraint firstAttribute="trailing" secondItem="Qfl-wq-ddN" secondAttribute="trailing" id="rE6-Xc-Xs3"/>
-                                        </constraints>
-                                        <viewLayoutGuide key="safeArea" id="eIr-Sm-pBp"/>
-                                        <size key="customSize" width="150" height="50"/>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Q3R-pc-ABH">
-                                        <rect key="frame" x="410" y="0.0" width="150" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkX-9y-uDY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
-                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="-1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="keyTouch:" destination="Ad1-P0-ivk" eventType="touchUpInside" id="FFj-tP-27N"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="bkX-9y-uDY" secondAttribute="bottom" id="MhX-FC-PMI"/>
-                                            <constraint firstItem="bkX-9y-uDY" firstAttribute="leading" secondItem="Q3R-pc-ABH" secondAttribute="leading" id="T9W-ut-Khp"/>
-                                            <constraint firstAttribute="trailing" secondItem="bkX-9y-uDY" secondAttribute="trailing" id="uTB-es-MCg"/>
-                                            <constraint firstItem="bkX-9y-uDY" firstAttribute="top" secondItem="Q3R-pc-ABH" secondAttribute="top" id="zO7-bt-edQ"/>
-                                        </constraints>
-                                        <viewLayoutGuide key="safeArea" id="aVf-08-LJN"/>
-                                        <size key="customSize" width="150" height="50"/>
+                                        <connections>
+                                            <outlet property="button" destination="eTb-CJ-DDN" id="ZQi-Yj-2ZM"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
