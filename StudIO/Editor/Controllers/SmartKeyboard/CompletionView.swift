@@ -66,7 +66,7 @@ extension Editor: WKScriptMessageHandler {
     }
 }
 
-extension EditorSplitVC: UICollectionViewDataSource {
+extension EditorSplitVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cells.count
     }
@@ -84,6 +84,21 @@ extension EditorSplitVC: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SmallCell", for: indexPath) as! SmallCompleletionCell
             cell.button.setTitle(feature.title, for: .normal)
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // Compute the dimension of a cell for an NxN layout with space S between
+        // cells.  Take the collection view's width, subtract (N-1)*S points for
+        // the spaces between the cells, and then divide by N to find the final
+        // dimension for the cell's width and height.
+        let row = indexPath.row
+        let feature = cells[row]
+        switch feature.type {
+        case .large:
+            return CGSize(width: 150, height: 50)
+        default:
+            return CGSize(width: 35, height: 50)
         }
     }
     
