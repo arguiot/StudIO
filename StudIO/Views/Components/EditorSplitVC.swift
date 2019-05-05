@@ -31,7 +31,6 @@ class EditorSplitVC: UISplitViewController {
         self.view.addSubview(accessory)
         
         accessory.isHidden = true
-        accessory.commonInit()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

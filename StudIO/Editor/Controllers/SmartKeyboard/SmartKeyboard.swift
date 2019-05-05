@@ -10,21 +10,13 @@ import UIKit
 import WebKit
 
 class SmartKeyboard: UIView {
-
-    func commonInit() {
-        let st = UIStoryboard(name: "CompletionView", bundle: nil)
-        let vc = st.instantiateInitialViewController() as! CompletionView
-        vc.view.frame = CGRect(x: 0, y: 0, width: completionView.frame.width, height: completionView.frame.height)
-        vc.viewWillAppear(true)
-        completionView.addSubview(vc.view)
-    }
-    
-    @IBOutlet weak var completionView: UIView!
     
     @IBOutlet weak var loader: UIActivityIndicatorView!
     
     @IBOutlet weak var bulb: UIButton!
     @IBOutlet weak var questionInput: UITextField!
+    
+    @IBOutlet weak var completionView: UICollectionView!
     var state = false
     
     var `extension` = "js"

@@ -22,7 +22,7 @@ class CompletionView: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(setCompletes(notification:)), name: .init("setAutoComplete"), object: nil)
-        collectionView.dataSource = self
+//        collectionView.dataSource = self
         collectionView.reloadData()
     }
     
@@ -99,7 +99,7 @@ extension Editor: WKScriptMessageHandler {
     }
 }
 
-extension CompletionView: UICollectionViewDataSource {
+extension EditorSplitVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cells.count
     }
