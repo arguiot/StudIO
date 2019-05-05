@@ -18,10 +18,11 @@ class CompletionView: UIViewController {
     }
     */
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(setCompletes(notification:)), name: .init("setAutoComplete"), object: nil)
+        collectionView.dataSource = self
     }
     
     
@@ -95,4 +96,17 @@ extension Editor: WKScriptMessageHandler {
             break
         }
     }
+}
+
+extension CompletionView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.cellForItem(at: indexPath)
+        return cell!
+    }
+    
+    
 }
