@@ -25,4 +25,31 @@ class PluginsVC: UITableViewController {
     @objc func dismissController() {
         self.dismiss(animated: true)
     }
+    
+    var sections: [Section] = [
+        Section(title: "Modes", list: [
+            
+        ]),
+        Section(title: "Themes", list: [
+            
+        ]),
+        Section(title: "Autocompletion Hint", list: [
+            
+        ])
+    ]
+    
+    struct Row {
+        var title: String
+        var source: URL
+        var type: PluginType
+    }
+    enum PluginType: String {
+        case mode = "Modes"
+        case theme = "Themes"
+        case hint = "Autocompletion Hints"
+    }
+    struct Section {
+        var title: String
+        var list: [Row]
+    }
 }

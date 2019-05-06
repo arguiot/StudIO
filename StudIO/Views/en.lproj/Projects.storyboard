@@ -209,13 +209,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="eEq-k2-93s">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pluginCell" id="eEq-k2-93s" customClass="PluginCell" customModule="StudIO" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eEq-k2-93s" id="qAz-vh-84f">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FFb-DD-3ji">
+                                            <rect key="frame" x="473" y="6.5" width="49" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="47" id="Qei-h6-dpc"/>
+                                                <constraint firstAttribute="height" constant="31" id="nvU-td-VMq"/>
+                                            </constraints>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of the plugin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWV-MF-0yw">
+                                            <rect key="frame" x="20" y="11" width="146" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="FFb-DD-3ji" secondAttribute="trailing" constant="20" id="5RU-u5-e1M"/>
+                                        <constraint firstItem="uWV-MF-0yw" firstAttribute="bottom" secondItem="qAz-vh-84f" secondAttribute="bottomMargin" id="5WY-v0-XaW"/>
+                                        <constraint firstItem="uWV-MF-0yw" firstAttribute="leading" secondItem="qAz-vh-84f" secondAttribute="leadingMargin" id="Bv7-bT-GOM"/>
+                                        <constraint firstItem="uWV-MF-0yw" firstAttribute="top" secondItem="qAz-vh-84f" secondAttribute="topMargin" id="V3y-Bv-jt7"/>
+                                        <constraint firstItem="FFb-DD-3ji" firstAttribute="centerY" secondItem="qAz-vh-84f" secondAttribute="centerY" id="oEP-0a-SiD"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="name" destination="uWV-MF-0yw" id="XpJ-bV-Ipt"/>
+                                    <outlet property="switch" destination="FFb-DD-3ji" id="1Ku-hH-rfD"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -228,7 +254,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Jg-ZG-lcl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="282" y="1562"/>
+            <point key="canvasLocation" x="281.8359375" y="1561.71875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Buc-NB-7pN">
@@ -363,7 +389,7 @@
     </scenes>
     <resources>
         <image name="Repo-white" width="256" height="256"/>
-        <image name="plugins" width="72" height="72"/>
+        <image name="plugins" width="36" height="36"/>
         <image name="settings" width="36" height="36"/>
     </resources>
 </document>

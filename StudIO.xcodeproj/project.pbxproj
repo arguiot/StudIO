@@ -98,6 +98,7 @@
 		68BD16952211735000C5F321 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BD16942211735000C5F321 /* SettingsTableView.swift */; };
 		68C2BC03228044480088C39F /* PluginsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C2BC02228044480088C39F /* PluginsVC.swift */; };
 		68C2BC06228044A40088C39F /* PluginsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C2BC05228044A40088C39F /* PluginsTableView.swift */; };
+		68C2BC09228053B60088C39F /* PluginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C2BC08228053B60088C39F /* PluginCell.swift */; };
 		68D62A4B223C80B6005EACCB /* SnippetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D62A4A223C80B6005EACCB /* SnippetsVC.swift */; };
 		68D7C3E32279AA5100DC3853 /* ButttonBorderRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D7C3E22279AA5100DC3853 /* ButttonBorderRadius.swift */; };
 		68E329D421D9223700231CFC /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E329D321D9223700231CFC /* ViewControllers.swift */; };
@@ -207,6 +208,7 @@
 		68BD16942211735000C5F321 /* SettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
 		68C2BC02228044480088C39F /* PluginsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsVC.swift; sourceTree = "<group>"; };
 		68C2BC05228044A40088C39F /* PluginsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsTableView.swift; sourceTree = "<group>"; };
+		68C2BC08228053B60088C39F /* PluginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginCell.swift; sourceTree = "<group>"; };
 		68D62A4A223C80B6005EACCB /* SnippetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetsVC.swift; sourceTree = "<group>"; };
 		68D7C3E22279AA5100DC3853 /* ButttonBorderRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButttonBorderRadius.swift; sourceTree = "<group>"; };
 		68E329D321D9223700231CFC /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 		68C2BC01228043FD0088C39F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				68C2BC07228053960088C39F /* Cell */,
 				68C2BC04228044920088C39F /* Table */,
 				68C2BC02228044480088C39F /* PluginsVC.swift */,
 			);
@@ -551,6 +554,14 @@
 				68C2BC05228044A40088C39F /* PluginsTableView.swift */,
 			);
 			path = Table;
+			sourceTree = "<group>";
+		};
+		68C2BC07228053960088C39F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				68C2BC08228053B60088C39F /* PluginCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		68D62A49223C8046005EACCB /* Snippets */ = {
@@ -821,6 +832,7 @@
 				6863DF8521B3C60400911374 /* FeedBackBLTN.swift in Sources */,
 				6863DF8721B3C62C00911374 /* TextFieldBLTN.swift in Sources */,
 				6835AEEE2221188300A0C379 /* QuickActions.swift in Sources */,
+				68C2BC09228053B60088C39F /* PluginCell.swift in Sources */,
 				681DF61A227ECB8700023DD9 /* SmallCompleletionCell.swift in Sources */,
 				682CF2A42243B1EE00207563 /* Regex.swift in Sources */,
 				689BDC1F21B22F7800D88AAB /* WorkingDirMasterVC.swift in Sources */,
