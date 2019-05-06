@@ -299,4 +299,11 @@ class ProjectVC: UICollectionViewController {
         
         self.present(vc, animated: true, completion: nil)
     }
+    @IBAction func showPlugins(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Projects", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "pluginsVC")
+        vc.modalPresentationStyle = .formSheet
+        
+        self.present(vc, animated: true, completion: nil)
+    }
 }

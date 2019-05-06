@@ -233,7 +233,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Buc-NB-7pN">
             <objects>
-                <navigationController id="tp2-OL-tUy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="pluginsVC" id="tp2-OL-tUy" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="v02-Z0-xrV">
                         <rect key="frame" x="0.0" y="20" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -321,6 +321,12 @@
                                     <action selector="showSettings:" destination="uPa-ME-Fws" id="PnB-d7-rZr"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem title="Item" image="plugins" id="dLK-z1-sl7">
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="showPlugins:" destination="uPa-ME-Fws" id="V23-I3-UwX"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </collectionViewController>
@@ -357,6 +363,7 @@
     </scenes>
     <resources>
         <image name="Repo-white" width="256" height="256"/>
+        <image name="plugins" width="72" height="72"/>
         <image name="settings" width="36" height="36"/>
     </resources>
 </document>
