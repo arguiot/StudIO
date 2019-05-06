@@ -96,6 +96,8 @@
 		68B56365222CB9A800B9E0DD /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B56364222CB9A800B9E0DD /* Compression.swift */; };
 		68B56367222CBB2600B9E0DD /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68B56366222CBB2600B9E0DD /* Zip.framework */; };
 		68BD16952211735000C5F321 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BD16942211735000C5F321 /* SettingsTableView.swift */; };
+		68C2BC03228044480088C39F /* PluginsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C2BC02228044480088C39F /* PluginsVC.swift */; };
+		68C2BC06228044A40088C39F /* PluginsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C2BC05228044A40088C39F /* PluginsTableView.swift */; };
 		68D62A4B223C80B6005EACCB /* SnippetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D62A4A223C80B6005EACCB /* SnippetsVC.swift */; };
 		68D7C3E32279AA5100DC3853 /* ButttonBorderRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D7C3E22279AA5100DC3853 /* ButttonBorderRadius.swift */; };
 		68E329D421D9223700231CFC /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E329D321D9223700231CFC /* ViewControllers.swift */; };
@@ -203,6 +205,8 @@
 		68B56364222CB9A800B9E0DD /* Compression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compression.swift; sourceTree = "<group>"; };
 		68B56366222CBB2600B9E0DD /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zip.framework; path = Carthage/Build/iOS/Zip.framework; sourceTree = "<group>"; };
 		68BD16942211735000C5F321 /* SettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
+		68C2BC02228044480088C39F /* PluginsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsVC.swift; sourceTree = "<group>"; };
+		68C2BC05228044A40088C39F /* PluginsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsTableView.swift; sourceTree = "<group>"; };
 		68D62A4A223C80B6005EACCB /* SnippetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetsVC.swift; sourceTree = "<group>"; };
 		68D7C3E22279AA5100DC3853 /* ButttonBorderRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButttonBorderRadius.swift; sourceTree = "<group>"; };
 		68E329D321D9223700231CFC /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
@@ -377,6 +381,7 @@
 		6856C7A921B2786D00441767 /* Projects */ = {
 			isa = PBXGroup;
 			children = (
+				68C2BC01228043FD0088C39F /* Plugins */,
 				68190015220EE331003E0972 /* Settings */,
 				6856C7B021B279FB00441767 /* Components */,
 				6856C7AA21B2788900441767 /* ProjectVC.swift */,
@@ -527,6 +532,23 @@
 			isa = PBXGroup;
 			children = (
 				68BD16942211735000C5F321 /* SettingsTableView.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		68C2BC01228043FD0088C39F /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				68C2BC04228044920088C39F /* Table */,
+				68C2BC02228044480088C39F /* PluginsVC.swift */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		68C2BC04228044920088C39F /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				68C2BC05228044A40088C39F /* PluginsTableView.swift */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -779,6 +801,7 @@
 				68B5635A222BB8C900B9E0DD /* DropInteraction.swift in Sources */,
 				68E4544A21C1276B00F945A0 /* CellStruct.swift in Sources */,
 				686822F021DB8E130036694B /* GitCommit.swift in Sources */,
+				68C2BC06228044A40088C39F /* PluginsTableView.swift in Sources */,
 				68A62CBD223CD46C0040225E /* snippetController.swift in Sources */,
 				683CF2652247A9D400EB75FC /* GitLab.swift in Sources */,
 				6863DF9721B68F1700911374 /* EditorSplitVC.swift in Sources */,
@@ -822,6 +845,7 @@
 				684549C921CE27EE00CF5E80 /* GitVC.swift in Sources */,
 				684F81BB220F03B60003B845 /* SliderCell.swift in Sources */,
 				6802069D21C6469C000686D1 /* Data.swift in Sources */,
+				68C2BC03228044480088C39F /* PluginsVC.swift in Sources */,
 				68A62CBF223CFFCB0040225E /* SnippetCell.swift in Sources */,
 				68879C182261FC7D002EDC5D /* CheatCodeVC.swift in Sources */,
 				68B56363222BE87300B9E0DD /* DoubleScreen.swift in Sources */,
