@@ -285,6 +285,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="checkPlugin:" destination="90O-jl-elh" eventType="editingDidEnd" id="AO2-hG-hPz"/>
+                                </connections>
                             </textField>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="li0-IJ-IZw">
                                 <rect key="frame" x="150" y="234" width="240" height="128"/>
@@ -310,9 +313,17 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES" lookupSuggestion="YES"/>
                             </textView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ndg-tX-ZYm">
+                                <rect key="frame" x="260" y="145" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="bO2-fB-sUc"/>
+                                    <constraint firstAttribute="height" constant="20" id="o0N-Br-fEw"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ndg-tX-ZYm" firstAttribute="top" secondItem="FiB-BV-5U8" secondAttribute="bottom" constant="30" id="1zi-da-T5E"/>
                             <constraint firstItem="wJt-WL-RTh" firstAttribute="centerX" secondItem="MDi-bt-QSu" secondAttribute="centerX" id="43l-xY-VSA"/>
                             <constraint firstItem="li0-IJ-IZw" firstAttribute="centerX" secondItem="MDi-bt-QSu" secondAttribute="centerX" id="4HN-TK-gjE"/>
                             <constraint firstItem="8ln-rO-Ski" firstAttribute="top" secondItem="sZz-N0-L8x" secondAttribute="top" constant="40" id="CS8-T4-KSJ"/>
@@ -327,6 +338,7 @@
                             <constraint firstItem="8ln-rO-Ski" firstAttribute="leading" secondItem="sZz-N0-L8x" secondAttribute="leading" constant="20" id="fPN-L4-A9A"/>
                             <constraint firstItem="FiB-BV-5U8" firstAttribute="top" secondItem="sZz-N0-L8x" secondAttribute="top" constant="35" id="iBo-rK-gJa"/>
                             <constraint firstItem="Was-Sz-r7M" firstAttribute="top" secondItem="FiB-BV-5U8" secondAttribute="bottom" constant="90" id="jMU-dx-rto"/>
+                            <constraint firstItem="ndg-tX-ZYm" firstAttribute="centerX" secondItem="MDi-bt-QSu" secondAttribute="centerX" id="qdw-a2-MmG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sZz-N0-L8x"/>
                     </view>
@@ -338,10 +350,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingIndicator" destination="ndg-tX-ZYm" id="hTd-Qv-cOZ"/>
                         <outlet property="pluginImage" destination="li0-IJ-IZw" id="SJ3-I4-ykJ"/>
                         <outlet property="pluginTextView" destination="wJt-WL-RTh" id="Maz-5h-MTK"/>
                         <outlet property="pluginTitle" destination="Was-Sz-r7M" id="Lsl-pb-j8C"/>
-                        <outlet property="pluginURL" destination="MDi-bt-QSu" id="OdZ-GH-Vff"/>
+                        <outlet property="pluginURL" destination="FiB-BV-5U8" id="pJa-W9-QHE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLH-fG-KfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

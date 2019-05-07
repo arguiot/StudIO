@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import SwiftGit2
 
 class NewPluginVC: UIViewController {
 
-    @IBOutlet var pluginURL: UIView!
+    @IBOutlet var pluginURL: UITextField!
     @IBOutlet weak var pluginTitle: UILabel!
     @IBOutlet weak var pluginImage: UIImageView!
     @IBOutlet weak var pluginTextView: UITextView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +33,22 @@ class NewPluginVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func checkPlugin(_ sender: Any) {
+        guard let url = URL(string: pluginURL.text ?? "") else {
+            return
+        }
+        guard let p = try? Folder.home.createSubfolderIfNeeded(withName: "Plugins") else {
+            return
+        }
+        let pURL = URL(fileURLWithPath: p.path)
+        let repo = Repository.clone(from: url, to: pURL)
+        if case .success(let r) = repo {
+            
+        } else {
+            NSObject.alert(t: "Cloning error", m: repo.error?.localizedDescription ?? "No details")
+        }
+    }
+    
     @IBAction func done(_ sender: Any) {
     }
 }
