@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -249,12 +250,103 @@
                             <outlet property="delegate" destination="GZa-UP-R7y" id="bE3-xM-uk9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Plugins" id="tSY-jt-Ws5"/>
+                    <navigationItem key="navigationItem" title="Plugins" id="tSY-jt-Ws5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="KnX-0W-tcp">
+                            <connections>
+                                <segue destination="90O-jl-elh" kind="show" id="2ZI-5s-R9L"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Jg-ZG-lcl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="281.8359375" y="1561.71875"/>
+        </scene>
+        <!--Clone Plugin-->
+        <scene sceneID="RvB-LQ-WWT">
+            <objects>
+                <viewController title="Clone Plugin" id="90O-jl-elh" customClass="NewPluginVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MDi-bt-QSu">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ln-rO-Ski">
+                                <rect key="frame" x="20" y="90" width="33" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="0l7-sQ-A5L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex: https://github.com/ ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FiB-BV-5U8">
+                                <rect key="frame" x="103" y="85" width="417" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="li0-IJ-IZw">
+                                <rect key="frame" x="150" y="234" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="KlK-KV-Ime"/>
+                                    <constraint firstAttribute="height" constant="128" id="Knh-PT-Abe"/>
+                                </constraints>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Was-Sz-r7M">
+                                <rect key="frame" x="249" y="205" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="o7M-6X-An8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJt-WL-RTh">
+                                <rect key="frame" x="60" y="370" width="420" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES" lookupSuggestion="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wJt-WL-RTh" firstAttribute="centerX" secondItem="MDi-bt-QSu" secondAttribute="centerX" id="43l-xY-VSA"/>
+                            <constraint firstItem="li0-IJ-IZw" firstAttribute="centerX" secondItem="MDi-bt-QSu" secondAttribute="centerX" id="4HN-TK-gjE"/>
+                            <constraint firstItem="8ln-rO-Ski" firstAttribute="top" secondItem="sZz-N0-L8x" secondAttribute="top" constant="40" id="CS8-T4-KSJ"/>
+                            <constraint firstItem="sZz-N0-L8x" firstAttribute="trailing" secondItem="wJt-WL-RTh" secondAttribute="trailing" constant="60" id="DNE-9W-SHN"/>
+                            <constraint firstItem="Was-Sz-r7M" firstAttribute="centerX" secondItem="MDi-bt-QSu" secondAttribute="centerX" id="FNZ-na-68P"/>
+                            <constraint firstItem="FiB-BV-5U8" firstAttribute="leading" secondItem="8ln-rO-Ski" secondAttribute="trailing" constant="50" id="IRo-qN-TH3"/>
+                            <constraint firstItem="sZz-N0-L8x" firstAttribute="trailing" secondItem="FiB-BV-5U8" secondAttribute="trailing" constant="20" id="Mho-CI-QX7"/>
+                            <constraint firstItem="wJt-WL-RTh" firstAttribute="top" secondItem="li0-IJ-IZw" secondAttribute="bottom" constant="8" id="Pm9-3b-sM0"/>
+                            <constraint firstItem="sZz-N0-L8x" firstAttribute="bottom" secondItem="wJt-WL-RTh" secondAttribute="bottom" id="SUA-8Z-19W"/>
+                            <constraint firstItem="wJt-WL-RTh" firstAttribute="leading" secondItem="sZz-N0-L8x" secondAttribute="leading" constant="60" id="Vij-4E-Go3"/>
+                            <constraint firstItem="li0-IJ-IZw" firstAttribute="top" secondItem="Was-Sz-r7M" secondAttribute="bottom" constant="8" id="XXb-ZF-QFH"/>
+                            <constraint firstItem="8ln-rO-Ski" firstAttribute="leading" secondItem="sZz-N0-L8x" secondAttribute="leading" constant="20" id="fPN-L4-A9A"/>
+                            <constraint firstItem="FiB-BV-5U8" firstAttribute="top" secondItem="sZz-N0-L8x" secondAttribute="top" constant="35" id="iBo-rK-gJa"/>
+                            <constraint firstItem="Was-Sz-r7M" firstAttribute="top" secondItem="FiB-BV-5U8" secondAttribute="bottom" constant="90" id="jMU-dx-rto"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sZz-N0-L8x"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Plugin" id="suv-gv-IxX">
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="d61-aB-vBX">
+                            <connections>
+                                <action selector="done:" destination="90O-jl-elh" id="l0G-gi-viU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="pluginImage" destination="li0-IJ-IZw" id="SJ3-I4-ykJ"/>
+                        <outlet property="pluginTextView" destination="wJt-WL-RTh" id="Maz-5h-MTK"/>
+                        <outlet property="pluginTitle" destination="Was-Sz-r7M" id="Lsl-pb-j8C"/>
+                        <outlet property="pluginURL" destination="MDi-bt-QSu" id="OdZ-GH-Vff"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RLH-fG-KfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="956.83593749999989" y="1561.71875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Buc-NB-7pN">

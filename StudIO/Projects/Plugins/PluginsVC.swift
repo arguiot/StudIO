@@ -19,7 +19,7 @@ class PluginsVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissController))
-        navigationItem.rightBarButtonItem = done
+        navigationItem.rightBarButtonItems?.append(done)
     }
     
     @objc func dismissController() {
