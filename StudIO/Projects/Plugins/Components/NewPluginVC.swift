@@ -40,15 +40,34 @@ class NewPluginVC: UIViewController {
         guard let p = try? Folder.home.createSubfolderIfNeeded(withName: "Plugins") else {
             return
         }
-        let pURL = URL(fileURLWithPath: p.path)
+        guard let name = getName(url: url) else {
+            return
+        }
+        guard let u = try? p.createSubfolderIfNeeded(withName: name) else {
+            return
+        }
+        let pURL = URL(fileURLWithPath: u.path)
         let repo = Repository.clone(from: url, to: pURL)
         if case .success(let r) = repo {
-            
+            setUI(url: pURL)
         } else {
             NSObject.alert(t: "Cloning error", m: repo.error?.localizedDescription ?? "No details")
         }
     }
     
+    private func getName(url: URL) -> String? {
+        let component = url.pathComponents.last
+        if component?.lowercased().range(of: ".git") != nil {
+            let sub = component?.dropLast(4)
+            return String(sub!)
+        }
+        return component
+    }
+    
     @IBAction func done(_ sender: Any) {
+    }
+    
+    func setUI(url: URL) {
+        
     }
 }
