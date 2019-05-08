@@ -1,5 +1,3 @@
-import levenshtein from "./levenshtein.js"
-
 class Completion {
 	constructor(value = "") {
 		this.tokenize(value).then(tokens => {
