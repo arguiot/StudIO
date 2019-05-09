@@ -5,3 +5,4 @@ binary "https://studiocode.app/other/objectivegit.json"
 binary "https://raw.githubusercontent.com/Instabug/Instabug-iOS/master/Instabug.json"
 github "marmelroy/Zip"
 github "gizmosachin/ColorSlider" >= 4.3
+github "delba/JASON" >= 3.0

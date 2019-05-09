@@ -34,6 +34,8 @@ class NewPluginVC: UIViewController {
     }
     */
     @IBAction func checkPlugin(_ sender: Any) {
+        loadingIndicator.isHidden = false
+        loadingIndicator.startAnimating()
         guard let url = URL(string: pluginURL.text ?? "") else {
             return
         }
@@ -52,6 +54,8 @@ class NewPluginVC: UIViewController {
             setUI(url: pURL)
         } else {
             NSObject.alert(t: "Cloning error", m: repo.error?.localizedDescription ?? "No details")
+            loadingIndicator.isHidden = true
+            loadingIndicator.stopAnimating()
         }
     }
     
@@ -65,9 +69,20 @@ class NewPluginVC: UIViewController {
     }
     
     @IBAction func done(_ sender: Any) {
+        checkPlugin(self)
     }
     
     func setUI(url: URL) {
-        
+        let pck = StudIOPackageReader(directory: url)
+        loadingIndicator.isHidden = true
+        loadingIndicator.stopAnimating()
+        do {
+            let package = try pck.packageFile()
+            
+            pluginTitle.text = package.title
+            pluginTextView.text = package.description
+        } catch {
+            NSObject.alert(t: "Couldn't load plugin", m: error.localizedDescription)
+        }
     }
 }
