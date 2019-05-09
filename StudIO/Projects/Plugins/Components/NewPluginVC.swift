@@ -90,8 +90,17 @@ class NewPluginVC: UIViewController {
         do {
             let package = try pck.packageFile()
             
+            pluginTitle.isHidden = false
+            pluginTextView.isHidden = false
+            pluginImage.isHidden = false
+            
             pluginTitle.text = package.title
             pluginTextView.text = package.description
+            
+            let path = url.appendingPathComponent((package.image?.path)!)
+            let data = try Data(contentsOf: path)
+            
+            pluginImage.image = UIImage(data: data)
         } catch {
             NSObject.alert(t: "Couldn't load plugin", m: error.localizedDescription)
         }
