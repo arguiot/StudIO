@@ -284,7 +284,7 @@
                                 <rect key="frame" x="68" y="85" width="414" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" textContentType="url"/>
                                 <connections>
                                     <action selector="checkPlugin:" destination="90O-jl-elh" eventType="editingDidEnd" id="AO2-hG-hPz"/>
                                 </connections>
