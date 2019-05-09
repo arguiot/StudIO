@@ -10,14 +10,20 @@ import UIKit
 import Zip
 extension ProjectVC: UIDropInteractionDelegate {
     func setupDrop() {
-        view.addInteraction(UIDropInteraction(delegate: self))
+        if #available(iOS 11.0, *) {
+            view.addInteraction(UIDropInteraction(delegate: self))
+        } else {
+            // Fallback on earlier versions
+        }
     }
+    @available(iOS 11.0, *)
     var types: [NSItemProviderReading.Type] {
         return [
             ZipDocument.self,
 //            FolderDocument.self
         ]
     }
+    @available(iOS 11.0, *)
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         
         for t in types {
@@ -27,9 +33,11 @@ extension ProjectVC: UIDropInteractionDelegate {
         }
         return false
     }
+    @available(iOS 11.0, *)
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
         return UIDropProposal(operation: .copy)
     }
+    @available(iOS 11.0, *)
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
         for dragItem in session.items {
             for t in types {

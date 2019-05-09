@@ -92,11 +92,22 @@ class Editor: UIView {
     
     
     func settings(_ data: [String: String]) {
-        if let json = try? JSONSerialization.data(withJSONObject: data, options: .sortedKeys) {
-            let query = String(data: json, encoding: .ascii)!
-            codeView.evaluateJavaScript("window.EditorSettings = \(query);if (typeof window.e != 'undefined') { window.e.settings() }") { (result, error) in
-                
+        var json: Data!
+        if #available(iOS 11.0, *) {
+            guard let j = try? JSONSerialization.data(withJSONObject: data, options: .sortedKeys) else {
+                return
             }
+            json = j
+        } else {
+            // Fallback on earlier versions
+            guard let j = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted) else {
+                return
+            }
+            json = j
+        }
+        let query = String(data: json, encoding: .ascii)!
+        codeView.evaluateJavaScript("window.EditorSettings = \(query);if (typeof window.e != 'undefined') { window.e.settings() }") { (result, error) in
+            
         }
     }
     

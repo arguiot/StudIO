@@ -17,13 +17,18 @@ import BLTNBoard
 
 class FeedbackPageBLTNItem: BLTNPageItem {
     
-    private let feedbackGenerator = UISelectionFeedbackGenerator()
+    @available(iOS 10.0, *)
+    private var feedbackGenerator: UISelectionFeedbackGenerator {
+        return UISelectionFeedbackGenerator()
+    }
     
     override func actionButtonTapped(sender: UIButton) {
         
         // Play an haptic feedback
-        feedbackGenerator.prepare()
-        feedbackGenerator.selectionChanged()
+        if #available(iOS 10.0, *) {
+            feedbackGenerator.prepare()
+            feedbackGenerator.selectionChanged()
+        }
         
         // Call super
         super.actionButtonTapped(sender: sender)
@@ -33,8 +38,10 @@ class FeedbackPageBLTNItem: BLTNPageItem {
     override func alternativeButtonTapped(sender: UIButton) {
         
         // Play an haptic feedback
-        feedbackGenerator.prepare()
-        feedbackGenerator.selectionChanged()
+        if #available(iOS 10.0, *) {
+            feedbackGenerator.prepare()
+            feedbackGenerator.selectionChanged()
+        }
         
         // Call super
         super.alternativeButtonTapped(sender: sender)
