@@ -45,18 +45,29 @@ class NewPluginVC: UIViewController {
         guard let name = getName(url: url) else {
             return
         }
-        guard let u = try? p.createSubfolderIfNeeded(withName: name) else {
+        if let s = try? p.subfolder(named: name) {
+            try? s.delete()
+        }
+        guard let u = try? p.createSubfolder(named: name) else {
             return
         }
         let pURL = URL(fileURLWithPath: u.path)
-        let repo = Repository.clone(from: url, to: pURL)
-        if case .success(let r) = repo {
-            setUI(url: pURL)
-        } else {
-            NSObject.alert(t: "Cloning error", m: repo.error?.localizedDescription ?? "No details")
-            loadingIndicator.isHidden = true
-            loadingIndicator.stopAnimating()
+        
+        DispatchQueue.global().async {
+            let repo = Repository.clone(from: url, to: pURL, localClone: false, bare: false, credentials: .default, checkoutStrategy: .Safe, checkoutProgress: nil)
+            if case .success(let r) = repo {
+                DispatchQueue.main.sync {
+                    self.setUI(url: pURL)
+                }
+            } else {
+                DispatchQueue.main.sync {
+                    NSObject.alert(t: "Cloning error", m: repo.error?.localizedDescription ?? "No details")
+                    self.loadingIndicator.isHidden = true
+                    self.loadingIndicator.stopAnimating()
+                }
+            }
         }
+        
     }
     
     private func getName(url: URL) -> String? {
