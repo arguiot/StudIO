@@ -39,7 +39,9 @@ class PluginsVC: UITableViewController {
             }
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
     @objc func dismissController() {
         self.dismiss(animated: true)
     }
