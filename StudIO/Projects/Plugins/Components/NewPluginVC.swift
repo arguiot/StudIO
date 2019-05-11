@@ -89,7 +89,7 @@ class NewPluginVC: UIViewController {
         let p = Plugin(url: pluginUrl)
         plugins.append([
             "name": p.name,
-            "path": p.path.path,
+            "path": pluginUrl.path,
             "type": p.type.rawValue,
             "enabled": p.enabled.description
         ])

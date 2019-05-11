@@ -22,6 +22,7 @@ struct Plugin {
             self.type = PluginsVC.PluginType(rawValue: pkg.type) ?? .mode
             self.path = url
             self.enabled = true
+            return
         } catch {
             print(error.localizedDescription)
         }
