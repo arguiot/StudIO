@@ -78,11 +78,27 @@ class NewPluginVC: UIViewController {
         }
         return component
     }
-    
+    var state = false
     @IBAction func done(_ sender: Any) {
-        checkPlugin(self)
+        if state == false {
+            checkPlugin(self)
+            return
+        }
+        var plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] ?? []
+        
+        let p = Plugin(url: pluginUrl)
+        plugins.append([
+            "name": p.name,
+            "path": p.path.path,
+            "type": p.type.rawValue,
+            "enabled": p.enabled.description
+        ])
+        
+        UserDefaults.standard.set(plugins, forKey: "plugins")
+        
+        self.navigationController?.popViewController(animated: true)
     }
-    
+    var pluginUrl: URL!
     func setUI(url: URL) {
         let pck = StudIOPackageReader(directory: url)
         loadingIndicator.isHidden = true
@@ -101,6 +117,9 @@ class NewPluginVC: UIViewController {
             let data = try Data(contentsOf: path)
             
             pluginImage.image = UIImage(data: data)
+            
+            self.state = true
+            self.pluginUrl = url
         } catch {
             NSObject.alert(t: "Couldn't load plugin", m: error.localizedDescription)
         }

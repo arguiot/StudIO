@@ -25,7 +25,7 @@ extension PluginsVC {
         let rows = sections[section].list
         let row = rows[indexPath.row]
         
-        let c = tableView.dequeueReusableCell(withIdentifier: "Plugin Cell", for: indexPath)
+        let c = tableView.dequeueReusableCell(withIdentifier: "pluginCell", for: indexPath)
         
         let cell = c as! PluginCell
         cell.name.text = row.title

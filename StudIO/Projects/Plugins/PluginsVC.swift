@@ -20,6 +20,24 @@ class PluginsVC: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissController))
         navigationItem.rightBarButtonItems?.append(done)
+        
+        
+        guard let plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else {
+            return
+        }
+        plugins.forEach { (plugin) in
+            let name = plugin["name"]
+            let path = URL(fileURLWithPath: plugin["path"] ?? "")
+            let type = PluginsVC.PluginType(rawValue: plugin["type"] ?? "Modes") ?? .mode
+            switch type {
+            case .hint:
+                sections[2].list.append(PluginsVC.Row(title: name!, source: path, type: type))
+            case .mode:
+                sections[0].list.append(PluginsVC.Row(title: name!, source: path, type: type))
+            case .theme:
+                sections[1].list.append(PluginsVC.Row(title: name!, source: path, type: type))
+            }
+        }
     }
     
     @objc func dismissController() {
