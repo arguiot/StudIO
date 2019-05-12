@@ -12,6 +12,7 @@ struct Plugin {
     var name: String
     var type: PluginsVC.PluginType
     var path: URL
+    var main: URL
     var enabled: Bool
     
     init(url: URL) {
@@ -21,6 +22,7 @@ struct Plugin {
             self.name = pkg.title
             self.type = PluginsVC.PluginType(rawValue: pkg.type) ?? .mode
             self.path = url
+            self.main = pkg.main!
             self.enabled = true
             return
         } catch {
@@ -30,5 +32,6 @@ struct Plugin {
         self.type = .mode
         self.path = URL(fileURLWithPath: Folder.home.path)
         self.enabled = false
+        self.main = URL(fileURLWithPath: Folder.home.path)
     }
 }

@@ -91,6 +91,7 @@ class NewPluginVC: UIViewController {
             "name": p.name,
             "path": pluginUrl.path,
             "type": p.type.rawValue,
+            "main": p.main.path,
             "enabled": p.enabled.description
         ])
         

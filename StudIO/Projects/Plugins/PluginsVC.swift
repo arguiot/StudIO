@@ -26,15 +26,9 @@ class PluginsVC: UITableViewController {
     
     func load() {
         self.sections = [
-            Section(title: "Modes", list: [
-                
-                ]),
-            Section(title: "Themes", list: [
-                
-                ]),
-            Section(title: "Autocompletion Hint", list: [
-                
-                ])
+            Section(title: "Modes", list: []),
+            Section(title: "Themes", list: []),
+            Section(title: "Autocompletion Hint", list: [])
         ]
         guard let plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else {
             return
@@ -42,7 +36,7 @@ class PluginsVC: UITableViewController {
         plugins.forEach { (plugin) in
             let name = plugin["name"]
             let path = URL(fileURLWithPath: plugin["path"] ?? "")
-            let type = PluginsVC.PluginType(rawValue: plugin["type"] ?? "Modes") ?? .mode
+            let type = PluginsVC.PluginType(rawValue: plugin["type"] ?? "mode") ?? .mode
             switch type {
             case .hint:
                 sections[2].list.append(PluginsVC.Row(title: name!, source: path, type: type, enable: Bool(plugin["enabled"]!)!))
@@ -70,9 +64,9 @@ class PluginsVC: UITableViewController {
         var enable: Bool
     }
     enum PluginType: String {
-        case mode = "Modes"
-        case theme = "Themes"
-        case hint = "Autocompletion Hints"
+        case mode = "mode"
+        case theme = "theme"
+        case hint = "hint"
     }
     struct Section {
         var title: String

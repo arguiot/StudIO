@@ -27,8 +27,8 @@ class SettingsVC: UITableViewController {
                     return "\(Int(str))px"
                 }),
                 Row(name: "Line Wrapping", type: .slider, set: "line-wrapping", def: "true"),
-                Row(name: "Editor Theme", type: .picker, set: "editor-theme", def: Themes.theme.joined(separator: ","))
-                ])
+                Row(name: "Editor Theme", type: .picker, set: "editor-theme", def: Themes.name.joined(separator: ","))
+            ])
         ]
     }
     
@@ -89,59 +89,30 @@ class SettingsVC: UITableViewController {
 
 class Themes {
     init() {}
-    static let theme = [ "3024-day",
-                  "3024-night",
-                  "abcdef",
-                  "ambiance-mobile",
-                  "ambiance",
-                  "base16-dark",
-                  "base16-light",
-                  "bespin",
-                  "blackboard",
-                  "cobalt",
-                  "colorforth",
-                  "darcula",
-                  "dracula",
-                  "duotone-dark",
-                  "duotone-light",
-                  "eclipse",
-                  "elegant",
-                  "erlang-dark",
-                  "gruvbox-dark",
-                  "hopscotch",
-                  "icecoder",
-                  "idea",
-                  "isotope",
-                  "lesser-dark",
-                  "liquibyte",
-                  "lucario",
-                  "material",
-                  "mbo",
-                  "mdn-like",
-                  "midnight",
-                  "monokai",
-                  "neat",
-                  "neo",
-                  "night",
-                  "oceanic-next",
-                  "panda-syntax",
-                  "paraiso-dark",
-                  "paraiso-light",
-                  "pastel-on-dark",
-                  "railscasts",
-                  "rubyblue",
-                  "seti",
-                  "shadowfox",
-                  "solarized",
-                  "ssms",
-                  "the-matrix",
-                  "tomorrow-night-bright",
-                  "tomorrow-night-eighties",
-                  "ttcn",
-                  "twilight",
-                  "vibrant-ink",
-                  "xq-dark",
-                  "xq-light",
-                  "yeti",
-                  "zenburn" ]
+    static var themes: [Theme] {
+        let path = Bundle.main.path(forResource: "monokai", ofType: "css")
+        let url = URL(fileURLWithPath: path ?? "")
+        var out = [Theme(name: "monokai", src: url)]
+        
+        guard let plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else {
+            return out
+        }
+        
+        plugins.forEach { (plugin) in
+            if plugin["type"] == "theme" {
+                let name = plugin["name"]!
+                let src = URL(fileURLWithPath: plugin["main"]!)
+                out.append(Theme(name: name, src: src))
+            }
+        }
+        
+        return out
+    }
+    static var name: [String] {
+        return self.themes.map { $0.name }
+    }
+    struct Theme {
+        var name: String
+        var src: URL
+    }
 }
