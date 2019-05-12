@@ -7,6 +7,9 @@ class StudIOAutocomplete extends StudIOPlugin {
 	get viewContent() {
 		return window.view.state.doc.toString()
 	}
+	get suggestion() {
+		return 0
+	}
 	getSuggestions() {
 		return []
 	}
@@ -32,6 +35,10 @@ class StudIOAutocomplete extends StudIOPlugin {
 			}
 		}
 		return out.split("").reverse().join("")
+	}
+
+	getSmartKeys() {
+		return ["{", "}", this.suggestion, this.suggestion, this.suggestion]
 	}
 }
 
