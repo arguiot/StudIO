@@ -92,15 +92,21 @@ class Editor: UIView {
     
     
     func settings(_ data: [String: String]) {
+        var d = data
+        if data["theme"] != "monokai" {
+            d.removeValue(forKey: "theme")
+            self.loadTheme(name: data["theme"] ?? "")
+        }
+        
         var json: Data!
         if #available(iOS 11.0, *) {
-            guard let j = try? JSONSerialization.data(withJSONObject: data, options: .sortedKeys) else {
+            guard let j = try? JSONSerialization.data(withJSONObject: d, options: .sortedKeys) else {
                 return
             }
             json = j
         } else {
             // Fallback on earlier versions
-            guard let j = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted) else {
+            guard let j = try? JSONSerialization.data(withJSONObject: d, options: .prettyPrinted) else {
                 return
             }
             json = j
