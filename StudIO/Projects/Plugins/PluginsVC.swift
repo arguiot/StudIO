@@ -52,10 +52,10 @@ class PluginsVC: UITableViewController {
                 sections[1].list.append(PluginsVC.Row(title: name!, source: path, type: type, enable: Bool(plugin["enabled"]!)!))
             }
         }
+        tableView.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
         load()
-        tableView.reloadData()
     }
     @objc func dismissController() {
         self.dismiss(animated: true)
