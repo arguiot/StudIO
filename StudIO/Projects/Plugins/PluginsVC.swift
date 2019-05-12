@@ -31,11 +31,11 @@ class PluginsVC: UITableViewController {
             let type = PluginsVC.PluginType(rawValue: plugin["type"] ?? "Modes") ?? .mode
             switch type {
             case .hint:
-                sections[2].list.append(PluginsVC.Row(title: name!, source: path, type: type))
+                sections[2].list.append(PluginsVC.Row(title: name!, source: path, type: type, enable: Bool(plugin["enabled"]!)!))
             case .mode:
-                sections[0].list.append(PluginsVC.Row(title: name!, source: path, type: type))
+                sections[0].list.append(PluginsVC.Row(title: name!, source: path, type: type, enable: Bool(plugin["enabled"]!)!))
             case .theme:
-                sections[1].list.append(PluginsVC.Row(title: name!, source: path, type: type))
+                sections[1].list.append(PluginsVC.Row(title: name!, source: path, type: type, enable: Bool(plugin["enabled"]!)!))
             }
         }
     }
@@ -62,6 +62,7 @@ class PluginsVC: UITableViewController {
         var title: String
         var source: URL
         var type: PluginType
+        var enable: Bool
     }
     enum PluginType: String {
         case mode = "Modes"

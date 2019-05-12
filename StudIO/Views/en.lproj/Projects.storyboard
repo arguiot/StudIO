@@ -223,6 +223,9 @@
                                                 <constraint firstAttribute="width" constant="47" id="Qei-h6-dpc"/>
                                                 <constraint firstAttribute="height" constant="31" id="nvU-td-VMq"/>
                                             </constraints>
+                                            <connections>
+                                                <action selector="toggleSwitch:" destination="eEq-k2-93s" eventType="valueChanged" id="r9o-2l-Rh8"/>
+                                            </connections>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of the plugin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWV-MF-0yw">
                                             <rect key="frame" x="20" y="11" width="146" height="22"/>

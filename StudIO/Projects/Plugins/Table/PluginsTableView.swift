@@ -29,6 +29,9 @@ extension PluginsVC {
         
         let cell = c as! PluginCell
         cell.name.text = row.title
+        cell.switch.isOn = row.enable
+        
+        cell.rowIndex = indexPath
         return cell
     }
 }
