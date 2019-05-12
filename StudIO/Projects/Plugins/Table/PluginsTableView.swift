@@ -43,6 +43,15 @@ extension PluginsVC {
         guard var plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else { return [] }
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            let plugin = plugins[row]
+            let path = URL(fileURLWithPath: plugin["path"] ?? "")
+            
+            do {
+                let folder = try Folder(path: path.path)
+                try folder.delete()
+            } catch {
+                print("Couldn't delete folder", error.localizedDescription)
+            }
             let _ = plugins.remove(at: row)
             UserDefaults.standard.set(plugins, forKey: "plugins")
             
