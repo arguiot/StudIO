@@ -34,5 +34,22 @@ extension PluginsVC {
         cell.rowIndex = indexPath
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let row = indexPath.row
+        guard var plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else { return [] }
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            let _ = plugins.remove(at: row)
+            UserDefaults.standard.set(plugins, forKey: "plugins")
+            
+            self.load()
+        }
+        
+        return [delete]
+    }
 }
 

@@ -21,7 +21,21 @@ class PluginsVC: UITableViewController {
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissController))
         navigationItem.rightBarButtonItems?.append(done)
         
-        
+        load()
+    }
+    
+    func load() {
+        self.sections = [
+            Section(title: "Modes", list: [
+                
+                ]),
+            Section(title: "Themes", list: [
+                
+                ]),
+            Section(title: "Autocompletion Hint", list: [
+                
+                ])
+        ]
         guard let plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else {
             return
         }
@@ -40,23 +54,14 @@ class PluginsVC: UITableViewController {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
+        load()
         tableView.reloadData()
     }
     @objc func dismissController() {
         self.dismiss(animated: true)
     }
     
-    var sections: [Section] = [
-        Section(title: "Modes", list: [
-            
-        ]),
-        Section(title: "Themes", list: [
-            
-        ]),
-        Section(title: "Autocompletion Hint", list: [
-            
-        ])
-    ]
+    var sections: [Section]!
     
     struct Row {
         var title: String
