@@ -24,7 +24,7 @@ extension Editor {
         let fileURL = home.appendingPathComponent(url.path)
         guard let content = try? String(contentsOf: fileURL) else { return }
         let jsString = """
-        document.addEventListener('load', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             var style = document.createElement('style');
             style.innerHTML = window.atobUTF8('\(content.data(using: .utf8)?.base64EncodedString() ?? "")');
             document.head.appendChild(style);
