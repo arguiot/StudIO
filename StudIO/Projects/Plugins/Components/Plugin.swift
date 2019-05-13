@@ -22,7 +22,7 @@ struct Plugin {
             self.name = pkg.title
             self.type = PluginsVC.PluginType(rawValue: pkg.type) ?? .mode
             self.path = url
-            self.main = pkg.main!
+            self.main = URL(fileURLWithPath: pkg.main!)
             self.enabled = true
             return
         } catch {

@@ -31,7 +31,7 @@ class StudIOPackageReader {
         let version: String
         let git: URL?
         let type: String
-        let main: URL?
+        var main: String?
         
         init(json: JSON) {
             name = json[.name]
@@ -42,7 +42,7 @@ class StudIOPackageReader {
             version = json[.version]
             git = json["git"].nsURL
             type = json[.type]
-            main = json["main"].nsURL
+            main = json["main"].string
         }
     }
     var dir: URL
@@ -67,9 +67,16 @@ class StudIOPackageReader {
         guard let str = checkAndReadFile(url: dir) else {
             throw ReadErrors.find
         }
-        guard let package = parse(json: str) else {
+        guard var package = parse(json: str) else {
             throw ReadErrors.read
         }
+        let first = dir.appendingPathComponent(package.main ?? "").path
+        let home = Folder.home.path
+        
+        let main = first.dropFirst(home.count)
+        
+        package.main = String(main)
+        
         return package
     }
     

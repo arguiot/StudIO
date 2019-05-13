@@ -20,12 +20,28 @@ extension Editor {
     }
     
     func injectTheme(url: URL) {
-        guard let content = try? String(contentsOf: url) else { return }
-        let jsString = "var style = document.createElement('style'); style.innerHTML = '\(content.trimmingCharacters(in: .whitespacesAndNewlines))'; document.head.appendChild(style);"
-        codeView.evaluateJavaScript(jsString, completionHandler: nil)
+        let home = URL(fileURLWithPath: Folder.home.path)
+        let fileURL = home.appendingPathComponent(url.path)
+        guard let content = try? String(contentsOf: fileURL) else { return }
+        let jsString = """
+        document.addEventListener('load', () => {
+            var style = document.createElement('style');
+            style.innerHTML = window.atobUTF8('\(content.data(using: .utf8)?.base64EncodedString() ?? "")');
+            document.head.appendChild(style);
+        })
+        """
+        codeView.evaluateJavaScript(jsString)  { (result, error) in
+            if error != nil {
+                print(error!)
+            }
+        }
     }
     func injectPlugin(url: URL) {
         guard let content = try? String(contentsOf: url) else { return }
-        codeView.evaluateJavaScript(content, completionHandler: nil)
+        codeView.evaluateJavaScript(content)   { (result, error) in
+            if error != nil {
+                print(error!)
+            }
+        }
     }
 }

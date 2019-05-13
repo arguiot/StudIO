@@ -101,7 +101,7 @@ class Themes {
         plugins.forEach { (plugin) in
             if plugin["type"] == "theme" {
                 let name = plugin["name"]!
-                let src = URL(fileURLWithPath: plugin["main"]!)
+                let src = URL(fileURLWithPath: plugin["main"]!, relativeTo: URL(fileURLWithPath: Folder.home.path))
                 out.append(Theme(name: name, src: src))
             }
         }
