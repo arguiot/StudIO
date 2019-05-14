@@ -115,6 +115,8 @@ class Editor: UIView {
         codeView.evaluateJavaScript("window.EditorSettings = \(query);if (typeof window.e != 'undefined') { window.e.settings() }") { (result, error) in
             
         }
+        
+        self.injectAllPlugins()
     }
     
     func undo() {

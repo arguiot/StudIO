@@ -34,6 +34,23 @@ extension Editor {
             }
         }
     }
+    
+    func injectAllPlugins() {
+        guard let plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else {
+            return
+        }
+        plugins.forEach { (plugin) in
+            let url = URL(fileURLWithPath: plugin["main"]!)
+            let type = PluginsVC.PluginType(rawValue: plugin["type"] ?? "mode") ?? .mode
+            if type == .hint || type == .mode {
+                let home = URL(fileURLWithPath: Folder.home.path)
+                let fileURL = home.appendingPathComponent(url.path)
+                
+                self.injectPlugin(url: fileURL)
+            }
+        }
+    }
+    
     func injectPlugin(url: URL) {
         guard let content = try? String(contentsOf: url) else { return }
         codeView.evaluateJavaScript(content)   { (result, error) in
