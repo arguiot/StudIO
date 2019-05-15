@@ -19,6 +19,7 @@ extension JSONKeys {
     static let git = JSONKey<NSURL?>("git")
     static let type = JSONKey<String>("type")
     static let main = JSONKey<NSURL?>("main")
+    static let activation = JSONKey<String?>("activation")
 }
 
 class StudIOPackageReader {
@@ -32,6 +33,7 @@ class StudIOPackageReader {
         let git: URL?
         let type: String
         var main: String?
+        let activation: String?
         
         init(json: JSON) {
             name = json[.name]
@@ -43,6 +45,7 @@ class StudIOPackageReader {
             git = json["git"].nsURL
             type = json[.type]
             main = json["main"].string
+            activation = json[.activation]
         }
     }
     var dir: URL

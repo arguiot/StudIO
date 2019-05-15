@@ -14,6 +14,7 @@ struct Plugin {
     var path: URL
     var main: URL
     var enabled: Bool
+    var activation: Regex?
     
     init(url: URL) {
         let reader = StudIOPackageReader(directory: url)
@@ -24,6 +25,9 @@ struct Plugin {
             self.path = url
             self.main = URL(fileURLWithPath: pkg.main!)
             self.enabled = true
+            if pkg.activation != nil {
+                self.activation = Regex(pattern: pkg.activation!)
+            }
             return
         } catch {
             print(error.localizedDescription)

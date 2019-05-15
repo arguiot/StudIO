@@ -12,6 +12,7 @@ Here is the template it should **imperatively** follow:
 	"version": "SemVer version",
 	"git": "git repository URL", /* ex: https://github.com/name/plugin */
 	"type": "One of these types: 'mode', 'theme', 'autocomplete'",
-	"main": "The javascript file that will be used"
+	"main": "The javascript file that will be used",
+	"activation": "activation regex",
 }
 ```
