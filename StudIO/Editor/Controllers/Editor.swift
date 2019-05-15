@@ -62,6 +62,7 @@ class Editor: UIView {
     
     
     var content: String?
+    var fileName: String?
     func loadFile(withContent: String) {
         content = withContent
         if codeView.isLoading == false {

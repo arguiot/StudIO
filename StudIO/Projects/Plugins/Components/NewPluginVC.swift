@@ -55,7 +55,7 @@ class NewPluginVC: UIViewController {
         
         DispatchQueue.global().async {
             let repo = Repository.clone(from: url, to: pURL, localClone: false, bare: false, credentials: .default, checkoutStrategy: .Safe, checkoutProgress: nil)
-            if case .success(let r) = repo {
+            if case .success( _) = repo {
                 DispatchQueue.main.sync {
                     self.setUI(url: pURL)
                 }
@@ -92,7 +92,8 @@ class NewPluginVC: UIViewController {
             "path": pluginUrl.path,
             "type": p.type.rawValue,
             "main": p.main.path,
-            "enabled": p.enabled.description
+            "enabled": p.enabled.description,
+            "activation": p.activation?.pattern ?? ""
         ])
         
         UserDefaults.standard.set(plugins, forKey: "plugins")

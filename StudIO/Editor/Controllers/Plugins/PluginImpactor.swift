@@ -36,6 +36,9 @@ extension Editor {
     }
     
     func injectAllPlugins() {
+        guard let fileName = self.fileName else {
+            return
+        }
         guard let plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else {
             return
         }
@@ -45,6 +48,11 @@ extension Editor {
             if type == .hint || type == .mode {
                 let home = URL(fileURLWithPath: Folder.home.path)
                 let fileURL = home.appendingPathComponent(url.path)
+                
+                if plugin["activation"] != nil {
+                    let activation = Regex(pattern: plugin["activation"]!)
+                    guard fileName.matchRegex(pattern: activation) == true else { return }
+                }
                 
                 self.injectPlugin(url: fileURL)
             }

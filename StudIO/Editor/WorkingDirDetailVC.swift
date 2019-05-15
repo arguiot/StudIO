@@ -90,6 +90,7 @@ class WorkingDirDetailVC: UIViewController {
     func codeEditor(_ str: String) {
         guard let c = editorView else { return }
         c.content = try! file?.read().base64EncodedString()
+        c.fileName = str
         
         let arr = str.split(separator: ".")
         let ext = String(arr[arr.count - 1]).uppercased()
