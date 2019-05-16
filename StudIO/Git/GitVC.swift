@@ -169,7 +169,7 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
             let name = try? r?.currentBranch().shortName
             let ns = b.map { $0.shortName }
             let i = ns.firstIndex(of: name ?? "")
-            let ind = i ?? 0
+            guard let ind = i else { return }
             if (ind == 0) {
                 let lb = try? r?.localBranches()
                 let ref = lb!![0].reference
