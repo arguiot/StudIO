@@ -90,11 +90,18 @@ class GitCommit: UIView {
     
     func reloadProperties() {
         DispatchQueue.global().async {
-            if let s = self.repo?.status().value {
-                self.status = s
-            } else {
-                self.status = []
+            guard let rsg2 = self.repo?.pointer else { return }
+            let r = GTRepository(gitRepository: rsg2)
+            do {
+                try r?.enumerateFileStatus(options: nil, usingBlock: { (delta1, delta2, val) in
+                    if delta1?.status != GTDeltaType.unmodified {
+                        self.status.append(delta1?.newFile?.path)
+                    }
+                })
+            } catch {
+                NSObject.alert(t: "Status error", m: error.localizedDescription)
             }
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.checkButton()
@@ -103,24 +110,16 @@ class GitCommit: UIView {
     }
     
     // properties
-    var status: [StatusEntry] = []
+    var status: [String?] = []
     
     @IBOutlet weak var commitButton: UIButton!
     func checkButton() {
-        if let s = repo?.status().value {
-            var index = [Any]()
-            s.forEach { (se) in
-                if se.headToIndex != nil {
-                    index.append(se.headToIndex)
-                }
-            }
-            if index.count == 0 {
-                commitButton.isEnabled = false
-                commitButton.backgroundColor = #colorLiteral(red: 0.01993954368, green: 0.2427439988, blue: 0.5180901885, alpha: 1)
-            } else {
-                commitButton.isEnabled = true
-                commitButton.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-            }
+        if status.count == 0 {
+            commitButton.isEnabled = false
+            commitButton.backgroundColor = #colorLiteral(red: 0.01993954368, green: 0.2427439988, blue: 0.5180901885, alpha: 1)
+        } else {
+            commitButton.isEnabled = true
+            commitButton.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
         }
     }
 
@@ -142,8 +141,8 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         cell.contentView.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
         let s = status
         let row = indexPath.row
-        let path = s[row].indexToWorkDir?.newFile?.path ?? (s[row].headToIndex?.newFile?.path ?? "ERROR")
-        self.repo?.add(path: path)
+        let path = s[row]
+        self.repo?.add(path: path ?? "Error")
         cell.textLabel?.text = path
         cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         cell.accessoryType = .checkmark
