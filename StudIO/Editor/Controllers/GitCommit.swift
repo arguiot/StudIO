@@ -94,8 +94,8 @@ class GitCommit: UIView {
             let r = GTRepository(gitRepository: rsg2)
             do {
                 try r?.enumerateFileStatus(options: nil, usingBlock: { (delta1, delta2, val) in
-                    if delta1?.status != GTDeltaType.unmodified {
-                        self.status.append(delta1?.newFile?.path)
+                    if delta2?.status != GTDeltaType.unmodified {
+                        self.status.append(delta2?.newFile?.path)
                     }
                 })
             } catch {
@@ -142,7 +142,7 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         let s = status
         let row = indexPath.row
         let path = s[row]
-        self.repo?.add(path: path ?? "Error")
+//        self.repo?.add(path: path ?? "Error")
         cell.textLabel?.text = path
         cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         cell.accessoryType = .checkmark
@@ -158,7 +158,7 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .checkmark
-        repo?.add(path: cell?.textLabel?.text ?? "")
+//        repo?.add(path: cell?.textLabel?.text ?? "")
         
         checkButton()
     }
