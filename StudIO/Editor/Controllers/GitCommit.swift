@@ -90,8 +90,13 @@ class GitCommit: UIView {
     
     func reloadProperties() {
         DispatchQueue.global().async {
+            self.status = []
+            
             guard let rsg2 = self.repo?.pointer else { return }
+            
             let r = GTRepository(gitRepository: rsg2)
+            
+            guard nil != r?.fileURL else { return }
             do {
                 try r?.enumerateFileStatus(options: nil, usingBlock: { (delta1, delta2, val) in
                     if delta2?.status != GTDeltaType.unmodified {

@@ -160,7 +160,10 @@ class WorkingDirDetailVC: UIViewController {
         save()
         
         let p = editorView?.gitPanel
-        p?.reloadProperties()
+        
+        if p?.isHidden == true {
+            p?.reloadProperties()
+        }
         p?.isHidden = !(p?.isHidden ?? false)
         
     }
