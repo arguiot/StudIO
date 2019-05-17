@@ -40,11 +40,20 @@ class Editor: UIView, WKUIDelegate {
         let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "EditorView")!
         
         let webConfiguration = WKWebViewConfiguration()
-        codeView = WKWebView(frame: containerCodeView.frame, configuration: webConfiguration)
-        codeView.uiDelegate = self
-        codeView.navigationDelegate = self
+        let customFrame = CGRect.init(origin: .zero, size: .init(width: 0.0, height: self.containerCodeView.frame.size.height))
         
-        containerCodeView = codeView
+        self.codeView = WKWebView (frame: customFrame , configuration: webConfiguration)
+        codeView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.containerCodeView.addSubview(codeView)
+        
+        codeView.topAnchor.constraint(equalTo: containerCodeView.topAnchor).isActive = true
+        codeView.rightAnchor.constraint(equalTo: containerCodeView.rightAnchor).isActive = true
+        codeView.leftAnchor.constraint(equalTo: containerCodeView.leftAnchor).isActive = true
+        codeView.bottomAnchor.constraint(equalTo: containerCodeView.bottomAnchor).isActive = true
+        codeView.heightAnchor.constraint(equalTo: containerCodeView.heightAnchor).isActive = true
+        
+        codeView.uiDelegate = self
         
         codeView.loadFileURL(url, allowingReadAccessTo: url)
         let request = URLRequest(url: url)
