@@ -1,8 +1,9 @@
 class Completion {
-	constructor(value = "") {
-		this.tokenize(value).then(tokens => {
+	constructor(value) {
+		value = typeof value == "undefined" ? "" : value
+		this.tokenize(value).then(function(tokens) {
 			this.set = new Set(tokens)
-		})
+		}.bind(this))
 	}
 	tokenize(str) {
 		return new Promise(function(resolve, reject) {
@@ -13,22 +14,22 @@ class Completion {
 				.split(" "))
 		});
 	}
-	async appendToSet(content) {
-		this.tokenize(content).then(tokens => {
-			tokens.forEach(token => {
+	appendToSet(content) {
+		this.tokenize(content).then(function(tokens) {
+			tokens.forEach(function(token) {
 				this.set.add(token)
-			})
-		})
+			}.bind(this))
+		}.bind(this))
 	}
-	getSuggestions(currentWord, content = null) {
-		if (content != null) {
+	getSuggestions(currentWord, content) {
+		if (typeof content != "undefined") {
 			this.appendToSet(content)
 		}
 		let firsts = {
 			a: [],
 			b: []
 		}
-		this.set.forEach(token => {
+		this.set.forEach(function(token) {
 			// const score = levenshtein(currentWord, token)
 			const score = token.indexOf(currentWord) != -1 ? 1 : -1
 			if (firsts.a.length == 0 || firsts.a[1] >= score) {
@@ -36,7 +37,7 @@ class Completion {
 			} else if (firsts.b.length == 0 || firsts.b[1] >= score) {
 				firsts.b = [token, score]
 			}
-		})
+		}.bind(this))
 
 		return [currentWord, firsts.a[0], firsts.b[0]]
 	}

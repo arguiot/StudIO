@@ -20,12 +20,13 @@ const text = libCM.text
 
 import completion from "./completion/index.js"
 class editor {
-	constructor(ext, value, settings = {}) {
+	constructor(ext, value, settings) {
+		settings = typeof settings != "undefined" ? settings : {}
 		this.plugins = []
 
 		this.EditorSettings = settings
 		if (ext == null && value == null) {
-			document.addEventListener("DOMContentLoaded", () => {
+			document.addEventListener("DOMContentLoaded", function() {
 				// Do something...
 			})
 		} else {
@@ -36,13 +37,13 @@ class editor {
 			this.settings()
 
 			const script = document.createElement('script');
-			script.onload = () => {
+			script.onload = function() {
 				var m = null
 				try {
 					m = ExportedMode({
 						indentUnit: 2
 					})
-				} catch {
+				} catch(e) {
 					m = ExportedMode({
 						indentUnit: 2
 					}, {})
@@ -67,7 +68,7 @@ class editor {
 						keymap({
 							"Mod-z": undo,
 							"Mod-Shift-z": redo,
-							"Mod-u": view => undoSelection(view) || true,
+							"Mod-u": function(view) { return undoSelection(view) || true },
 							[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
 							"Ctrl-y": isMac ? undefined : redo,
 							"Shift-Tab": indentSelection
@@ -81,7 +82,7 @@ class editor {
 				document.querySelector("#editor").appendChild(view.dom)
 
 				this.listenForAutomcompletion()
-			};
+			}.bind(this);
 			script.src = `mode/${mode.mode}/${mode.mode}.js`;
 
 			document.head.appendChild(script);
@@ -122,9 +123,9 @@ class editor {
 	}
 	load(file) {
 		if (typeof this.cm == "undefined") {
-			setTimeout(() => {
+			setTimeout(function() {
 				this.load(file)
-			}, 16) // Waiting 16ms (~ 1 frame) before rendering for letting WKWebView parse and process everything. Otherwise, we do it again and again.
+			}.bind(this), 16) // Waiting 16ms (~ 1 frame) before rendering for letting WKWebView parse and process everything. Otherwise, we do it again and again.
 		} else {
 			const str = atobUTF8(file)
 
@@ -140,7 +141,8 @@ class editor {
 		return this.mode.name
 	}
 
-	insertSnippet(snippet, replaceLine = false) {
+	insertSnippet(snippet, replaceLine) {
+		replaceLine = typeof replaceLine != "undefined" ? replaceLine : false
 		const str = atobUTF8(snippet)
 		document.querySelector(".codemirror-content").focus()
 		if (replaceLine === true) {
@@ -153,11 +155,11 @@ class editor {
 
 	listenForAutomcompletion() {
 		this.c = new completion(window.view.state.doc.text.join("\n"))
-		document.querySelector(".codemirror-content").addEventListener("input", e => {
+		document.querySelector(".codemirror-content").addEventListener("input", function(e) {
 			const currentWord = this.c.getLastToken()
 			const suggestions = this.c.getSuggestions(currentWord, window.view.state.doc.toString())
 			this.setCompletion(...suggestions)
-		})
+		}.bind(this))
 	}
 	setCompletion(a, b, c) {
 		window.webkit.messageHandlers.completion.postMessage([a, b, c])
