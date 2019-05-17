@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "install": "cd ../codemirror.next && npm i",
-        "build": "tsc libBin.ts -t 'ES5'; rollup -c rollup.config.js && sed -i -e 's/javascript_1.default/javascript_1/g' ../StudIO/Editor/CodeMirror/EditorView/libCM.js && cp ../codemirror.next/legacy-modes/style/codemirror.css ../StudIO/Editor/CodeMirror/EditorView/lib/codemirror6.css && sed -i -e 's/const /var /g' ../StudIO/Editor/CodeMirror/EditorView/libCM.js && sed -i -e 's/let /var /g' ../StudIO/Editor/CodeMirror/EditorView/libCM.js && rm ../StudIO/Editor/CodeMirror/EditorView/libCM.js-e"
+        "build": "tsc libBin.ts -t 'ES5'; rollup -c rollup.config.js && sed -i -e 's/javascript_1.default/javascript_1/g' ../StudIO/Editor/CodeMirror/EditorView/libCM.js && cp ../codemirror.next/legacy-modes/style/codemirror.css ../StudIO/Editor/CodeMirror/EditorView/lib/codemirror6.css && sed -i -e 's/const /var /g' ../StudIO/Editor/CodeMirror/EditorView/libCM.js && sed -i -e 's/let /var /g' ../StudIO/Editor/CodeMirror/EditorView/libCM.js && rm ../StudIO/Editor/CodeMirror/EditorView/libCM.js-e && babel ../StudIO/Editor/CodeMirror/EditorView/libCM.js -o ../StudIO/Editor/CodeMirror/EditorView/libCM.js"
     },
     "repository": {
         "type": "git",
@@ -18,11 +18,11 @@
     },
     "homepage": "https://github.com/arguiot/StudIO#readme",
     "devDependencies": {
+        "@babel/cli": "^7.4.4",
         "@babel/core": "^7.4.4",
         "@babel/preset-env": "^7.4.4",
         "babel-preset-es2015-rollup": "^3.0.0",
         "rollup": "^1.1.2",
-        "rollup-plugin-babel": "^4.3.2",
         "rollup-plugin-commonjs": "^9.2.0",
         "rollup-plugin-node-resolve": "^4.0.0",
         "rollup-plugin-typescript2": "^0.19.2",
