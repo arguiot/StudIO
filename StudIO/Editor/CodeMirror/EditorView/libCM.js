@@ -10268,6 +10268,8 @@
 	const text$1 = libCM.text;
 	class editor {
 		constructor(ext, value, settings = {}) {
+			this.plugins = [];
+
 			this.EditorSettings = settings;
 			if (ext == null && value == null) {
 				document.addEventListener("DOMContentLoaded", () => {
@@ -10405,11 +10407,18 @@
 		setCompletion(a, b, c) {
 			window.webkit.messageHandlers.completion.postMessage([a, b, c]);
 		}
+
+		registerPlugin(obj, type) {
+			this.plugins.push(new obj(type));
+		}
 	}
 	var lib = {
 		editor: editor,
 		Text: text$1,
-		Completion: Completion
+		Completion: Completion,
+		add: function(obj) {
+			return window.e.registerPlugin(obj)
+		}
 	};
 
 	return lib;

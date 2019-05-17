@@ -9,10 +9,11 @@
 import UIKit
 import WebKit
 
-class Editor: UIView {
+class Editor: UIView, WKUIDelegate {
     
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var codeView: WKWebView!
+    var codeView: WKWebView!
+    @IBOutlet weak var containerCodeView: UIView!
     @IBOutlet weak var gitPanel: GitCommit!
     
     override init(frame: CGRect) {
@@ -37,6 +38,14 @@ class Editor: UIView {
     }
     func initialisation() {
         let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "EditorView")!
+        
+        let webConfiguration = WKWebViewConfiguration()
+        codeView = WKWebView(frame: containerCodeView.frame, configuration: webConfiguration)
+        codeView.uiDelegate = self
+        codeView.navigationDelegate = self
+        
+        containerCodeView = codeView
+        
         codeView.loadFileURL(url, allowingReadAccessTo: url)
         let request = URLRequest(url: url)
         codeView.load(request)
