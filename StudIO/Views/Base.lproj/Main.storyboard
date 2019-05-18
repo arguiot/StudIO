@@ -510,7 +510,7 @@ DQ
                                         <rect key="frame" x="0.0" y="0.0" width="35" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LzS-WI-rVd">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LzS-WI-rVd" customClass="SmallButton" customModule="StudIO" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="50"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                 <state key="normal" title="{">

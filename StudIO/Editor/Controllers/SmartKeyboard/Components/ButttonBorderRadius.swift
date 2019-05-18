@@ -39,3 +39,8 @@ import UIKit
         }
     }
 }
+
+
+class SmallButton: UIButton {
+    
+}

@@ -16,11 +16,18 @@ extension Editor: WKScriptMessageHandler {
         let button = sender as! UIButton
         let content = button.currentTitle
         
+        var replace = true
+        if button is SmallButton {
+            replace = false
+        }
+        
+        guard content != "" else { return }
+        
         let data = content?.data(using: .utf8)
         let c = data?.base64EncodedString()
         let js = """
         try {
-        window.e.insertSnippet("\(c ?? "")", true)
+        window.e.insertSnippet("\(c ?? "")", \(replace.description))
         } catch(e) {
         console.log(e)
         }
