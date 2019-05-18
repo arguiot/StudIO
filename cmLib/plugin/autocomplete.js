@@ -8,7 +8,7 @@ class StudIOAutocomplete extends StudIOPlugin {
 		return window.view.state.doc.toString()
 	}
 	get suggestion() {
-		return 0
+		return "STUDIOAUTOCOMPLETE"
 	}
 	getSuggestions() {
 		return []
