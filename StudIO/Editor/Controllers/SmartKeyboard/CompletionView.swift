@@ -37,8 +37,8 @@ extension Editor: WKScriptMessageHandler {
     
     // Completion Engine
     func setAutoCompletions(key1: String, key2: String, key3: String) {
-        let detailVC = self.parentViewController as! WorkingDirDetailVC
-        let editorVC = detailVC.splitViewController as! EditorSplitVC
+        guard let detailVC = self.parentViewController as? WorkingDirDetailVC else { return }
+        guard let editorVC = detailVC.splitViewController as? EditorSplitVC else { return }
         let smartKeyboard = editorVC.accessory
         let completion = smartKeyboard?.completionView
         
