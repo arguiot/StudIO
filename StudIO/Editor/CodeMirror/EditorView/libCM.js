@@ -10298,6 +10298,66 @@
 		}
 	}
 
+	class StudIOPlugin {
+		constructor(type) {
+			this.type = type;
+		}
+		get Type() {
+			return this.type
+		}
+		get EditorView() {
+			return window.view
+		}
+		get state() {
+			return window.view.state
+		}
+		setState(state) {
+			window.view.setState(state);
+		}
+	}
+
+	class StudIOAutocomplete extends StudIOPlugin {
+		get cursorIndex() {
+			return window.view.state.selection.ranges[0].anchor
+		}
+		get viewContent() {
+			return window.view.state.doc.toString()
+		}
+		get suggestion() {
+			return "STUDIOAUTOCOMPLETE"
+		}
+		getSuggestions() {
+			return []
+		}
+
+		getLastToken() {
+			var index = this.cursorIndex;
+			var content = this.viewContent;
+
+			var out = "";
+			for (var i = 0; true; i++) {
+				var newI = index - i;
+
+				if (newI == 0) break
+				if (newI < 0) {
+					newI = content.length - 1;
+				}
+				var letter = content[newI];
+
+				if (letter == " ") break
+				if (letter == "\n") break
+				if (typeof letter != "undefined") {
+					out += letter;
+				}
+			}
+			return out.split("").reverse().join("")
+		}
+
+		getSmartKeys() {
+			return ["{", "}", this.suggestion, this.suggestion, this.suggestion]
+		}
+	}
+
 	var EditorState = libCM.EditorState;
 	var EditorView = libCM.EditorView;
 	var EditorSelection = libCM.EditorSelection;
@@ -10467,9 +10527,11 @@
 		editor: editor,
 		Text: text$1,
 		Completion: Completion,
-		add: function(obj) {
-			return window.e.registerPlugin(obj)
-		}
+		add: function(obj, type) {
+			return window.e.registerPlugin(obj, type)
+		},
+		plugin: StudIOPlugin,
+		autocomplete: StudIOAutocomplete
 	};
 
 	return lib;

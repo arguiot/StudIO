@@ -19,6 +19,8 @@ const multipleSelections = libCM.multipleSelections
 const text = libCM.text
 
 import completion from "./completion/index.js"
+import autocomplete from "./plugin/autocomplete.js"
+import plugin from "./plugin/plugin.js"
 class editor {
 	constructor(ext, value, settings) {
 		settings = typeof settings != "undefined" ? settings : {}
@@ -173,7 +175,9 @@ export default {
 	editor: editor,
 	Text: text,
 	Completion: completion,
-	add: function(obj) {
-		return window.e.registerPlugin(obj)
-	}
+	add: function(obj, type) {
+		return window.e.registerPlugin(obj, type)
+	},
+	plugin: plugin,
+	autocomplete: autocomplete
 }

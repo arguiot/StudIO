@@ -57,7 +57,7 @@ extension Editor: WKScriptMessageHandler {
         let userContentController = codeView.configuration.userContentController
         if isScriptAdded == false {
             userContentController.add(self, name: "completion")
-            
+            userContentController.add(self, name: "setKeys")
             isScriptAdded = true
         }
     }
