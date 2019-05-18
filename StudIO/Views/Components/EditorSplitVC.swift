@@ -101,10 +101,20 @@ class EditorSplitVC: UISplitViewController {
     
     // Completion Cells
     var cells: [CompletionFeature] = [
+        CompletionFeature(title: "", type: .large),
+        CompletionFeature(title: "", type: .large),
+        CompletionFeature(title: "", type: .large),
         CompletionFeature(title: "{", type: .small),
         CompletionFeature(title: "}", type: .small),
-        CompletionFeature(title: "", type: .large),
-        CompletionFeature(title: "", type: .large),
-        CompletionFeature(title: "", type: .large)
+        CompletionFeature(title: "\"", type: .small),
+        CompletionFeature(title: "'", type: .small),
+        CompletionFeature(title: "[", type: .small),
+        CompletionFeature(title: "]", type: .small),
+        CompletionFeature(title: "+", type: .small),
+        CompletionFeature(title: "-", type: .small),
+        CompletionFeature(title: "*", type: .small),
+        CompletionFeature(title: "/", type: .small),
+        CompletionFeature(title: "(", type: .small),
+        CompletionFeature(title: ")", type: .small),
     ]
 }
