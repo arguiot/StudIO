@@ -176,7 +176,13 @@ export default {
 	Text: text,
 	Completion: completion,
 	add: function(obj, type) {
-		return window.e.registerPlugin(obj, type)
+		if (typeof window.e != "undefined") {
+			window.e.registerPlugin(obj, type)
+		} else {
+			setTimeout(function() {
+				window.e.registerPlugin(obj, type)
+			}, 500)
+		}
 	},
 	plugin: plugin,
 	autocomplete: autocomplete

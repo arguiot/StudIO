@@ -61,9 +61,11 @@ extension Editor {
     
     func injectPlugin(url: URL) {
         guard let content = try? String(contentsOf: url) else { return }
-        codeView.evaluateJavaScript(content)   { (result, error) in
-            if error != nil {
-                print(error!)
+        if codeView.isLoading == false {
+            codeView.evaluateJavaScript(content)   { (result, error) in
+                if error != nil {
+                    print(error!)
+                }
             }
         }
     }
