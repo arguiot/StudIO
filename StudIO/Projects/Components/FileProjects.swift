@@ -21,7 +21,9 @@ class LoadProjects {
         let sub = listFolders()
         var array = [Project]()
         sub.forEach { (folder) in
-            array.append(Project(project: folder.name, path: folder))
+            if folder.name != "STUDIO-PLUGINS" {
+                array.append(Project(project: folder.name, path: folder))
+            }
         }
         return array
     }
