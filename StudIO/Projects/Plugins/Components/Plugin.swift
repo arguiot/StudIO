@@ -34,8 +34,8 @@ struct Plugin {
         }
         self.name = ""
         self.type = .mode
-        self.path = URL(fileURLWithPath: Folder.home.path)
+        self.path = URL(fileURLWithPath: Folder.icloud.path)
         self.enabled = false
-        self.main = URL(fileURLWithPath: Folder.home.path)
+        self.main = URL(fileURLWithPath: Folder.icloud.path)
     }
 }

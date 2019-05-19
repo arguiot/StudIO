@@ -100,10 +100,9 @@ class editor {
 		} catch (e) {
 			console.warn(e)
 		}
-		if (typeof this.theme == "undefined") {
-			this.theme = "monokai"
+		if (typeof this.theme != "undefined") {
+			this.loadTheme(this.theme)
 		}
-		this.loadTheme(this.theme)
 	}
 	loadTheme(theme) {
 		const link = document.createElement("link")

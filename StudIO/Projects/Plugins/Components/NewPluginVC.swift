@@ -39,35 +39,41 @@ class NewPluginVC: UIViewController {
         guard let url = URL(string: pluginURL.text ?? "") else {
             return
         }
-        guard let p = try? Folder.home.createSubfolderIfNeeded(withName: "Plugins") else {
-            return
-        }
-        guard let name = getName(url: url) else {
-            return
-        }
-        if let s = try? p.subfolder(named: name) {
-            try? s.delete()
-        }
-        guard let u = try? p.createSubfolder(named: name) else {
-            return
-        }
-        let pURL = URL(fileURLWithPath: u.path)
-        
-        DispatchQueue.global().async {
-            let repo = Repository.clone(from: url, to: pURL, localClone: false, bare: false, credentials: .default, checkoutStrategy: .Safe, checkoutProgress: nil)
-            if case .success( _) = repo {
-                DispatchQueue.main.sync {
-                    self.setUI(url: pURL)
-                }
-            } else {
-                DispatchQueue.main.sync {
-                    NSObject.alert(t: "Cloning error", m: repo.error?.localizedDescription ?? "No details")
-                    self.loadingIndicator.isHidden = true
-                    self.loadingIndicator.stopAnimating()
+        do {
+            let p = try Folder.icloud.createSubfolderIfNeeded(withName: "STUDIO-PLUGINS")
+            
+            guard let name = getName(url: url) else {
+                return
+            }
+            if let s = try? p.subfolder(named: name) {
+                try? s.delete()
+            }
+            
+            let u = try p.createSubfolder(named: name)
+            
+            let pURL = URL(fileURLWithPath: u.path)
+            
+            DispatchQueue.global().async {
+                let repo = Repository.clone(from: url, to: pURL, localClone: false, bare: false, credentials: .default, checkoutStrategy: .Safe, checkoutProgress: nil)
+                if case .success( _) = repo {
+                    DispatchQueue.main.sync {
+                        self.setUI(url: pURL)
+                    }
+                } else {
+                    DispatchQueue.main.sync {
+                        NSObject.alert(t: "Cloning error", m: repo.error?.localizedDescription ?? "No details")
+                        self.loadingIndicator.isHidden = true
+                        self.loadingIndicator.stopAnimating()
+                    }
                 }
             }
+            
+        } catch {
+            NSObject.alert(t: "Cloning error", m: error.localizedDescription)
+            self.loadingIndicator.isHidden = true
+            self.loadingIndicator.stopAnimating()
+            return
         }
-        
     }
     
     private func getName(url: URL) -> String? {
