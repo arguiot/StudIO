@@ -68,22 +68,31 @@ class GitCommit: UIView {
             let sig = Signature(name: name, email: email)
             
             // branches
-            let r = GTRepository(gitRepository: (repo?.pointer)!)
-            let b = try? r?.currentBranch().name
-            if (b == nil) {
-                let branch = repo?.localBranch(named: "master").value
-                let oid = branch?.oid
-                repo?.checkout(oid!, strategy: .Safe)
-            }
-            // commit
-            if self.repo?.commit(message: commitStrip.text, signature: sig).value != nil {
+            do {
+                let r = try GTRepository(url: (repo?.directoryURL)!)
+                let b = try r.currentBranch().name
+                if (b == nil) {
+                    let branch = repo?.localBranch(named: "master").value
+                    let oid = branch?.oid
+                    repo?.checkout(oid!, strategy: .Safe)
+                }
+                // commit
+                let builder = try GTTreeBuilder(tree: nil, repository: r)
+                let entry = try builder.addEntry(with: "Another file contents".data(using: .utf8)!, fileName: "README.md", fileMode: GTFileMode.blob)
+                let subtree = try builder.writeTree()
+                builder.clear()
+                let commit = try r.createCommit(with: subtree, message: commitStrip.text, parents: nil, updatingReferenceNamed: "refs/heads/master")
+                
                 self.commitStrip.text = ""
                 self.status = []
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.reloadProperties()
                 }
+            } catch {
+                NSObject.alert(t: "Commit error", m: error.localizedDescription)
             }
+            
         }
         
     }
@@ -147,6 +156,7 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         let s = status
         let row = indexPath.row
         let path = s[row]
+        
 //        self.repo?.add(path: path ?? "Error")
         cell.textLabel?.text = path
         cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)

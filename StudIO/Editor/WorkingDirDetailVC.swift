@@ -41,7 +41,7 @@ class WorkingDirDetailVC: UIViewController {
         snippetButton = UIBarButtonItem(title: "Snippets", style: .plain, target: self, action: #selector(showSnippet(_:)))
         
         navigationItem.rightBarButtonItems = [
-//            gitButton, pButton,
+            gitButton, pButton,
             snippetButton, undoButton, redoButton].reversed()
         
         var saveIcon = #imageLiteral(resourceName: "save-icon")
