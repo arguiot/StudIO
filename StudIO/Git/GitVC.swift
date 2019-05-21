@@ -39,8 +39,9 @@ class GitVC: UIViewController {
             }
             p.push(rurl!, options: creds) { (current, total, bytes, stop) in
                 print(current, total, bytes, stop)
-                if stop.pointee.boolValue == true {
+                if stop.pointee.boolValue == true || current == total {
                     DispatchQueue.main.sync {
+                        NSObject.alert(t: "Pushed to remote", m: "Successfully pushed to remote")
                         self.reload()
                     }
                 }
