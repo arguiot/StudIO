@@ -61,6 +61,8 @@ class GitCommit: UIView {
         }
     }
     
+    var builder: GTTreeBuilder?
+    
     @IBAction func commit(_ sender: Any) {
         DispatchQueue.global().sync {
             let name = UserDefaults.standard.string(forKey: "name") ?? "StudIO User"
@@ -77,10 +79,10 @@ class GitCommit: UIView {
                     repo?.checkout(oid!, strategy: .Safe)
                 }
                 // commit
-                let builder = try GTTreeBuilder(tree: nil, repository: r)
-                let entry = try builder.addEntry(with: "Another file contents".data(using: .utf8)!, fileName: "README.md", fileMode: GTFileMode.blob)
-                let subtree = try builder.writeTree()
-                builder.clear()
+                self.builder = try GTTreeBuilder(tree: nil, repository: r)
+
+                let subtree = try self.builder!.writeTree()
+                self.builder!.clear()
                 
                 let branch = try r.currentBranch()
                 let last = try branch.targetCommit()
@@ -122,6 +124,14 @@ class GitCommit: UIView {
                 NSObject.alert(t: "Status error", m: error.localizedDescription)
             }
             
+            do {
+                guard self.repo != nil else { return }
+                let r = try GTRepository(url: (self.repo?.directoryURL)!)
+                self.builder = try GTTreeBuilder(tree: nil, repository: r)
+            } catch {
+                NSObject.alert(t: "Git panel error", m: error.localizedDescription)
+            }
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.checkButton()
@@ -161,8 +171,16 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         cell.contentView.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
         let s = status
         let row = indexPath.row
-        let path = s[row]
+        guard let path = s[row] else { return cell }
         
+        guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return cell }
+        self.builder = try? GTTreeBuilder(tree: nil, repository: r)
+        
+        guard self.builder != nil else { return cell }
+        
+        let url = URL(fileURLWithPath: path, relativeTo: repo?.directoryURL)
+        guard let d = try? Data(contentsOf: url) else { return cell }
+        _ = try? self.builder!.addEntry(with: d, fileName: path, fileMode: GTFileMode.blob)
 //        self.repo?.add(path: path ?? "Error")
         cell.textLabel?.text = path
         cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
@@ -172,7 +190,6 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .none
-        try? GTRepository(gitRepository: (repo?.pointer)!)?.index().removeFile((cell?.textLabel?.text)!)
         
         checkButton()
     }
@@ -180,6 +197,7 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .checkmark
 //        repo?.add(path: cell?.textLabel?.text ?? "")
+        try? builder?.removeEntry(withFileName: cell?.textLabel?.text ?? "")
         
         checkButton()
     }
