@@ -81,7 +81,13 @@ class GitCommit: UIView {
                 let entry = try builder.addEntry(with: "Another file contents".data(using: .utf8)!, fileName: "README.md", fileMode: GTFileMode.blob)
                 let subtree = try builder.writeTree()
                 builder.clear()
-                let commit = try r.createCommit(with: subtree, message: commitStrip.text, parents: nil, updatingReferenceNamed: "refs/heads/master")
+                
+                let branch = try r.currentBranch()
+                let last = try branch.targetCommit()
+                
+                let name = branch.reference.name
+                
+                let commit = try r.createCommit(with: subtree, message: commitStrip.text, parents: [last], updatingReferenceNamed: name)
                 
                 self.commitStrip.text = ""
                 self.status = []
