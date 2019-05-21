@@ -116,8 +116,12 @@ class GitCommit: UIView {
             guard nil != r?.fileURL else { return }
             do {
                 try r?.enumerateFileStatus(options: nil, usingBlock: { (delta1, delta2, val) in
-                    if delta2?.status != GTDeltaType.unmodified {
-                        self.status.append(delta2?.newFile?.path)
+                    if delta2?.status != .unmodified || delta1?.status != .unmodified {
+                        if delta2?.newFile?.path != nil {
+                            self.status.append(delta2?.newFile?.path)
+                        } else {
+                            self.status.append(delta1?.newFile?.path)
+                        }
                     }
                 })
             } catch {
