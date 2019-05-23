@@ -183,8 +183,13 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         guard self.builder != nil else { return cell }
         
         let url = URL(fileURLWithPath: path, relativeTo: repo?.directoryURL)
-        guard let d = try? Data(contentsOf: url) else { return cell }
-        _ = try? self.builder!.addEntry(with: d, fileName: path, fileMode: GTFileMode.blob)
+        do {
+            let d = try Data(contentsOf: url)
+            _ = try self.builder!.addEntry(with: d, fileName: path, fileMode: GTFileMode.blob)
+        } catch {
+            NSObject.alert(t: "Git panel error", m: error.localizedDescription)
+        }
+        
 //        self.repo?.add(path: path ?? "Error")
         cell.textLabel?.text = path
         cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
