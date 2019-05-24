@@ -67,7 +67,7 @@ class GitCommit: UIView {
         DispatchQueue.global().sync {
             let name = UserDefaults.standard.string(forKey: "name") ?? "StudIO User"
             let email = UserDefaults.standard.string(forKey: "email") ?? "studio@exemple.com"
-            let sig = Signature(name: name, email: email)
+            let sig = GTSignature(name: name, email: email, time: nil)
             
             // branches
             do {
@@ -79,9 +79,9 @@ class GitCommit: UIView {
                     repo?.checkout(oid!, strategy: .Safe)
                 }
                 // commit
-                self.builder = try GTTreeBuilder(tree: nil, repository: r)
 
                 let subtree = try self.builder!.writeTree()
+                
                 self.builder!.clear()
                 
                 let branch = try r.currentBranch()
@@ -89,7 +89,7 @@ class GitCommit: UIView {
                 
                 let name = branch.reference.name
                 
-                let commit = try r.createCommit(with: subtree, message: commitStrip.text, parents: [last], updatingReferenceNamed: name)
+                let commit = try r.createCommit(with: subtree, message: commitStrip.text, author: sig!, committer: sig!, parents: [last], updatingReferenceNamed: name)
                 
                 self.commitStrip.text = ""
                 self.status = []
@@ -111,11 +111,13 @@ class GitCommit: UIView {
             
             guard let rsg2 = self.repo?.directoryURL else { return }
             
-            let r = try? GTRepository(url: rsg2)
+            guard let r = try? GTRepository(url: rsg2) else { return }
             
-            guard nil != r?.fileURL else { return }
+            self.builder = try? GTTreeBuilder(tree: nil, repository: r)
+            
+            guard nil != r.fileURL else { return }
             do {
-                try r?.enumerateFileStatus(options: nil, usingBlock: { (delta1, delta2, val) in
+                try r.enumerateFileStatus(options: nil, usingBlock: { (delta1, delta2, val) in
                     if delta2?.status != .unmodified || delta1?.status != .unmodified {
                         if delta2?.newFile?.path != nil {
                             self.status.append(delta2?.newFile?.path)
@@ -176,9 +178,6 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         let s = status
         let row = indexPath.row
         guard let path = s[row] else { return cell }
-        
-        guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return cell }
-        self.builder = try? GTTreeBuilder(tree: nil, repository: r)
         
         guard self.builder != nil else { return cell }
         
