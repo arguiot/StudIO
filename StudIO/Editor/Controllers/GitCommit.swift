@@ -109,9 +109,9 @@ class GitCommit: UIView {
         DispatchQueue.global().async {
             self.status = []
             
-            guard let rsg2 = self.repo?.pointer else { return }
+            guard let rsg2 = self.repo?.directoryURL else { return }
             
-            let r = GTRepository(gitRepository: rsg2)
+            let r = try? GTRepository(url: rsg2)
             
             guard nil != r?.fileURL else { return }
             do {

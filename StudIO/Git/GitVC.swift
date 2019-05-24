@@ -119,7 +119,7 @@ class GitVC: UIViewController {
     @IBOutlet weak var nbranch: UITextField!
     @IBAction func newBranch(_ sender: Any) {
         let name = nbranch.text
-        let r = GTRepository(gitRepository: (repo?.pointer)!)!
+        guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return }
         
         do {
             let lb = try r.localBranches()
@@ -164,18 +164,18 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     func selectCorrectB() {
-        let r = GTRepository(gitRepository: (repo?.pointer)!)
+        guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return }
         let branches = repo?.localBranches()
         if let b = branches?.value {
-            let name = try? r?.currentBranch().shortName
+            let name = try? r.currentBranch().shortName
             let ns = b.map { $0.shortName }
             let i = ns.firstIndex(of: name ?? "")
             guard let ind = i else { return }
             if (ind == 0) {
-                let lb = try? r?.localBranches()
-                let ref = lb!![0].reference
+                let lb = try? r.localBranches()
+                let ref = lb![0].reference
                 do {
-                    try r?.checkoutReference(ref, options: GTCheckoutOptions(strategy: .safe))
+                    try r.checkoutReference(ref, options: GTCheckoutOptions(strategy: .safe))
                 } catch {
                     print(error.localizedDescription)
                 }
