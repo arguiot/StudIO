@@ -61,8 +61,6 @@ class GitCommit: UIView {
         }
     }
     
-    var builder: GTTreeBuilder?
-    
     @IBAction func commit(_ sender: Any) {
         DispatchQueue.global().sync {
             let name = UserDefaults.standard.string(forKey: "name") ?? "StudIO User"
@@ -79,10 +77,20 @@ class GitCommit: UIView {
                     repo?.checkout(oid!, strategy: .Safe)
                 }
                 // commit
-
-                let subtree = try self.builder!.writeTree()
+                let builder = try GTTreeBuilder(tree: nil, repository: r)
                 
-                self.builder!.clear()
+                for entry in self.status {
+                    let a = entry.keys.first!
+                    if entry.values.first! == true {
+                        let url = URL(fileURLWithPath: a, relativeTo: repo?.directoryURL)
+                        let data = try Data(contentsOf: url)
+                        try builder.addEntry(with: data, fileName: a, fileMode: .blob)
+                    }
+                }
+                
+                let subtree = try builder.writeTree()
+                
+                builder.clear()
                 
                 let branch = try r.currentBranch()
                 let last = try branch.targetCommit()
@@ -113,31 +121,20 @@ class GitCommit: UIView {
             
             guard let r = try? GTRepository(url: rsg2) else { return }
             
-            self.builder = try? GTTreeBuilder(tree: nil, repository: r)
-            
             guard nil != r.fileURL else { return }
             do {
                 try r.enumerateFileStatus(options: nil, usingBlock: { (delta1, delta2, val) in
                     if delta2?.status != .unmodified || delta1?.status != .unmodified {
                         if delta2?.newFile?.path != nil {
-                            self.status.append(delta2?.newFile?.path)
+                            self.status.append([delta2?.newFile?.path ?? "ERROR": true])
                         } else {
-                            self.status.append(delta1?.newFile?.path)
+                            self.status.append([delta1?.newFile?.path ?? "ERROR": true])
                         }
                     }
                 })
             } catch {
                 NSObject.alert(t: "Status error", m: error.localizedDescription)
             }
-            
-            do {
-                guard self.repo != nil else { return }
-                let r = try GTRepository(url: (self.repo?.directoryURL)!)
-                self.builder = try GTTreeBuilder(tree: nil, repository: r)
-            } catch {
-                NSObject.alert(t: "Git panel error", m: error.localizedDescription)
-            }
-            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.checkButton()
@@ -146,7 +143,7 @@ class GitCommit: UIView {
     }
     
     // properties
-    var status: [String?] = []
+    var status: [[String: Bool]] = []
     
     @IBOutlet weak var commitButton: UIButton!
     func checkButton() {
@@ -177,20 +174,10 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         cell.contentView.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
         let s = status
         let row = indexPath.row
-        guard let path = s[row] else { return cell }
-        
-        guard self.builder != nil else { return cell }
-        
-        let url = URL(fileURLWithPath: path, relativeTo: repo?.directoryURL)
-        do {
-            let d = try Data(contentsOf: url)
-            _ = try self.builder!.addEntry(with: d, fileName: path, fileMode: GTFileMode.blob)
-        } catch {
-            NSObject.alert(t: "Git panel error", m: error.localizedDescription)
-        }
+        let path = s[row]
         
 //        self.repo?.add(path: path ?? "Error")
-        cell.textLabel?.text = path
+        cell.textLabel?.text = path.keys.first ?? "ERROR"
         cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         cell.accessoryType = .checkmark
         return cell
@@ -199,13 +186,22 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .none
         
+        let row = indexPath.row
+        status[row] = [
+            status[row].keys.first!: false
+        ]
+        
         checkButton()
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .checkmark
 //        repo?.add(path: cell?.textLabel?.text ?? "")
-        try? builder?.removeEntry(withFileName: cell?.textLabel?.text ?? "")
+        
+        let row = indexPath.row
+        status[row] = [
+            status[row].keys.first!: true
+        ]
         
         checkButton()
     }
