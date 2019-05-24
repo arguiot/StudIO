@@ -61,15 +61,11 @@ class GitCommit: UIView {
         }
     }
     
-    fileprivate func extractedFunc() -> Date {
-        return Date()
-    }
-    
     @IBAction func commit(_ sender: Any) {
         DispatchQueue.global().sync {
             let name = UserDefaults.standard.string(forKey: "name") ?? "StudIO User"
             let email = UserDefaults.standard.string(forKey: "email") ?? "studio@exemple.com"
-            let sig = GTSignature(name: name, email: email, time: extractedFunc())
+            let sig = GTSignature(name: name, email: email, time: Date())
             
             // branches
             do {
