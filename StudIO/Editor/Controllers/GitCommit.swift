@@ -77,7 +77,10 @@ class GitCommit: UIView {
                     repo?.checkout(oid!, strategy: .Safe)
                 }
                 // commit
-                let builder = try GTTreeBuilder(tree: nil, repository: r)
+                let branch = try r.currentBranch()
+                let last = try branch.targetCommit()
+                
+                let builder = try GTTreeBuilder(tree: last.tree, repository: r)
                 
                 for entry in self.status {
                     var a = entry.keys.first ?? "ERROR"
@@ -94,9 +97,6 @@ class GitCommit: UIView {
                 let subtree = try builder.writeTree()
                 
                 builder.clear()
-                
-                let branch = try r.currentBranch()
-                let last = try branch.targetCommit()
                 
                 let name = branch.reference.name
                 
