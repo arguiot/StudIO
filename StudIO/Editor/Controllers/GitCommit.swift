@@ -80,8 +80,11 @@ class GitCommit: UIView {
                 let builder = try GTTreeBuilder(tree: nil, repository: r)
                 
                 for entry in self.status {
-                    let a = entry.keys.first!
-                    if entry.values.first! == true {
+                    var a = entry.keys.first ?? "ERROR"
+                    if a == "diff" {
+                        a = Array(entry.keys)[entry.keys.count - 1]
+                    }
+                    if entry[a] == "true" {
                         let url = URL(fileURLWithPath: a, relativeTo: repo?.directoryURL)
                         let data = try Data(contentsOf: url)
                         try builder.addEntry(with: data, fileName: a, fileMode: .blob)
@@ -126,9 +129,15 @@ class GitCommit: UIView {
                 try r.enumerateFileStatus(options: nil, usingBlock: { (delta1, delta2, val) in
                     if delta2?.status != .unmodified || delta1?.status != .unmodified {
                         if delta2?.newFile?.path != nil {
-                            self.status.append([delta2?.newFile?.path ?? "ERROR": true])
+                            self.status.append([
+                                delta2?.newFile?.path ?? "ERROR": "true",
+                                "diff": String(delta2?.similarity ?? 0)
+                            ])
                         } else {
-                            self.status.append([delta1?.newFile?.path ?? "ERROR": true])
+                            self.status.append([
+                                delta1?.newFile?.path ?? "ERROR": "true",
+                                "diff": String(delta1?.similarity ?? 0)
+                            ])
                         }
                     }
                 })
@@ -143,7 +152,7 @@ class GitCommit: UIView {
     }
     
     // properties
-    var status: [[String: Bool]] = []
+    var status: [[String: String]] = []
     
     @IBOutlet weak var commitButton: UIButton!
     func checkButton() {
@@ -177,7 +186,11 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         let path = s[row]
         
 //        self.repo?.add(path: path ?? "Error")
-        cell.textLabel?.text = path.keys.first ?? "ERROR"
+        var title = path.keys.first ?? "ERROR"
+        if title == "diff" {
+            title = Array(path.keys)[path.keys.count - 1]
+        }
+        cell.textLabel?.text = title
         cell.textLabel?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         cell.accessoryType = .checkmark
         return cell
@@ -187,8 +200,13 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         cell?.accessoryType = .none
         
         let row = indexPath.row
+        let path = status[row]
+        var title = path.keys.first ?? "ERROR"
+        if title == "diff" {
+            title = Array(path.keys)[path.keys.count - 1]
+        }
         status[row] = [
-            status[row].keys.first!: false
+            title: "false"
         ]
         
         checkButton()
@@ -199,10 +217,40 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
 //        repo?.add(path: cell?.textLabel?.text ?? "")
         
         let row = indexPath.row
+        let path = status[row]
+        var title = path.keys.first ?? "ERROR"
+        if title == "diff" {
+            title = Array(path.keys)[path.keys.count - 1]
+        }
         status[row] = [
-            status[row].keys.first!: true
+            title: "true"
         ]
         
         checkButton()
+    }
+    
+    
+    // Options
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let row = status[indexPath.row]
+        let diff = Double(row["diff"] ?? "0")
+        
+        let changes = UITableViewRowAction(style: .normal, title: "Similarity: \((diff ?? 0) * 100)%") { (action, indexPath) in
+            // Do nothing
+        }
+        let discardChanges = UITableViewRowAction(style: .destructive, title: "Discard changes") { (action, indexPath) in
+            do {
+                let r = try GTRepository(url: (self.repo?.directoryURL)!)
+                
+            } catch {
+                NSObject.alert(t: "Couldn't discard changes", m: error.localizedDescription)
+            }
+            
+        }
+        return [changes]
     }
 }
