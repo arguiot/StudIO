@@ -244,13 +244,35 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         }
         let discardChanges = UITableViewRowAction(style: .destructive, title: "Discard changes") { (action, indexPath) in
             do {
-                let r = try GTRepository(url: (self.repo?.directoryURL)!)
+                let row = indexPath.row
+                let path = self.status[row]
+                var title = path.keys.first ?? "ERROR"
+                if title == "diff" {
+                    title = Array(path.keys)[path.keys.count - 1]
+                }
                 
+                let r = try GTRepository(url: (self.repo?.directoryURL)!)
+
+                let index = try r.index()
+                try index.addFile(title)
+                let HEAD = try r.lookUpObject(byRevParse: "HEAD") as! GTCommit
+                let entry = try HEAD.tree?.entry(withPath: title)
+                let blob = try GTBlob(treeEntry: entry!)
+                let data = blob.data()
+                
+                let url = URL(fileURLWithPath: title, relativeTo: self.repo?.directoryURL)
+                let file = try File(path: url.path)
+                try file.write(data: data)
+                self.status = []
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.reloadProperties()
+                }
             } catch {
                 NSObject.alert(t: "Couldn't discard changes", m: error.localizedDescription)
             }
             
         }
-        return [changes]
+        return [changes, discardChanges]
     }
 }
