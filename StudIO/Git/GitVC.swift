@@ -156,12 +156,13 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let branches = repo?.localBranches()
-        if var b = branches?.value {
-            let oid = b[row].oid
-            if (repo?.checkout(oid, strategy: .Safe).value) != nil {
-                print("Checkout: ok")
-            }
+        do {
+            let r = try GTRepository(url: (repo?.directoryURL)!)
+            let branches = try r.localBranches()
+            let oid = branches[row].reference
+            try r.checkoutReference(oid, options: .init(strategy: .safe))
+        } catch {
+            NSObject.alert(t: "Checkout issue", m: error.localizedDescription)
         }
     }
     func selectCorrectB() {
