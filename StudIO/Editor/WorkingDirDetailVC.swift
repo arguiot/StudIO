@@ -38,7 +38,8 @@ class WorkingDirDetailVC: UIViewController {
         let undoButton = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(undo(_:)))
         let redoButton = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: #selector(redo(_:)))
         
-        snippetButton = UIBarButtonItem(title: "Snippets", style: .plain, target: self, action: #selector(showSnippet(_:)))
+        let simg = #imageLiteral(resourceName: "snippet").scaleImage(toSize: CGSize(width: 10, height: 10))
+        snippetButton = UIBarButtonItem(image: simg, style: .plain, target: self, action: #selector(showSnippet(_:)))
         
         navigationItem.rightBarButtonItems = [
             gitButton, pButton,
