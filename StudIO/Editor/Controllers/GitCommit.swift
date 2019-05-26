@@ -139,6 +139,8 @@ class GitCommit: UIView {
                                 "diff": String(delta1?.similarity ?? 0)
                             ])
                         }
+                        let similarity = max((delta2?.newFile?.git_diff_file.size) as? Int64 ?? 0, (delta1?.newFile?.git_diff_file.size) as? Int64 ?? 0)
+                        self.status[self.status.count - 1]["diff"] = String(similarity)
                     }
                 })
             } catch {
@@ -237,11 +239,33 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let row = status[indexPath.row]
-        let diff = Double(row["diff"] ?? "0")
-        
-        let changes = UITableViewRowAction(style: .normal, title: "Similarity: \((diff ?? 0) * 100)%") { (action, indexPath) in
-            // Do nothing
+        let diff = Double(row["diff"] ?? "0") ?? 0
+        let path = row
+        var title = path.keys.first ?? "ERROR"
+        if title == "diff" {
+            title = Array(path.keys)[path.keys.count - 1]
         }
+        
+        var changes: UITableViewRowAction?
+        
+        do {
+            let r = try GTRepository(url: (self.repo?.directoryURL)!)
+            
+            let index = try r.index()
+            try index.addFile(title)
+            let HEAD = try r.lookUpObject(byRevParse: "HEAD") as! GTCommit
+            let entry = try HEAD.tree?.entry(withPath: title)
+            let blob = try GTBlob(treeEntry: entry!)
+            let size = Double(blob.size())
+            changes = UITableViewRowAction(style: .normal, title: "Similarity: \(round(abs((size - diff) / (size + diff)) * 1000) / 10)%") { (action, indexPath) in
+                // Do nothing
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        
+        
         let discardChanges = UITableViewRowAction(style: .destructive, title: "Discard changes") { (action, indexPath) in
             do {
                 let row = indexPath.row
@@ -273,6 +297,9 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
             }
             
         }
-        return [changes, discardChanges]
+        if changes == nil {
+            return [discardChanges]
+        }
+        return [changes!, discardChanges]
     }
 }
