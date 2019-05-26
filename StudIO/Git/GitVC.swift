@@ -119,12 +119,13 @@ class GitVC: UIViewController {
     @IBOutlet weak var nbranch: UITextField!
     @IBAction func newBranch(_ sender: Any) {
         let name = nbranch.text
-        guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return }
-        
         do {
-            let lb = try r.localBranches()
-            let oid = lb[0].oid
+            let r = try GTRepository(url: (repo?.directoryURL)!)
+            let lb = try r.currentBranch()
+            let oid = lb.oid
             try r.createBranchNamed(name!, from: oid!, message: nil)
+            
+            self.branchPicker.reloadAllComponents()
         } catch {
             NSObject.alert(t: "Couldn't create branch", m: error.localizedDescription)
         }
