@@ -46,6 +46,11 @@ class GitCommit: UIView {
         tableView.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
         tableView.backgroundView?.backgroundColor = #colorLiteral(red: 0.1674376428, green: 0.1674425602, blue: 0.167439878, alpha: 1)
         reloadProperties()
+        
+        let screenSize = UIScreen.main.bounds
+        if contentView.frame.width > screenSize.width {
+            contentView.frame = CGRect(x: 400 - screenSize.width, y: self.bounds.minY, width: screenSize.width, height: self.bounds.height)
+        }
     }
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
