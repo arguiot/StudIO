@@ -91,6 +91,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                                 <connections>
+                                    <action selector="HideSmartKeyboard" destination="RWA-dU-hGN" eventType="editingDidEnd" id="E74-GF-n50"/>
                                     <action selector="setGitName:" destination="grP-rr-E8W" eventType="editingDidEnd" id="2tu-by-t0w"/>
                                 </connections>
                             </textField>
@@ -104,18 +105,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                 <connections>
+                                    <action selector="HideSmartKeyboard" destination="RWA-dU-hGN" eventType="editingDidEnd" id="YSL-1X-Cfa"/>
                                     <action selector="setGitEmail:" destination="grP-rr-E8W" eventType="editingDidEnd" id="Zlp-uF-ivS"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="efC-Zr-29d">
-                                <rect key="frame" x="24" y="310" width="83.5" height="30"/>
+                                <rect key="frame" x="24" y="310" width="250" height="30"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="5ev-Up-vUT"/>
                                     <constraint firstAttribute="height" constant="30" id="bUA-K7-lyx"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                 <connections>
+                                    <action selector="HideSmartKeyboard" destination="RWA-dU-hGN" eventType="editingDidEnd" id="f67-OA-EbL"/>
                                     <action selector="setGitPasswd:" destination="grP-rr-E8W" eventType="editingDidEnd" id="QVh-Iv-iJU"/>
                                 </connections>
                             </textField>
@@ -136,6 +140,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                 <connections>
+                                    <action selector="HideSmartKeyboard" destination="RWA-dU-hGN" eventType="editingDidEnd" id="Bwn-6f-eXL"/>
                                     <action selector="newBranch:" destination="grP-rr-E8W" eventType="editingDidEnd" id="9tQ-Hp-EJK"/>
                                 </connections>
                             </textField>

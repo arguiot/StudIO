@@ -28,16 +28,20 @@ class GitVC: UIViewController {
     }
     @objc @IBAction func pushAction(_ sender: Any) {
         let p = Push()
-        let rurl = repo?.directoryURL
+        guard let rurl = repo?.directoryURL else { return }
         DispatchQueue.global().async {
             let email = UserDefaults.standard.string(forKey: "email") ?? ""
             let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
             var creds: NSDictionary? = [:]
             if (email != "" || passwd != "") {
-                let git_cred = try? GTCredential(userName: email, password: passwd)
-                creds = p.creds(creds: git_cred)
+                do {
+                    let git_cred = try GTCredential(userName: email, password: passwd)
+                    creds = p.creds(creds: git_cred)
+                } catch {
+                    NSObject.alert(t: "Cred issue", m: error.localizedDescription)
+                }
             }
-            p.push(rurl!, options: creds) { (current, total, bytes, stop) in
+            p.push(rurl, options: creds) { (current, total, bytes, stop) in
                 print(current, total, bytes, stop)
                 if stop.pointee.boolValue == true || current == total {
                     DispatchQueue.main.sync {

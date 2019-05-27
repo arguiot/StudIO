@@ -40,6 +40,8 @@ class EditorSplitVC: UISplitViewController {
     @IBOutlet var accessory: SmartKeyboard!
     
     @objc func keyboardWillShow(_ notification: Notification) {
+        let VC = self.viewControllers.first as! UINavigationController
+        guard VC.visibleViewController is WorkingDirDetailVC else { return }
         accessory.isHidden = false
         
         accessory.loader.isHidden = true
@@ -57,7 +59,7 @@ class EditorSplitVC: UISplitViewController {
         }
     }
     
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification?) {
         accessory.isHidden = true
         
         let height = UIScreen.main.bounds.height
@@ -65,6 +67,12 @@ class EditorSplitVC: UISplitViewController {
         accessory.frame = CGRect(x: 0, y: height - 60, width: width, height: 60)
     }
     
+    @IBAction func HideSmartKeyboard() {
+        self.keyboardWillHide(nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.keyboardWillHide(nil)
+        }
+    }
     func findKeyboardView() -> UIView? {
         let result: UIView? = nil
         
