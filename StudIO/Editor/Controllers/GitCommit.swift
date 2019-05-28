@@ -308,3 +308,13 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
         return [changes!, discardChanges]
     }
 }
+
+
+extension GitCommit: UITextViewDelegate {
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        let vc = self.parentViewController as! WorkingDirDetailVC
+        let split = vc.splitViewController as! EditorSplitVC
+        split.HideSmartKeyboard()
+        return true
+    }
+}
