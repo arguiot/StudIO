@@ -169,6 +169,8 @@ class WorkingDirDetailVC: UIViewController {
         }
         p?.isHidden = !(p?.isHidden ?? false)
         
+        let split = self.splitViewController as! EditorSplitVC
+        split.HideSmartKeyboard()
     }
     
     @objc func undo(_ sender: Any?) {
