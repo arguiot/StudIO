@@ -84,6 +84,7 @@ class editor {
 				document.querySelector("#editor").appendChild(view.dom)
 
 				this.listenForAutomcompletion()
+				this.disableCompletion()
 			}.bind(this);
 			script.src = `mode/${mode.mode}/${mode.mode}.js`;
 
@@ -93,6 +94,12 @@ class editor {
 			// this.fontSize(EditorSettings.fontSize)
 		}
 	}
+	disableCompletion() {
+		const content = document.querySelector(".codemirror-content")
+		content.setAttribute("autocorrect", "off")
+		content.setAttribute("autocapitalize", "off")
+	}
+
 	settings() {
 		try {
 			this.lineWrapping = this.EditorSettings.lineWrapping == true // boolean convert
