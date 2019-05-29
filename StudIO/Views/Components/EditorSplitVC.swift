@@ -96,7 +96,7 @@ class EditorSplitVC: UISplitViewController {
                     }
                 }
                 for s in last {
-                    if s.description.hasPrefix("<UIKeyboardAssistantBar") {
+                    if s.description.hasPrefix("<UIKeyboardAssistantBar") || s.description.hasPrefix("<UIKeyboardPredictionView") {
                         return s
                     }
                 }
@@ -109,20 +109,20 @@ class EditorSplitVC: UISplitViewController {
     
     // Completion Cells
     var cells: [CompletionFeature] = [
+        CompletionFeature(title: "\"", type: .small),
+        CompletionFeature(title: "(", type: .small),
+        CompletionFeature(title: ")", type: .small),
+        CompletionFeature(title: "'", type: .small),
         CompletionFeature(title: "", type: .large),
         CompletionFeature(title: "", type: .large),
         CompletionFeature(title: "", type: .large),
         CompletionFeature(title: "{", type: .small),
-        CompletionFeature(title: "}", type: .small),
-        CompletionFeature(title: "\"", type: .small),
-        CompletionFeature(title: "'", type: .small),
+        CompletionFeature(title: "}", type: .small), 
         CompletionFeature(title: "[", type: .small),
         CompletionFeature(title: "]", type: .small),
         CompletionFeature(title: "+", type: .small),
         CompletionFeature(title: "-", type: .small),
         CompletionFeature(title: "*", type: .small),
         CompletionFeature(title: "/", type: .small),
-        CompletionFeature(title: "(", type: .small),
-        CompletionFeature(title: ")", type: .small),
     ]
 }
