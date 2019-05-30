@@ -65,8 +65,8 @@ extension Editor: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         switch message.name {
         case "completion":
-            let keys = message.body as? [String]
-            self.setAutoCompletions(key1: keys?[0] ?? "", key2: keys?[1] ?? "", key3: keys?[2] ?? "")
+            guard let keys = message.body as? [String?] else { return }
+            self.setAutoCompletions(key1: keys[0] ?? "", key2: keys[1] ?? "", key3: keys[2] ?? "")
         case "setKeys":
             let keys = message.body as? [String]
             guard let detailVC = self.parentViewController as? WorkingDirDetailVC else { return }
@@ -128,9 +128,9 @@ extension EditorSplitVC: UICollectionViewDataSource, UICollectionViewDelegateFlo
         let key1 = keys[0]
         let key2 = keys[1]
         let key3 = keys[2]
-        self.cells[0] = CompletionFeature(title: key1, type: .large)
-        self.cells[1] = CompletionFeature(title: key2, type: .large)
-        self.cells[2] = CompletionFeature(title: key3, type: .large)
+        self.cells[4] = CompletionFeature(title: key1, type: .large)
+        self.cells[5] = CompletionFeature(title: key2, type: .large)
+        self.cells[6] = CompletionFeature(title: key3, type: .large)
         accessory.completionView.reloadData()
     }
 }

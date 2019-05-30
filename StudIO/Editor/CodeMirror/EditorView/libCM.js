@@ -10239,7 +10239,7 @@
 		}
 		tokenize(str) {
 			return new Promise(function(resolve, reject) {
-				resolve(str.replace(/[^\w\d\s]/g, "")
+				resolve(str.replace(/[^\w\d\s]/g, " ")
 					.replace(/\s{2,}/g, " ")
 					.split("\n")
 					.join(" ")
