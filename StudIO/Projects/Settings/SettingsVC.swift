@@ -92,7 +92,7 @@ class Themes {
     static var themes: [Theme] {
         let path = Bundle.main.path(forResource: "monokai", ofType: "css")
         let url = URL(fileURLWithPath: path ?? "")
-        var out = [Theme(name: "monokai", src: url)]
+        var out = [Theme(name: "default", src: url), Theme(name: "monokai", src: url)]
         
         guard let plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else {
             return out

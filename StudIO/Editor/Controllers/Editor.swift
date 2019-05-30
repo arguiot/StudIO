@@ -112,9 +112,21 @@ class Editor: UIView, WKUIDelegate {
     
     func settings(_ data: [String: String]) {
         var d = data
-        if data["theme"] != "monokai" {
+        if data["theme"] != "monokai" && data["theme"] != "default" {
             d.removeValue(forKey: "theme")
             self.loadTheme(name: data["theme"] ?? "")
+        } else if data["theme"] == "monokai" {
+            let jsString = """
+            var style = document.createElement('link');
+            style.setAttribute('rel','stylesheet');
+            style.setAttribute('href', './theme/monokai.css');
+            document.head.appendChild(style);
+            """
+            codeView.evaluateJavaScript(jsString)  { (result, error) in
+                if error != nil {
+                    print(error!)
+                }
+            }
         }
         
         var json: Data!
