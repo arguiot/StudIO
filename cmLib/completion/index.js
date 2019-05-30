@@ -38,7 +38,12 @@ class Completion {
 				firsts.b = [token, score]
 			}
 		}.bind(this))
-
+		if (firsts.a[0] == "") {
+			const a = firsts.b[0]
+			const b = firsts.a[0]
+			firsts.a[0] = b
+			firsts.b[0] = a
+		}
 		return [currentWord, firsts.a[0], firsts.b[0]]
 	}
 

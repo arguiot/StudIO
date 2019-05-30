@@ -10270,7 +10270,12 @@
 					firsts.b = [token, score];
 				}
 			}.bind(this));
-
+			if (firsts.a[0] == "") {
+				var a = firsts.b[0];
+				var b = firsts.a[0];
+				firsts.a[0] = b;
+				firsts.b[0] = a;
+			}
 			return [currentWord, firsts.a[0], firsts.b[0]]
 		}
 
