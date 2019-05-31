@@ -10284,7 +10284,7 @@
 			var content = window.view.state.doc.toString();
 
 			var out = "";
-			for (var i = 0; true; i++) {
+			for (var i = 1; true; i++) {
 				var newI = index - i;
 
 				if (newI == 0) break
@@ -10293,13 +10293,12 @@
 				}
 				var letter = content[newI];
 
-				if (letter == " ") break
-				if (letter == "\n") break
+				if (/[^\w\d\s]/g.test(letter) == true) break
 				if (typeof letter != "undefined") {
 					out += letter;
 				}
 			}
-			return out.split("").reverse().join("")
+			return out.split("").reverse().join("").replace(" ", "")
 		}
 	}
 
