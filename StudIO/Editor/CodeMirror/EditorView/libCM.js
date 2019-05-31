@@ -10234,6 +10234,7 @@
 		constructor(value) {
 			value = typeof value == "undefined" ? "" : value;
 			this.tokenize(value).then(function(tokens) {
+				tokens.filter(a => a != "");
 				this.set = new Set(tokens);
 			}.bind(this));
 		}
@@ -10249,12 +10250,14 @@
 		appendToSet(content) {
 			this.tokenize(content).then(function(tokens) {
 				tokens.forEach(function(token) {
-					this.set.add(token);
+					if (token != "") {
+						this.set.add(token);
+					}
 				}.bind(this));
 			}.bind(this));
 		}
 		getSuggestions(currentWord, content) {
-			if (typeof content != "undefined") {
+			if (typeof content != "undefined" && this.set.size < 3) {
 				this.appendToSet(content);
 			}
 			var firsts = {
