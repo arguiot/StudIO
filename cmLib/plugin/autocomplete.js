@@ -15,11 +15,11 @@ class StudIOAutocomplete extends StudIOPlugin {
 	}
 
 	getLastToken() {
-		const index = this.cursorIndex
-		const content = this.viewContent
+		const index = window.view.state.selection.ranges[0].anchor
+		const content = window.view.state.doc.toString()
 
 		let out = ""
-		for (let i = 0; true; i++) {
+		for (let i = 1; true; i++) {
 			const newI = index - i
 
 			if (newI == 0) break
@@ -28,13 +28,12 @@ class StudIOAutocomplete extends StudIOPlugin {
 			}
 			const letter = content[newI]
 
-			if (letter == " ") break
-			if (letter == "\n") break
+			if (/[^\w\d\s]/g.test(letter) == true) break
 			if (typeof letter != "undefined") {
 				out += letter
 			}
 		}
-		return out.split("").reverse().join("")
+		return [out.split("").reverse().join("").replace(" ", ""), newI]
 	}
 
 	getSmartKeys() {

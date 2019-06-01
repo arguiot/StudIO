@@ -154,7 +154,7 @@ class editor {
 		const str = atobUTF8(snippet)
 		document.querySelector(".codemirror-content").focus()
 		if (replaceLine === true) {
-			for (var i = 0; i < this.c.getLastToken().length; i++) {
+			for (var i = 0; i < this.c.getLastToken()[0].length; i++) {
 				document.execCommand('delete')
 			}
 		}
@@ -165,7 +165,7 @@ class editor {
 		this.c = new completion(window.view.state.doc.text.join("\n"))
 		document.querySelector(".codemirror-content").addEventListener("input", function(e) {
 			const currentWord = this.c.getLastToken()
-			const suggestions = this.c.getSuggestions(currentWord, window.view.state.doc.toString())
+			const suggestions = this.c.getSuggestions(currentWord[0], this.c.getContent(currentWord[0], currentWord[1]))
 			this.setCompletion(...suggestions)
 		}.bind(this))
 	}

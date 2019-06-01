@@ -10260,6 +10260,7 @@
 			if (typeof content != "undefined" && this.set.size < 3) {
 				this.appendToSet(content);
 			}
+			currentWord = currentWord.trim();
 			var firsts = {
 				a: [],
 				b: []
@@ -10301,7 +10302,13 @@
 					out += letter;
 				}
 			}
-			return out.split("").reverse().join("").replace(" ", "")
+			return [out.split("").reverse().join("").trim(), newI]
+		}
+
+		getContent(lastToken, lastI) {
+			var content = window.view.state.doc.toString();
+
+			return content.slice(0, lastI) + content.slice(lastI + lastToken.length, content.length)
 		}
 	}
 
@@ -10338,11 +10345,11 @@
 		}
 
 		getLastToken() {
-			var index = this.cursorIndex;
-			var content = this.viewContent;
+			var index = window.view.state.selection.ranges[0].anchor;
+			var content = window.view.state.doc.toString();
 
 			var out = "";
-			for (var i = 0; true; i++) {
+			for (var i = 1; true; i++) {
 				var newI = index - i;
 
 				if (newI == 0) break
@@ -10351,13 +10358,12 @@
 				}
 				var letter = content[newI];
 
-				if (letter == " ") break
-				if (letter == "\n") break
+				if (/[^\w\d\s]/g.test(letter) == true) break
 				if (typeof letter != "undefined") {
 					out += letter;
 				}
 			}
-			return out.split("").reverse().join("")
+			return [out.split("").reverse().join("").replace(" ", ""), newI]
 		}
 
 		getSmartKeys() {
@@ -10513,7 +10519,7 @@
 			var str = atobUTF8(snippet);
 			document.querySelector(".codemirror-content").focus();
 			if (replaceLine === true) {
-				for (var i = 0; i < this.c.getLastToken().length; i++) {
+				for (var i = 0; i < this.c.getLastToken()[0].length; i++) {
 					document.execCommand('delete');
 				}
 			}
@@ -10524,7 +10530,7 @@
 			this.c = new Completion(window.view.state.doc.text.join("\n"));
 			document.querySelector(".codemirror-content").addEventListener("input", function(e) {
 				var currentWord = this.c.getLastToken();
-				var suggestions = this.c.getSuggestions(currentWord, window.view.state.doc.toString());
+				var suggestions = this.c.getSuggestions(currentWord[0], this.c.getContent(currentWord[0], currentWord[1]));
 				this.setCompletion(...suggestions);
 			}.bind(this));
 		}

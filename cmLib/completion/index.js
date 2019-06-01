@@ -28,6 +28,7 @@ class Completion {
 		if (typeof content != "undefined" && this.set.size < 3) {
 			this.appendToSet(content)
 		}
+		currentWord = currentWord.trim()
 		let firsts = {
 			a: [],
 			b: []
@@ -69,7 +70,13 @@ class Completion {
 				out += letter
 			}
 		}
-		return out.split("").reverse().join("").replace(" ", "")
+		return [out.split("").reverse().join("").trim(), newI]
+	}
+
+	getContent(lastToken, lastI) {
+		const content = window.view.state.doc.toString()
+
+		return content.slice(0, lastI) + content.slice(lastI + lastToken.length, content.length)
 	}
 }
 
