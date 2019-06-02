@@ -77,7 +77,7 @@ class GitCommit: UIView {
                 let r = try GTRepository(url: (repo?.directoryURL)!)
                 let b = try r.currentBranch().name
                 if (b == nil) {
-                    let branch = repo?.localBranch(named: "master").value
+                    let branch = try repo?.localBranch(named: "master").get()
                     let oid = branch?.oid
                     repo?.checkout(oid!, strategy: .Safe)
                 }

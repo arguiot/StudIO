@@ -55,13 +55,14 @@ class NewPluginVC: UIViewController {
             
             DispatchQueue.global().async {
                 let repo = Repository.clone(from: url, to: pURL, localClone: false, bare: false, credentials: .default, checkoutStrategy: .Safe, checkoutProgress: nil)
-                if case .success( _) = repo {
+                switch repo {
+                case .success(_):
                     DispatchQueue.main.sync {
                         self.setUI(url: pURL)
                     }
-                } else {
+                case .failure(let error):
                     DispatchQueue.main.sync {
-                        NSObject.alert(t: "Cloning error", m: repo.error?.localizedDescription ?? "No details")
+                        NSObject.alert(t: "Cloning error", m: error.localizedDescription )
                         self.loadingIndicator.isHidden = true
                         self.loadingIndicator.stopAnimating()
                     }

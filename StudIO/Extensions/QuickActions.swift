@@ -194,7 +194,7 @@ open class QuickActions<T: ShortcutType> {
     
     open func remove(_ shortcut: Shortcut, toApplication application: UIApplication) {
         if #available(iOS 9.0, *) {
-            if let index = application.shortcutItems?.index(of: shortcut.toApplicationShortcut(bundleIdentifier)) , index > -1 {
+            if let index = application.shortcutItems?.firstIndex(of: shortcut.toApplicationShortcut(bundleIdentifier)) , index > -1 {
                 application.shortcutItems?.remove(at: index)
             }
         }

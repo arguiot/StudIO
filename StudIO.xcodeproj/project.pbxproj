@@ -24,7 +24,6 @@
 		6802069D21C6469C000686D1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6802069C21C6469C000686D1 /* Data.swift */; };
 		68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68040211220EC67500789453 /* BLTNBoard.framework */; };
 		68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68040214220EC67800789453 /* ObjectiveGit.framework */; };
-		68040218220EC67800789453 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68040215220EC67800789453 /* Result.framework */; };
 		68058E5821C7AFCB0088334E /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68058E5721C7AFCB0088334E /* TableViewExtension.swift */; };
 		6808B18121BD1D8200811058 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808B18021BD1D8200811058 /* Files.swift */; };
 		6808B18321BD1E5200811058 /* FileProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808B18221BD1E5200811058 /* FileProjects.swift */; };
@@ -128,7 +127,6 @@
 		6802069C21C6469C000686D1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		68040211220EC67500789453 /* BLTNBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BLTNBoard.framework; path = Carthage/Build/iOS/BLTNBoard.framework; sourceTree = "<group>"; };
 		68040214220EC67800789453 /* ObjectiveGit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectiveGit.framework; path = Carthage/Build/iOS/ObjectiveGit.framework; sourceTree = "<group>"; };
-		68040215220EC67800789453 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		68058E5721C7AFCB0088334E /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
 		6808B18021BD1D8200811058 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		6808B18221BD1E5200811058 /* FileProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProjects.swift; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 		68E4544D21C276CB00F945A0 /* CreateFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFile.swift; sourceTree = "<group>"; };
 		68E59354223FA68D008C86C7 /* textField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textField.swift; sourceTree = "<group>"; };
 		68E59356223FAEB9008C86C7 /* colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
-		68EF7B85222782FD00CD47D9 /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = Carthage/Build/iOS/Instabug.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,7 +237,6 @@
 				68B56367222CBB2600B9E0DD /* Zip.framework in Frameworks */,
 				687EC15B222AB46C00E6B3C3 /* SwiftGit2.framework in Frameworks */,
 				68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */,
-				68040218220EC67800789453 /* Result.framework in Frameworks */,
 				68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,9 +258,7 @@
 				6890AD30223E42CF00D6EDBD /* ColorSlider.framework */,
 				68B56366222CBB2600B9E0DD /* Zip.framework */,
 				687EC15A222AB46C00E6B3C3 /* SwiftGit2.framework */,
-				68EF7B85222782FD00CD47D9 /* Instabug.framework */,
 				68040214220EC67800789453 /* ObjectiveGit.framework */,
-				68040215220EC67800789453 /* Result.framework */,
 				68040211220EC67500789453 /* BLTNBoard.framework */,
 			);
 			name = Frameworks;
@@ -684,7 +678,7 @@
 				TargetAttributes = {
 					689BDC1821B22F7800D88AAB = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 1;
@@ -696,6 +690,7 @@
 					};
 					68B4B2D5224F6A4A00036712 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 689BDC1821B22F7800D88AAB;
 					};
 				};
@@ -781,7 +776,6 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftGit2.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectiveGit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Zip.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ColorSlider.framework",
@@ -1110,7 +1104,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = StudIO/Git/ObjectiveGit/Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1136,7 +1130,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = StudIO/Git/ObjectiveGit/Header.h;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1172,7 +1166,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ArthurG.StudIO.StudIO-UI-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = StudIO;
 			};
@@ -1191,7 +1185,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ArthurG.StudIO.StudIO-UI-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = StudIO;
 			};

@@ -56,9 +56,9 @@ class GitVC: UIViewController {
     }
     
     @IBAction func fetch(_ sender: Any) {
-        let remotes = repo?.allRemotes().value
+        guard let remotes = ((try? repo?.allRemotes().get()) as [Remote]??) else { return }
         remotes?.forEach({ r in
-            if repo?.fetch(r).value != nil {
+            if (try? repo!.fetch(r).get()) != nil {
                 print("Pull: ok")
             }
         })
@@ -143,8 +143,8 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let branches = repo?.localBranches()
-        if var b = branches?.value {
+        guard let branches = repo?.localBranches() else { return 1 }
+        if var b = try? branches.get() {
             return b.count
         } else {
             return 1
@@ -152,11 +152,12 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
         
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let branches = repo?.localBranches()
-        if var b = branches?.value {
+        let d = NSAttributedString(string: "master", attributes: [.foregroundColor: UIColor.white])
+        guard let branches = repo?.localBranches() else { return d }
+        if var b = try? branches.get() {
             return NSAttributedString(string: b[row].name, attributes: [.foregroundColor: UIColor.white])
         } else {
-            return NSAttributedString(string: "master", attributes: [.foregroundColor: UIColor.white])
+            return d
         }
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -171,9 +172,9 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     func selectCorrectB() {
         guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return }
-        let branches = repo?.localBranches()
-        if let b = branches?.value {
-            let name = try? r.currentBranch().shortName
+        guard let branches = repo?.localBranches() else { return }
+        if let b = try? branches.get() {
+            let name = ((try? r.currentBranch().shortName) as String??)
             let ns = b.map { $0.shortName }
             let i = ns.firstIndex(of: name ?? "")
             guard let ind = i else { return }

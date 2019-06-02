@@ -27,7 +27,7 @@ extension ProjectVC: UIDropInteractionDelegate {
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         
         for t in types {
-            if session.canLoadObjects(ofClass: t as! NSItemProviderReading.Type) {
+            if session.canLoadObjects(ofClass: t ) {
                 return true
             }
         }

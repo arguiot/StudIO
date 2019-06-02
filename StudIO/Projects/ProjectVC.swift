@@ -53,11 +53,11 @@ class ProjectVC: UICollectionViewController {
                 let p = self.project[row].path
                 let path = URL(fileURLWithPath: p.path)
                 let repo = Repository.at(path)
-                if let r = repo.value {
+                switch repo {
+                case .success(let r):
                     e.repo = r
-                } else {
-                    print(repo.error?.localizedDescription)
-                // Create empty repo
+                case .failure(let error):
+                    NSObject.alert(t: "Couldn't transfer repo", m: error.localizedDescription)
                 }
             }
         }

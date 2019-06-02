@@ -49,11 +49,12 @@ class CreateProject {
             let f = try! home.createSubfolderIfNeeded(withName: name)
             
             let repo = Repository.clone(from: url, to: pURL, credentials: creds, checkoutStrategy: .Safe)
-            if case .success(let r) = repo {
+            switch repo {
+            case .success(_):
                 let p = Project(project: name, path: f)
                 handler(p)
-            } else {
-                alert(repo.error?.localizedDescription ?? "Cloning error")
+            case .failure(let error):
+                alert(error.localizedDescription )
                 if f.files.count == 0 || f.subfolders.count == 0 {
                     try? f.delete()
                 }
