@@ -16,7 +16,7 @@ class SliderCell: UITableViewCell {
     var basic: String = "false"
     var key = "" {
         didSet {
-            let v = UserDefaults.standard.bool(forKey: "studio-\(key)") ?? Bool(basic)!
+            let v = UserDefaults.standard.bool(forKey: "studio-\(key)") 
             slider.setOn(v, animated: false)
         }
     }

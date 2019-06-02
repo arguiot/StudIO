@@ -91,7 +91,7 @@ class SnippetsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let row = indexPath.row
-        let snippet = snippets[row]
+        _ = snippets[row]
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             self.snippets.remove(at: row)

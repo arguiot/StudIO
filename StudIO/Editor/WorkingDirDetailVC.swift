@@ -120,13 +120,13 @@ class WorkingDirDetailVC: UIViewController {
     }
     func bottomView(_ str: String = "") {
         let b = bottomLine
-        if let branch = repo?.localBranch(named: "master").value {
-            let commit = repo?.commits(in: branch).next()?.value!
+        if let branch = ((try? repo?.localBranch(named: "master").get()) as Branch??) {
+            let commit = (((try? repo?.commits(in: branch!).next()?.get()) as Commit??))!
             let msg = commit?.message
             b?.lastCommit.text = msg
         }
         DispatchQueue.global().async {
-            let text = try? self.file?.readSize()
+            let text = ((try? self.file?.readSize()) as String??)
             DispatchQueue.main.async {
                 b?.sizeString.text = text as? String
             }

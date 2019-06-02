@@ -27,7 +27,7 @@ extension ProjectVC: UIDropInteractionDelegate {
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         
         for t in types {
-            if session.canLoadObjects(ofClass: t as! NSItemProviderReading.Type) {
+            if session.canLoadObjects(ofClass: t ) {
                 return true
             }
         }
@@ -43,7 +43,7 @@ extension ProjectVC: UIDropInteractionDelegate {
             for t in types {
                 if dragItem.itemProvider.canLoadObject(ofClass: t) {
                     dragItem.itemProvider.loadObject(ofClass: t) { (obj, error) in
-                        if let err = error {
+                        if error != nil {
                             NSObject.alert(t: "Drop error", m: error?.localizedDescription ?? "Couldn't access the file / folder")
                             return
                         }

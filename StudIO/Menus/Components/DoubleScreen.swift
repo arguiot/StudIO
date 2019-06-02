@@ -23,7 +23,7 @@ extension WorkingDirMasterVC {
             
             // Repo
             let path = LoadManager!.project.path
-            let repo = Repository.at(URL(fileURLWithPath: path)).value!
+            let repo = try! Repository.at(URL(fileURLWithPath: path)).get()
             controller.repo = repo
             
             controller.detailItem = (sender as! MenuCellStruct).path as? File
