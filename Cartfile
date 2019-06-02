@@ -2,6 +2,6 @@ github "alexaubry/BulletinBoard"
 github "SwiftGit2/SwiftGit2"
 # github "libgit2/objective-git"
 binary "https://studiocode.app/other/objectivegit.json"
-github "marmelroy/Zip"
+github "mflint/Zip" "swift5"
 github "gizmosachin/ColorSlider" >= 4.4
-github "delba/JASON" >= 3.0
+github "rickyzh/JASON" "master"
