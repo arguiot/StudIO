@@ -1,3 +1,4 @@
+import levenshtein from "./levenshtein.js"
 class Completion {
 	constructor(value) {
 		value = typeof value == "undefined" ? "" : value
