@@ -105,7 +105,7 @@ class GitCommit: UIView {
                 
                 let name = branch.reference.name
                 
-                let commit = try r.createCommit(with: subtree, message: commitStrip.text, author: sig!, committer: sig!, parents: [last], updatingReferenceNamed: name)
+                _ = try r.createCommit(with: subtree, message: commitStrip.text, author: sig!, committer: sig!, parents: [last], updatingReferenceNamed: name)
                 
                 self.commitStrip.text = ""
                 self.status = []
@@ -144,7 +144,7 @@ class GitCommit: UIView {
                                 "diff": String(delta1?.similarity ?? 0)
                             ])
                         }
-                        let similarity = max((delta2?.newFile?.git_diff_file.size) as? Int64 ?? 0, (delta1?.newFile?.git_diff_file.size) as? Int64 ?? 0)
+                        let similarity = max((delta2?.newFile?.git_diff_file.size) ?? 0, (delta1?.newFile?.git_diff_file.size) ?? 0)
                         self.status[self.status.count - 1]["diff"] = String(similarity)
                     }
                 })

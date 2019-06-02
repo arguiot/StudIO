@@ -72,13 +72,13 @@ public protocol ShortcutType: RawRepresentable {}
 
 public extension RawRepresentable where Self: ShortcutType {
     
-    public init?(type: String) {
+    init?(type: String) {
         assert(type is RawValue)
         // FIXME: try another solution to restrain the RawRepresentable as String
         self.init(rawValue: type as! RawValue)
     }
     
-    public var value: String {
+    var value: String {
         return self.rawValue as? String ?? ""
     }
     
@@ -103,7 +103,7 @@ public struct Shortcut {
 public extension Shortcut {
     
     @available(iOS 9.0, *)
-    public init(shortcutItem: UIApplicationShortcutItem) {
+    init(shortcutItem: UIApplicationShortcutItem) {
         if let range = shortcutItem.type.rangeOfCharacter(from: CharacterSet(charactersIn: "."), options: .backwards) {
             type = shortcutItem.type.substring(from: range.upperBound)
         }
@@ -126,7 +126,7 @@ public extension Shortcut {
 @available(iOS 9.0, *)
 public extension UIApplicationShortcutItem {
     
-    public var toShortcut: Shortcut {
+    var toShortcut: Shortcut {
         return Shortcut(shortcutItem: self)
     }
     

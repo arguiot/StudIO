@@ -21,7 +21,7 @@ class StepperCell: UITableViewCell {
     var basic: String = "0"
     var key = "" {
         didSet {
-            let v = UserDefaults.standard.double(forKey: "studio-\(key)") ?? Double(basic)!
+            let v = UserDefaults.standard.double(forKey: "studio-\(key)") 
             let modeled = model(v)
             displayedValue.text = modeled
             stepper.value = v

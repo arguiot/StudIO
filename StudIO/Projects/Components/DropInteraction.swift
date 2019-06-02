@@ -43,7 +43,7 @@ extension ProjectVC: UIDropInteractionDelegate {
             for t in types {
                 if dragItem.itemProvider.canLoadObject(ofClass: t) {
                     dragItem.itemProvider.loadObject(ofClass: t) { (obj, error) in
-                        if let err = error {
+                        if error != nil {
                             NSObject.alert(t: "Drop error", m: error?.localizedDescription ?? "Couldn't access the file / folder")
                             return
                         }

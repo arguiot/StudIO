@@ -144,7 +144,7 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         guard let branches = repo?.localBranches() else { return 1 }
-        if var b = try? branches.get() {
+        if let b = try? branches.get() {
             return b.count
         } else {
             return 1
