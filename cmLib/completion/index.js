@@ -30,26 +30,16 @@ class Completion {
 			this.appendToSet(content)
 		}
 		currentWord = currentWord.trim()
-		let firsts = {
-			a: [],
-			b: []
-		}
+		let scores = [["", Number.MAX_SAFE_INTEGER], ["", Number.MAX_SAFE_INTEGER], ["", Number.MAX_SAFE_INTEGER]]
 		this.set.forEach(function(token) {
-			// const score = levenshtein(currentWord, token)
-			const score = token.indexOf(currentWord) != -1 ? 1 : -1
-			if (firsts.a.length == 0 || firsts.a[1] >= score) {
-				firsts.a = [token, score]
-			} else if (firsts.b.length == 0 || firsts.b[1] >= score) {
-				firsts.b = [token, score]
-			}
+			if (token == "") return
+			const length = currentWord.length
+			const truncated = token.substring(0, length)
+			const score = levenshtein(truncated, currentWord)
+			scores.push([token, score])
 		}.bind(this))
-		if (firsts.a[0] == "") {
-			const a = firsts.b[0]
-			const b = firsts.a[0]
-			firsts.a[0] = b
-			firsts.b[0] = a
-		}
-		return [currentWord, firsts.a[0], firsts.b[0]]
+		scores.sort((a, b) => a[1] - b[1])
+		return scores.slice(0, 3).map(x => x[0])
 	}
 
 	getLastToken() {

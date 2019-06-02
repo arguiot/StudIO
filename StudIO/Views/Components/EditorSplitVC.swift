@@ -40,8 +40,8 @@ class EditorSplitVC: UISplitViewController {
     @IBOutlet var accessory: SmartKeyboard!
     
     @objc func keyboardWillShow(_ notification: Notification) {
-        let VC = self.viewControllers.first as! UINavigationController
-        guard VC.visibleViewController is WorkingDirDetailVC else { return }
+        let VC = self.viewControllers as! [UINavigationController]
+        guard VC.first?.visibleViewController is WorkingDirDetailVC || VC.last?.visibleViewController is WorkingDirDetailVC else { return }
         accessory.isHidden = false
         
         accessory.loader.isHidden = true
