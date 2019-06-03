@@ -102,7 +102,9 @@ class Themes {
             if plugin["type"] == "theme" {
                 let name = plugin["name"]!
                 let src = URL(fileURLWithPath: plugin["main"]!, relativeTo: URL(fileURLWithPath: Folder.home.path))
-                out.append(Theme(name: name, src: src))
+                if Bool(plugin["enabled"] ?? "false") == true {
+                    out.append(Theme(name: name, src: src))
+                }
             }
         }
         
