@@ -45,6 +45,9 @@ extension Editor {
         plugins.forEach { (plugin) in
             let url = URL(fileURLWithPath: plugin["main"]!)
             let type = PluginsVC.PluginType(rawValue: plugin["type"] ?? "mode") ?? .mode
+            
+            guard Bool(plugin["enabled"] ?? "false") == true else { return }
+            
             if type == .hint || type == .mode {
                 let home = URL(fileURLWithPath: Folder.home.path)
                 let fileURL = home.appendingPathComponent(url.path)
