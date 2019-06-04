@@ -91,7 +91,7 @@ class editor {
 			document.head.appendChild(script);
 
 			// after settings
-			// this.fontSize(EditorSettings.fontSize)
+			this.fontSize(EditorSettings.fontSize)
 		}
 	}
 	disableCompletion() {
