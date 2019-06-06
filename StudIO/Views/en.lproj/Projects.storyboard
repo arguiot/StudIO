@@ -32,7 +32,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5fS-EH-LRH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sliderCell" id="8BF-Va-XO3" customClass="SliderCell" customModule="StudIO" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -70,10 +70,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="stepperCell" id="mFV-eK-463" customClass="StepperCell" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="71.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="71.5" width="414" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mFV-eK-463" id="dGs-5R-cCL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name of property" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hys-ik-L0u">
@@ -84,7 +84,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kKt-KT-WJT">
-                                            <rect key="frame" x="300" y="7.5" width="94" height="32"/>
+                                            <rect key="frame" x="300" y="7" width="94" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="94" id="pCG-c4-Ul0"/>
                                                 <constraint firstAttribute="height" constant="29" id="tIb-aS-CwC"/>
@@ -94,7 +94,7 @@
                                             </connections>
                                         </stepper>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUa-yZ-I0W">
-                                            <rect key="frame" x="250" y="11" width="42" height="21.5"/>
+                                            <rect key="frame" x="250" y="11" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -115,7 +115,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="textFieldCell" id="Bjp-x3-KoR" customClass="TextFieldCell" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="115" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="114.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bjp-x3-KoR" id="tfA-xO-yVO">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -153,7 +153,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pickerViewCell" rowHeight="60" id="R1s-13-6WX" customClass="PickerViewCell" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="158.5" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="158" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R1s-13-6WX" id="jDi-TT-7G9">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>

@@ -162,12 +162,17 @@ class WorkingDirDetailVC: UIViewController {
     @objc func gitPanel(_ sender: Any?) {
         save()
         
-        let p = editorView?.gitPanel
+        guard let p = editorView?.gitPanel else { return }
         
-        if p?.isHidden == true {
-            p?.reloadProperties()
+        let screenSize = UIScreen.main.bounds
+        if p.contentView.frame.width > screenSize.width {
+            p.contentView.frame = CGRect(x: 400 - screenSize.width, y: p.bounds.minY, width: screenSize.width, height: p.bounds.height)
         }
-        p?.isHidden = !(p?.isHidden ?? false)
+        
+        if p.isHidden == true {
+            p.reloadProperties()
+        }
+        p.isHidden = !(p.isHidden)
         
         let split = self.splitViewController as! EditorSplitVC
         split.HideSmartKeyboard()
