@@ -33,9 +33,15 @@ class ProjectVC: UICollectionViewController {
         self.collectionView.addGestureRecognizer(lgpr)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()
+        vc?.modalPresentationStyle = .fullScreen
+        
+        // MARK: Prepare
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        if let splitViewController = segue.destination as? EditorSplitVC {
+        if let splitViewController = vc as? EditorSplitVC {
             let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
             navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
             splitViewController.delegate = appDelegate
@@ -61,8 +67,10 @@ class ProjectVC: UICollectionViewController {
                 }
             }
         }
+        
+        self.present(vc!, animated: true, completion: nil)
     }
-    
+
     // MARK: UICollectionViewDataSource
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

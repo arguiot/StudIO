@@ -445,10 +445,6 @@
                                 <connections>
                                     <outlet property="name" destination="Y7F-gI-9OK" id="jIp-jQ-kXb"/>
                                     <outlet property="progressView" destination="E3u-Uz-hgy" id="leN-eo-vwn"/>
-                                    <segue destination="amk-zz-VJI" kind="show" id="gR5-Yx-o3x">
-                                        <segue key="commit" inheritsFrom="parent" id="wis-UD-R9O"/>
-                                        <segue key="preview" inheritsFrom="commit" id="IvE-gf-QdK"/>
-                                    </segue>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -484,14 +480,6 @@
             </objects>
             <point key="canvasLocation" x="440.625" y="144.53125"/>
         </scene>
-        <!--Main-->
-        <scene sceneID="V0x-fj-aQ2">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="amk-zz-VJI" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="beC-B2-Ndz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="896" y="142"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="GAA-Sg-W5n">
             <objects>
@@ -517,7 +505,4 @@
         <image name="plugins" width="18" height="18"/>
         <image name="settings" width="18" height="18"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="gR5-Yx-o3x"/>
-    </inferredMetricsTieBreakers>
 </document>
