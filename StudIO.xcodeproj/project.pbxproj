@@ -151,7 +151,6 @@
 		6835AEFC222126A700A0C379 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Language.strings; sourceTree = "<group>"; };
 		6835AEFD2221273D00A0C379 /* Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
 		6835AF0022212AE100A0C379 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Projects.storyboard; sourceTree = "<group>"; };
-		6835AF0322212AF400A0C379 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Projects.strings; sourceTree = "<group>"; };
 		6838E26322477DDB00BF1A44 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		683CF2642247A9D400EB75FC /* GitLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitLab.swift; sourceTree = "<group>"; };
 		683CF2662248F81900EB75FC /* Obfuscator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obfuscator.swift; sourceTree = "<group>"; };
@@ -181,6 +180,7 @@
 		6863DF9621B68F1700911374 /* EditorSplitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorSplitVC.swift; sourceTree = "<group>"; };
 		686822ED21DB8DCA0036694B /* GitCommit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GitCommit.xib; sourceTree = "<group>"; };
 		686822EF21DB8E130036694B /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
+		686E8C4722A9FF4F00770DF6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/Projects.storyboard; sourceTree = "<group>"; };
 		6872862B21D29DE2003F1073 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		687BA442227719F3007AE0B3 /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 		687DA70422127145005491C0 /* PickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewCell.swift; sourceTree = "<group>"; };
@@ -937,7 +937,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6835AF0022212AE100A0C379 /* en */,
-				6835AF0322212AF400A0C379 /* fr */,
+				686E8C4722A9FF4F00770DF6 /* fr */,
 			);
 			name = Projects.storyboard;
 			sourceTree = "<group>";

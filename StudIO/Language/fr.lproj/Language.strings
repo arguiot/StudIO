@@ -5,8 +5,8 @@
   Created by Arthur Guiot on 23/2/19.
   Copyright © 2019 Arthur Guiot. All rights reserved.
 */
-"CloneRepo" = "Cloner un depot";
-"LocalRepo" = "Depot local";
+"Clone Repo" = "Cloner un depot";
+"Local Repo" = "Depot local";
 "Clone using custom credentials" = "Utiliser vos identifiants pour cloner le depot";
 "Create" = "Créer";
 "Done" = "Ok";
