@@ -9,7 +9,8 @@
 import UIKit
 import SwiftGit2
 
-extension WorkingDirMasterVC {
+extension WorkingDirMasterVC: UITableViewDragDelegate {
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -90,5 +91,10 @@ extension WorkingDirMasterVC {
         }
         
         return array
+    }
+    
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        return []
     }
 }
