@@ -95,6 +95,22 @@ extension WorkingDirMasterVC: UITableViewDragDelegate {
     
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        return []
+        var out = [UIDragItem]()
+        let object = objects[indexPath.row]
+        switch object.type {
+        case .file:
+            guard let f = object.path as? File else { return out }
+            let p = f.path
+            let url = URL(fileURLWithPath: p)
+            let item = UIDragItem(itemProvider: NSItemProvider(contentsOf: url)!)
+            out.append(item)
+        case .folder:
+            guard let f = object.path as? Folder else { return out }
+            let p = f.path
+            let url = URL(fileURLWithPath: p)
+            let item = UIDragItem(itemProvider: NSItemProvider(contentsOf: url)!)
+            out.append(item)
+        }
+        return out
     }
 }
