@@ -97,20 +97,36 @@ extension WorkingDirMasterVC: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         var out = [UIDragItem]()
         let object = objects[indexPath.row]
+        
+        let userActivity = NSUserActivity(activityType: "com.ArthurG.StudIO.openFile")
+        userActivity.title = "openFile"
+
+        
         switch object.type {
         case .file:
             guard let f = object.path as? File else { return out }
             let p = f.path
             let url = URL(fileURLWithPath: p)
-            let item = UIDragItem(itemProvider: NSItemProvider(contentsOf: url)!)
+            
+            let provider = NSItemProvider(contentsOf: url)
+            provider?.registerObject(userActivity, visibility: .all)
+            
+            let item = UIDragItem(itemProvider: provider!)
+            item.localObject = object
             out.append(item)
         case .folder:
             guard let f = object.path as? Folder else { return out }
             let p = f.path
             let url = URL(fileURLWithPath: p)
-            let item = UIDragItem(itemProvider: NSItemProvider(contentsOf: url)!)
+            
+            let provider = NSItemProvider(contentsOf: url)
+            provider?.registerObject(userActivity, visibility: .all)
+            
+            let item = UIDragItem(itemProvider: provider!)
+            item.localObject = object
             out.append(item)
         }
+        
         return out
     }
 }

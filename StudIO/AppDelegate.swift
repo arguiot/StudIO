@@ -89,7 +89,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return false
     }
-
+    
+    // MARK: Multiple View
+    
+    @available(iOS 13.0, *)
+    func application(_ application: UIApplication,
+                     configurationForConnecting connectingSceneSession: UISceneSession,
+                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        return UISceneConfiguration(name: "General Configuration", sessionRole: connectingSceneSession.role)
+    }
 }
 
 enum AppShortcut: String, ShortcutType {
