@@ -9,6 +9,7 @@
 import UIKit
 import SwiftGit2
 import BLTNBoard
+import SafariServices
 
 class GitVC: UIViewController {
 
@@ -25,6 +26,21 @@ class GitVC: UIViewController {
         passwd.text = UserDefaults.standard.string(forKey: "password") ?? ""
         
         selectCorrectB()
+        let img = #imageLiteral(resourceName: "link").scaleImage(toSize: CGSize(width: 10, height: 10))
+        let item = UIBarButtonItem(image: img, style: .plain, target: self, action: #selector(openURL(_:)))
+        self.navigationItem.rightBarButtonItem = item
+    }
+    @IBAction func openURL(_ sender: Any) {
+        guard let repo = self.repo else { return }
+        do {
+            guard let path = try repo.allRemotes().get().first?.URL else { return }
+            let url = URL(string: path)
+            let vc = SFSafariViewController(url: url!)
+            self.splitViewController?.present(vc, animated: true, completion: nil)
+        } catch {
+            NSObject.alert(t: "Couldn't open remote URL", m: error.localizedDescription)
+        }
+        
     }
     @objc @IBAction func pushAction(_ sender: Any) {
         let p = Push()
