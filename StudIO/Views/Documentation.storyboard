@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="241-Hp-ykn">
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MarkdownVC-->
+        <scene sceneID="GxK-tq-8Y7">
+            <objects>
+                <viewController id="IF0-cE-UVP" customClass="MarkdownVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g3X-Yl-3Gy">
+                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="3Zw-ag-a8K"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t6Q-tB-k3Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-82" y="-14"/>
+        </scene>
+        <!--Documentation-->
+        <scene sceneID="e8C-hZ-Q7d">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="zz1-Wn-05Y" customClass="MenuDocTableViewController" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Ko-YQ-QTE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="nyr-QY-nHh">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="zz1-Wn-05Y" id="3q2-AQ-wYA"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" textLabel="yfb-VU-lpx" style="IBUITableViewCellStyleDefault" id="EMN-ob-SSg">
+                                <rect key="frame" x="0.0" y="72" width="320" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EMN-ob-SSg" id="6Ov-ih-p7o">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yfb-VU-lpx">
+                                            <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="IF0-cE-UVP" kind="showDetail" id="5UZ-JU-fry"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zz1-Wn-05Y" id="feV-YJ-f5z"/>
+                            <outlet property="delegate" destination="zz1-Wn-05Y" id="nph-w8-wEH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Documentation" id="xVy-Qi-tIa">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="dLW-GK-lmz">
+                            <connections>
+                                <action selector="dismiss:" destination="zz1-Wn-05Y" id="GlW-Fm-Uqx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="nRS-Md-3Wr" id="9g9-6d-4E2"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P1Y-G7-1ZU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="nRS-Md-3Wr">
+                    <connections>
+                        <outlet property="delegate" destination="zz1-Wn-05Y" id="NNW-py-0lS"/>
+                        <outlet property="searchBar" destination="nyr-QY-nHh" id="Dv9-J6-6jb"/>
+                        <outlet property="searchContentsController" destination="zz1-Wn-05Y" id="dc7-kz-ht4"/>
+                        <outlet property="searchResultsDataSource" destination="zz1-Wn-05Y" id="HZe-xH-I8M"/>
+                        <outlet property="searchResultsDelegate" destination="zz1-Wn-05Y" id="kRU-mu-Xhx"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="647" y="-671"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TOg-mJ-Ck0">
+            <objects>
+                <navigationController id="psr-Am-jf8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9CA-pG-SUv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zz1-Wn-05Y" kind="relationship" relationship="rootViewController" id="xML-2R-SH2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pvc-nK-AHh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-82" y="-671"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="Cmj-wz-9Zu">
+            <objects>
+                <splitViewController id="241-Hp-ykn" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="psr-Am-jf8" kind="relationship" relationship="masterViewController" id="wUo-gw-wx4"/>
+                        <segue destination="IF0-cE-UVP" kind="relationship" relationship="detailViewController" id="LRd-DM-Nkq"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Hf-9S-wKZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-811" y="-342"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="5UZ-JU-fry"/>
+    </inferredMetricsTieBreakers>
+</document>

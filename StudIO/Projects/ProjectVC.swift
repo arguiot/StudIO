@@ -31,7 +31,17 @@ class ProjectVC: UICollectionViewController {
         
         let lgpr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         self.collectionView.addGestureRecognizer(lgpr)
+        
+        let button = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(openDucmentation(_:)))
+        button.tintColor = .lightGray
+        self.navigationItem.rightBarButtonItems?.append(button)
     }
+    @IBAction func openDucmentation(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Documentation", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()!
+        self.navigationController?.present(vc, animated: true, completion: nil)
+    }
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
