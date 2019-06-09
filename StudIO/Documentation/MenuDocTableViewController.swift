@@ -8,13 +8,17 @@
 
 import UIKit
 
-class MenuDocTableViewController: UITableViewController {
+class MenuDocTableViewController: UITableViewController, UISearchBarDelegate {
     struct Article {
         var path: URL
         var name: String
         var tags: [String]
     }
     var articles = [Article]()
+    var displaying = [Article]()
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,15 +27,17 @@ class MenuDocTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        searchBar.delegate = self
         loadArticles()
     }
     func loadArticles() {
         let paths = Bundle.main.paths(forResourcesOfType: "md", inDirectory: "Articles")
         for path in paths {
             let url = URL(fileURLWithPath: path)
-            let name = url.standardizedFileURL.lastPathComponent
-            articles.append(Article(path: url, name: name, tags: []))
+            let name = url.standardizedFileURL.lastPathComponent.split(separator: ".").first!
+            articles.append(Article(path: url, name: String(name), tags: []))
         }
+        displaying = articles
     }
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -46,17 +52,27 @@ class MenuDocTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return articles.count
+        return displaying.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath)
-        let row = articles[indexPath.row]
+        let row = displaying[indexPath.row]
         cell.textLabel?.text = row.name
         return cell
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        displaying = []
+        let length = searchText.count
+        for article in articles {
+            if article.name.prefix(length) == searchText {
+                displaying.append(article)
+            }
+        }
+        tableView.reloadData()
+    }
 
     /*
     // Override to support conditional editing of the table view.

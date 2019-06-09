@@ -15,13 +15,39 @@
                     <view key="view" contentMode="scaleToFill" id="g3X-Yl-3Gy">
                         <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="paV-Ch-ATe">
+                                <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
+                                <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <attributes>
+                                            <color key="NSColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="14" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="paV-Ch-ATe" firstAttribute="leading" secondItem="3Zw-ag-a8K" secondAttribute="leading" id="On5-3a-zqp"/>
+                            <constraint firstAttribute="trailing" secondItem="paV-Ch-ATe" secondAttribute="trailing" id="cQP-q3-Gqy"/>
+                            <constraint firstItem="paV-Ch-ATe" firstAttribute="top" secondItem="3Zw-ag-a8K" secondAttribute="top" id="dYg-sI-4yj"/>
+                            <constraint firstItem="paV-Ch-ATe" firstAttribute="bottom" secondItem="3Zw-ag-a8K" secondAttribute="bottom" id="uq3-g9-clx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="3Zw-ag-a8K"/>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="paV-Ch-ATe" id="hmP-iD-ZNU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t6Q-tB-k3Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-82" y="-14"/>
+            <point key="canvasLocation" x="-82.03125" y="-14.0625"/>
         </scene>
         <!--Documentation-->
         <scene sceneID="e8C-hZ-Q7d">
@@ -30,7 +56,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Ko-YQ-QTE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="nyr-QY-nHh">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -50,7 +76,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yfb-VU-lpx">
                                             <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -74,6 +100,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="nyr-QY-nHh" id="adc-Wu-8T9"/>
                         <outlet property="searchDisplayController" destination="nRS-Md-3Wr" id="9g9-6d-4E2"/>
                     </connections>
                 </tableViewController>
@@ -81,7 +108,6 @@
                 <searchDisplayController id="nRS-Md-3Wr">
                     <connections>
                         <outlet property="delegate" destination="zz1-Wn-05Y" id="NNW-py-0lS"/>
-                        <outlet property="searchBar" destination="nyr-QY-nHh" id="Dv9-J6-6jb"/>
                         <outlet property="searchContentsController" destination="zz1-Wn-05Y" id="dc7-kz-ht4"/>
                         <outlet property="searchResultsDataSource" destination="zz1-Wn-05Y" id="HZe-xH-I8M"/>
                         <outlet property="searchResultsDelegate" destination="zz1-Wn-05Y" id="kRU-mu-Xhx"/>
