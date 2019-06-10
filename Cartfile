@@ -5,3 +5,4 @@ binary "https://studiocode.app/other/objectivegit.json"
 github "mflint/Zip" "swift5"
 github "gizmosachin/ColorSlider" >= 4.4
 github "rickyzh/JASON" "master"
+github "iwasrobbed/Down" "master"

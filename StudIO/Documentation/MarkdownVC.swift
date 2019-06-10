@@ -7,14 +7,29 @@
 //
 
 import UIKit
+import Down
 
 class MarkdownVC: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
+    
+    var article: MenuDocTableViewController.Article? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        guard article != nil else { return }
+        let url = article!.path
+        do {
+            let content = try String(contentsOf: url)
+            
+            let down = Down(markdownString: content)
+            let attributedString = try down.toAttributedString()
+            textView.attributedText = attributedString
+        } catch {
+            NSObject.alert(t: "Couldn't load file", m: error.localizedDescription)
+        }
+        
     }
     
 
