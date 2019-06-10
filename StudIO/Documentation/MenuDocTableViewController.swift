@@ -116,10 +116,12 @@ class MenuDocTableViewController: UITableViewController, UISearchBarDelegate {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
-        guard let destination = segue.destination as? MarkdownVC else { return }
+        guard let nv = segue.destination as? UINavigationController else { return }
+        guard let destination = nv.viewControllers.first as? MarkdownVC else { return }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         let article = displaying[indexPath.row]
         destination.article = article
+        destination.title = article.name
     }
 
 }

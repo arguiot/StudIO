@@ -12,13 +12,18 @@ import Down
 class MarkdownVC: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var section: UILabel!
     
     var article: MenuDocTableViewController.Article? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        guard article != nil else { return }
+        guard article != nil else {
+            section.isHidden = false
+            textView.isHidden = true
+            return
+        }
         let url = article!.path
         do {
             let content = try String(contentsOf: url)
@@ -26,12 +31,20 @@ class MarkdownVC: UIViewController {
             let down = Down(markdownString: content)
             let attributedString = try down.toAttributedString()
             textView.attributedText = attributedString
+            
+            section.isHidden = true
+            textView.isHidden = false
         } catch {
             NSObject.alert(t: "Couldn't load file", m: error.localizedDescription)
         }
-        
+        uiChecks()
     }
     
+    func uiChecks() {
+        if #available(iOS 13.0, *) {
+            textView.textColor = .label
+        }
+    }
 
     /*
     // MARK: - Navigation

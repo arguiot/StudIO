@@ -6,9 +6,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="iOS 13.0 system colors" minToolsVersion="11.0"/>
     </dependencies>
     <scenes>
-        <!--MarkdownVC-->
+        <!--Details-->
         <scene sceneID="GxK-tq-8Y7">
             <objects>
                 <viewController id="IF0-cE-UVP" customClass="MarkdownVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="paV-Ch-ATe">
-                                <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="paV-Ch-ATe">
+                                <rect key="frame" x="28" y="50" width="647.5" height="718"/>
                                 <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <attributedString key="attributedText">
                                     <fragment>
@@ -31,23 +32,53 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open a section" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2o-u4-09B">
+                                <rect key="frame" x="261.5" y="367" width="181" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="ZzF-RA-M8X"/>
+                                    <constraint firstAttribute="width" constant="181" id="lb0-MX-9VM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" cocoaTouchSystemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="paV-Ch-ATe" firstAttribute="leading" secondItem="3Zw-ag-a8K" secondAttribute="leading" id="On5-3a-zqp"/>
-                            <constraint firstAttribute="trailing" secondItem="paV-Ch-ATe" secondAttribute="trailing" id="cQP-q3-Gqy"/>
+                            <constraint firstItem="B2o-u4-09B" firstAttribute="centerY" secondItem="g3X-Yl-3Gy" secondAttribute="centerY" id="FYT-kG-VNb"/>
+                            <constraint firstItem="B2o-u4-09B" firstAttribute="centerX" secondItem="g3X-Yl-3Gy" secondAttribute="centerX" id="Fvc-RH-q51"/>
+                            <constraint firstItem="paV-Ch-ATe" firstAttribute="leading" secondItem="3Zw-ag-a8K" secondAttribute="leading" constant="28" id="On5-3a-zqp"/>
+                            <constraint firstAttribute="trailing" secondItem="paV-Ch-ATe" secondAttribute="trailing" constant="28" id="cQP-q3-Gqy"/>
                             <constraint firstItem="paV-Ch-ATe" firstAttribute="top" secondItem="3Zw-ag-a8K" secondAttribute="top" id="dYg-sI-4yj"/>
                             <constraint firstItem="paV-Ch-ATe" firstAttribute="bottom" secondItem="3Zw-ag-a8K" secondAttribute="bottom" id="uq3-g9-clx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Zw-ag-a8K"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Details" id="b5E-bS-7fl"/>
                     <connections>
+                        <outlet property="section" destination="B2o-u4-09B" id="Xqs-Ne-eTb"/>
                         <outlet property="textView" destination="paV-Ch-ATe" id="hmP-iD-ZNU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t6Q-tB-k3Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-82.03125" y="-14.0625"/>
+            <point key="canvasLocation" x="647" y="377"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3KP-w0-70p">
+            <objects>
+                <navigationController id="pIm-jL-6lw" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hV7-hu-oke">
+                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="IF0-cE-UVP" kind="relationship" relationship="rootViewController" id="zNL-k0-MXj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M9b-2o-krN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-82" y="377"/>
         </scene>
         <!--Documentation-->
         <scene sceneID="e8C-hZ-Q7d">
@@ -83,7 +114,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="IF0-cE-UVP" kind="showDetail" id="5UZ-JU-fry"/>
+                                    <segue destination="pIm-jL-6lw" kind="showDetail" id="nQp-u3-44s"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -138,7 +169,7 @@
                 <splitViewController id="241-Hp-ykn" sceneMemberID="viewController">
                     <connections>
                         <segue destination="psr-Am-jf8" kind="relationship" relationship="masterViewController" id="wUo-gw-wx4"/>
-                        <segue destination="IF0-cE-UVP" kind="relationship" relationship="detailViewController" id="LRd-DM-Nkq"/>
+                        <segue destination="pIm-jL-6lw" kind="relationship" relationship="detailViewController" id="tms-4V-EFh"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Hf-9S-wKZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -147,6 +178,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5UZ-JU-fry"/>
+        <segue reference="nQp-u3-44s"/>
     </inferredMetricsTieBreakers>
 </document>
