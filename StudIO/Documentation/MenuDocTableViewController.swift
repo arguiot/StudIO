@@ -34,7 +34,7 @@ class MenuDocTableViewController: UITableViewController, UISearchBarDelegate {
         let paths = Bundle.main.paths(forResourcesOfType: "md", inDirectory: "Articles")
         for path in paths {
             let url = URL(fileURLWithPath: path)
-            let name = url.standardizedFileURL.lastPathComponent.split(separator: ".").first!
+            let name = url.standardizedFileURL.lastPathComponent.split(separator: ".").first!.split(separator: "-").joined(separator: " ")
             articles.append(Article(path: url, name: String(name), tags: []))
         }
         displaying = articles
