@@ -46,3 +46,45 @@ This file should respect the following template:
     "activation": "activation regex",
 }
 ```
+
+## Step 4: Create appropriate files
+- Drag and drop an image
+- Create the main CSS file
+
+Your CSS file can use the follwoing classes:
+```css
+body {}
+.codemirror-gutter {}
+.codemirror {}
+.codemirror ::selection {}
+.codemirror-gutter-element {}
+.codemirror-content {}
+.cm-keyword {}
+.cm-comment {}
+.cm-bracket {}
+.cm-attribute {}
+.codemirror-matchingbracket {}
+.cm-atom {}
+.cm-string {}
+.cm-string-2 {}
+.cm-qualifier {}
+.cm-property {}
+.cm-number {}
+.cm-def {}
+.cm-variable {}
+.cm-punctuation {}
+.cm-operator {}
+.cm-variable-2 {}
+.cm-variable-3 {}
+.cm-type {}
+.cm-meta {}
+.cm-builtin {}
+.cm-tag {}
+.cm-hr {}
+.cm-link {}
+```
+## Step 5: Commit and publish
+Now you've created everything, you can commit and push you work using the Git Panel and the Repository menu, both accessible from the editor view.
+
+## Step 6: Install and test your theme
+You can clone and test your theme to make sure it's behaving the way it should.

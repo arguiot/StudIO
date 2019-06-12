@@ -54,7 +54,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Zw-ag-a8K"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Details" id="b5E-bS-7fl"/>
+                    <navigationItem key="navigationItem" title="Details" leftItemsSupplementBackButton="YES" id="b5E-bS-7fl"/>
                     <connections>
                         <outlet property="section" destination="B2o-u4-09B" id="Xqs-Ne-eTb"/>
                         <outlet property="textView" destination="paV-Ch-ATe" id="hmP-iD-ZNU"/>
