@@ -25,19 +25,31 @@ class MarkdownVC: UIViewController {
             return
         }
         let url = article!.path
-        do {
-            let content = try String(contentsOf: url)
-            
-            let down = Down(markdownString: content)
-            let attributedString = try down.toAttributedString()
-            textView.attributedText = attributedString
-            
-            section.isHidden = true
-            textView.isHidden = false
-        } catch {
-            NSObject.alert(t: "Couldn't load file", m: error.localizedDescription)
+        
+        section.text = "Loading ressources..."
+        DispatchQueue.global().async {
+            do {
+                let content = try String(contentsOf: url)
+                
+                let down = Down(markdownString: content)
+                let attributedString = try down.toAttributedString()
+                DispatchQueue.main.async {
+                    self.textView.attributedText = attributedString
+                    
+                    self.section.isHidden = true
+                    self.textView.isHidden = false
+                    self.section.text = "Open an article"
+                    
+                    self.uiChecks()
+                }
+                
+            } catch {
+                NSObject.alert(t: "Couldn't load file", m: error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.section.text = "Open an article"
+                }
+            }
         }
-        uiChecks()
     }
     
     func uiChecks() {

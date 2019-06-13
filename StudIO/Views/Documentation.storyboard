@@ -36,7 +36,7 @@
                                 <rect key="frame" x="261.5" y="367" width="181" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="ZzF-RA-M8X"/>
-                                    <constraint firstAttribute="width" constant="181" id="lb0-MX-9VM"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="181" id="lb0-MX-9VM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" cocoaTouchSystemColor="systemGrayColor"/>
