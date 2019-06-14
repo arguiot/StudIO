@@ -261,10 +261,12 @@ class ProjectVC: UICollectionViewController {
             }
         }
         page.alternativeHandler = { (item: BLTNActionItem) in
-            let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-            alertWindow.rootViewController = UIViewController()
-            alertWindow.windowLevel = UIWindow.Level.alert + 1
-            alertWindow.makeKeyAndVisible()
+            // Dismiss the Old
+            let presented = self.presentedViewController
+            
+            if presented != nil {
+                presented!.dismiss(animated: true, completion: nil)
+            }
             
             //1. Create the alert controller.
             let alert = UIAlertController(title: "Username".localized(), message: "Please enter your git username".localized(), preferredStyle: .alert)
@@ -278,7 +280,7 @@ class ProjectVC: UICollectionViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
                 let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
                 let username = textField?.text
-                alertWindow.rootViewController?.dismiss(animated: true, completion: nil)
+                alert?.dismiss(animated: true, completion: nil)
                 //1. Create the alert controller.
                 let alert = UIAlertController(title: "Password".localized(), message: "Please enter your git password".localized(), preferredStyle: .alert)
                 
@@ -293,14 +295,18 @@ class ProjectVC: UICollectionViewController {
                     let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
                     let password = textField?.text
                     self.creds = .plaintext(username: username ?? "", password: password ?? "")
-                    alertWindow.rootViewController?.dismiss(animated: true, completion: nil)
+                    alert?.dismiss(animated: true, completion: nil)
+                    
+                    if presented != nil {
+                        self.present(presented!, animated: true, completion: nil)
+                    }
                 }))
                 
                 // 4. Present the alert.
-                alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
             }))
             
-            alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
         
         return page
