@@ -298,7 +298,9 @@ class ProjectVC: UICollectionViewController {
                     alert?.dismiss(animated: true, completion: nil)
                     
                     if presented != nil {
-                        self.present(presented!, animated: true, completion: nil)
+                        let clone = TextFieldBulletinPage(title: "Clone")
+                        self.bulletinManager = BLTNItemManager(rootItem: self.clone(clone))
+                        self.bulletinManager.showBulletin(above: self)
                     }
                 }))
                 
