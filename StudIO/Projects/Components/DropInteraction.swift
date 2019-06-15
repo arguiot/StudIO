@@ -12,8 +12,6 @@ extension ProjectVC: UIDropInteractionDelegate {
     func setupDrop() {
         if #available(iOS 11.0, *) {
             view.addInteraction(UIDropInteraction(delegate: self))
-        } else {
-            // Fallback on earlier versions
         }
     }
     @available(iOS 11.0, *)
@@ -44,7 +42,7 @@ extension ProjectVC: UIDropInteractionDelegate {
                 if dragItem.itemProvider.canLoadObject(ofClass: t) {
                     dragItem.itemProvider.loadObject(ofClass: t) { (obj, error) in
                         if error != nil {
-                            NSObject.alert(t: "Drop error", m: error?.localizedDescription ?? "Couldn't access the file / folder")
+                            NSObject.alert(t: "Drop load error", m: error?.localizedDescription ?? "Couldn't access the file / folder")
                             return
                         }
                         if let obj = obj as? FolderDocument {
@@ -65,39 +63,54 @@ extension ProjectVC: UIDropInteractionDelegate {
             let target = try LoadProjects().home.createSubfolderIfNeeded(withName: folder.name)
             try folder.copy(to: target)
         } catch {
-            NSObject.alert(t: "Drop error", m: error.localizedDescription )
+            NSObject.alert(t: "Drop folder error", m: error.localizedDescription )
         }
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
     func loadZIP(document: ZipDocument) {
-        do {
-            let url = try LoadProjects().home.createFile(named: "temp.zip", contents: document.data!)
-            
-            let temp = try LoadProjects().home.createSubfolderIfNeeded(withName: "_STUDIO_TEMP")
-            let URLpath = URL(fileURLWithPath: url.path)
-            let URLDest = URL(fileURLWithPath: temp.path)
-            try Zip.unzipFile(URLpath, destination: URLDest, overwrite: true, password: nil, progress: { (progress) in
-                if progress == 1 {
-                    do {
-                        try url.delete()
-                        try temp.subfolder(named: "__MACOSX").delete()
-                        try temp.subfolders.first?.move(to: LoadProjects().home)
-                        try temp.delete()
-                        DispatchQueue.main.async {
-                            self.collectionView.reloadData()
-                        }
-                    } catch {
-                        NSObject.alert(t: "Drop error", m: error.localizedDescription )
-                        try? temp.delete()
-                        return
-                    }
+        DispatchQueue.global().async {
+            do {
+                DispatchQueue.main.async {
+                    SwiftSpinner.show("Copying ZIP file", animated: true)
                 }
-            })
-        } catch {
-            NSObject.alert(t: "Drop error", m: error.localizedDescription )
-            return
+                let url = try LoadProjects().home.createFile(named: "temp.zip", contents: document.data!)
+                
+                let temp = try LoadProjects().home.createSubfolderIfNeeded(withName: "_STUDIO_TEMP")
+                let URLpath = URL(fileURLWithPath: url.path)
+                let URLDest = URL(fileURLWithPath: temp.path)
+                try Zip.unzipFile(URLpath, destination: URLDest, overwrite: true, password: nil, progress: { (progress) in
+                    DispatchQueue.main.async {
+                        SwiftSpinner.show(progress: progress, title: "Unzipping")
+                    }
+                    if progress == 1 {
+                        do {
+                            try url.delete()
+                            try temp.subfolder(named: "__MACOSX").delete()
+                            try temp.subfolders.first?.move(to: LoadProjects().home)
+                            try temp.delete()
+                            DispatchQueue.main.async {
+                                SwiftSpinner.hide()
+                                self.collectionView.reloadData()
+                            }
+                        } catch {
+                            NSObject.alert(t: "Drop error", m: error.localizedDescription )
+                            DispatchQueue.main.async {
+                                SwiftSpinner.show(duration: 2.0, title: error.localizedDescription)
+                            }
+                            try? temp.delete()
+                            return
+                        }
+                    }
+                })
+            } catch {
+                NSObject.alert(t: "Drop error (copy)", m: error.localizedDescription )
+                DispatchQueue.main.async {
+                    SwiftSpinner.show(duration: 2.0, title: error.localizedDescription)
+                }
+                return
+            }
         }
     }
 }

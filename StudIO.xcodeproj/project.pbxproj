@@ -65,6 +65,7 @@
 		6856C7AF21B2797200441767 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6856C7AE21B2797200441767 /* Project.swift */; };
 		6856C7B221B27A8000441767 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6856C7B121B27A8000441767 /* ProjectCell.swift */; };
 		6858042B22AE6BD800F97488 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6858042A22AE6BD800F97488 /* Down.framework */; };
+		6863564222B4FC0E007DB829 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6863564122B4FC0E007DB829 /* Spinner.swift */; };
 		6863DF8521B3C60400911374 /* FeedBackBLTN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6863DF8421B3C60400911374 /* FeedBackBLTN.swift */; };
 		6863DF8721B3C62C00911374 /* TextFieldBLTN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6863DF8621B3C62C00911374 /* TextFieldBLTN.swift */; };
 		6863DF9121B5496200911374 /* BottomLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6863DF9021B5496200911374 /* BottomLine.xib */; };
@@ -178,6 +179,7 @@
 		6856C7AE21B2797200441767 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		6856C7B121B27A8000441767 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		6858042A22AE6BD800F97488 /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/iOS/Down.framework; sourceTree = "<group>"; };
+		6863564122B4FC0E007DB829 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		6863DF8421B3C60400911374 /* FeedBackBLTN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackBLTN.swift; sourceTree = "<group>"; };
 		6863DF8621B3C62C00911374 /* TextFieldBLTN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBLTN.swift; sourceTree = "<group>"; };
 		6863DF8821B3FABB00911374 /* StudIO.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudIO.entitlements; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 				68E59354223FA68D008C86C7 /* textField.swift */,
 				682CF2A32243B1EE00207563 /* Regex.swift */,
 				683CF2662248F81900EB75FC /* Obfuscator.swift */,
+				6863564122B4FC0E007DB829 /* Spinner.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -918,6 +921,7 @@
 				68E4544C21C127F400F945A0 /* LoadFiles.swift in Sources */,
 				680CEDC52261FE2F007AFEE0 /* Cht.swift in Sources */,
 				684549C921CE27EE00CF5E80 /* GitVC.swift in Sources */,
+				6863564222B4FC0E007DB829 /* Spinner.swift in Sources */,
 				684F81BB220F03B60003B845 /* SliderCell.swift in Sources */,
 				6802069D21C6469C000686D1 /* Data.swift in Sources */,
 				68CD1D6722AD12440025999D /* MenuDocTableViewController.swift in Sources */,
