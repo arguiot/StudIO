@@ -47,6 +47,7 @@ class GitVC: UIViewController {
     @objc @IBAction func pushAction(_ sender: Any) {
         let p = Push()
         guard let rurl = repo?.directoryURL else { return }
+        SwiftSpinner.show(duration: 3.0, title: "Pushing", animated: true)
         DispatchQueue.global().async {
             let email = UserDefaults.standard.string(forKey: "email") ?? ""
             let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
@@ -61,9 +62,12 @@ class GitVC: UIViewController {
             }
             p.push(rurl, options: creds) { (current, total, bytes, stop) in
                 print(current, total, bytes, stop)
+                DispatchQueue.main.sync {
+                    SwiftSpinner.show(progress: Double(current) / Double(total), title: "Pushing")
+                }
                 if stop.pointee.boolValue == true || current == total {
                     DispatchQueue.main.sync {
-                        NSObject.alert(t: "Pushed to remote", m: "Successfully pushed to remote")
+                        SwiftSpinner.show(duration: 1.0, title: "Success")
                         self.reload()
                     }
                 }
@@ -74,17 +78,21 @@ class GitVC: UIViewController {
     }
     
     @IBAction func fetch(_ sender: Any) {
-        guard let remotes = ((try? repo?.allRemotes().get()) as [Remote]??) else { return }
-        remotes?.forEach({ r in
-            if (try? repo!.fetch(r).get()) != nil {
-                print("Pull: ok")
-            }
-        })
+        SwiftSpinner.show(duration: 3.0, title: "Fetching", animated: true)
+        DispatchQueue.main.async {
+            guard let remotes = ((try? self.repo?.allRemotes().get()) as [Remote]??) else { return }
+            remotes?.forEach({ r in
+                if (try? self.repo!.fetch(r).get()) != nil {
+                    SwiftSpinner.show(duration: 1.0, title: "Success")
+                }
+            })
+        }
     }
     
     @IBAction func pullAction(_ sender: Any) {
         let p = Push()
         let rurl = repo?.directoryURL
+        SwiftSpinner.show(duration: 3.0, title: "Pulling", animated: true)
         DispatchQueue.global().async {
             let email = UserDefaults.standard.string(forKey: "email") ?? ""
             let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
@@ -95,9 +103,14 @@ class GitVC: UIViewController {
             }
             
             p.pull(rurl!, options: creds) { (transfer, stop) in
-                print(transfer, stop)
+                let t = Double(transfer.pointee.received_objects) / Double(transfer.pointee.total_objects)
+                DispatchQueue.main.sync {
+                    SwiftSpinner.show(progress: Double(t), title: "Pulling")
+                }
+                
                 if stop.pointee.boolValue == true {
                     DispatchQueue.main.sync {
+                        SwiftSpinner.hide()
                         self.reload()
                     }
                 }
