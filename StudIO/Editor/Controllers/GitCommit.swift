@@ -85,24 +85,19 @@ class GitCommit: UIView {
                 let branch = try r.currentBranch()
                 let last = try branch.targetCommit()
                 
-                let builder = try GTTreeBuilder(tree: last.tree, repository: r)
-                
+                let index = try r.index()
                 for entry in self.status {
                     var a = entry.keys.first ?? "ERROR"
                     if a == "diff" {
                         a = Array(entry.keys)[entry.keys.count - 1]
                     }
                     if entry[a] == "true" {
-                        let url = URL(fileURLWithPath: a, relativeTo: repo?.directoryURL)
-                        let data = try Data(contentsOf: url)
-                        try builder.addEntry(with: data, fileName: a, fileMode: .blob)
+                        try index.addFile(a)
                     }
                 }
+                try index.write()
                 
-                let subtree = try builder.writeTree()
-                
-                builder.clear()
-                
+                let subtree = try index.writeTree()
                 let name = branch.reference.name
                 
                 _ = try r.createCommit(with: subtree, message: commitStrip.text, author: sig!, committer: sig!, parents: [last], updatingReferenceNamed: name)

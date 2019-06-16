@@ -106,6 +106,9 @@ class GitVC: UIViewController {
                 let t = Double(transfer.pointee.received_objects) / Double(transfer.pointee.total_objects)
                 DispatchQueue.main.sync {
                     SwiftSpinner.show(progress: Double(t), title: "Pulling")
+                        .addTapHandler({
+                            SwiftSpinner.hide()
+                        })
                 }
                 
                 if stop.pointee.boolValue == true {
