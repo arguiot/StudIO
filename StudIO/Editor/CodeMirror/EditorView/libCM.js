@@ -10353,7 +10353,7 @@
 			}.bind(this));
 		}
 		getSuggestions(currentWord, content) {
-			if (typeof content != "undefined" && this.set.size < 3) {
+			if (typeof content != "undefined" && this.set.size < 3 && content != "") {
 				this.appendToSet(content);
 			}
 			currentWord = currentWord.trim();
@@ -10370,6 +10370,7 @@
 		}
 
 		getLastToken() {
+			if (window.view.state.doc.toString() == "") return ""
 			var index = window.view.state.selection.ranges[0].anchor;
 			var content = window.view.state.doc.toString();
 

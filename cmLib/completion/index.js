@@ -26,7 +26,7 @@ class Completion {
 		}.bind(this))
 	}
 	getSuggestions(currentWord, content) {
-		if (typeof content != "undefined" && this.set.size < 3) {
+		if (typeof content != "undefined" && this.set.size < 3 && content != "") {
 			this.appendToSet(content)
 		}
 		currentWord = currentWord.trim()
@@ -43,6 +43,7 @@ class Completion {
 	}
 
 	getLastToken() {
+		if (window.view.state.doc.toString() == "") return ""
 		const index = window.view.state.selection.ranges[0].anchor
 		const content = window.view.state.doc.toString()
 
