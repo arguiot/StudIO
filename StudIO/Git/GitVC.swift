@@ -21,9 +21,11 @@ class GitVC: UIViewController {
 
         // Do any additional setup after loading the view.
         branchPicker.tintColor = .white
-        name.text = UserDefaults.standard.string(forKey: "name") ?? ""
-        email.text = UserDefaults.standard.string(forKey: "email") ?? ""
-        passwd.text = UserDefaults.standard.string(forKey: "password") ?? ""
+        let keychain = KeychainSwift()
+        keychain.synchronizable = true
+        name.text = keychain.get("name") ?? ""
+        email.text = keychain.get("email") ?? ""
+        passwd.text = keychain.get("password") ?? ""
         
         selectCorrectB()
         let img = #imageLiteral(resourceName: "link").scaleImage(toSize: CGSize(width: 10, height: 10))
@@ -119,13 +121,19 @@ class GitVC: UIViewController {
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var passwd: UITextField!
     @IBAction func setGitEmail(_ sender: Any) {
-        UserDefaults.standard.set(email.text, forKey: "email")
+        let keychain = KeychainSwift()
+        keychain.synchronizable = true
+        keychain.set(email.text!, forKey: "email")
     }
     @IBAction func setGitName(_ sender: Any) {
-        UserDefaults.standard.set(name.text, forKey: "name")
+        let keychain = KeychainSwift()
+        keychain.synchronizable = true
+        keychain.set(name.text!, forKey: "name")
     }
     @IBAction func setGitPasswd(_ sender: Any) {
-        UserDefaults.standard.set(passwd.text, forKey: "password")
+        let keychain = KeychainSwift()
+        keychain.synchronizable = true
+        keychain.set(passwd.text!, forKey: "password")
     }
     /*
     // MARK: - Navigation
