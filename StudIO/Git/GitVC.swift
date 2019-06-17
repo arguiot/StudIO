@@ -111,7 +111,7 @@ class GitVC: UIViewController {
                         })
                 }
                 
-                if stop.pointee.boolValue == true {
+                if stop.pointee.boolValue == true || transfer.pointee.received_objects == transfer.pointee.total_objects {
                     DispatchQueue.main.sync {
                         SwiftSpinner.hide()
                         self.reload()
