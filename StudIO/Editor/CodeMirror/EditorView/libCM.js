@@ -669,6 +669,7 @@
 	}());
 	// FIXME rename start/end to from/to for consistency with other types?
 	var Line = /** @class */ (function () {
+	    // @internal
 	    function Line(start, end, number, 
 	    // @internal
 	    content) {
@@ -3161,6 +3162,7 @@
 	        configurable: true
 	    });
 	    Object.defineProperty(Range.prototype, "heapSide", {
+	        /* @internal */
 	        get: function () { return this.value.endSide; },
 	        enumerable: true,
 	        configurable: true
@@ -10538,7 +10540,8 @@
 					document.querySelector("#editor").appendChild(view.dom);
 
 					this.listenForAutomcompletion();
-					if (ext != "MD") {
+					var restricted = ["MD", "TXT", "RTF"];
+					if (!restricted.contains(ext)) {
 						this.disableCompletion();
 					}
 				}.bind(this);
