@@ -10538,7 +10538,9 @@
 					document.querySelector("#editor").appendChild(view.dom);
 
 					this.listenForAutomcompletion();
-					this.disableCompletion();
+					if (ext != "MD") {
+						this.disableCompletion();
+					}
 				}.bind(this);
 				script.src = `mode/${mode.mode}/${mode.mode}.js`;
 

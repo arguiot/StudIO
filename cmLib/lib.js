@@ -84,7 +84,10 @@ class editor {
 				document.querySelector("#editor").appendChild(view.dom)
 
 				this.listenForAutomcompletion()
-				this.disableCompletion()
+				const restricted = ["MD", "TXT", "RTF"]
+				if (!restricted.contains(ext)) {
+					this.disableCompletion()
+				}
 			}.bind(this);
 			script.src = `mode/${mode.mode}/${mode.mode}.js`;
 
