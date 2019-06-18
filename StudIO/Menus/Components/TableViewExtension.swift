@@ -79,7 +79,25 @@ extension WorkingDirMasterVC: UITableViewDragDelegate {
             tableView.reloadSections([0], with: .automatic)
         }
         delete.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-        var array = [delete]
+        
+        let copyPath = UITableViewRowAction(style: .normal, title: "Copy Path") { (action, indexPath) in
+            let o = self.objects[indexPath.row]
+            switch(o.type) {
+            case .file:
+                let f = o.path as! File
+                let project = URL(fileURLWithPath: self.LoadManager?.project.path ?? "/")
+                let url = URL(fileURLWithPath: f.path, relativeTo: project)
+                UIPasteboard.general.string = String(url.path.dropFirst(project.path.count + 1))
+            case .folder:
+                let f = o.path as! Folder
+                let project = URL(fileURLWithPath: self.LoadManager?.project.path ?? "/")
+                let url = URL(fileURLWithPath: f.path, relativeTo: project)
+                UIPasteboard.general.string = String(url.path.dropFirst(project.path.count + 1))
+            }
+        }
+        copyPath.backgroundColor = .blue
+        
+        var array = [delete, copyPath]
         
         if obj.type == .file {
             let edit = UITableViewRowAction(style: .normal, title: "Move") { (action, indexPath) in
