@@ -12,3 +12,5 @@ Please refer to the “Create a project” section.
 When you want to freeze the state of a file (basically save a specific version of a file), you need to tell Git to do so. Doing a such action is called a `commit`. Commits should have a name or a small description so you can remember which is which. They also can contain multiple files.
 
 So let’s say you where working on your project and you added a cool new feature to it.
+
+Now, click on the tree icon right from the editor screen. You should now see an interface popping from the right of the screen showing a list of all your modified files. Now just write a commit message in the text area and click “commit”
