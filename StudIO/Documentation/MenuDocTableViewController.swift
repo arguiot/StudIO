@@ -12,7 +12,6 @@ class MenuDocTableViewController: UITableViewController, UISearchBarDelegate {
     struct Article {
         var path: URL
         var name: String
-        var tags: [String]
     }
     var articles = [Article]()
     var displaying = [Article]()
@@ -31,12 +30,16 @@ class MenuDocTableViewController: UITableViewController, UISearchBarDelegate {
         loadArticles()
     }
     func loadArticles() {
-        let paths = Bundle.main.paths(forResourcesOfType: "md", inDirectory: "Articles")
-        for path in paths {
-            let url = URL(fileURLWithPath: path)
-            let name = url.standardizedFileURL.lastPathComponent.split(separator: ".").first!.split(separator: "-").joined(separator: " ")
-            articles.append(Article(path: url, name: String(name), tags: []))
-        }
+        guard let pathURL = Bundle.main.path(forResource: "Home", ofType: "md", inDirectory: "Articles") else { return }
+        let baseURL = URL(fileURLWithPath: pathURL).deletingLastPathComponent()
+        
+        articles = [
+            Article(path: baseURL.appendingPathComponent("Home.md"), name: "Home"),
+            Article(path: baseURL.appendingPathComponent("Create-a-project.md"), name: "Create a project"),
+            Article(path: baseURL.appendingPathComponent("Use-snippets.md"), name: "Use snippets"),
+            Article(path: baseURL.appendingPathComponent("Create-a-Theme.md"), name: "Create a custom theme")
+        ]
+        
         displaying = articles
     }
     @IBAction func dismiss(_ sender: Any) {
