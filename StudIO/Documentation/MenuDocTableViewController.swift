@@ -37,7 +37,8 @@ class MenuDocTableViewController: UITableViewController, UISearchBarDelegate {
             Article(path: baseURL.appendingPathComponent("Home.md"), name: "Home"),
             Article(path: baseURL.appendingPathComponent("Create-a-project.md"), name: "Create a project"),
             Article(path: baseURL.appendingPathComponent("Use-snippets.md"), name: "Use snippets"),
-            Article(path: baseURL.appendingPathComponent("Create-a-Theme.md"), name: "Create a custom theme")
+            Article(path: baseURL.appendingPathComponent("Create-a-Theme.md"), name: "Create a custom theme"),
+            Article(path: baseURL.appendingPathComponent("Using-Git.md"), name: "Using the git system")
         ]
         
         displaying = articles
