@@ -10600,7 +10600,7 @@
 			}
 		}
 		save() {
-			return btoaUTF8(window.view.state.doc.text.join("\n"))
+			return btoaUTF8(window.view.state.doc.toString())
 		}
 		getLangName() {
 			return this.mode.name
