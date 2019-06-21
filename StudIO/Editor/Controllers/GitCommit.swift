@@ -275,15 +275,26 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
                     title = Array(path.keys)[path.keys.count - 1]
                 }
                 
+                let url = URL(fileURLWithPath: title, relativeTo: self.repo?.directoryURL)
+                
                 let r = try GTRepository(url: (self.repo?.directoryURL)!)
                 
                 let index = try r.index()
                 let HEAD = try r.lookUpObject(byRevParse: "HEAD") as! GTCommit
-                let entry = try HEAD.tree?.entry(withPath: title)
-                let blob = try GTBlob(treeEntry: entry!)
+                guard let entry = try? HEAD.tree?.entry(withPath: title) else {
+                    let file = try File(path: url.path)
+                    try file.delete()
+                    self.status = []
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        self.reloadProperties()
+                    }
+                    return
+                }
+                let blob = try GTBlob(treeEntry: entry)
                 let data = blob.data()
                 
-                let url = URL(fileURLWithPath: title, relativeTo: self.repo?.directoryURL)
+                
                 let fileManager = FileManager.default
                 if fileManager.fileExists(atPath: url.path) {
                     let file = try File(path: url.path)
