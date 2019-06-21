@@ -45,6 +45,8 @@ class Editor: UIView, WKUIDelegate {
         self.codeView = WKWebView (frame: customFrame , configuration: webConfiguration)
         codeView.translatesAutoresizingMaskIntoConstraints = false
         
+        codeView.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.06666666667, blue: 0.06666666667, alpha: 1)
+        
         self.containerCodeView.addSubview(codeView)
         
         codeView.topAnchor.constraint(equalTo: containerCodeView.topAnchor).isActive = true
