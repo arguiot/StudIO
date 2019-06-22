@@ -165,7 +165,9 @@ class editor {
 	}
 
 	listenForAutomcompletion() {
-		this.c = new completion(window.view.state.doc.text.join("\n"))
+		if (typeof this.c == "undefined") {
+			this.c = new completion(window.view.state.doc.text.join("\n"))
+		}
 		document.querySelector(".codemirror-content").addEventListener("input", function(e) {
 			const currentWord = this.c.getLastToken()
 			const suggestions = this.c.getSuggestions(currentWord[0], this.c.getContent(currentWord[0], currentWord[1]))
@@ -178,6 +180,10 @@ class editor {
 
 	registerPlugin(obj, type) {
 		this.plugins.push(new obj(type))
+		if (type == "autocomplete") {
+			this.c = this.plugins[this.plugins.length - 1]
+			window.webkit.messageHandlers.setKeys.postMessage(this.c.getSmartKeys())
+		}
 	}
 }
 export default {

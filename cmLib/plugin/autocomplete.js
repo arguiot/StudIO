@@ -40,6 +40,12 @@ class StudIOAutocomplete extends StudIOPlugin {
 	getSmartKeys() {
 		return ["{", "}", this.suggestion, this.suggestion, this.suggestion]
 	}
+
+	getContent(lastToken, lastI) {
+		const content = window.view.state.doc.toString()
+
+		return content.slice(0, lastI) + content.slice(lastI + lastToken.length, content.length)
+	}
 }
 
 export default StudIOAutocomplete
