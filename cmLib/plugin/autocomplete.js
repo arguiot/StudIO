@@ -15,6 +15,7 @@ class StudIOAutocomplete extends StudIOPlugin {
 	}
 
 	getLastToken() {
+		if (window.view.state.doc.toString() == "") return ""
 		const index = window.view.state.selection.ranges[0].anchor
 		const content = window.view.state.doc.toString()
 
@@ -33,7 +34,7 @@ class StudIOAutocomplete extends StudIOPlugin {
 				out += letter
 			}
 		}
-		return [out.split("").reverse().join("").replace(" ", ""), newI]
+		return [out.split("").reverse().join("").trim(), newI]
 	}
 
 	getSmartKeys() {
