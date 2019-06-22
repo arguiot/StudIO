@@ -123,15 +123,7 @@ class GitVC: UIViewController {
         self.reload()
     }
     func reload() {
-        let prevVC = self.previousViewController as! WorkingDirDetailVC
-        prevVC.configureView()
-        
-        let splitViewController = prevVC.splitViewController
-
-        let master = splitViewController?.viewControllers.first as! UINavigationController
-        let m = master.topViewController as! WorkingDirMasterVC
-        m.objects = m.LoadManager!.loadProject()
-        m.tableView.reloadData()
+        NotificationCenter.default.post(name: .init("reloadEditorMenu"), object: nil)
     }
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var name: UITextField!

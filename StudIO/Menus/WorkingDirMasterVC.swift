@@ -38,6 +38,9 @@ class WorkingDirMasterVC: UITableViewController {
         if #available(iOS 11.0, *) {
             self.tableView.dragDelegate = self
         }
+        
+        // Automatically reload files
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadInterface(_:)), name: .init("reloadEditorMenu"), object: nil)
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         UIApplication.shared.statusBarStyle = .lightContent
@@ -151,20 +154,31 @@ class WorkingDirMasterVC: UITableViewController {
         }
     }
     
+    @objc func reloadInterface(_ notification: Notification) {
+        guard let url = notification.userInfo?["url"] as? URL else {
+            objects = LoadManager?.loadProject() ?? []
+            self.tableView.reloadData()
+            return
+        }
+        reloadFolder(url: url)
+    }
     func reloadFolder(url: URL) {
         let baseURL = url.isFileURL ? url.deletingLastPathComponent() : url
-        objects.forEach { (object) in
-            guard object.type == .folder else { return }
+        for object in objects {
+            guard object.type == .folder else { continue }
             let folder = object.path as! Folder
             let path = URL(fileURLWithPath: folder.path)
             if baseURL == path && object.toggled == true {
-                guard let index = objects.firstIndex(of: object) else { return }
+                guard let index = objects.firstIndex(of: object) else { continue }
                 let indexPath = IndexPath(row: index, section: 0)
                 closeFolder(folder, object: object, indexPath: indexPath)
                 
                 let array = LoadManager!.loadFolders(base: folder, i: object.ident + 1)
                 objects.insert(contentsOf: array, at: indexPath.row + 1)
+                return
             }
         }
+        objects = LoadManager?.loadProject() ?? []
+        self.tableView.reloadData()
     }
 }

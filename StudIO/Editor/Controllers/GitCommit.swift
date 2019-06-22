@@ -288,6 +288,8 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                         self.reloadProperties()
+                        
+                        NotificationCenter.default.post(name: .init("reloadEditorMenu"), object: nil, userInfo: ["url": url])
                     }
                     return
                 }
@@ -317,6 +319,8 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.reloadProperties()
+                    
+                    NotificationCenter.default.post(name: .init("reloadEditorMenu"), object: nil, userInfo: ["url": url])
                 }
             } catch {
                 NSObject.alert(t: "Couldn't discard changes", m: error.localizedDescription)

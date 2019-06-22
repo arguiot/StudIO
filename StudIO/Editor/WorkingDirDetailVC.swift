@@ -54,6 +54,7 @@ class WorkingDirDetailVC: UIViewController {
         
         // Listen for events
         NotificationCenter.default.addObserver(self, selector: #selector(insertSnippet(notification:)), name: .init("insertSnippet"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadInterface(_:)), name: .init("reloadEditorMenu"), object: nil)
         // Double screen
         observe()
     }
@@ -200,6 +201,11 @@ class WorkingDirDetailVC: UIViewController {
         vc.popoverPresentationController?.barButtonItem = barButtonItem
         
         present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func reloadInterface(_ notification: Notification) {
+        updatedBar()
+        configureView()
     }
 }
 
