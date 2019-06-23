@@ -10434,6 +10434,7 @@
 		}
 
 		getLastToken() {
+			if (window.view.state.doc.toString() == "") return ""
 			var index = window.view.state.selection.ranges[0].anchor;
 			var content = window.view.state.doc.toString();
 
@@ -10452,11 +10453,17 @@
 					out += letter;
 				}
 			}
-			return [out.split("").reverse().join("").replace(" ", ""), newI]
+			return [out.split("").reverse().join("").trim(), newI]
 		}
 
 		getSmartKeys() {
 			return ["{", "}", this.suggestion, this.suggestion, this.suggestion]
+		}
+
+		getContent(lastToken, lastI) {
+			var content = window.view.state.doc.toString();
+
+			return content.slice(0, lastI) + content.slice(lastI + lastToken.length, content.length)
 		}
 	}
 
@@ -10541,7 +10548,7 @@
 
 					this.listenForAutomcompletion();
 					var restricted = ["MD", "TXT", "RTF"];
-					if (!restricted.contains(ext)) {
+					if (restricted.indexOf(ext) != -1) {
 						this.disableCompletion();
 					}
 				}.bind(this);
@@ -10619,7 +10626,9 @@
 		}
 
 		listenForAutomcompletion() {
-			this.c = new Completion(window.view.state.doc.text.join("\n"));
+			if (typeof this.c == "undefined") {
+				this.c = new Completion(window.view.state.doc.text.join("\n"));
+			}
 			document.querySelector(".codemirror-content").addEventListener("input", function(e) {
 				var currentWord = this.c.getLastToken();
 				var suggestions = this.c.getSuggestions(currentWord[0], this.c.getContent(currentWord[0], currentWord[1]));
@@ -10632,6 +10641,10 @@
 
 		registerPlugin(obj, type) {
 			this.plugins.push(new obj(type));
+			if (type == "hint") {
+				this.c = this.plugins[this.plugins.length - 1];
+				window.webkit.messageHandlers.setKeys.postMessage(this.c.getSmartKeys());
+			}
 		}
 	}
 	var lib = {

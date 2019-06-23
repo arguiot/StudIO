@@ -85,7 +85,7 @@ class editor {
 
 				this.listenForAutomcompletion()
 				const restricted = ["MD", "TXT", "RTF"]
-				if (!restricted.contains(ext)) {
+				if (restricted.indexOf(ext) != -1) {
 					this.disableCompletion()
 				}
 			}.bind(this);
@@ -180,7 +180,7 @@ class editor {
 
 	registerPlugin(obj, type) {
 		this.plugins.push(new obj(type))
-		if (type == "autocomplete") {
+		if (type == "hint") {
 			this.c = this.plugins[this.plugins.length - 1]
 			window.webkit.messageHandlers.setKeys.postMessage(this.c.getSmartKeys())
 		}
