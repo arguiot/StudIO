@@ -125,12 +125,11 @@ extension EditorSplitVC: UICollectionViewDataSource, UICollectionViewDelegateFlo
     
     @objc func setCompletes(notification: Notification) {
         let keys = notification.userInfo!["titles"] as! [String]
-        let key1 = keys[0]
-        let key2 = keys[1]
-        let key3 = keys[2]
-        self.cells[4] = CompletionFeature(title: key1, type: .large)
-        self.cells[5] = CompletionFeature(title: key2, type: .large)
-        self.cells[6] = CompletionFeature(title: key3, type: .large)
+        var i = 0
+        for a in 0..<cells.count {
+            guard cells[a].type == .large else { continue }
+            cells[a] = CompletionFeature(title: keys[i], type: .large)
+        }
         accessory.completionView.reloadData()
     }
 }
