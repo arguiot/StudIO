@@ -47,7 +47,9 @@ class GitVC: UIViewController {
     @objc @IBAction func pushAction(_ sender: Any) {
         let p = Push()
         guard let rurl = repo?.directoryURL else { return }
-        SwiftSpinner.show(duration: 3.0, title: "Pushing", animated: true)
+        SwiftSpinner.show("Pushing", animated: true).addTapHandler({
+            SwiftSpinner.hide()
+        })
         DispatchQueue.global().async {
             let email = UserDefaults.standard.string(forKey: "email") ?? ""
             let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
@@ -78,12 +80,15 @@ class GitVC: UIViewController {
     }
     
     @IBAction func fetch(_ sender: Any) {
-        SwiftSpinner.show(duration: 3.0, title: "Fetching", animated: true)
+        SwiftSpinner.show("Fetching", animated: true).addTapHandler({
+            SwiftSpinner.hide()
+        })
         DispatchQueue.main.async {
             guard let remotes = ((try? self.repo?.allRemotes().get()) as [Remote]??) else { return }
             remotes?.forEach({ r in
                 if (try? self.repo!.fetch(r).get()) != nil {
                     SwiftSpinner.show(duration: 1.0, title: "Success")
+                    self.reload()
                 }
             })
         }
@@ -92,7 +97,9 @@ class GitVC: UIViewController {
     @IBAction func pullAction(_ sender: Any) {
         let p = Push()
         let rurl = repo?.directoryURL
-        SwiftSpinner.show(duration: 3.0, title: "Pulling", animated: true)
+        SwiftSpinner.show("Pulling", animated: true).addTapHandler({
+            SwiftSpinner.hide()
+        })
         DispatchQueue.global().async {
             let email = UserDefaults.standard.string(forKey: "email") ?? ""
             let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
@@ -106,9 +113,6 @@ class GitVC: UIViewController {
                 let t = Double(transfer.pointee.received_objects) / Double(transfer.pointee.total_objects)
                 DispatchQueue.main.sync {
                     SwiftSpinner.show(progress: Double(t), title: "Pulling")
-                        .addTapHandler({
-                            SwiftSpinner.hide()
-                        })
                 }
                 
                 if stop.pointee.boolValue == true || transfer.pointee.received_objects == transfer.pointee.total_objects {
