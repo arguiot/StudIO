@@ -14,3 +14,13 @@ When you want to freeze the state of a file (basically save a specific version o
 So let’s say you where working on your project and you added a cool new feature to it.
 
 Now, click on the tree icon right from the editor screen. You should now see an interface popping from the right of the screen showing a list of all your modified files. Now just write a commit message in the text area and click “commit”
+
+### Interaction with remotes
+
+Git can be indredibly useful when it comes to share and edit your code with others. In order to do that, you need to synchronize your code with your remotes.
+
+First, go to the repository interface (the book icon in the editor screen). Then you should see many advanced options. We'll focus on the simplest ones: `push`, `fetch` and `pull`.
+
+If you have local commits that are not on your remote, just tap on `push`. If there are commits on your remotes that you want to download, just tap on `pull`.
+
+> Please remember that some git operations can sometimes be destructive, so be careful before doing anything. If you need help, you can contact me.
