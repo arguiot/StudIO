@@ -167,6 +167,8 @@ class editor {
 	listenForAutomcompletion() {
 		if (typeof this.c == "undefined") {
 			this.c = new completion(window.view.state.doc.text.join("\n"))
+		} else if (typeof this.c.init != "undefined"){
+			this.c.init(window.view.state.doc.text.join("\n"))
 		}
 		document.querySelector(".codemirror-content").addEventListener("input", function(e) {
 			const currentWord = this.c.getLastToken()
