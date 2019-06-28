@@ -8,3 +8,7 @@ To start using snippets, you firstly need to create them: either by importing th
 ### Access the snippet menu
 
 In the editor interface, there is an icon representing a small board with an arrow, tap on it. You should now see a popover window with an empty list (if you have no snipopets of course) and a few options at the top.
+
+Now, you have two options:
+- create / import your snippet (+ icon)
+- use smart answer (search icon)
