@@ -12,3 +12,7 @@ In the editor interface, there is an icon representing a small board with an arr
 Now, you have two options:
 - create / import your snippet (+ icon)
 - use smart answer (search icon)
+
+Tap on the desired icon at the top of the popover and fill the form accordingly. Then, to save the snippet, just tap `Done` or `OK` at the top.
+
+> You should be good to go 😉
