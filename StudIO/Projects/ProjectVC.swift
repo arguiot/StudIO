@@ -30,6 +30,7 @@ class ProjectVC: UICollectionViewController {
         setupDrop()
         
         let lgpr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        lgpr.minimumPressDuration = 2.0
         self.collectionView.addGestureRecognizer(lgpr)
         
         let button = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(openDucmentation(_:)))
@@ -105,7 +106,7 @@ class ProjectVC: UICollectionViewController {
     }
     
     @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
-        if gestureReconizer.state != .ended {
+        if gestureReconizer.state != .began {
             return
         }
         let p = gestureReconizer.location(in: self.collectionView)
