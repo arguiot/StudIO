@@ -204,6 +204,7 @@ class WorkingDirDetailVC: UIViewController {
     }
     
     @objc func reloadInterface(_ notification: Notification) {
+        save()
         updatedBar()
         configureView()
     }
