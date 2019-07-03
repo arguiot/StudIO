@@ -46,9 +46,13 @@ class editor {
 						indentUnit: 2
 					})
 				} catch(e) {
-					m = ExportedMode({
-						indentUnit: 2
-					}, {})
+					if (typeof ExportedMode != "undefined") {
+						m = ExportedMode({
+							indentUnit: 2
+						}, {})
+					} else {
+						alert(e)
+					}
 				}
 
 				let mode = legacyMode({
@@ -85,7 +89,7 @@ class editor {
 
 				this.listenForAutomcompletion()
 				const restricted = ["MD", "TXT", "RTF"]
-				if (restricted.indexOf(ext) != -1) {
+				if (restricted.indexOf(ext) == -1) {
 					this.disableCompletion()
 				}
 			}.bind(this);
