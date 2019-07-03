@@ -30,7 +30,7 @@ class ProjectVC: UICollectionViewController {
         setupDrop()
         
         let lgpr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
-        lgpr.minimumPressDuration = 2.0
+//        lgpr.minimumPressDuration = 2.0
         self.collectionView.addGestureRecognizer(lgpr)
         
         let button = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(openDucmentation(_:)))
@@ -111,6 +111,9 @@ class ProjectVC: UICollectionViewController {
         }
         let p = gestureReconizer.location(in: self.collectionView)
         
+        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .heavy)
+        impactFeedbackgenerator.prepare()
+        
         if let indexPath = self.collectionView.indexPathForItem(at: p) {
             // get the cell at indexPath (the one you long pressed)
             let cell = self.collectionView.cellForItem(at: indexPath) as! ProjectCell
@@ -163,7 +166,8 @@ class ProjectVC: UICollectionViewController {
                 pop.sourceView = cell.contentView
                 pop.sourceRect = CGRect(x: cell.contentView.bounds.midX, y: cell.contentView.bounds.midY, width: 0, height: 0)
             }
-            // show the alert
+            // show the alert + make impact
+            impactFeedbackgenerator.impactOccurred()
             self.present(alert, animated: true, completion: nil)
         } else {
             print("couldn't find index path")

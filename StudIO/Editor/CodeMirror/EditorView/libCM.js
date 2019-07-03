@@ -10403,7 +10403,12 @@
 
 	class StudIOPlugin {
 		constructor(type) {
+			this.sCallbacks = [];
 			this.type = type;
+			this.init();
+		}
+		init() {
+
 		}
 		get Type() {
 			return this.type
@@ -10414,8 +10419,18 @@
 		get state() {
 			return window.view.state
 		}
+		onStateChange(f) {
+			this.sCallbacks.push(f);
+		}
 		setState(state) {
 			window.view.setState(state);
+			this.sCallbacks.forEach(f => {
+				try {
+					f(state);
+				} catch(error) {
+					console.log(error);
+				}
+			});
 		}
 	}
 
@@ -10628,6 +10643,8 @@
 		listenForAutomcompletion() {
 			if (typeof this.c == "undefined") {
 				this.c = new Completion(window.view.state.doc.text.join("\n"));
+			} else if (typeof this.c.init != "undefined"){
+				this.c.init(window.view.state.doc.text.join("\n"));
 			}
 			document.querySelector(".codemirror-content").addEventListener("input", function(e) {
 				var currentWord = this.c.getLastToken();
