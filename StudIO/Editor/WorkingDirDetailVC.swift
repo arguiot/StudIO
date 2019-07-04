@@ -240,8 +240,10 @@ class WorkingDirDetailVC: UIViewController {
     
     @objc func reloadInterface(_ notification: Notification) {
         save()
-        updatedBar()
-        configureView()
+        guard let f = self.file else { return }
+        self.editorView.initialisation()
+        self.bottomView(f.name)
+        self.codeEditor(f.name)
     }
 }
 
