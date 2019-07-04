@@ -47,9 +47,17 @@ class WorkingDirDetailVC: UIViewController {
         
         var saveIcon = #imageLiteral(resourceName: "save-icon")
         saveIcon = saveIcon.scaleImage(toSize: CGSize(width: 24 / 2, height: 24 / 2)) ?? saveIcon
-        let saveButton = UIBarButtonItem(image: saveIcon, style: .plain, target: self, action: #selector(save(_:)))
         
-        navigationItem.leftBarButtonItems?.append(contentsOf: [saveButton])
+        let saveButton = UIButton(type: .custom)
+        saveButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        saveButton.setImage(saveIcon, for: .normal)
+        saveButton.tintColor = #colorLiteral(red: 0.6588235294, green: 0.6588235294, blue: 0.6588235294, alpha: 1)
+        saveButton.addTarget(self, action: #selector(save(_:)), for: .touchUpInside)
+        
+        let lgpr = UILongPressGestureRecognizer(target: self, action: #selector(saveLongPress))
+        saveButton.addGestureRecognizer(lgpr)
+        let saveBarButton = UIBarButtonItem(customView: saveButton)
+        navigationItem.leftBarButtonItem = saveBarButton
         
         
         // Listen for events
@@ -91,6 +99,33 @@ class WorkingDirDetailVC: UIViewController {
             })
         }
     }
+    
+    @objc func saveLongPress(gestureReconizer: UILongPressGestureRecognizer) {
+        if gestureReconizer.state != .began {
+            return
+        }
+        
+        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .heavy)
+        impactFeedbackgenerator.prepare()
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        alert.addAction(UIAlertAction(title: "Reload from last version", style: UIAlertAction.Style.destructive) { result in
+            guard let f = self.file else { return }
+            self.editorView.initialisation()
+            self.bottomView(f.name)
+            self.codeEditor(f.name)
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        
+        if let pop = alert.popoverPresentationController {
+            pop.sourceView = navigationItem.leftBarButtonItem?.customView
+            pop.sourceRect = CGRect(x: pop.sourceView!.bounds.midX, y: pop.sourceView!.bounds.midY, width: 0, height: 0)
+        }
+        // show the alert + make impact
+        impactFeedbackgenerator.impactOccurred()
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func codeEditor(_ str: String) {
         guard let c = editorView else { return }
         c.content = try! file?.read().base64EncodedString()
