@@ -613,14 +613,14 @@ function ExportedMode(config, parserConfig) {
 		copyState: function(state) {
 			var local;
 			if (state.localState) {
-				local = state.localMode.copyState(state.localState);
+				local = state.localState
 			}
 			return {
 				token: state.token,
 				inTag: state.inTag,
 				localMode: state.localMode,
 				localState: local,
-				htmlState: htmlMode.copyState(state.htmlState)
+				htmlState: state.htmlState
 			};
 		},
 
