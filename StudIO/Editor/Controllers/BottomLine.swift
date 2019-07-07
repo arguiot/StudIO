@@ -36,11 +36,6 @@ class BottomLine: UIView {
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
-        initialisation()
-        
-    }
-    func initialisation() {
-        
     }
     
     func setupLanguage(_ file: String) {
