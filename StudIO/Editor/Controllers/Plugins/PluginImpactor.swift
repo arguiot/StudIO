@@ -36,7 +36,7 @@ extension Editor {
     }
     
     func injectAllPlugins() {
-        guard let fileName = self.fileName else {
+        guard let fileName = self.fileName ?? "default" else {
             return
         }
         guard let plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else {
