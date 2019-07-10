@@ -201,7 +201,12 @@ export default {
 			window.e.registerPlugin(obj, type)
 		} else {
 			setTimeout(function() {
-				window.e.registerPlugin(obj, type)
+				if (typeof window.e != "undefined") {
+					window.e.registerPlugin(obj, type)
+				} else {
+					window.ed.registerPlugin(obj, type)
+				}
+
 			}, 500)
 		}
 	},

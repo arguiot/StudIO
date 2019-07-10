@@ -122,7 +122,12 @@ class NewPluginVC: UIViewController {
             pluginTitle.text = package.title
             pluginTextView.text = package.description
             
-            let path = url.appendingPathComponent((package.image?.path)!)
+            guard let image = package.image?.path else {
+                self.state = true
+                self.pluginUrl = url
+                return
+            }
+            let path = url.appendingPathComponent(image)
             let data = try Data(contentsOf: path)
             
             pluginImage.image = UIImage(data: data)
