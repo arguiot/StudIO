@@ -69,6 +69,9 @@ class WorkingDirDetailVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         save()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        reloadInterface(.init(name: .init("reloadEditorMenu")))
+    }
     
     func configureView() {
         // Update the user interface for the detail item.
@@ -79,25 +82,22 @@ class WorkingDirDetailVC: UIViewController {
         }
     }
     @objc func save(_ sender: Any? = nil) {
-        if let f = self.file {
-            let hash = try? f.read()
-            editorView?.getData({ data, error  in
-                if error != nil {
-//                    NSObject.alert(t: "Code wasn't saved", m: "For obscure reasons, the code you edited wasn't saved. Here is why: \(error!.localizedDescription)")
-                    return
-                }
-                if let d = data {
-                    if d != hash {
-                        _ = try? f.write(data: d)
-                        DispatchQueue.main.async {
-                            self.editorView?.getLangName({ str in
-                                self.bottomLine.language.text = str
-                            })
-                        }
-                    }
-                }
-            })
-        }
+        guard let f = self.file else { return }
+        guard let hash = try? f.read() else { return }
+        editorView?.getData({ data, error  in
+            if error != nil {
+                //                    NSObject.alert(t: "Code wasn't saved", m: "For obscure reasons, the code you edited wasn't saved. Here is why: \(error!.localizedDescription)")
+                return
+            }
+            guard let d = data else { return }
+            guard d != hash else { return }
+            _ = try? f.write(data: d)
+            DispatchQueue.main.async {
+                self.editorView?.getLangName({ str in
+                    self.bottomLine.language.text = str
+                })
+            }
+        })
     }
     
     @objc func saveLongPress(gestureReconizer: UILongPressGestureRecognizer) {
