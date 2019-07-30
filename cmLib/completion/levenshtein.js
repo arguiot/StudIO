@@ -2,21 +2,30 @@ function levenshtein(s, t) {
     if (s === t) {
         return 0;
     }
-    var n = s.length, m = t.length;
+    const n = s.length;
+    const m = t.length;
     if (n === 0 || m === 0) {
         return n + m;
     }
-    var x = 0, y, a, b, c, d, g, h, k;
-    var p = new Array(n);
+    let x = 0;
+    let y;
+    let a;
+    let b;
+    let c;
+    let d;
+    let g;
+    let h;
+    let k;
+    const p = new Array(n);
     for (y = 0; y < n;) {
         p[y] = ++y;
     }
 
     for (; (x + 3) < m; x += 4) {
-        var e1 = t.charCodeAt(x);
-        var e2 = t.charCodeAt(x + 1);
-        var e3 = t.charCodeAt(x + 2);
-        var e4 = t.charCodeAt(x + 3);
+        const e1 = t.charCodeAt(x);
+        const e2 = t.charCodeAt(x + 1);
+        const e3 = t.charCodeAt(x + 2);
+        const e4 = t.charCodeAt(x + 3);
         c = x;
         b = x + 1;
         d = x + 2;
@@ -69,7 +78,7 @@ function levenshtein(s, t) {
     }
 
     for (; x < m;) {
-        var e = t.charCodeAt(x);
+        const e = t.charCodeAt(x);
         c = x;
         d = ++x;
         for (y = 0; y < n; y++) {
