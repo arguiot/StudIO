@@ -1,14 +1,13 @@
 import levenshtein from "./levenshtein.js"
 class Completion {
-	constructor(value) {
-		value = typeof value == "undefined" ? "" : value
-		this.tokenize(value).then(function(tokens) {
+	constructor(value = "") {
+		this.tokenize(value).then(tokens => {
 			tokens.filter(a => a != "")
 			this.set = new Set(tokens)
-		}.bind(this))
+		})
 	}
 	tokenize(str) {
-		return new Promise(function(resolve, reject) {
+		return new Promise((resolve, reject) => {
 			resolve(str.replace(/[^\w\d\s]/g, " ")
 				.replace(/\s{2,}/g, " ")
 				.split("\n")
@@ -17,27 +16,31 @@ class Completion {
 		});
 	}
 	appendToSet(content) {
-		this.tokenize(content).then(function(tokens) {
-			tokens.forEach(function(token) {
+		this.tokenize(content).then(tokens => {
+			tokens.forEach(token => {
 				if (token != "") {
 					this.set.add(token)
 				}
-			}.bind(this))
-		}.bind(this))
+			})
+		})
 	}
 	getSuggestions(currentWord, content) {
 		if (typeof content != "undefined" && this.set.size < 3 && content != "") {
 			this.appendToSet(content)
 		}
 		currentWord = currentWord.trim()
-		let scores = [["", Number.MAX_SAFE_INTEGER], ["", Number.MAX_SAFE_INTEGER], ["", Number.MAX_SAFE_INTEGER]]
-		this.set.forEach(function(token) {
+		let scores = [
+			["", Number.MAX_SAFE_INTEGER],
+			["", Number.MAX_SAFE_INTEGER],
+			["", Number.MAX_SAFE_INTEGER]
+		]
+		this.set.forEach(token => {
 			if (token == "") return
 			const length = currentWord.length
 			const truncated = token.substring(0, length)
 			const score = levenshtein(truncated, currentWord)
 			scores.push([token, score])
-		}.bind(this))
+		})
 		scores.sort((a, b) => a[1] - b[1])
 		return scores.slice(0, 3).map(x => x[0])
 	}
@@ -65,10 +68,12 @@ class Completion {
 		return [out.split("").reverse().join("").trim(), newI]
 	}
 
-	getContent(lastToken, lastI) {
+	getContent({
+		length
+	}, lastI) {
 		const content = window.view.state.doc.toString()
 
-		return content.slice(0, lastI) + content.slice(lastI + lastToken.length, content.length)
+		return content.slice(0, lastI) + content.slice(lastI + length, content.length);
 	}
 }
 
