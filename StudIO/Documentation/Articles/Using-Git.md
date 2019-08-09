@@ -5,6 +5,8 @@ Git is a version control system for tracking changes in computer files and coord
 
 In git terms, a project is called a `repository` (so you will see this word quite often in this documentation or in the StudIO app).
 
+> To understand the next sections, you need to have used git in the past or have read [git’s handbook](https://guides.github.com/introduction/git-handbook/)
+
 ### Creating a repository
 Please refer to the “Create a project” section.
 
@@ -17,10 +19,12 @@ Now, click on the tree icon right from the editor screen. You should now see an 
 
 ### Interaction with remotes
 
-Git can be indredibly useful when it comes to share and edit your code with others. In order to do that, you need to synchronize your code with your remotes.
+Git can be incredibly useful when it comes to share and edit your code with others. In order to do that, you need to synchronize your code with your remotes.
 
 First, go to the repository interface (the book icon in the editor screen). Then you should see many advanced options. We'll focus on the simplest ones: `push`, `fetch` and `pull`.
 
 If you have local commits that are not on your remote, just tap on `push`. If there are commits on your remotes that you want to download, just tap on `pull`.
 
 > Please remember that some git operations can sometimes be destructive, so be careful before doing anything. If you need help, you can contact me.
+
+Now, just use these operations as you would normally do on a computer.
