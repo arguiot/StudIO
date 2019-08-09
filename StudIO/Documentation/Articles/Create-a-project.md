@@ -15,3 +15,12 @@ Just tap on **Start a local repository**.
 
 Then, just name your project and you should be done: your project should appear in the project list.
 
+# Clone a remote project
+
+Usually, when you want you work on something, the project is already created (either by you or someone else). And so you might want to clone this project. To do so, when you're on the launch screen, just tap on the **+** icon in the upper right corner of your screen.
+
+You should now see an action sheet that ask you wether you want to **Clone a repository** or **Start a local repository**
+
+This time, select **Clone a repository**
+
+Then, please specify your repository’s URL (and the credentials if the project is private). Just wait a bit, and you should be done: your project should appear in the project list.
