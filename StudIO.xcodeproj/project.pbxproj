@@ -152,11 +152,7 @@
 		682D03CC2283DA8900F97BEA /* StudIOPackageReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudIOPackageReader.swift; sourceTree = "<group>"; };
 		6835AEED2221188300A0C379 /* QuickActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActions.swift; sourceTree = "<group>"; };
 		6835AEEF22211F3100A0C379 /* RootVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootVC.swift; sourceTree = "<group>"; };
-		6835AEF32221252700A0C379 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		6835AEF42221259E00A0C379 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		6835AEF5222125A400A0C379 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		6835AEF92221260900A0C379 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Language.strings; sourceTree = "<group>"; };
-		6835AEFC222126A700A0C379 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Language.strings; sourceTree = "<group>"; };
 		6835AEFD2221273D00A0C379 /* Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
 		6835AF0022212AE100A0C379 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Projects.storyboard; sourceTree = "<group>"; };
 		6838E26322477DDB00BF1A44 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -190,7 +186,6 @@
 		6863DF9621B68F1700911374 /* EditorSplitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorSplitVC.swift; sourceTree = "<group>"; };
 		686822ED21DB8DCA0036694B /* GitCommit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GitCommit.xib; sourceTree = "<group>"; };
 		686822EF21DB8E130036694B /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
-		686E8C4722A9FF4F00770DF6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/Projects.storyboard; sourceTree = "<group>"; };
 		6872862B21D29DE2003F1073 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		687BA442227719F3007AE0B3 /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 		687DA70422127145005491C0 /* PickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewCell.swift; sourceTree = "<group>"; };
@@ -735,7 +730,6 @@
 			knownRegions = (
 				en,
 				Base,
-				fr,
 			);
 			mainGroup = 689BDC1021B22F7800D88AAB;
 			productRefGroup = 689BDC1A21B22F7800D88AAB /* Products */;
@@ -969,7 +963,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				6835AEF92221260900A0C379 /* en */,
-				6835AEFC222126A700A0C379 /* fr */,
 			);
 			name = Language.strings;
 			sourceTree = "<group>";
@@ -978,7 +971,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				6835AF0022212AE100A0C379 /* en */,
-				686E8C4722A9FF4F00770DF6 /* fr */,
 			);
 			name = Projects.storyboard;
 			sourceTree = "<group>";
@@ -987,8 +979,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				689BDC2321B22F7800D88AAB /* Base */,
-				6835AEF32221252700A0C379 /* en */,
-				6835AEF42221259E00A0C379 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -997,7 +987,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				689BDC2821B22F7C00D88AAB /* Base */,
-				6835AEF5222125A400A0C379 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

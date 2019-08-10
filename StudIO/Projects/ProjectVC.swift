@@ -384,8 +384,7 @@ class ProjectVC: UICollectionViewController {
             didSet {
                 if oldValue != nil, let oldCell = collectionView.cellForItem(at: oldValue!) {
                     guard let oldcell = oldCell as? ProjectCell else { return }
-                    oldcell.name.textColor = .white
-                    oldcell.repoLogo.tintColor = .white
+                    oldcell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
                 }
                 
                 guard let focussedIndexPath = focussedIndexPath, let focussedCell = collectionView.cellForItem(at: focussedIndexPath) else { return }
@@ -393,8 +392,7 @@ class ProjectVC: UICollectionViewController {
                 UIView.animate(withDuration: 0.2, animations: {
                     focussedCell.alpha = 0.5
                     guard let cell = focussedCell as? ProjectCell else { return }
-                    cell.name.textColor = .blue
-                    cell.repoLogo.tintColor = .blue
+                    cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
                 }, completion: { _ in
                     UIView.animate(withDuration: 0.2, animations: {
                         focussedCell.alpha = 1.0
