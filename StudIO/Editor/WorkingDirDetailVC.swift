@@ -81,6 +81,15 @@ class WorkingDirDetailVC: UIViewController {
             codeEditor((file?.name)!)
         }
     }
+    
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: "S", modifierFlags: .command, action: #selector(save(_:)), discoverabilityTitle: "Save document"),
+            UIKeyCommand(input: "S", modifierFlags: [.command, .shift], action: #selector(showSnippet(_:)), discoverabilityTitle: "Show snippets"),
+            UIKeyCommand(input: "G", modifierFlags: .command, action: #selector(gitPanel(_:)), discoverabilityTitle: "Show Git Panel"),
+            UIKeyCommand(input: "G", modifierFlags: [.command, .shift], action: #selector(gitVC(_:)), discoverabilityTitle: "Show Repository information")
+        ]
+    }
     @objc func save(_ sender: Any? = nil) {
         guard let f = self.file else { return }
         guard let hash = try? f.read() else { return }

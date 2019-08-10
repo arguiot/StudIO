@@ -34,6 +34,9 @@ class EditorSplitVC: UISplitViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(setCompletes(notification:)), name: .init("setAutoComplete"), object: nil)
     }
+    override var keyCommands: [UIKeyCommand]? {
+        return []
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -125,4 +128,8 @@ class EditorSplitVC: UISplitViewController {
         CompletionFeature(title: "*", type: .small),
         CompletionFeature(title: "/", type: .small),
     ]
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
 }

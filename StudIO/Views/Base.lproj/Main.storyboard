@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
     <device id="retina5_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -115,7 +115,7 @@ DQ
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d6V-cc-mhP">
                                 <rect key="frame" x="0.0" y="44" width="414" height="692"/>
-                                <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SnippetCell" id="1Hv-jx-P8U" customClass="SnippetCell" customModule="StudIO" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
@@ -250,7 +250,7 @@ DQ
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFU-WT-Yu6" customClass="Editor" customModule="StudIO" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="277" width="414" height="459"/>
-                                <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxU-ml-ZXa">
                                 <rect key="frame" x="194" y="161" width="200" height="30"/>
@@ -280,7 +280,7 @@ DQ
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ZFU-WT-Yu6" secondAttribute="trailing" id="31D-jM-JcB"/>
                             <constraint firstItem="OxU-ml-ZXa" firstAttribute="top" secondItem="D3m-af-0L5" secondAttribute="bottom" constant="12" id="3S9-aW-klh"/>
@@ -397,14 +397,14 @@ DQ
                                     <constraint firstAttribute="width" constant="30" id="N7p-hw-8qM"/>
                                     <constraint firstAttribute="height" constant="30" id="ehe-Na-Vf0"/>
                                 </constraints>
-                                <color key="tintColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" title="Button" image="IntroCompletion"/>
                                 <connections>
                                     <action selector="updateSearch:" destination="1Pt-Jw-f4T" eventType="touchUpInside" id="Nsr-pW-uym"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="1tB-3a-bFU" firstAttribute="top" secondItem="5ZI-4r-Lm2" secondAttribute="bottom" constant="20" id="4TL-NW-SKn"/>
                             <constraint firstItem="gfY-CI-h5z" firstAttribute="leading" secondItem="OrP-dL-PDP" secondAttribute="leading" constant="20" id="5AH-oR-2dq"/>
@@ -444,14 +444,6 @@ DQ
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fb0-ws-gz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2837.68115942029" y="995.75892857142856"/>
-        </scene>
-        <!--git-->
-        <scene sceneID="03Y-TW-hn4">
-            <objects>
-                <viewControllerPlaceholder storyboardName="git" id="Hwu-gO-nzY" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lXN-yu-bPu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1449" y="70"/>
         </scene>
         <!--Editor SplitVC-->
         <scene sceneID="Nki-YV-4Qg">
