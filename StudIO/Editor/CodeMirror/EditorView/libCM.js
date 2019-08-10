@@ -669,7 +669,6 @@
 	}());
 	// FIXME rename start/end to from/to for consistency with other types?
 	var Line = /** @class */ (function () {
-	    // @internal
 	    function Line(start, end, number, 
 	    // @internal
 	    content) {
@@ -3162,7 +3161,6 @@
 	        configurable: true
 	    });
 	    Object.defineProperty(Range.prototype, "heapSide", {
-	        /* @internal */
 	        get: function () { return this.value.endSide; },
 	        enumerable: true,
 	        configurable: true
@@ -10236,11 +10234,20 @@
 	    if (s === t) {
 	        return 0;
 	    }
-	    var n = s.length, m = t.length;
+	    var n = s.length;
+	    var m = t.length;
 	    if (n === 0 || m === 0) {
 	        return n + m;
 	    }
-	    var x = 0, y, a, b, c, d, g, h, k;
+	    var x = 0;
+	    var y;
+	    var a;
+	    var b;
+	    var c;
+	    var d;
+	    var g;
+	    var h;
+	    var k;
 	    var p = new Array(n);
 	    for (y = 0; y < n;) {
 	        p[y] = ++y;
@@ -10329,15 +10336,14 @@
 	}
 
 	class Completion {
-		constructor(value) {
-			value = typeof value == "undefined" ? "" : value;
-			this.tokenize(value).then(function(tokens) {
+		constructor(value = "") {
+			this.tokenize(value).then(tokens => {
 				tokens.filter(a => a != "");
 				this.set = new Set(tokens);
-			}.bind(this));
+			});
 		}
 		tokenize(str) {
-			return new Promise(function(resolve, reject) {
+			return new Promise((resolve, reject) => {
 				resolve(str.replace(/[^\w\d\s]/g, " ")
 					.replace(/\s{2,}/g, " ")
 					.split("\n")
@@ -10346,27 +10352,31 @@
 			});
 		}
 		appendToSet(content) {
-			this.tokenize(content).then(function(tokens) {
-				tokens.forEach(function(token) {
+			this.tokenize(content).then(tokens => {
+				tokens.forEach(token => {
 					if (token != "") {
 						this.set.add(token);
 					}
-				}.bind(this));
-			}.bind(this));
+				});
+			});
 		}
 		getSuggestions(currentWord, content) {
 			if (typeof content != "undefined" && this.set.size < 3 && content != "") {
 				this.appendToSet(content);
 			}
 			currentWord = currentWord.trim();
-			var scores = [["", Number.MAX_SAFE_INTEGER], ["", Number.MAX_SAFE_INTEGER], ["", Number.MAX_SAFE_INTEGER]];
-			this.set.forEach(function(token) {
+			var scores = [
+				["", Number.MAX_SAFE_INTEGER],
+				["", Number.MAX_SAFE_INTEGER],
+				["", Number.MAX_SAFE_INTEGER]
+			];
+			this.set.forEach(token => {
 				if (token == "") return
 				var length = currentWord.length;
 				var truncated = token.substring(0, length);
 				var score = levenshtein(truncated, currentWord);
 				scores.push([token, score]);
-			}.bind(this));
+			});
 			scores.sort((a, b) => a[1] - b[1]);
 			return scores.slice(0, 3).map(x => x[0])
 		}
@@ -10394,10 +10404,12 @@
 			return [out.split("").reverse().join("").trim(), newI]
 		}
 
-		getContent(lastToken, lastI) {
+		getContent({
+			length
+		}, lastI) {
 			var content = window.view.state.doc.toString();
 
-			return content.slice(0, lastI) + content.slice(lastI + lastToken.length, content.length)
+			return content.slice(0, lastI) + content.slice(lastI + length, content.length);
 		}
 	}
 

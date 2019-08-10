@@ -58,7 +58,12 @@ class ProjectVC: UICollectionViewController {
             splitViewController.delegate = appDelegate
             
             if let indexPath = collectionView.indexPathsForSelectedItems {
-                let row = indexPath[0].row
+                var row: Int
+                if indexPath.count == 0 {
+                    row = collectionViewKeyCommandsController.focussedIndexPath?.last ?? 0
+                } else {
+                    row = indexPath[0].row
+                }
                 let master = splitViewController.viewControllers.first as! UINavigationController
                 let m = master.topViewController as! WorkingDirMasterVC
                 m.title = project[row].name
@@ -336,5 +341,114 @@ class ProjectVC: UICollectionViewController {
         vc.modalPresentationStyle = .formSheet
         
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    // MARK: Keyboard shortcuts
+    
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: "\t", modifierFlags: .control, action: #selector(escapeKeyTapped), discoverabilityTitle: "Reset cell focus"),
+            UIKeyCommand(input: "\t", modifierFlags: [], action: #selector(nextKeyTapped), discoverabilityTitle: "Next item"),
+            UIKeyCommand(input: "\t", modifierFlags: .shift, action: #selector(previousKeyTapped), discoverabilityTitle: "Previous item"),
+            UIKeyCommand(input: "\r", modifierFlags: [], action: #selector(selectKeyTapped), discoverabilityTitle: "Select item"),
+            UIKeyCommand(input: "\t", modifierFlags: .alternate, action: #selector(selectKeyTapped), discoverabilityTitle: "Select item")
+        ]
+    }
+
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+
+    @objc func escapeKeyTapped() {
+        collectionViewKeyCommandsController.escapeKeyTapped()
+    }
+
+    @objc func selectKeyTapped() {
+        guard let focussedIndexPath = collectionViewKeyCommandsController.focussedIndexPath else { return }
+        self.collectionView(collectionView, didSelectItemAt: focussedIndexPath)
+    }
+
+    @objc func nextKeyTapped() {
+        collectionViewKeyCommandsController.nextKeyTapped()
+    }
+
+    @objc func previousKeyTapped() {
+        collectionViewKeyCommandsController.previousKeyTapped()
+    }
+    
+    fileprivate lazy var collectionViewKeyCommandsController = CollectionViewKeyCommandsController(collectionView: collectionView)
+    
+    final class CollectionViewKeyCommandsController {
+        private let collectionView: UICollectionView
+        var focussedIndexPath: IndexPath? {
+            didSet {
+                if oldValue != nil, let oldCell = collectionView.cellForItem(at: oldValue!) {
+                    guard let oldcell = oldCell as? ProjectCell else { return }
+                    oldcell.tintColor = .white
+                }
+                
+                guard let focussedIndexPath = focussedIndexPath, let focussedCell = collectionView.cellForItem(at: focussedIndexPath) else { return }
+
+                UIView.animate(withDuration: 0.2, animations: {
+                    focussedCell.alpha = 0.5
+                    guard let cell = focussedCell as? ProjectCell else { return }
+                    cell.tintColor = .blue
+                }, completion: { _ in
+                    UIView.animate(withDuration: 0.2, animations: {
+                        focussedCell.alpha = 1.0
+                    })
+                })
+
+            }
+        }
+
+        init(collectionView: UICollectionView) {
+            self.collectionView = collectionView
+        }
+
+        func escapeKeyTapped() {
+            focussedIndexPath = nil
+        }
+
+        func nextKeyTapped() {
+            guard let focussedIndexPath = focussedIndexPath else {
+                self.focussedIndexPath = firstIndexPath
+                return
+            }
+
+            let numberOfItems = collectionView.numberOfItems(inSection: 0)
+            let focussedItem = focussedIndexPath.item
+
+            guard focussedItem != (numberOfItems - 1) else {
+                self.focussedIndexPath = firstIndexPath
+                return
+            }
+
+            self.focussedIndexPath = IndexPath(item: focussedItem + 1, section: 0)
+        }
+
+        func previousKeyTapped() {
+            guard let focussedIndexPath = focussedIndexPath else {
+                self.focussedIndexPath = lastIndexPath
+                return
+            }
+
+            let focussedItem = focussedIndexPath.item
+
+            guard focussedItem > 0 else {
+                self.focussedIndexPath = lastIndexPath
+                return
+            }
+
+            self.focussedIndexPath = IndexPath(item: focussedItem - 1, section: 0)
+        }
+
+        private var lastIndexPath: IndexPath {
+            return IndexPath(item: collectionView.numberOfItems(inSection: 0) - 1, section: 0)
+        }
+
+        private var firstIndexPath: IndexPath {
+            return IndexPath(item: 0, section: 0)
+        }
     }
 }
