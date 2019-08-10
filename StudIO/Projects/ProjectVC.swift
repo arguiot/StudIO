@@ -351,14 +351,20 @@ class ProjectVC: UICollectionViewController {
             UIKeyCommand(input: "\t", modifierFlags: [], action: #selector(nextKeyTapped), discoverabilityTitle: "Next item"),
             UIKeyCommand(input: "\t", modifierFlags: .shift, action: #selector(previousKeyTapped), discoverabilityTitle: "Previous item"),
             UIKeyCommand(input: "\r", modifierFlags: [], action: #selector(selectKeyTapped), discoverabilityTitle: "Select item"),
-            UIKeyCommand(input: "\t", modifierFlags: .alternate, action: #selector(selectKeyTapped), discoverabilityTitle: "Select item")
+            UIKeyCommand(input: "\t", modifierFlags: .alternate, action: #selector(selectKeyTapped), discoverabilityTitle: "Select item"),
+            UIKeyCommand(input: "S", modifierFlags: .command, action: #selector(showSettings(_:)), discoverabilityTitle: "Open Settings"),
+            UIKeyCommand(input: "?", modifierFlags: [], action: #selector(openDucmentation(_:)), discoverabilityTitle: "Open Documentation"),
+            UIKeyCommand(input: "W", modifierFlags: .command, action: #selector(dismissAll), discoverabilityTitle: "Dismiss current view")
         ]
     }
 
     override var canBecomeFirstResponder: Bool {
         return true
     }
-
+    
+    @objc func dismissAll() {
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+    }
     @objc func escapeKeyTapped() {
         collectionViewKeyCommandsController.escapeKeyTapped()
     }
