@@ -84,7 +84,10 @@ class ProjectVC: UICollectionViewController {
             }
         }
         
-        self.present(vc!, animated: true, completion: nil)
+        self.present(vc!, animated: true) {
+            guard let root = self.navigationController as? RootVC else { return }
+            root.status = true
+        }
     }
 
     // MARK: UICollectionViewDataSource

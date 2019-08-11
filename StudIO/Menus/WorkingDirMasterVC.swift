@@ -55,7 +55,9 @@ class WorkingDirMasterVC: UITableViewController {
         let controller = detailViewController
         controller?.save() // save before quitting
         
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        guard let root = self.view.window?.rootViewController as? RootVC else { return }
+        root.dismiss(animated: true, completion: nil)
+        root.status = false
     }
     
     var newFileManager: BLTNItemManager?
