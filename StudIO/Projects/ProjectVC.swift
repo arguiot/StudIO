@@ -84,12 +84,7 @@ class ProjectVC: UICollectionViewController {
             }
         }
         
-        let presentedViewController = UIApplication.shared.keyWindow?.rootViewController
-        presentedViewController?.present(vc!, animated: true) {
-            UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: false) {
-                UIApplication.shared.keyWindow?.rootViewController = vc as! EditorSplitVC
-            }
-        }
+        self.present(vc!, animated: true, completion: nil)
     }
 
     // MARK: UICollectionViewDataSource

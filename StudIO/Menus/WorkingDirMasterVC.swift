@@ -50,30 +50,12 @@ class WorkingDirMasterVC: UITableViewController {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
-    
-    override var keyCommands: [UIKeyCommand]? {
-        return [
-            UIKeyCommand(input: "W", modifierFlags: .command, action: #selector(goBack(_:)), discoverabilityTitle: "Close editor")
-        ]
-    }
-    
-    @objc func goBack(_ send: Any) {
+    @objc
+    func goBack(_ send: Any) {
         let controller = detailViewController
         controller?.save() // save before quitting
         
-        let storyboard = UIStoryboard(name: "Projects", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController()
-        vc?.modalPresentationStyle = .fullScreen
-        
-        guard let presentedViewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-        
-        UIApplication.shared.keyWindow?.rootViewController = vc as! RootVC
-        
-        UIApplication.shared.keyWindow?.rootViewController?.present(presentedViewController, animated: false) {
-            UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true) {
-                UIApplication.shared.keyWindow?.rootViewController = vc as! RootVC
-            }
-        }
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     var newFileManager: BLTNItemManager?
