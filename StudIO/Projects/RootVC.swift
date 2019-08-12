@@ -29,10 +29,10 @@ class RootVC: UINavigationController, QuickActionSupport {
         if status == true {
             return [
                 UIKeyCommand(input: "W", modifierFlags: .command, action: #selector(goBack(_:)), discoverabilityTitle: "Close editor"),
-//                UIKeyCommand(input: "S", modifierFlags: .command, action: #selector(save(_:)), discoverabilityTitle: "Save document"),
-//                UIKeyCommand(input: "S", modifierFlags: [.command, .shift], action: #selector(showSnippet(_:)), discoverabilityTitle: "Show snippets"),
-//                UIKeyCommand(input: "G", modifierFlags: .command, action: #selector(gitPanel(_:)), discoverabilityTitle: "Show Git Panel"),
-//                UIKeyCommand(input: "G", modifierFlags: [.command, .shift], action: #selector(gitVC(_:)), discoverabilityTitle: "Show Repository information")
+                UIKeyCommand(input: "S", modifierFlags: .command, action: #selector(save(_:)), discoverabilityTitle: "Save document"),
+                UIKeyCommand(input: "S", modifierFlags: [.command, .shift], action: #selector(showSnippet(_:)), discoverabilityTitle: "Show snippets"),
+                UIKeyCommand(input: "G", modifierFlags: .command, action: #selector(gitPanel(_:)), discoverabilityTitle: "Show Git Panel"),
+                UIKeyCommand(input: "G", modifierFlags: [.command, .shift], action: #selector(gitVC(_:)), discoverabilityTitle: "Show Repository information")
             ]
         }
         return [
@@ -45,6 +45,30 @@ class RootVC: UINavigationController, QuickActionSupport {
         guard let master = splitViewController.viewControllers.first as? UINavigationController else { return }
         guard let m = master.topViewController as? WorkingDirMasterVC else { return }
         m.goBack(self)
+    }
+    @objc func save(_ send: Any) {
+        guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
+        guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
+        guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
+        e.save()
+    }
+    @objc func showSnippet(_ send: Any) {
+        guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
+        guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
+        guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
+        e.showSnippet(send)
+    }
+    @objc func gitPanel(_ send: Any) {
+        guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
+        guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
+        guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
+        e.gitPanel(send)
+    }
+    @objc func gitVC(_ send: Any) {
+        guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
+        guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
+        guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
+        e.gitVC(send)
     }
     @objc func clone() {
         guard let controller = topViewController as? ProjectVC else { return }
