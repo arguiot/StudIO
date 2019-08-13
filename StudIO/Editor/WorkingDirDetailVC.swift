@@ -35,8 +35,10 @@ class WorkingDirDetailVC: UIViewController {
             editorView?.gitPanel.repo = r
         }
         //        navigationItem.rightBarButtonItems = [gitButton, pButton] // Disabling Git functionnalities
-        let undoButton = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(undo(_:)))
-        let redoButton = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: #selector(redo(_:)))
+        let undoImg = #imageLiteral(resourceName: "Undo").scaleImage(toSize: CGSize(width: 10, height: 10))
+        let undoButton = UIBarButtonItem(image: undoImg, style: .plain, target: self, action: #selector(undo(_:)))
+        let redoImg = #imageLiteral(resourceName: "Redo").scaleImage(toSize: CGSize(width: 10, height: 10))
+        let redoButton = UIBarButtonItem(image: redoImg, style: .plain, target: self, action: #selector(redo(_:)))
         
         let simg = #imageLiteral(resourceName: "snippet").scaleImage(toSize: CGSize(width: 10, height: 10))
         snippetButton = UIBarButtonItem(image: simg, style: .plain, target: self, action: #selector(showSnippet(_:)))
