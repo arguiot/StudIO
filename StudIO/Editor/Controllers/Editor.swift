@@ -154,12 +154,12 @@ class Editor: UIView, WKUIDelegate {
     
     func undo() {
         if codeView.isLoading == false {
-            codeView.evaluateJavaScript("try{window.e.cm.execCommand('undo')}catch(e){console.log(e)}", completionHandler: nil)
+            codeView.evaluateJavaScript("try{document.execCommand('undo')}catch(e){console.log(e)}", completionHandler: nil)
         }
     }
     func redo() {
         if codeView.isLoading == false {
-            codeView.evaluateJavaScript("try{window.e.cm.execCommand('redo')}catch(e){console.log(e)}", completionHandler: nil)
+            codeView.evaluateJavaScript("try{document.execCommand('redo')}catch(e){console.log(e)}", completionHandler: nil)
         }
     }
 }
