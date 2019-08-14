@@ -66,28 +66,20 @@ class Editor: UIView, WKUIDelegate {
     }
     
     var highlightExt: String?
-    func highlight(_ lang: String, code:  @escaping () -> Void) {
-        let arr = lang.split(separator: ".")
-        let ext = String(arr.last ?? "").uppercased()
-        highlightExt = ext
-        if codeView.isLoading == false {
-            codeView.evaluateJavaScript("window.ed.clear(); window.e = new StudIO.editor('\(ext)', '');") { (result, error) in
-                code()
-            }
-        }
-        code()
-    }
     // Completion Script
     var isScriptAdded = false
     
     
     var content: String?
     var fileName: String?
-    func loadFile(withContent: String) {
+    func loadFile(withContent: String, lang: String) {
         content = withContent
+        let arr = lang.split(separator: ".")
+        let ext = String(arr.last ?? "").uppercased()
+        highlightExt = ext
         if codeView.isLoading == false {
             self.setListen()
-            codeView.evaluateJavaScript("window.e.load('\(content!)')") { (result, error) in
+            codeView.evaluateJavaScript("try{StudIO_loadFile('\(content ?? "")', '\(ext)')}catch(e){console.log(e)}") { (result, error) in
 //                print(result, error)
             }
         }
@@ -165,13 +157,9 @@ class Editor: UIView, WKUIDelegate {
 }
 extension Editor: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if let ext = highlightExt {
-            highlight(ext, code: {
-                if let c = self.content {
-                    self.loadFile(withContent: c)
-                }
-            })
-        }
+        guard let ext = highlightExt else { return }
+        guard let c = self.content else { return }
+        self.loadFile(withContent: c, lang: ext)
         settings([
             "fontSize": UserDefaults.standard.string(forKey: "studio-font-size") ?? "26",
             "lineWrapping": UserDefaults.standard.string(forKey: "studio-line-wrapping") ?? "false",

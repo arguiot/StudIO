@@ -50,9 +50,7 @@ class CheatCodeVC: UIViewController {
             "theme": UserDefaults.standard.string(forKey: "studio-editor-theme") ?? "monokai"
             ])
 
-        c.highlight(ext) {
-            // nil
-        }
+        c.loadFile(withContent: "", lang: ext)
     }
     @IBAction func updateHighlight(_ sender: Any) {
         guard let c = codeView else { return }
@@ -61,9 +59,7 @@ class CheatCodeVC: UIViewController {
 
         c.getData { (data, error) in
             let str = data?.base64EncodedString()
-            c.highlight(ext, code: {
-                c.loadFile(withContent: str ?? "")
-            })
+            c.loadFile(withContent: str ?? "", lang: ext)
         }
 
         searchBarTextDidEndEditing(self.searchBar)
@@ -117,7 +113,7 @@ extension CheatCodeVC: UISearchBarDelegate {
             cht.down(load: url) { (str) in
                 DispatchQueue.main.async {
                     let base64 = str.data(using: .utf8)?.base64EncodedString()
-                    self.codeView.loadFile(withContent: base64 ?? "")
+                    self.codeView.loadFile(withContent: base64 ?? "", lang: self.lang.text ?? "js")
                     self.doneButton.title = "Done"
                 }
             }

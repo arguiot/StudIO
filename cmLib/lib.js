@@ -63,7 +63,7 @@ class editor {
 				let isMac = /Mac/.test(navigator.platform)
 
 				this.cm = EditorState.create({
-					doc: value,
+					doc: atobUTF8(value),
 					extensions: [
 						lineNumbers(),
 						history(),
@@ -85,8 +85,9 @@ class editor {
 				let view = window.view = new EditorView({
 					state: this.cm
 				})
-				document.querySelector("#editor").appendChild(view.dom)
 
+				document.querySelector("#editor").appendChild(view.dom)
+				document.querySelector(".tip").style.display = "none"
 				this.listenForAutomcompletion()
 				const restricted = ["MD", "TXT", "RTF"]
 				if (restricted.indexOf(ext) == -1) {

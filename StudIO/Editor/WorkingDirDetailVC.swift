@@ -130,7 +130,9 @@ class WorkingDirDetailVC: UIViewController {
     
     func codeEditor(_ str: String) {
         guard let c = editorView else { return }
-        c.content = try! file?.read().base64EncodedString()
+        guard let content = try? file?.read().base64EncodedString() else { return }
+        
+        c.loadFile(withContent: content, lang: str)
         c.fileName = str
         
         let arr = str.split(separator: ".")
@@ -147,9 +149,7 @@ class WorkingDirDetailVC: UIViewController {
             "theme": UserDefaults.standard.string(forKey: "studio-editor-theme") ?? "monokai"
             ])
         
-        c.highlight(str, code: {
-            self.bottomLine.setupLanguage(str)
-        })
+        self.bottomLine.setupLanguage(str)
         
         // Second display
         if UIScreen.screens.count > 1 {

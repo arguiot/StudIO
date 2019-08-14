@@ -10553,7 +10553,7 @@
 					var isMac = /Mac/.test(navigator.platform);
 
 					this.cm = EditorState.create({
-						doc: value,
+						doc: atobUTF8(value),
 						extensions: [
 							lineNumbers(),
 							history$1(),
@@ -10575,8 +10575,9 @@
 					var view = window.view = new EditorView({
 						state: this.cm
 					});
-					document.querySelector("#editor").appendChild(view.dom);
 
+					document.querySelector("#editor").appendChild(view.dom);
+					document.querySelector(".tip").style.display = "none";
 					this.listenForAutomcompletion();
 					var restricted = ["MD", "TXT", "RTF"];
 					if (restricted.indexOf(ext) == -1) {

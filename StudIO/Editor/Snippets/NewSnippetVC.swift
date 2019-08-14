@@ -61,9 +61,7 @@ class NewSnippetVC: UIViewController {
             "theme": UserDefaults.standard.string(forKey: "studio-editor-theme") ?? "monokai"
             ])
         
-        c.highlight(ext) {
-            // nil
-        }
+        c.loadFile(withContent: "", lang: ext)
     }
     @IBAction func updateHighlight(_ sender: Any) {
         guard let c = codeView else { return }
@@ -72,9 +70,7 @@ class NewSnippetVC: UIViewController {
         
         c.getData { data, error  in
             let str = data?.base64EncodedString()
-            c.highlight(ext, code: {
-                c.loadFile(withContent: str ?? "")
-            })
+            c.loadFile(withContent: str ?? "", lang: ext)
         }
     }
     
