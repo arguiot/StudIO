@@ -157,14 +157,15 @@ class Editor: UIView, WKUIDelegate {
 }
 extension Editor: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        guard let ext = highlightExt else { return }
-        guard let c = self.content else { return }
-        self.loadFile(withContent: c, lang: ext)
         settings([
             "fontSize": UserDefaults.standard.string(forKey: "studio-font-size") ?? "26",
             "lineWrapping": UserDefaults.standard.string(forKey: "studio-line-wrapping") ?? "false",
             "theme": UserDefaults.standard.string(forKey: "studio-editor-theme") ?? "monokai"
         ])
+        
+        guard let ext = highlightExt else { return }
+        guard let c = self.content else { return }
+        self.loadFile(withContent: c, lang: ext)
     }
     
     
