@@ -10618,7 +10618,7 @@
 		}
 		fontSize(v) {
 			if (v > 0) {
-				document.querySelector(".codemirror").style["font-size"] = `${v}px`;
+				document.querySelector("#editor").style["font-size"] = `${v}px`;
 			}
 		}
 

@@ -248,4 +248,3 @@ class WorkingDirDetailVC: UIViewController {
         self.codeEditor(f.name)
     }
 }
-

@@ -32,7 +32,9 @@ class RootVC: UINavigationController, QuickActionSupport {
                 UIKeyCommand(input: "S", modifierFlags: .command, action: #selector(save(_:)), discoverabilityTitle: "Save document"),
                 UIKeyCommand(input: "S", modifierFlags: [.command, .shift], action: #selector(showSnippet(_:)), discoverabilityTitle: "Show snippets"),
                 UIKeyCommand(input: "G", modifierFlags: .command, action: #selector(gitPanel(_:)), discoverabilityTitle: "Show Git Panel"),
-                UIKeyCommand(input: "G", modifierFlags: [.command, .shift], action: #selector(gitVC(_:)), discoverabilityTitle: "Show Repository information")
+                UIKeyCommand(input: "G", modifierFlags: [.command, .shift], action: #selector(gitVC(_:)), discoverabilityTitle: "Show Repository information"),
+                UIKeyCommand(input: "Z", modifierFlags: [.command], action: #selector(undo(_:)), discoverabilityTitle: "Undo"),
+                UIKeyCommand(input: "Z", modifierFlags: [.command, .shift], action: #selector(redo(_:)), discoverabilityTitle: "Redo")
             ]
         }
         return [
@@ -69,6 +71,18 @@ class RootVC: UINavigationController, QuickActionSupport {
         guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
         guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
         e.gitVC(send)
+    }
+    @objc func undo(_ send: Any) {
+        guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
+        guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
+        guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
+        e.undo(send)
+    }
+    @objc func redo(_ send: Any) {
+        guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
+        guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
+        guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
+        e.redo(send)
     }
     @objc func clone() {
         guard let controller = topViewController as? ProjectVC else { return }
