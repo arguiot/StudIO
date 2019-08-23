@@ -9,6 +9,8 @@
 	</dict>
 	<key>file-icons</key>
 	<dict>
+		<key>cs</key>
+		<string>E9E2</string>
 		<key>gulpfile.js</key>
 		<string>E610</string>
 		<key>Cartfile</key>
