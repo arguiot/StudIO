@@ -407,7 +407,7 @@ function def(mimes, mode) {
 		// CodeMirror.registerHelper("hintWords", mimes[0], words);
 	}
 
-	for (var i = 0; i < mimes.length; ++i)
+	// for (var i = 0; i < mimes.length; ++i)
 	// CodeMirror.defineMIME(mimes[i], mode);
 }
 
