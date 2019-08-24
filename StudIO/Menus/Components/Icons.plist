@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>MFixx</key>
+	<dict>
+		<key>.htaccess</key>
+		<string>F102</string>
+		<key>scala</key>
+		<string>F154</string>
+		<key>sh</key>
+		<string>F158</string>
+		<key>Gruntfile.js</key>
+		<string>E903</string>
+		<key>cpp</key>
+		<string>F10B</string>
+		<key>c</key>
+		<string>F106</string>
+	</dict>
 	<key>octicons</key>
 	<dict>
 		<key>Folder</key>

@@ -119,6 +119,7 @@
 		68E4544E21C276CB00F945A0 /* CreateFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E4544D21C276CB00F945A0 /* CreateFile.swift */; };
 		68E59355223FA68D008C86C7 /* textField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E59354223FA68D008C86C7 /* textField.swift */; };
 		68E59357223FAEB9008C86C7 /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E59356223FAEB9008C86C7 /* colors.swift */; };
+		68F65C952310AC99001602AD /* MFixx.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68F65C942310AC99001602AD /* MFixx.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +237,7 @@
 		68E4544D21C276CB00F945A0 /* CreateFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFile.swift; sourceTree = "<group>"; };
 		68E59354223FA68D008C86C7 /* textField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textField.swift; sourceTree = "<group>"; };
 		68E59356223FAEB9008C86C7 /* colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
+		68F65C942310AC99001602AD /* MFixx.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MFixx.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +374,7 @@
 		6856C79B21B23DAC00441767 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				68F65C942310AC99001602AD /* MFixx.ttf */,
 				6856C7A821B2773F00441767 /* octicons.ttf */,
 				6856C7A221B2509400441767 /* opicons.ttf */,
 				6856C79C21B23DC300441767 /* file-icons.ttf */,
@@ -756,6 +759,7 @@
 				6856C7A321B2586500441767 /* opicons.ttf in Resources */,
 				6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */,
 				6835AEF82221260900A0C379 /* Language.strings in Resources */,
+				68F65C952310AC99001602AD /* MFixx.ttf in Resources */,
 				6852C24C21BB53BA00FA40DC /* Editor.xib in Resources */,
 				6863DF9121B5496200911374 /* BottomLine.xib in Resources */,
 				686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */,
