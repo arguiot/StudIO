@@ -87,6 +87,10 @@ class ProjectVC: UICollectionViewController {
         self.present(vc!, animated: true) {
             guard let root = self.navigationController as? RootVC else { return }
             root.status = true
+            guard let splitViewController = root.presentedViewController as? EditorSplitVC else { return }
+            guard let menu = splitViewController.viewControllers.first as? UINavigationController else { return }
+            guard let m = menu.topViewController as? WorkingDirMasterVC else { return }
+            root.tableViewKeyCommandsController = RootVC.TableViewKeyCommandsController(tableView: m.tableView)
         }
     }
 

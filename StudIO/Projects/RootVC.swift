@@ -127,16 +127,11 @@ class RootVC: UINavigationController, QuickActionSupport {
         tableViewKeyCommandsController?.previousKeyTapped()
     }
     
-    fileprivate var tableViewKeyCommandsController: TableViewKeyCommandsController? {
-        guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return nil }
-        guard let menu = splitViewController.viewControllers.first as? UINavigationController else { return nil }
-        guard let m = menu.topViewController as? WorkingDirMasterVC else { return nil }
-        return TableViewKeyCommandsController(tableView: m.tableView)
-    }
+    var tableViewKeyCommandsController: TableViewKeyCommandsController?
     
     final class TableViewKeyCommandsController {
         private let tableView: UITableView
-        var focussedIndexPath: IndexPath? {
+        public var focussedIndexPath: IndexPath? {
             didSet {
                 if oldValue != nil, let oldCell = tableView.cellForRow(at: oldValue!) {
                     guard let oldcell = oldCell as? FileCell else { return }
@@ -167,44 +162,44 @@ class RootVC: UINavigationController, QuickActionSupport {
         }
 
         func nextKeyTapped() {
-            guard let focussedIndexPath = focussedIndexPath else {
+            if focussedIndexPath == nil {
                 self.focussedIndexPath = firstIndexPath
                 return
             }
 
             let numberOfItems = tableView.numberOfRows(inSection: 0)
-            let focussedItem = focussedIndexPath.item
+            let focussedItem = focussedIndexPath!.item
 
             guard focussedItem != (numberOfItems - 1) else {
                 self.focussedIndexPath = firstIndexPath
                 return
             }
 
-            self.focussedIndexPath = IndexPath(item: focussedItem + 1, section: 0)
+            self.focussedIndexPath = IndexPath(row: focussedItem + 1, section: 0)
         }
 
         func previousKeyTapped() {
-            guard let focussedIndexPath = focussedIndexPath else {
+            if focussedIndexPath == nil {
                 self.focussedIndexPath = lastIndexPath
                 return
             }
 
-            let focussedItem = focussedIndexPath.item
+            let focussedItem = focussedIndexPath!.row
 
             guard focussedItem > 0 else {
                 self.focussedIndexPath = lastIndexPath
                 return
             }
-
-            self.focussedIndexPath = IndexPath(item: focussedItem - 1, section: 0)
+            
+            self.focussedIndexPath = IndexPath(row: focussedItem - 1, section: 0)
         }
 
         private var lastIndexPath: IndexPath {
-            return IndexPath(item: tableView.numberOfRows(inSection: 0) - 1, section: 0)
+            return IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0)
         }
 
         private var firstIndexPath: IndexPath {
-            return IndexPath(item: 0, section: 0)
+            return IndexPath(row: 0, section: 0)
         }
     }
 }
