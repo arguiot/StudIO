@@ -98,20 +98,7 @@ class RootVC: UINavigationController, QuickActionSupport {
         controller.bulletinManager.showBulletin(above: controller)
     }
     
-    // MARK: Keyboard shortcuts
-    
-//    override var keyCommands: [UIKeyCommand]? {
-//        return [
-//            UIKeyCommand(input: "\t", modifierFlags: .control, action: #selector(escapeKeyTapped), discoverabilityTitle: "Reset cell focus"),
-//            UIKeyCommand(input: "\t", modifierFlags: [], action: #selector(nextKeyTapped), discoverabilityTitle: "Next item"),
-//            UIKeyCommand(input: "\t", modifierFlags: .shift, action: #selector(previousKeyTapped), discoverabilityTitle: "Previous item"),
-//            UIKeyCommand(input: "\r", modifierFlags: [], action: #selector(selectKeyTapped), discoverabilityTitle: "Select item"),
-//            UIKeyCommand(input: "\t", modifierFlags: .alternate, action: #selector(selectKeyTapped), discoverabilityTitle: "Select item"),
-//            UIKeyCommand(input: "S", modifierFlags: .command, action: #selector(showSettings(_:)), discoverabilityTitle: "Open Settings"),
-//            UIKeyCommand(input: "?", modifierFlags: [], action: #selector(openDucmentation(_:)), discoverabilityTitle: "Open Documentation"),
-//            UIKeyCommand(input: "W", modifierFlags: .command, action: #selector(dismissAll), discoverabilityTitle: "Dismiss current view")
-//        ]
-//    }
+    // MARK: Menu switch tab
 
     override var canBecomeFirstResponder: Bool {
         return true
@@ -121,11 +108,11 @@ class RootVC: UINavigationController, QuickActionSupport {
         self.presentedViewController?.dismiss(animated: true, completion: nil)
     }
     @objc func escapeKeyTapped() {
-        collectionViewKeyCommandsController?.escapeKeyTapped()
+        tableViewKeyCommandsController?.escapeKeyTapped()
     }
 
     @objc func selectKeyTapped() {
-        guard let focussedIndexPath = collectionViewKeyCommandsController?.focussedIndexPath else { return }
+        guard let focussedIndexPath = tableViewKeyCommandsController?.focussedIndexPath else { return }
         guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
         guard let menu = splitViewController.viewControllers.first as? UINavigationController else { return }
         guard let m = menu.topViewController as? WorkingDirMasterVC else { return }
@@ -133,14 +120,14 @@ class RootVC: UINavigationController, QuickActionSupport {
     }
 
     @objc func nextKeyTapped() {
-        collectionViewKeyCommandsController?.nextKeyTapped()
+        tableViewKeyCommandsController?.nextKeyTapped()
     }
 
     @objc func previousKeyTapped() {
-        collectionViewKeyCommandsController?.previousKeyTapped()
+        tableViewKeyCommandsController?.previousKeyTapped()
     }
     
-    fileprivate var collectionViewKeyCommandsController: TableViewKeyCommandsController? {
+    fileprivate var tableViewKeyCommandsController: TableViewKeyCommandsController? {
         guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return nil }
         guard let menu = splitViewController.viewControllers.first as? UINavigationController else { return nil }
         guard let m = menu.topViewController as? WorkingDirMasterVC else { return nil }
