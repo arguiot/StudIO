@@ -24,10 +24,10 @@ class RootVC: UINavigationController, QuickActionSupport {
     }
     // MARK: Keyboard Shortcuts
     var status = false
-    
+    var editorFocussed = false
     override var keyCommands: [UIKeyCommand]? {
         if status == true {
-            return [
+            var keys = [
                 UIKeyCommand(input: "W", modifierFlags: .command, action: #selector(goBack(_:)), discoverabilityTitle: "Close editor"),
                 UIKeyCommand(input: "S", modifierFlags: .command, action: #selector(save(_:)), discoverabilityTitle: "Save document"),
                 UIKeyCommand(input: "S", modifierFlags: [.command, .shift], action: #selector(showSnippet(_:)), discoverabilityTitle: "Show snippets"),
@@ -35,11 +35,17 @@ class RootVC: UINavigationController, QuickActionSupport {
                 UIKeyCommand(input: "G", modifierFlags: [.command, .shift], action: #selector(gitVC(_:)), discoverabilityTitle: "Show Repository information"),
                 UIKeyCommand(input: "Z", modifierFlags: [.command], action: #selector(undo(_:)), discoverabilityTitle: "Undo"),
                 UIKeyCommand(input: "Z", modifierFlags: [.command, .shift], action: #selector(redo(_:)), discoverabilityTitle: "Redo"),
-                UIKeyCommand(input: "\t", modifierFlags: .control, action: #selector(escapeKeyTapped), discoverabilityTitle: "Reset cell focus"),
-                UIKeyCommand(input: "\t", modifierFlags: [], action: #selector(nextKeyTapped), discoverabilityTitle: "Next item"),
-                UIKeyCommand(input: "\t", modifierFlags: .shift, action: #selector(previousKeyTapped), discoverabilityTitle: "Previous item"),
-                UIKeyCommand(input: "\r", modifierFlags: [], action: #selector(selectKeyTapped), discoverabilityTitle: "Select item")
             ]
+            if editorFocussed == false {
+                keys.append(contentsOf: [
+                    UIKeyCommand(input: "\t", modifierFlags: .control, action: #selector(escapeKeyTapped), discoverabilityTitle: "Reset cell focus"),
+                    UIKeyCommand(input: "\t", modifierFlags: [], action: #selector(nextKeyTapped), discoverabilityTitle: "Next item"),
+                    UIKeyCommand(input: "\t", modifierFlags: .shift, action: #selector(previousKeyTapped), discoverabilityTitle: "Previous item"),
+                    UIKeyCommand(input: "\r", modifierFlags: [], action: #selector(selectKeyTapped), discoverabilityTitle: "Select item")
+                ])
+            }
+            
+            return keys
         }
         return [
             UIKeyCommand(input: "N", modifierFlags: .command, action: #selector(clone), discoverabilityTitle: "Create a new remote project"),

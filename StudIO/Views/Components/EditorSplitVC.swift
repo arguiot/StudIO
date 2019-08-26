@@ -57,6 +57,8 @@ class EditorSplitVC: UISplitViewController {
             
             self.findKeyboardView()?.isHidden = true
         }
+        guard let root = self.presentingViewController as? RootVC else { return }
+        root.editorFocussed = true
     }
     
     @objc func keyboardWillHide(_ notification: Notification?) {
@@ -65,6 +67,9 @@ class EditorSplitVC: UISplitViewController {
         let height = UIScreen.main.bounds.height
         let width = UIScreen.main.bounds.width
         accessory.frame = CGRect(x: 0, y: height - 60, width: width, height: 60)
+        
+        guard let root = self.presentingViewController as? RootVC else { return }
+        root.editorFocussed = false
     }
     
     @IBAction func HideSmartKeyboard() {
