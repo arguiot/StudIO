@@ -21,6 +21,7 @@ const text = libCM.text
 import completion from "./completion/index.js"
 import autocomplete from "./plugin/autocomplete.js"
 import plugin from "./plugin/plugin.js"
+import { Notification, NotificationCenter } from "./components/broadcast.js"
 class editor {
 	constructor(ext, value, settings) {
 		settings = typeof settings != "undefined" ? settings : {}
