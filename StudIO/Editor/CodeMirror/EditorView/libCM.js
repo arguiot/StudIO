@@ -10495,6 +10495,12 @@
 	}
 
 	/* Copyright Arthur Guiot 2019, BroadcastJS */
+	class BroadcastJSNotification {
+		constructor(name, object = null) {
+			this.name = name;
+			this.object = object;
+		}
+	}
 	class Center {
 		constructor() {
 			this.observers = [];
@@ -10538,6 +10544,7 @@
 	}
 
 	var NotificationCenter = new Center();
+	var Notification = BroadcastJSNotification;
 
 	class BufferCenter {
 		constructor() {
@@ -10603,7 +10610,7 @@
 			// Notifications
 
 			NotificationCenter.default.addObserver("registerPlugin", this.registerPlugin.bind(this));
-
+			NotificationCenter.default.addObserver("fontSize", this.fontSize.bind(this));
 			if (ext == null && value == null) {
 				document.addEventListener("DOMContentLoaded", function() {
 					// Do something...
@@ -10670,13 +10677,13 @@
 					if (restricted.indexOf(ext) == -1) {
 						this.disableCompletion();
 					}
+
+					BufferCenter$1.default.execute(window.e);
+					NotificationCenter.default.post(new Notification("fontSize", window.EditorSettings.fontSize));
 				}.bind(this);
 				script.src = `mode/${mode.mode}/${mode.mode}.js`;
 
 				document.head.appendChild(script);
-
-				// after settings
-				this.fontSize(EditorSettings.fontSize);
 			}
 		}
 		disableCompletion() {

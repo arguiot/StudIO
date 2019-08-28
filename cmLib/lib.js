@@ -34,7 +34,7 @@ class editor {
 		// Notifications
 
 		NotificationCenter.default.addObserver("registerPlugin", this.registerPlugin.bind(this))
-
+		NotificationCenter.default.addObserver("fontSize", this.fontSize.bind(this))
 		if (ext == null && value == null) {
 			document.addEventListener("DOMContentLoaded", function() {
 				// Do something...
@@ -103,13 +103,11 @@ class editor {
 				}
 
 				BufferCenter.default.execute(window.e)
+				NotificationCenter.default.post(new Notification("fontSize", window.EditorSettings.fontSize))
 			}.bind(this);
 			script.src = `mode/${mode.mode}/${mode.mode}.js`;
 
 			document.head.appendChild(script);
-
-			// after settings
-			this.fontSize(EditorSettings.fontSize)
 		}
 	}
 	disableCompletion() {
