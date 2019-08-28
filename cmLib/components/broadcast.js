@@ -1,5 +1,52 @@
 /* Copyright Arthur Guiot 2019, BroadcastJS */
-function _defineProperties(a,b){for(var c=0;c<b.length;c++){var d=b[c];d.enumerable=d.enumerable||!1;d.configurable=!0;"value"in d&&(d.writable=!0);Object.defineProperty(a,d.key,d)}}function _createClass(a,b,c){b&&_defineProperties(a.prototype,b);c&&_defineProperties(a,c);return a}function _classCallCheck(a,b){if(!(a instanceof b))throw new TypeError("Cannot call a class as a function");}
-var BroadcastJSNotification=function BroadcastJSNotification(a){var c=1<arguments.length&&void 0!==arguments[1]?arguments[1]:null;_classCallCheck(this,BroadcastJSNotification);this.name=a;this.object=c},NotificationCenter=function(){function a(){_classCallCheck(this,a);this.observers=[]}_createClass(a,[{key:"addObserver",value:function(b,a){this.observers.push([b,a,2<arguments.length&&void 0!==arguments[2]?arguments[2]:null])}},{key:"removeObserver",value:function(b){var a=this,d=1<arguments.length&&
-void 0!==arguments[1]?arguments[1]:null;this.observers.forEach(function(c,e){c[0]==b&&c[2]==d&&a.observers.splice(e,1)})}},{key:"post",value:function(a){var b=a.name;this.observers.forEach(function(d,c){if(d[0]==b)d[1](a.object)})}},{key:"default",get:function(){if("undefined"==typeof BroadcastJS_Shared_Instance){var b=new a;if("undefined"!==typeof global)global.BroadcastJS_Shared_Instance=b;else if("undefined"!==typeof window)window.BroadcastJS_Shared_Instance=b;else throw Error("Unkown run-time environment. Currently only browsers and Node.js are supported.");
-}return BroadcastJS_Shared_Instance}}]);return a}(),exported={Notification:BroadcastJSNotification,NotificationCenter:new NotificationCenter};"function"===typeof define&&define.amd?define(function(){return exported}):"undefined"!==typeof exports?("undefined"!==typeof module&&module.exports&&(exports=module.exports=exported),exports["default"]=exported):"undefined"!==typeof global&&(global.BroadcastJS=exported);
+class BroadcastJSNotification {
+	constructor(name, object = null) {
+		this.name = name
+		this.object = object
+	}
+}
+class Center {
+	constructor() {
+		this.observers = []
+	}
+	get default() {
+		const exportGlobal = (name, object) => {
+			if (typeof(global) !== "undefined") {
+				// Node.js
+				global[name] = object;
+			} else if (typeof(window) !== "undefined") {
+				// JS with GUI (usually browser)
+				window[name] = object;
+			} else {
+				throw new Error("Unkown run-time environment. Currently only browsers and Node.js are supported.");
+			}
+		};
+
+		if (typeof BroadcastJS_Shared_Instance == "undefined") {
+			exportGlobal("BroadcastJS_Shared_Instance", new Center())
+		}
+		return BroadcastJS_Shared_Instance
+	}
+	addObserver(name, callback, reference = null) {
+		this.observers.push([name, callback, reference])
+	}
+	removeObserver(name, reference = null) {
+		this.observers.forEach((o, i) => {
+			if (o[0] == name && o[2] == reference) {
+				this.observers.splice(i, 1)
+			}
+		})
+	}
+	post(notification) {
+		const name = notification.name
+		this.observers.forEach((o, i) => {
+			if (o[0] == name) {
+				o[1](notification.object)
+			}
+		})
+	}
+}
+
+const NotificationCenter = new Center()
+const Notification = BroadcastJSNotification
+export { Notification, NotificationCenter }

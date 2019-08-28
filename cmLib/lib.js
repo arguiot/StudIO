@@ -21,13 +21,20 @@ const text = libCM.text
 import completion from "./completion/index.js"
 import autocomplete from "./plugin/autocomplete.js"
 import plugin from "./plugin/plugin.js"
-import { Notification, NotificationCenter } from "./components/broadcast.js"
+import {Notification, NotificationCenter} from "./components/broadcast.js"
+import BufferCenter from "./components/buffer.js"
+
 class editor {
 	constructor(ext, value, settings) {
 		settings = typeof settings != "undefined" ? settings : {}
 		this.plugins = []
 
 		this.EditorSettings = settings
+
+		// Notifications
+
+		NotificationCenter.default.addObserver("registerPlugin", this.registerPlugin.bind(this))
+
 		if (ext == null && value == null) {
 			document.addEventListener("DOMContentLoaded", function() {
 				// Do something...
@@ -94,6 +101,8 @@ class editor {
 				if (restricted.indexOf(ext) == -1) {
 					this.disableCompletion()
 				}
+
+				BufferCenter.default.execute(window.e)
 			}.bind(this);
 			script.src = `mode/${mode.mode}/${mode.mode}.js`;
 
@@ -186,7 +195,7 @@ class editor {
 		window.webkit.messageHandlers.completion.postMessage([a, b, c])
 	}
 
-	registerPlugin(obj, type) {
+	registerPlugin({ obj, type }) {
 		this.plugins.push(new obj(type))
 		if (type == "hint") {
 			this.c = this.plugins[this.plugins.length - 1]
@@ -199,18 +208,14 @@ export default {
 	Text: text,
 	Completion: completion,
 	add: function(obj, type) {
-		if (typeof window.e != "undefined") {
-			window.e.registerPlugin(obj, type)
-		} else {
-			setTimeout(function() {
-				if (typeof window.e != "undefined") {
-					window.e.registerPlugin(obj, type)
-				} else {
-					window.ed.registerPlugin(obj, type)
-				}
+		BufferCenter.default.addTask(() => {
+			const plugin = new Notification("registerPlugin", {
+				obj: obj,
+				type: type
+			})
 
-			}, 500)
-		}
+			NotificationCenter.default.post(msg)
+		})
 	},
 	plugin: plugin,
 	autocomplete: autocomplete

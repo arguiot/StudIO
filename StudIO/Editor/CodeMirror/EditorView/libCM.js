@@ -10494,13 +10494,86 @@
 		}
 	}
 
-	var broadcast = createCommonjsModule(function (module, exports) {
 	/* Copyright Arthur Guiot 2019, BroadcastJS */
-	function _defineProperties(a,b){for(var c=0;c<b.length;c++){var d=b[c];d.enumerable=d.enumerable||!1;d.configurable=!0;"value"in d&&(d.writable=!0);Object.defineProperty(a,d.key,d);}}function _createClass(a,b,c){b&&_defineProperties(a.prototype,b);c&&_defineProperties(a,c);return a}function _classCallCheck(a,b){if(!(a instanceof b))throw new TypeError("Cannot call a class as a function");}
-	var BroadcastJSNotification=function BroadcastJSNotification(a){var c=1<arguments.length&&void 0!==arguments[1]?arguments[1]:null;_classCallCheck(this,BroadcastJSNotification);this.name=a;this.object=c;},NotificationCenter=function(){function a(){_classCallCheck(this,a);this.observers=[];}_createClass(a,[{key:"addObserver",value:function(b,a){this.observers.push([b,a,2<arguments.length&&void 0!==arguments[2]?arguments[2]:null]);}},{key:"removeObserver",value:function(b){var a=this,d=1<arguments.length&&
-	void 0!==arguments[1]?arguments[1]:null;this.observers.forEach(function(c,e){c[0]==b&&c[2]==d&&a.observers.splice(e,1);});}},{key:"post",value:function(a){var b=a.name;this.observers.forEach(function(d,c){if(d[0]==b)d[1](a.object);});}},{key:"default",get:function(){if("undefined"==typeof BroadcastJS_Shared_Instance){var b=new a;if("undefined"!==typeof commonjsGlobal)commonjsGlobal.BroadcastJS_Shared_Instance=b;else if("undefined"!==typeof window)window.BroadcastJS_Shared_Instance=b;else throw Error("Unkown run-time environment. Currently only browsers and Node.js are supported.");
-	}return BroadcastJS_Shared_Instance}}]);return a}(),exported={Notification:BroadcastJSNotification,NotificationCenter:new NotificationCenter};(module.exports&&(exports=module.exports=exported),exports["default"]=exported);
-	});
+	class Center {
+		constructor() {
+			this.observers = [];
+		}
+		get default() {
+			var exportGlobal = (name, object) => {
+				if (typeof(global) !== "undefined") {
+					// Node.js
+					global[name] = object;
+				} else if (typeof(window) !== "undefined") {
+					// JS with GUI (usually browser)
+					window[name] = object;
+				} else {
+					throw new Error("Unkown run-time environment. Currently only browsers and Node.js are supported.");
+				}
+			};
+
+			if (typeof BroadcastJS_Shared_Instance == "undefined") {
+				exportGlobal("BroadcastJS_Shared_Instance", new Center());
+			}
+			return BroadcastJS_Shared_Instance
+		}
+		addObserver(name, callback, reference = null) {
+			this.observers.push([name, callback, reference]);
+		}
+		removeObserver(name, reference = null) {
+			this.observers.forEach((o, i) => {
+				if (o[0] == name && o[2] == reference) {
+					this.observers.splice(i, 1);
+				}
+			});
+		}
+		post(notification) {
+			var name = notification.name;
+			this.observers.forEach((o, i) => {
+				if (o[0] == name) {
+					o[1](notification.object);
+				}
+			});
+		}
+	}
+
+	var NotificationCenter = new Center();
+
+	class BufferCenter {
+		constructor() {
+			this.buffers = [];
+		}
+		get default() {
+			var exportGlobal = (name, object) => {
+				if (typeof(global) !== "undefined") {
+					// Node.js
+					global[name] = object;
+				} else if (typeof(window) !== "undefined") {
+					// JS with GUI (usually browser)
+					window[name] = object;
+				} else {
+					throw new Error("Unkown run-time environment. Currently only browsers and Node.js are supported.");
+				}
+			};
+
+			if (typeof Buffer_Shared_Instance == "undefined") {
+				exportGlobal("Buffer_Shared_Instance", new BufferCenter());
+			}
+			return Buffer_Shared_Instance
+		}
+		addTask() {
+			this.buffers.push([...arguments]);
+		}
+		execute(ctx) {
+			this.buffers.forEach(task => {
+				var args = task.slice().splice(1, 2);
+				ctx[task[0]](...args);
+			});
+			this.buffers = [];
+		}
+	}
+
+	var BufferCenter$1 = new BufferCenter();
 
 	var EditorState = libCM.EditorState;
 	var EditorView = libCM.EditorView;
@@ -10519,12 +10592,18 @@
 	var specialChars$1 = libCM.specialChars;
 	var multipleSelections$1 = libCM.multipleSelections;
 	var text$1 = libCM.text;
+
 	class editor {
 		constructor(ext, value, settings) {
 			settings = typeof settings != "undefined" ? settings : {};
 			this.plugins = [];
 
 			this.EditorSettings = settings;
+
+			// Notifications
+
+			NotificationCenter.default.addObserver("registerPlugin", this.registerPlugin.bind(this));
+
 			if (ext == null && value == null) {
 				document.addEventListener("DOMContentLoaded", function() {
 					// Do something...
@@ -10681,7 +10760,7 @@
 			window.webkit.messageHandlers.completion.postMessage([a, b, c]);
 		}
 
-		registerPlugin(obj, type) {
+		registerPlugin({ obj, type }) {
 			this.plugins.push(new obj(type));
 			if (type == "hint") {
 				this.c = this.plugins[this.plugins.length - 1];
@@ -10694,18 +10773,10 @@
 		Text: text$1,
 		Completion: Completion,
 		add: function(obj, type) {
-			if (typeof window.e != "undefined") {
-				window.e.registerPlugin(obj, type);
-			} else {
-				setTimeout(function() {
-					if (typeof window.e != "undefined") {
-						window.e.registerPlugin(obj, type);
-					} else {
-						window.ed.registerPlugin(obj, type);
-					}
+			BufferCenter$1.default.addTask(() => {
 
-				}, 500);
-			}
+				NotificationCenter.default.post(msg);
+			});
 		},
 		plugin: StudIOPlugin,
 		autocomplete: StudIOAutocomplete
