@@ -35,6 +35,7 @@ class editor {
 
 		NotificationCenter.default.addObserver("registerPlugin", this.registerPlugin.bind(this))
 		NotificationCenter.default.addObserver("fontSize", this.fontSize.bind(this))
+
 		if (ext == null && value == null) {
 			document.addEventListener("DOMContentLoaded", function() {
 				// Do something...
@@ -44,7 +45,6 @@ class editor {
 			if (typeof mode == "undefined" || typeof mode.mode == "undefined") {
 				mode = CodeMirror.findModeByExtension("md") // Using markdown for undefined var
 			}
-			this.settings()
 
 			const script = document.createElement('script');
 			script.onload = function() {
@@ -200,13 +200,16 @@ class editor {
 			window.webkit.messageHandlers.setKeys.postMessage(this.c.getSmartKeys())
 		}
 	}
+	execute(f) {
+		f()
+	}
 }
 export default {
 	editor: editor,
 	Text: text,
 	Completion: completion,
 	add: function(obj, type) {
-		BufferCenter.default.addTask(() => {
+		BufferCenter.default.addTask("execute", () => {
 			const plugin = new Notification("registerPlugin", {
 				obj: obj,
 				type: type
@@ -216,5 +219,6 @@ export default {
 		})
 	},
 	plugin: plugin,
-	autocomplete: autocomplete
+	autocomplete: autocomplete,
+	BufferCenter: BufferCenter
 }

@@ -10611,6 +10611,7 @@
 
 			NotificationCenter.default.addObserver("registerPlugin", this.registerPlugin.bind(this));
 			NotificationCenter.default.addObserver("fontSize", this.fontSize.bind(this));
+
 			if (ext == null && value == null) {
 				document.addEventListener("DOMContentLoaded", function() {
 					// Do something...
@@ -10620,7 +10621,6 @@
 				if (typeof mode == "undefined" || typeof mode.mode == "undefined") {
 					mode = CodeMirror.findModeByExtension("md"); // Using markdown for undefined var
 				}
-				this.settings();
 
 				var script = document.createElement('script');
 				script.onload = function() {
@@ -10774,19 +10774,23 @@
 				window.webkit.messageHandlers.setKeys.postMessage(this.c.getSmartKeys());
 			}
 		}
+		execute(f) {
+			f();
+		}
 	}
 	var lib = {
 		editor: editor,
 		Text: text$1,
 		Completion: Completion,
 		add: function(obj, type) {
-			BufferCenter$1.default.addTask(() => {
+			BufferCenter$1.default.addTask("execute", () => {
 
 				NotificationCenter.default.post(msg);
 			});
 		},
 		plugin: StudIOPlugin,
-		autocomplete: StudIOAutocomplete
+		autocomplete: StudIOAutocomplete,
+		BufferCenter: BufferCenter$1
 	};
 
 	return lib;

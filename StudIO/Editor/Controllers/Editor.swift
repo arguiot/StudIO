@@ -137,7 +137,7 @@ class Editor: UIView, WKUIDelegate {
             json = j
         }
         let query = String(data: json, encoding: .ascii)!
-        codeView.evaluateJavaScript("window.EditorSettings = \(query);if (typeof window.e != 'undefined') { window.e.settings() }") { (result, error) in
+        codeView.evaluateJavaScript("window.EditorSettings = \(query); StudIO.BufferCenter.default.addTask('settings')") { (result, error) in
             
         }
         
