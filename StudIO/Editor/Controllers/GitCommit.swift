@@ -68,8 +68,10 @@ class GitCommit: UIView {
     
     @IBAction func commit(_ sender: Any) {
         DispatchQueue.global().sync {
-            let name = UserDefaults.standard.string(forKey: "name") ?? "StudIO User"
-            let email = UserDefaults.standard.string(forKey: "email") ?? "studio@exemple.com"
+            let keychain = KeychainSwift()
+            keychain.synchronizable = true
+            let name = keychain.get("name") ?? "StudIO User"
+            let email = keychain.get("email") ?? "studio@exemple.com"
             let sig = GTSignature(name: name, email: email, time: Date())
             
             // branches
