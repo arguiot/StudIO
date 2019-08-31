@@ -27,8 +27,9 @@ extension WorkingDirMasterVC {
             controller.repo = repo
             
             controller.detailItem = (sender as! MenuCellStruct).path as? File
-            controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
+            guard let button = splitViewController?.displayModeButtonItem else { return }
+            controller.navigationItem.leftBarButtonItems = [button]
         }
     }
 }
