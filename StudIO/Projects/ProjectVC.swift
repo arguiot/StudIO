@@ -154,7 +154,7 @@ class ProjectVC: UICollectionViewController {
                                             pop.sourceView = cell.contentView
                                             pop.sourceRect = CGRect(x: cell.contentView.bounds.midX, y: cell.contentView.bounds.midY, width: 0, height: 0)
                                         }
-                                        
+                                        cell.progressView.setProgress(0, animated: false)
                                         cell.progressView.isHidden = true
                                         
                                         self.present(share, animated: true)
