@@ -77,15 +77,21 @@ class GitCommit: UIView {
             // branches
             do {
                 let r = try GTRepository(url: (repo?.directoryURL)!)
-                let b = try r.currentBranch().name
+                let b = try? r.currentBranch().name
                 if (b == nil) {
-                    let branch = try repo?.localBranch(named: "master").get()
+                    var branch = try? repo?.localBranch(named: "master").get()
+                    if branch == nil {
+                        let builder = try GTTreeBuilder(tree: nil, repository: r)
+                        let tree = try builder.writeTree()
+                        try r.createBranchNamed("master", from: tree.oid, message: "Initial Commit")
+                        branch = try repo?.localBranch(named: "master").get()
+                    }
                     let oid = branch?.oid
                     repo?.checkout(oid!, strategy: .Safe)
                 }
                 // commit
                 let branch = try r.currentBranch()
-                let last = try branch.targetCommit()
+                let last = try? branch.targetCommit()
                 
                 let index = try r.index()
                 for entry in self.status {
@@ -102,7 +108,9 @@ class GitCommit: UIView {
                 let subtree = try index.writeTree()
                 let name = branch.reference.name
                 
-                _ = try r.createCommit(with: subtree, message: commitStrip.text, author: sig!, committer: sig!, parents: [last], updatingReferenceNamed: name)
+                let parents = [last]
+                
+                _ = try r.createCommit(with: subtree, message: commitStrip.text, author: sig!, committer: sig!, parents: parents as? [GTCommit], updatingReferenceNamed: name)
                 
                 self.commitStrip.text = ""
                 self.status = []

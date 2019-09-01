@@ -54,7 +54,7 @@ class WorkingDirDetailVC: UIViewController {
         saveButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         saveButton.setImage(saveIcon, for: .normal)
         saveButton.tintColor = #colorLiteral(red: 0.6588235294, green: 0.6588235294, blue: 0.6588235294, alpha: 1)
-        saveButton.addTarget(self, action: #selector(save(_:_:)), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(saveButton(_:)), for: .touchUpInside)
         
         let lgpr = UILongPressGestureRecognizer(target: self, action: #selector(saveLongPress))
         saveButton.addGestureRecognizer(lgpr)
@@ -70,7 +70,7 @@ class WorkingDirDetailVC: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         save(nil) {
-            self.editorView.codeView = nil
+//            self.editorView.codeView = nil
         }
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +84,9 @@ class WorkingDirDetailVC: UIViewController {
             bottomView((file?.name)!)
             codeEditor((file?.name)!)
         }
+    }
+    @objc func saveButton(_ sender: Any? = nil) {
+        save()
     }
     @objc func save(_ sender: Any? = nil, _ callback: (() -> Void)? = nil) {
         guard let f = self.file else { return }
