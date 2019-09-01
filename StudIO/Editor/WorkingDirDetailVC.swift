@@ -127,7 +127,7 @@ class WorkingDirDetailVC: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         
         if let pop = alert.popoverPresentationController {
-            pop.sourceView = navigationItem.leftBarButtonItem?.customView
+            pop.sourceView = navigationItem.leftBarButtonItems?.last?.customView
             pop.sourceRect = CGRect(x: pop.sourceView!.bounds.midX, y: pop.sourceView!.bounds.midY, width: 0, height: 0)
         }
         // show the alert + make impact
