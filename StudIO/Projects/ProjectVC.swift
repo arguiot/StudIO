@@ -149,12 +149,12 @@ class ProjectVC: UICollectionViewController {
                                     let zip = try LoadProjects().home.file(named: "temp.zip")
                                     let zipURL = URL(fileURLWithPath: zip.path)
                                     let share = UIActivityViewController(activityItems: [zipURL], applicationActivities: nil)
-                                    
-                                    if let pop = share.popoverPresentationController {
-                                        pop.sourceView = cell.contentView
-                                        pop.sourceRect = CGRect(x: cell.contentView.bounds.midX, y: cell.contentView.bounds.midY, width: 0, height: 0)
-                                    }
                                     DispatchQueue.main.async {
+                                        if let pop = share.popoverPresentationController {
+                                            pop.sourceView = cell.contentView
+                                            pop.sourceRect = CGRect(x: cell.contentView.bounds.midX, y: cell.contentView.bounds.midY, width: 0, height: 0)
+                                        }
+                                        
                                         cell.progressView.isHidden = true
                                         
                                         self.present(share, animated: true)
