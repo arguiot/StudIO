@@ -35,6 +35,7 @@ class RootVC: UINavigationController, QuickActionSupport {
                 UIKeyCommand(input: "G", modifierFlags: [.command, .shift], action: #selector(gitVC(_:)), discoverabilityTitle: "Show Repository information"),
                 UIKeyCommand(input: "Z", modifierFlags: [.command], action: #selector(undo(_:)), discoverabilityTitle: "Undo"),
                 UIKeyCommand(input: "Z", modifierFlags: [.command, .shift], action: #selector(redo(_:)), discoverabilityTitle: "Redo"),
+                UIKeyCommand(input: "N", modifierFlags: [.command], action: #selector(newFile(_:)), discoverabilityTitle: "New File/Folder"),
             ]
             if editorFocussed == false {
                 keys.append(contentsOf: [
@@ -93,6 +94,12 @@ class RootVC: UINavigationController, QuickActionSupport {
         guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
         guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
         e.redo(send)
+    }
+    @objc func newFile(_ send: Any) {
+        guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
+        guard let master = splitViewController.viewControllers.first as? UINavigationController else { return }
+        guard let m = master.topViewController as? WorkingDirMasterVC else { return }
+        m.insertNewObject(send)
     }
     @objc func clone() {
         guard let controller = topViewController as? ProjectVC else { return }
