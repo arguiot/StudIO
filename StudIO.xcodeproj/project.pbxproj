@@ -112,6 +112,7 @@
 		68D62A4B223C80B6005EACCB /* SnippetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D62A4A223C80B6005EACCB /* SnippetsVC.swift */; };
 		68D7C3E32279AA5100DC3853 /* ButttonBorderRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D7C3E22279AA5100DC3853 /* ButttonBorderRadius.swift */; };
 		68DA846422B5EFFD000FAAA2 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA846322B5EFFD000FAAA2 /* Keychain.swift */; };
+		68DEC2CB2321B94700DB7BE5 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 68DEC2CA2321B94600DB7BE5 /* Settings.bundle */; };
 		68E2332C2288099600ACFE0E /* PluginImpactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E2332B2288099600ACFE0E /* PluginImpactor.swift */; };
 		68E329D421D9223700231CFC /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E329D321D9223700231CFC /* ViewControllers.swift */; };
 		68E4544A21C1276B00F945A0 /* CellStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E4544921C1276B00F945A0 /* CellStruct.swift */; };
@@ -230,6 +231,7 @@
 		68D62A4A223C80B6005EACCB /* SnippetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetsVC.swift; sourceTree = "<group>"; };
 		68D7C3E22279AA5100DC3853 /* ButttonBorderRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButttonBorderRadius.swift; sourceTree = "<group>"; };
 		68DA846322B5EFFD000FAAA2 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		68DEC2CA2321B94600DB7BE5 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		68E2332B2288099600ACFE0E /* PluginImpactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginImpactor.swift; sourceTree = "<group>"; };
 		68E329D321D9223700231CFC /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
 		68E4544921C1276B00F945A0 /* CellStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellStruct.swift; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 		689BDC1B21B22F7800D88AAB /* StudIO */ = {
 			isa = PBXGroup;
 			children = (
+				68DEC2CA2321B94600DB7BE5 /* Settings.bundle */,
 				6835AEF1222124ED00A0C379 /* Language */,
 				6863DF8921B5485D00911374 /* Extensions */,
 				6863DF8821B3FABB00911374 /* StudIO.entitlements */,
@@ -767,6 +770,7 @@
 				684549C421CE218F00CF5E80 /* git.storyboard in Resources */,
 				689BDC2621B22F7C00D88AAB /* Assets.xcassets in Resources */,
 				689BDC2421B22F7800D88AAB /* Main.storyboard in Resources */,
+				68DEC2CB2321B94700DB7BE5 /* Settings.bundle in Resources */,
 				68CD1D6F22AD23E50025999D /* Articles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

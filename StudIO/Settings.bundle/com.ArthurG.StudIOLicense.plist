@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>File</key>
+			<string>com.ArthurG.StudIOLicense/BulletinBoard</string>
+			<key>Title</key>
+			<string>BulletinBoard</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.ArthurG.StudIOLicense/ColorSlider</string>
+			<key>Title</key>
+			<string>ColorSlider</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.ArthurG.StudIOLicense/Down</string>
+			<key>Title</key>
+			<string>Down</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.ArthurG.StudIOLicense/ios-snapshot-test-case</string>
+			<key>Title</key>
+			<string>ios-snapshot-test-case</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.ArthurG.StudIOLicense/JASON</string>
+			<key>Title</key>
+			<string>JASON</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.ArthurG.StudIOLicense/SwiftGit2</string>
+			<key>Title</key>
+			<string>SwiftGit2</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.ArthurG.StudIOLicense/Zip</string>
+			<key>Title</key>
+			<string>Zip</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+	</array>
+</dict>
+</plist>
