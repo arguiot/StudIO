@@ -44,14 +44,14 @@ extension Editor: WKScriptMessageHandler {
     
     // Completion Engine
     func setAutoCompletions(key1: String, key2: String, key3: String) {
-        guard let detailVC = self.parentViewController as? WorkingDirDetailVC else { return }
-        guard let editorVC = detailVC.splitViewController as? EditorSplitVC else { return }
-        let smartKeyboard = editorVC.accessory
-        _ = smartKeyboard?.completionView
+//        guard let detailVC = self.parentViewController as? WorkingDirDetailVC else { return }
+//        guard let editorVC = detailVC.splitViewController as? EditorSplitVC else { return }
+//        let smartKeyboard = editorVC.accessory
+//        _ = smartKeyboard?.completionView
         
         NotificationCenter.default.post(name: .init("setAutoComplete"), object: nil, userInfo: ["titles": [
             key1, key2, key3
-            ]])
+        ]])
     }
     func setListen() {
         let userContentController = codeView.configuration.userContentController
@@ -129,6 +129,7 @@ extension EditorSplitVC: UICollectionViewDataSource, UICollectionViewDelegateFlo
         for a in 0..<cells.count {
             guard cells[a].type == .large else { continue }
             cells[a] = CompletionFeature(title: keys[i], type: .large)
+            i += 1
         }
         accessory.completionView.reloadData()
     }
