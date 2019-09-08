@@ -165,17 +165,20 @@ class WorkingDirDetailVC: UIViewController {
     }
     func bottomView(_ str: String = "") {
         let b = bottomLine
-        guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return }
-        guard let branch = try? r.currentBranch() else { return }
-        guard let commit = try? branch.targetCommit() else { return }
-        guard let msg = commit.message else { return }
-        b?.lastCommit.text = msg
+        
         DispatchQueue.global().async {
             guard let text = try? self.file?.readSize() else { return }
             DispatchQueue.main.async {
                 b?.sizeString.text = text
             }
         }
+        
+        
+        guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return }
+        guard let branch = try? r.currentBranch() else { return }
+        guard let commit = try? branch.targetCommit() else { return }
+        guard let msg = commit.message else { return }
+        b?.lastCommit.text = msg
     }
     
     @IBAction func updatedBar() {
