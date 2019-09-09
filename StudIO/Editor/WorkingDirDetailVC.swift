@@ -177,8 +177,7 @@ class WorkingDirDetailVC: UIViewController {
         guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return }
         guard let branch = try? r.currentBranch() else { return }
         guard let commit = try? branch.targetCommit() else { return }
-        guard let msg = commit.message else { return }
-        b?.lastCommit.text = msg
+        b?.setup(commit: commit)
     }
     
     @IBAction func updatedBar() {

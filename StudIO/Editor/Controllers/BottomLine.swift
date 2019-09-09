@@ -53,4 +53,24 @@ class BottomLine: UIView {
             }
         }
     }
+    func setup(commit: GTCommit) {
+        self.text = commit.message
+        self.oid = commit.oid.sha
+        
+        lastCommit.text = self.text
+        
+        let press = UITapGestureRecognizer(target: self, action: #selector(toggleCommit))
+        if lastCommit.gestureRecognizers?.count == 0 {
+            lastCommit.addGestureRecognizer(press)
+        }
+    }
+    var text: String?
+    var oid: String?
+    @objc func toggleCommit() {
+        if lastCommit.text == self.text {
+            lastCommit.text = self.oid
+        } else {
+            lastCommit.text = self.text
+        }
+    }
 }
