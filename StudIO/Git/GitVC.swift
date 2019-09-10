@@ -189,12 +189,10 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let d = NSAttributedString(string: "master", attributes: [.foregroundColor: UIColor.white])
-        guard let branches = repo?.localBranches() else { return d }
-        if var b = try? branches.get() {
-            return NSAttributedString(string: b[row].name, attributes: [.foregroundColor: UIColor.white])
-        } else {
-            return d
-        }
+        guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return d }
+        guard let branches = try? r.branches() else { return d }
+        guard let oid = try? branches[row].targetCommit().oid.sha else { return NSAttributedString(string: "\(branches[row].name ?? "UNDEFINED")", attributes: [.foregroundColor: UIColor.white])}
+        return NSAttributedString(string: "\(branches[row].name ?? "UNDEFINED") - \(oid.prefix(7))", attributes: [.foregroundColor: UIColor.white])
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         do {
