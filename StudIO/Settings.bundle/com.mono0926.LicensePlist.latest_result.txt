@@ -8,6 +8,8 @@ name: ios-snapshot-test-case, nameSpecified: , owner: uber, version: 4.0.1
 
 name: JASON, nameSpecified: , owner: rickyzh, version: 717a835
 
+name: OneSignal-iOS-SDK, nameSpecified: , owner: OneSignal, version: 2.11.0
+
 name: SwiftGit2, nameSpecified: , owner: SwiftGit2, version: 0.6.0
 
 name: Zip, nameSpecified: , owner: mflint, version: 9c2f557
