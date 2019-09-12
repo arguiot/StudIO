@@ -10,6 +10,7 @@ import UIKit
 import SwiftGit2
 import BLTNBoard
 import SafariServices
+import OneSignal
 
 class GitVC: UIViewController {
 
@@ -58,7 +59,9 @@ class GitVC: UIViewController {
             let webhook = TextFieldBulletinPage(title: "WebHook")
             webhook.image = #imageLiteral(resourceName: "Badge").scaleImage(toSize: CGSize(width: 100, height: 100))
             webhook.descriptionText = "Copy this URL and use it for setting up a webhook in your repository's settings page."
-            webhook.content = "https://studiocode.app/webhook?id=blablabla"
+            
+            guard let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId else { return }
+            webhook.content = "https://webhook.studiocode.app/?id=\(id)"
             webhook.actionButtonTitle = "Continue"
             webhook.actionHandler = { (item: BLTNActionItem) in
                 item.manager?.dismissBulletin()
