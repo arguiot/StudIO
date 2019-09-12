@@ -28,9 +28,11 @@ class GitVC: UIViewController {
         passwd.text = keychain.get("password") ?? ""
         
         selectCorrectB()
-        let img = #imageLiteral(resourceName: "link").scaleImage(toSize: CGSize(width: 10, height: 10))
-        let item = UIBarButtonItem(image: img, style: .plain, target: self, action: #selector(openURL(_:)))
-        self.navigationItem.rightBarButtonItem = item
+        let imgL = #imageLiteral(resourceName: "link").scaleImage(toSize: CGSize(width: 10, height: 10))
+        let itemL = UIBarButtonItem(image: imgL, style: .plain, target: self, action: #selector(openURL(_:)))
+        let imgW = #imageLiteral(resourceName: "Badge").scaleImage(toSize: CGSize(width: 10, height: 10))
+        let itemW = UIBarButtonItem(image: imgW, style: .plain, target: self, action: #selector(openWebHook(_:)))
+        self.navigationItem.rightBarButtonItems = [itemL, itemW]
     }
     @IBAction func openURL(_ sender: Any) {
         guard let repo = self.repo else { return }
@@ -43,6 +45,31 @@ class GitVC: UIViewController {
             NSObject.alert(t: "Couldn't open remote URL", m: error.localizedDescription)
         }
         
+    }
+    var bulletinManager: BLTNItemManager!
+    
+    @IBAction func openWebHook(_ sender: Any) {
+        let page = BLTNPageItem(title: "Notifications")
+        page.image = #imageLiteral(resourceName: "Badge").scaleImage(toSize: CGSize(width: 100, height: 100))
+        page.descriptionText = "Use WebHooks to listen for changes on a repository, and deliver these changes as push notifications"
+        page.actionButtonTitle = "Set Up"
+        
+        page.actionHandler = { (item: BLTNActionItem) in
+            let webhook = TextFieldBulletinPage(title: "WebHook")
+            webhook.image = #imageLiteral(resourceName: "Badge").scaleImage(toSize: CGSize(width: 100, height: 100))
+            webhook.descriptionText = "Copy this URL and use it for setting up a webhook in your repository's settings page."
+            webhook.content = "https://studiocode.app/webhook?id=blablabla"
+            webhook.actionButtonTitle = "Continue"
+            webhook.actionHandler = { (item: BLTNActionItem) in
+                item.manager?.dismissBulletin()
+                self.openURL(item)
+            }
+            page.next = webhook
+            item.manager?.displayNextItem()
+        }
+        
+        bulletinManager = BLTNItemManager(rootItem: page)
+        bulletinManager.showBulletin(above: self)
     }
     @objc @IBAction func pushAction(_ sender: Any) {
         let p = Push()

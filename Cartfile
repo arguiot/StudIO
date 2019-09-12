@@ -6,3 +6,4 @@ github "mflint/Zip" "swift5"
 github "gizmosachin/ColorSlider" >= 4.4
 github "rickyzh/JASON" "master"
 github "iwasrobbed/Down" "master"
+github "OneSignal/OneSignal-iOS-SDK"
