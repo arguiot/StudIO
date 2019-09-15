@@ -55,6 +55,5 @@ extension SettingsVC {
             cell.key = row.key
             return cell
         }
-        return c
     }
 }
