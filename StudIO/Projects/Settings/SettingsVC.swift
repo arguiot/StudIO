@@ -26,7 +26,6 @@ class SettingsVC: UITableViewController {
                     let str = dbl as! Double
                     return "\(Int(str))px"
                 }),
-                Row(name: "Line Wrapping", type: .slider, set: "line-wrapping", def: "true"),
                 Row(name: "Editor Theme", type: .picker, set: "editor-theme", def: Themes.name.joined(separator: ","))
             ])
         ]
