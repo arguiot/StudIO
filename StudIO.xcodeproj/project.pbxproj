@@ -36,6 +36,22 @@
 		681DF61C227ECB9B00023DD9 /* LargeCompleletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681DF61B227ECB9B00023DD9 /* LargeCompleletionCell.swift */; };
 		681DF61E227ECBEB00023DD9 /* CompletionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681DF61D227ECBEB00023DD9 /* CompletionFeature.swift */; };
 		6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A821B2773F00441767 /* octicons.ttf */; };
+		682BCEE4233193890086FAA4 /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BCEE3233193890086FAA4 /* GameVC.swift */; };
+		682BCEE6233193A80086FAA4 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BCEE5233193A80086FAA4 /* AudioPlayer.swift */; };
+		682BCEE8233193D20086FAA4 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BCEE7233193D20086FAA4 /* GameScene.swift */; };
+		682BCEEB233193F70086FAA4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 682BCEE9233193F60086FAA4 /* Actions.sks */; };
+		682BCEEC233193F70086FAA4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 682BCEEA233193F70086FAA4 /* GameScene.sks */; };
+		682BCEEE233194360086FAA4 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682BCEED233194360086FAA4 /* Game.storyboard */; };
+		682BCEF6233194720086FAA4 /* impact1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 682BCEF0233194720086FAA4 /* impact1.mp3 */; };
+		682BCEF7233194720086FAA4 /* The_Tesseract.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 682BCEF1233194720086FAA4 /* The_Tesseract.mp3 */; };
+		682BCEF8233194720086FAA4 /* impact2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 682BCEF2233194720086FAA4 /* impact2.mp3 */; };
+		682BCEF9233194720086FAA4 /* gameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 682BCEF3233194720086FAA4 /* gameOver.mp3 */; };
+		682BCEFA233194720086FAA4 /* btnTapped.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 682BCEF4233194720086FAA4 /* btnTapped.mp3 */; };
+		682BCEFB233194720086FAA4 /* background.mov in Resources */ = {isa = PBXBuildFile; fileRef = 682BCEF5233194720086FAA4 /* background.mov */; };
+		682BCF002331949A0086FAA4 /* SetButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BCEFC233194990086FAA4 /* SetButtons.swift */; };
+		682BCF012331949A0086FAA4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BCEFD233194990086FAA4 /* SettingsViewController.swift */; };
+		682BCF022331949A0086FAA4 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BCEFE2331949A0086FAA4 /* AboutViewController.swift */; };
+		682BCF032331949A0086FAA4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BCEFF2331949A0086FAA4 /* MainViewController.swift */; };
 		682CF2A22243B15700207563 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CF2A12243B15700207563 /* Gist.swift */; };
 		682CF2A42243B1EE00207563 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CF2A32243B1EE00207563 /* Regex.swift */; };
 		682D03CB2283DA5D00F97BEA /* JASON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682D03CA2283DA5D00F97BEA /* JASON.framework */; };
@@ -173,6 +189,22 @@
 		681DF619227ECB8700023DD9 /* SmallCompleletionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCompleletionCell.swift; sourceTree = "<group>"; };
 		681DF61B227ECB9B00023DD9 /* LargeCompleletionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCompleletionCell.swift; sourceTree = "<group>"; };
 		681DF61D227ECBEB00023DD9 /* CompletionFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionFeature.swift; sourceTree = "<group>"; };
+		682BCEE3233193890086FAA4 /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
+		682BCEE5233193A80086FAA4 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		682BCEE7233193D20086FAA4 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		682BCEE9233193F60086FAA4 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		682BCEEA233193F70086FAA4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		682BCEED233194360086FAA4 /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
+		682BCEF0233194720086FAA4 /* impact1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = impact1.mp3; sourceTree = "<group>"; };
+		682BCEF1233194720086FAA4 /* The_Tesseract.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = The_Tesseract.mp3; sourceTree = "<group>"; };
+		682BCEF2233194720086FAA4 /* impact2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = impact2.mp3; sourceTree = "<group>"; };
+		682BCEF3233194720086FAA4 /* gameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameOver.mp3; sourceTree = "<group>"; };
+		682BCEF4233194720086FAA4 /* btnTapped.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = btnTapped.mp3; sourceTree = "<group>"; };
+		682BCEF5233194720086FAA4 /* background.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = background.mov; sourceTree = "<group>"; };
+		682BCEFC233194990086FAA4 /* SetButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetButtons.swift; sourceTree = "<group>"; };
+		682BCEFD233194990086FAA4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		682BCEFE2331949A0086FAA4 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		682BCEFF2331949A0086FAA4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		682CF2A12243B15700207563 /* Gist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Gist.swift; path = StudIO/Extensions/Gist.swift; sourceTree = SOURCE_ROOT; };
 		682CF2A32243B1EE00207563 /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		682D03CA2283DA5D00F97BEA /* JASON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JASON.framework; path = Carthage/Build/iOS/JASON.framework; sourceTree = "<group>"; };
@@ -336,6 +368,37 @@
 				68190016220EE346003E0972 /* SettingsVC.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		682BCEE22331935D0086FAA4 /* Easter Egg */ = {
+			isa = PBXGroup;
+			children = (
+				682BCEEF233194720086FAA4 /* audio */,
+				682BCEED233194360086FAA4 /* Game.storyboard */,
+				682BCEE9233193F60086FAA4 /* Actions.sks */,
+				682BCEEA233193F70086FAA4 /* GameScene.sks */,
+				682BCEE3233193890086FAA4 /* GameVC.swift */,
+				682BCEE5233193A80086FAA4 /* AudioPlayer.swift */,
+				682BCEE7233193D20086FAA4 /* GameScene.swift */,
+				682BCEFE2331949A0086FAA4 /* AboutViewController.swift */,
+				682BCEFF2331949A0086FAA4 /* MainViewController.swift */,
+				682BCEFC233194990086FAA4 /* SetButtons.swift */,
+				682BCEFD233194990086FAA4 /* SettingsViewController.swift */,
+			);
+			path = "Easter Egg";
+			sourceTree = "<group>";
+		};
+		682BCEEF233194720086FAA4 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				682BCEF0233194720086FAA4 /* impact1.mp3 */,
+				682BCEF1233194720086FAA4 /* The_Tesseract.mp3 */,
+				682BCEF2233194720086FAA4 /* impact2.mp3 */,
+				682BCEF3233194720086FAA4 /* gameOver.mp3 */,
+				682BCEF4233194720086FAA4 /* btnTapped.mp3 */,
+				682BCEF5233194720086FAA4 /* background.mov */,
+			);
+			path = audio;
 			sourceTree = "<group>";
 		};
 		682CF2A02243B14300207563 /* Snippets Services */ = {
@@ -574,6 +637,7 @@
 		689BDC1B21B22F7800D88AAB /* StudIO */ = {
 			isa = PBXGroup;
 			children = (
+				682BCEE22331935D0086FAA4 /* Easter Egg */,
 				68DEC2CA2321B94600DB7BE5 /* Settings.bundle */,
 				6835AEF1222124ED00A0C379 /* Language */,
 				6863DF8921B5485D00911374 /* Extensions */,
@@ -834,21 +898,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				682BCEEE233194360086FAA4 /* Game.storyboard in Resources */,
+				682BCEF8233194720086FAA4 /* impact2.mp3 in Resources */,
+				682BCEF7233194720086FAA4 /* The_Tesseract.mp3 in Resources */,
 				689BDC2921B22F7C00D88AAB /* LaunchScreen.storyboard in Resources */,
 				6835AEFF22212AE100A0C379 /* Projects.storyboard in Resources */,
 				68CD1D6422AD0F5B0025999D /* Documentation.storyboard in Resources */,
+				682BCEF6233194720086FAA4 /* impact1.mp3 in Resources */,
 				6856C7A421B2586700441767 /* file-icons.ttf in Resources */,
 				68162E8821BBE11200CDA628 /* EditorView in Resources */,
 				6856C7A321B2586500441767 /* opicons.ttf in Resources */,
 				6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */,
+				682BCEFA233194720086FAA4 /* btnTapped.mp3 in Resources */,
 				6835AEF82221260900A0C379 /* Language.strings in Resources */,
 				68F65C952310AC99001602AD /* MFixx.ttf in Resources */,
 				6852C24C21BB53BA00FA40DC /* Editor.xib in Resources */,
 				6863DF9121B5496200911374 /* BottomLine.xib in Resources */,
+				682BCEF9233194720086FAA4 /* gameOver.mp3 in Resources */,
 				686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */,
 				6856C7A121B249FB00441767 /* Icons.plist in Resources */,
 				684549C421CE218F00CF5E80 /* git.storyboard in Resources */,
+				682BCEFB233194720086FAA4 /* background.mov in Resources */,
 				689BDC2621B22F7C00D88AAB /* Assets.xcassets in Resources */,
+				682BCEEB233193F70086FAA4 /* Actions.sks in Resources */,
+				682BCEEC233193F70086FAA4 /* GameScene.sks in Resources */,
 				689BDC2421B22F7800D88AAB /* Main.storyboard in Resources */,
 				68DEC2CB2321B94700DB7BE5 /* Settings.bundle in Resources */,
 				68CD1D6F22AD23E50025999D /* Articles in Resources */,
@@ -970,6 +1043,7 @@
 				68A62CBD223CD46C0040225E /* snippetController.swift in Sources */,
 				683CF2652247A9D400EB75FC /* GitLab.swift in Sources */,
 				6863DF9721B68F1700911374 /* EditorSplitVC.swift in Sources */,
+				682BCF002331949A0086FAA4 /* SetButtons.swift in Sources */,
 				6845D0A72265E0730008150D /* SmartKeyboard.swift in Sources */,
 				68E329D421D9223700231CFC /* ViewControllers.swift in Sources */,
 				68B5635F222BBB6000B9E0DD /* FolderItem.swift in Sources */,
@@ -979,9 +1053,11 @@
 				6856C79F21B23E3800441767 /* FileCell.swift in Sources */,
 				682CF2A22243B15700207563 /* Gist.swift in Sources */,
 				6863DF9321B54A9800911374 /* BottomLine.swift in Sources */,
+				682BCF022331949A0086FAA4 /* AboutViewController.swift in Sources */,
 				68D62A4B223C80B6005EACCB /* SnippetsVC.swift in Sources */,
 				68190017220EE346003E0972 /* SettingsVC.swift in Sources */,
 				68E2332C2288099600ACFE0E /* PluginImpactor.swift in Sources */,
+				682BCF012331949A0086FAA4 /* SettingsViewController.swift in Sources */,
 				68CD1D6B22AD12B30025999D /* MarkdownVC.swift in Sources */,
 				681DF61C227ECB9B00023DD9 /* LargeCompleletionCell.swift in Sources */,
 				68A4BC8E2286DBFA0071ECAF /* Plugin.swift in Sources */,
@@ -990,11 +1066,13 @@
 				6863DF8721B3C62C00911374 /* TextFieldBLTN.swift in Sources */,
 				6835AEEE2221188300A0C379 /* QuickActions.swift in Sources */,
 				68C2BC09228053B60088C39F /* PluginCell.swift in Sources */,
+				682BCEE4233193890086FAA4 /* GameVC.swift in Sources */,
 				68CA0D0C22AA632D006A22B1 /* SceneDelegate.swift in Sources */,
 				681DF61A227ECB8700023DD9 /* SmallCompleletionCell.swift in Sources */,
 				682CF2A42243B1EE00207563 /* Regex.swift in Sources */,
 				689BDC1F21B22F7800D88AAB /* WorkingDirMasterVC.swift in Sources */,
 				6863DF9521B54C2A00911374 /* date.swift in Sources */,
+				682BCF032331949A0086FAA4 /* MainViewController.swift in Sources */,
 				68E59355223FA68D008C86C7 /* textField.swift in Sources */,
 				68B5635D222BBA7600B9E0DD /* ZipItem.swift in Sources */,
 				6890AD33223E431700D6EDBD /* NewSnippetVC.swift in Sources */,
@@ -1017,10 +1095,12 @@
 				680CEDC52261FE2F007AFEE0 /* Cht.swift in Sources */,
 				684549C921CE27EE00CF5E80 /* GitVC.swift in Sources */,
 				6863564222B4FC0E007DB829 /* Spinner.swift in Sources */,
+				682BCEE8233193D20086FAA4 /* GameScene.swift in Sources */,
 				684F81BB220F03B60003B845 /* SliderCell.swift in Sources */,
 				6802069D21C6469C000686D1 /* Data.swift in Sources */,
 				68CD1D6722AD12440025999D /* MenuDocTableViewController.swift in Sources */,
 				68C2BC03228044480088C39F /* PluginsVC.swift in Sources */,
+				682BCEE6233193A80086FAA4 /* AudioPlayer.swift in Sources */,
 				68A62CBF223CFFCB0040225E /* SnippetCell.swift in Sources */,
 				68879C182261FC7D002EDC5D /* CheatCodeVC.swift in Sources */,
 				68B56363222BE87300B9E0DD /* DoubleScreen.swift in Sources */,
@@ -1271,6 +1351,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1261;
 				DEVELOPMENT_TEAM = 73CCF549YB;
