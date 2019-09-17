@@ -36,7 +36,7 @@
                                     <constraint firstAttribute="width" constant="200" id="nqZ-Me-rjc"/>
                                     <constraint firstAttribute="height" constant="50" id="rTm-Cs-W0i"/>
                                 </constraints>
-                                <state key="normal" image="Settings"/>
+                                <state key="normal" image="Settings-1"/>
                                 <connections>
                                     <action selector="btnTapped:" destination="oRu-NR-4bF" eventType="touchUpInside" id="Jm5-Ue-8uj"/>
                                     <segue destination="Amh-AI-fGm" kind="popoverPresentation" popoverAnchorView="5MI-DR-mk5" id="GHO-XY-9Mf">
@@ -88,9 +88,9 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BV1-FR-VrT" customClass="GameViewController" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KpE-oS-wj1">
@@ -126,25 +126,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXN-QP-5Ti" customClass="SetButtons" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="87.5" y="497" width="200" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You found the Easter Egg!!Thanks @nikki-thn!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inn-kF-lep">
+                                <rect key="frame" x="62.5" y="237" width="250" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="H9W-vT-sPu"/>
-                                    <constraint firstAttribute="height" constant="50" id="HhI-Pj-fbb"/>
-                                    <constraint firstAttribute="width" constant="200" id="W7f-Nk-EKV"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="h3c-BB-uYZ"/>
-                                </constraints>
-                                <state key="normal" image="Back-to-Main"/>
-                                <connections>
-                                    <segue destination="oRu-NR-4bF" kind="popoverPresentation" popoverAnchorView="gXN-QP-5Ti" id="Zr5-hx-dx5">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VER 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inn-kF-lep">
-                                <rect key="frame" x="62.5" y="237" width="250" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="DaB-ah-M9z"/>
+                                    <constraint firstAttribute="height" constant="55" id="DaB-ah-M9z"/>
                                     <constraint firstAttribute="width" constant="250" id="vam-2l-TPA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -154,17 +139,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.10679727159999999" green="0.10679727159999999" blue="0.10679727159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gXN-QP-5Ti" firstAttribute="centerX" secondItem="9y8-JD-eFl" secondAttribute="centerX" id="BGv-92-YmU"/>
-                            <constraint firstItem="gXN-QP-5Ti" firstAttribute="top" secondItem="inn-kF-lep" secondAttribute="bottom" constant="230" id="Dwz-rr-YqD"/>
+                            <constraint firstItem="inn-kF-lep" firstAttribute="top" secondItem="6gy-uP-kIg" secondAttribute="top" constant="237" id="5hl-fo-Lq8"/>
                             <constraint firstItem="inn-kF-lep" firstAttribute="centerX" secondItem="9y8-JD-eFl" secondAttribute="centerX" id="Rgt-wN-p3h"/>
-                            <constraint firstItem="6gy-uP-kIg" firstAttribute="bottom" secondItem="gXN-QP-5Ti" secondAttribute="bottom" constant="100" id="js3-uA-dTZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6gy-uP-kIg"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MOI-l2-1nH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-370" y="908"/>
+            <point key="canvasLocation" x="-370.39999999999998" y="907.1964017991005"/>
         </scene>
         <!--Setting-->
         <scene sceneID="4aD-gW-dDs">
@@ -174,26 +157,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settings" translatesAutoresizingMaskIntoConstraints="NO" id="KKo-Bg-rpj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settings-1" translatesAutoresizingMaskIntoConstraints="NO" id="KKo-Bg-rpj">
                                 <rect key="frame" x="112.5" y="20" width="150" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="Wpv-RS-HAb"/>
                                     <constraint firstAttribute="height" constant="30" id="Xau-CG-NKb"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xws-g9-kK3" customClass="SetButtons" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="87.5" y="497" width="200" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="dbM-lU-01p"/>
-                                    <constraint firstAttribute="height" constant="50" id="mO2-u1-81A"/>
-                                </constraints>
-                                <state key="normal" image="Back-to-Main"/>
-                                <connections>
-                                    <segue destination="oRu-NR-4bF" kind="popoverPresentation" popoverAnchorView="Xws-g9-kK3" id="jpU-ul-XSo">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L97-88-Acc" customClass="SetButtons" customModule="StudIO" customModuleProvider="target">
                                 <rect key="frame" x="249" y="308.5" width="65" height="30"/>
                                 <constraints>
@@ -243,10 +213,8 @@
                             <constraint firstItem="5Kz-1B-fqk" firstAttribute="leading" secondItem="ptS-m4-6L2" secondAttribute="leading" constant="61" id="AJz-2H-FIA"/>
                             <constraint firstItem="Flb-3b-rDe" firstAttribute="centerY" secondItem="rXE-XR-jAU" secondAttribute="centerY" id="BVn-u7-Jwh"/>
                             <constraint firstItem="Flb-3b-rDe" firstAttribute="top" secondItem="5Kz-1B-fqk" secondAttribute="bottom" constant="78" id="Fg6-G3-maX"/>
-                            <constraint firstItem="ptS-m4-6L2" firstAttribute="bottom" secondItem="Xws-g9-kK3" secondAttribute="bottom" constant="100" id="Gud-NW-lWK"/>
                             <constraint firstItem="L97-88-Acc" firstAttribute="centerY" secondItem="rXE-XR-jAU" secondAttribute="centerY" id="K3O-Fq-GJN"/>
                             <constraint firstItem="5Kz-1B-fqk" firstAttribute="leading" secondItem="Flb-3b-rDe" secondAttribute="leading" id="LDR-HF-MM8"/>
-                            <constraint firstItem="Xws-g9-kK3" firstAttribute="centerX" secondItem="rXE-XR-jAU" secondAttribute="centerX" id="LcI-GN-NfD"/>
                             <constraint firstItem="L97-88-Acc" firstAttribute="top" secondItem="hoh-yd-Vbx" secondAttribute="bottom" constant="65" id="Zfk-OC-shf"/>
                             <constraint firstItem="hoh-yd-Vbx" firstAttribute="leading" secondItem="L97-88-Acc" secondAttribute="leading" id="cNx-zi-Lzp"/>
                             <constraint firstItem="KKo-Bg-rpj" firstAttribute="top" secondItem="ptS-m4-6L2" secondAttribute="top" constant="20" id="eok-xv-FH1"/>
@@ -269,12 +237,8 @@
     <resources>
         <image name="About" width="81" height="39"/>
         <image name="Arcade-Game" width="549" height="121"/>
-        <image name="Back-to-Main" width="102" height="28"/>
-        <image name="Settings" width="115" height="35"/>
+        <image name="Settings-1" width="115" height="35"/>
         <image name="Start-Game" width="147" height="30"/>
         <image name="close" width="512" height="512"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="uHN-xj-sU9"/>
-    </inferredMetricsTieBreakers>
 </document>

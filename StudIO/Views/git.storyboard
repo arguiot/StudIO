@@ -152,7 +152,7 @@
                                     <constraint firstAttribute="height" constant="100" id="LBV-Ly-XLn"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="rpw-nl-egQ" kind="show" id="vba-D1-s5x"/>
+                                    <segue destination="rpw-nl-egQ" kind="presentation" modalPresentationStyle="fullScreen" id="vba-D1-s5x"/>
                                 </connections>
                             </button>
                         </subviews>
