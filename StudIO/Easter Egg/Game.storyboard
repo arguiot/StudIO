@@ -66,14 +66,27 @@
                                     <constraint firstAttribute="width" constant="300" id="Ukz-eC-RvH"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDA-UP-fdr">
+                                <rect key="frame" x="329" y="20" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="jIe-RP-ccJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="vQU-fn-QSL"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="close"/>
+                                <connections>
+                                    <action selector="back:" destination="oRu-NR-4bF" eventType="touchUpInside" id="6bC-Z7-wLt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="5MI-DR-mk5" firstAttribute="top" secondItem="Fty-i5-1Z2" secondAttribute="bottom" constant="30" id="0Eg-xB-ND1"/>
                             <constraint firstItem="Fty-i5-1Z2" firstAttribute="top" secondItem="STK-bV-dHX" secondAttribute="bottom" constant="50" id="4bY-In-GXO"/>
+                            <constraint firstItem="MYx-Hm-EjI" firstAttribute="trailing" secondItem="pDA-UP-fdr" secondAttribute="trailing" constant="16" id="AnM-Vg-R4r"/>
                             <constraint firstItem="STK-bV-dHX" firstAttribute="centerX" secondItem="ikJ-Hq-dqo" secondAttribute="centerX" id="E26-sh-FCN"/>
                             <constraint firstItem="5MI-DR-mk5" firstAttribute="centerY" secondItem="ikJ-Hq-dqo" secondAttribute="centerY" id="UN7-vx-QAJ"/>
                             <constraint firstItem="5MI-DR-mk5" firstAttribute="centerX" secondItem="ikJ-Hq-dqo" secondAttribute="centerX" id="Uwg-R9-P0W"/>
+                            <constraint firstItem="pDA-UP-fdr" firstAttribute="top" secondItem="MYx-Hm-EjI" secondAttribute="top" constant="20" id="Zni-TL-yiw"/>
                             <constraint firstItem="UHJ-C7-6el" firstAttribute="centerX" secondItem="ikJ-Hq-dqo" secondAttribute="centerX" id="gVm-Fa-Pre"/>
                             <constraint firstItem="Fty-i5-1Z2" firstAttribute="centerX" secondItem="ikJ-Hq-dqo" secondAttribute="centerX" id="hKI-im-eXh"/>
                             <constraint firstItem="UHJ-C7-6el" firstAttribute="top" secondItem="5MI-DR-mk5" secondAttribute="bottom" constant="30" id="in7-zZ-iYb"/>
@@ -83,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H1d-7C-Cpm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1388" y="-38"/>
+            <point key="canvasLocation" x="-1388" y="-38.23088455772114"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">

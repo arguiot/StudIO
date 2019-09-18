@@ -13,6 +13,9 @@ class MainViewController: UIViewController {
     
     var videoPlayer = AVPlayer()
     
+    @IBAction func back(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     @IBAction func btnTapped(_ sender: Any) {
         audioPlayer.playBtnTappedSound()
     }
