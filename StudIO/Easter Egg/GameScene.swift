@@ -129,7 +129,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         floor = childNode(withName: "bottom") as? SKSpriteNode
         gamePlay.ball = childNode(withName: "ball") as? SKSpriteNode
         paddle = childNode(withName: "paddle") as? SKSpriteNode
-       
+        
+        let viewBottom = CGPoint(x: (scene!.view?.center.x)!, y: scene!.view!.frame.maxY)
+        let sceneBottom = scene!.view!.convert(viewBottom, to: scene!)
+        let nodeBottom = scene!.convert(sceneBottom, to: paddle!)
+        paddle?.position = nodeBottom
+        
         //apply impulse so the ball moves
         
         gamePlay.ball?.physicsBody!.applyImpulse(CGVector(dx: 50, dy: -50))

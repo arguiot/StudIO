@@ -13,11 +13,11 @@
             <objects>
                 <viewController title="Main" id="oRu-NR-4bF" customClass="MainViewController" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ikJ-Hq-dqo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fty-i5-1Z2" customClass="SetButtons" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="87.5" y="218.5" width="200" height="50"/>
+                                <rect key="frame" x="87.5" y="228.5" width="200" height="50"/>
                                 <accessibility key="accessibilityConfiguration" identifier="start"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="2E1-GI-ccy"/>
@@ -30,7 +30,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5MI-DR-mk5" customClass="SetButtons" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="87.5" y="298.5" width="200" height="50"/>
+                                <rect key="frame" x="87.5" y="308.5" width="200" height="50"/>
                                 <accessibility key="accessibilityConfiguration" identifier="settings"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="nqZ-Me-rjc"/>
@@ -45,7 +45,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHJ-C7-6el" customClass="SetButtons" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="87.5" y="378.5" width="200" height="50"/>
+                                <rect key="frame" x="87.5" y="388.5" width="200" height="50"/>
                                 <accessibility key="accessibilityConfiguration" identifier="about"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8XL-zb-NaL"/>
@@ -60,7 +60,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arcade-Game" translatesAutoresizingMaskIntoConstraints="NO" id="STK-bV-dHX">
-                                <rect key="frame" x="37.5" y="68.5" width="300" height="100"/>
+                                <rect key="frame" x="37.5" y="78.5" width="300" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="SB5-vb-EiZ"/>
                                     <constraint firstAttribute="width" constant="300" id="Ukz-eC-RvH"/>
@@ -115,7 +115,6 @@
                                 <state key="normal" title="Button" image="close"/>
                                 <connections>
                                     <action selector="closeBtnTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="jqa-44-248"/>
-                                    <segue destination="oRu-NR-4bF" kind="show" id="uHN-xj-sU9"/>
                                 </connections>
                             </button>
                         </subviews>
