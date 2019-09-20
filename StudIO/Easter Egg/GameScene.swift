@@ -132,9 +132,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate  {
         
         let viewBottom = CGPoint(x: (scene!.view?.center.x)!, y: scene!.view!.frame.maxY)
         let sceneBottom = scene!.view!.convert(viewBottom, to: scene!)
-        let nodeBottom = scene!.convert(sceneBottom, to: paddle!)
-        paddle?.position = nodeBottom
         
+        paddle?.position = sceneBottom
+        
+        floor?.position = sceneBottom
         //apply impulse so the ball moves
         
         gamePlay.ball?.physicsBody!.applyImpulse(CGVector(dx: 50, dy: -50))
