@@ -87,7 +87,7 @@ class GitCommit: UIView {
                         branch = try repo?.localBranch(named: "master").get()
                     }
                     let oid = branch?.oid
-                    repo?.checkout(oid!, strategy: .Safe)
+                    _ = repo?.checkout(oid!, strategy: .Safe)
                 }
                 // commit
                 let branch = try r.currentBranch()
@@ -289,7 +289,6 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
                 
                 let r = try GTRepository(url: (self.repo?.directoryURL)!)
                 
-                let index = try r.index()
                 let HEAD = try r.lookUpObject(byRevParse: "HEAD") as! GTCommit
                 guard let entry = try? HEAD.tree?.entry(withPath: title) else {
                     let file = try File(path: url.path)

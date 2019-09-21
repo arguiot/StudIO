@@ -37,7 +37,7 @@ class CreateFile {
         let f = try! l.createFile(named: n)
         let fpath: URL = URL(fileURLWithPath: home.path)
         if let repo = try? Repository.at(fpath).get() {
-            repo.add(path: f.path)
+            _ = repo.add(path: f.path)
         }
         return MenuCellStruct(type: .file, ident: i, name: n, path: f, toggled: false)
     }

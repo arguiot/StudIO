@@ -140,7 +140,7 @@ class ProjectVC: UICollectionViewController {
                             cell.progressView.isHidden = false
                         }
                         let pathURL = URL(fileURLWithPath: path.path)
-                        try Zip.quickZipFiles([pathURL], fileName: "temp", progress: { (progress) in
+                        _ = try Zip.quickZipFiles([pathURL], fileName: "temp", progress: { (progress) in
                             DispatchQueue.main.sync {
                                 cell.progressView.setProgress(Float(progress), animated: true)
                             }

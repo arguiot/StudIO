@@ -152,7 +152,7 @@ class WorkingDirMasterVC: UITableViewController {
         try? file.move(to: l)
         let fpath = URL(fileURLWithPath: LoadManager!.project.path)
         if let repo = try? Repository.at(fpath).get() {
-            repo.add(path: path)
+            _ = repo.add(path: path)
         }
     }
     
