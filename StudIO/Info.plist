@@ -24,6 +24,12 @@
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>StudIO needs your location to speed up transfer by accessing the closest remote server.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>StudIO needs your location to speed up transfer by accessing the closest remote server.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>StudIO needs your location to speed up transfer by accessing the closest remote server.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>StudIO needs your location to speed up transfer by accessing the closest remote server.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>StudIO needs access to the microphone to be able to attach voice notes.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
