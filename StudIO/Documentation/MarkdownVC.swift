@@ -14,6 +14,8 @@ class MarkdownVC: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var section: UILabel!
     
+    private static let viewControllerIdentifier = "MarkdownVC"
+    
     var article: MenuDocTableViewController.Article? = nil
     override func viewDidLoad() {
         super.viewDidLoad()

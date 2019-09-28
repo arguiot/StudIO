@@ -20,7 +20,8 @@ struct audioPlayer {
     static func playBackgroundSound() {
         if backgroundSoundIsMuted == false && firstPlay == true {
             let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "The_Tesseract", ofType: "mp3")!)
-            audioPlayer.backgroundPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
+            guard let avaudio = try? AVAudioPlayer(contentsOf: AssortedMusics as URL) else { return }
+            audioPlayer.backgroundPlayer = avaudio
             audioPlayer.backgroundPlayer.prepareToPlay()
             audioPlayer.backgroundPlayer.numberOfLoops = -1
             audioPlayer.backgroundPlayer.play()
@@ -30,7 +31,8 @@ struct audioPlayer {
    static func playImpactSound(sound: String) {
         if effectSoundIsMuted == false  {
             let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: sound, ofType: "mp3")!)
-            audioPlayer.soundEffectPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
+            guard let avaudio = try? AVAudioPlayer(contentsOf: AssortedMusics as URL) else { return }
+            audioPlayer.backgroundPlayer = avaudio
             audioPlayer.soundEffectPlayer.prepareToPlay()
             audioPlayer.soundEffectPlayer.numberOfLoops = 0
             audioPlayer.soundEffectPlayer.play()
