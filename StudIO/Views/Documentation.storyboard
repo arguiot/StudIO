@@ -121,19 +121,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="nRS-Md-3Wr" id="9g9-6d-4E2"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P1Y-G7-1ZU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="nRS-Md-3Wr">
-                    <connections>
-                        <outlet property="delegate" destination="zz1-Wn-05Y" id="NNW-py-0lS"/>
-                        <outlet property="searchContentsController" destination="zz1-Wn-05Y" id="dc7-kz-ht4"/>
-                        <outlet property="searchResultsDataSource" destination="zz1-Wn-05Y" id="HZe-xH-I8M"/>
-                        <outlet property="searchResultsDelegate" destination="zz1-Wn-05Y" id="kRU-mu-Xhx"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="647" y="-671"/>
         </scene>
