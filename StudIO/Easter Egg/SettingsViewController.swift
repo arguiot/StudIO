@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var bgBtn: SetButtons!
     @IBOutlet weak var effBtn: SetButtons!
     
-    @IBAction func backgroundSoundBtn   (_ sender: UIButton) {
+    @IBAction func backgroundSoundBtn(_ sender: UIButton) {
         
         audioPlayer.playBtnTappedSound()
         

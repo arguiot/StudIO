@@ -23,9 +23,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if audioPlayer.firstPlay == true {
-            audioPlayer.playBackgroundSound()
-            audioPlayer.firstPlay = false
-        }
+//        if audioPlayer.firstPlay == true {
+//            audioPlayer.playBackgroundSound()
+//            audioPlayer.firstPlay = false
+//        }
     }
 }

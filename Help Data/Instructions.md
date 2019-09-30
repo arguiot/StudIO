@@ -27,7 +27,7 @@ Now, just navigate into the project, try some things (it shouldn’t be too hard
 
 ## Plugins
 
-StudIO can be customized with the help of plugins. To respect the Human Design guidelines, all external code is executed inside a `WKWebView` with some restriction to protect user’s privacy and for some security reasons.
+StudIO can be customized with the help of plugins. To respect the App Store review guidelines ([4.7](https://developer.apple.com/app-store/review/guidelines/#third-party-software)), all external code is executed inside a `WKWebView` with some restriction to protect user’s privacy and for some security reasons.
 
 To add a plugin, first go back to the main screen and tap on the button with a square and a plus sign in it. Then it will show you a window, with the list of active plugins (will be empty if no plugins are installed), tap the + button on the right corner, and then type the git url of your plugin.
 
@@ -36,4 +36,6 @@ To add a plugin, first go back to the main screen and tap on the button with a s
 Now, just tap on the black check button on the right of the text field, and wait until the plugin is downloaded. You should see an image and the plugin description appear as soon as this step is complete. Now, press the « Done » button on the top right corner, and the plugin should be installed.
 
 > As the sample plugin is a theme, head back to the main screen, open the settings window and choose « Ubuntu Theme ». Now, when you will open a file in the editor screen, the feeling and the color theme should be different.
+
+
 
