@@ -146,6 +146,7 @@ class editor {
 		document.body.innerHTML = "<div id=editor></div>"
 	}
 	load(file) {
+		this.clear()
 		if (typeof this.cm == "undefined") {
 			setTimeout(function() {
 				this.load(file)
