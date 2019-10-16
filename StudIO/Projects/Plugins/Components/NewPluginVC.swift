@@ -11,7 +11,7 @@ import SwiftGit2
 
 class NewPluginVC: UIViewController {
 
-    @IBOutlet var pluginURL: UITextField!
+    @IBOutlet weak var pluginChooser: UIPickerView!
     @IBOutlet weak var pluginTitle: UILabel!
     @IBOutlet weak var pluginImage: UIImageView!
     @IBOutlet weak var pluginTextView: UITextView!
@@ -19,7 +19,8 @@ class NewPluginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        pluginChooser.dataSource = self
+        pluginChooser.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -36,36 +37,28 @@ class NewPluginVC: UIViewController {
     @IBAction func checkPlugin(_ sender: Any) {
         loadingIndicator.isHidden = false
         loadingIndicator.startAnimating()
-        guard let url = URL(string: pluginURL.text ?? "") else {
+        guard let url = URL(string: projects[selected].path.path) else {
             return
         }
         do {
             let p = try Folder.icloud.createSubfolderIfNeeded(withName: "STUDIO-PLUGINS")
             
-            guard let name = getName(url: url) else {
-                return
-            }
+            let name = projects[selected].name
+            
             if let s = try? p.subfolder(named: name) {
-                try? s.delete()
+                try s.delete()
             }
             
-            let u = try p.createSubfolder(named: name)
-            
-            let pURL = URL(fileURLWithPath: u.path)
+            let pURL = URL(fileURLWithPath: p.path)
             
             DispatchQueue.global().async {
-                let repo = Repository.clone(from: url, to: pURL, localClone: false, bare: false, credentials: .default, checkoutStrategy: .Safe, checkoutProgress: nil)
-                switch repo {
-                case .success(_):
-                    DispatchQueue.main.sync {
-                        self.setUI(url: pURL)
-                    }
-                case .failure(let error):
-                    DispatchQueue.main.sync {
-                        NSObject.alert(t: "Cloning error", m: error.localizedDescription )
-                        self.loadingIndicator.isHidden = true
-                        self.loadingIndicator.stopAnimating()
-                    }
+                do {
+                    try self.projects[self.selected].path.copy(to: p)
+                    self.setUI(url: pURL.appendingPathComponent(name, isDirectory: true))
+                } catch {
+                    NSObject.alert(t: "Cloning error", m: error.localizedDescription)
+                    self.loadingIndicator.isHidden = true
+                    self.loadingIndicator.stopAnimating()
                 }
             }
             
@@ -137,5 +130,26 @@ class NewPluginVC: UIViewController {
         } catch {
             NSObject.alert(t: "Couldn't load plugin", m: error.localizedDescription)
         }
+    }
+    
+    
+    let projects = LoadProjects().getProjects()
+    var selected = 0
+}
+
+extension NewPluginVC: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return projects.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return projects[row].name
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selected = row
     }
 }
