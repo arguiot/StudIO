@@ -10573,6 +10573,8 @@
 			NotificationCenter.default.addObserver("registerPlugin", this.registerPlugin.bind(this));
 			NotificationCenter.default.addObserver("fontSize", this.fontSize.bind(this));
 
+			// Clearing view
+			this.clear();
 			if (ext == null && value == null) {
 				document.addEventListener("DOMContentLoaded", function() {
 					// Do something...
@@ -10630,6 +10632,8 @@
 					var view = window.view = new EditorView({
 						state: this.cm
 					});
+
+					this.clear();
 
 					document.querySelector("#editor").appendChild(view.dom);
 					document.querySelector(".tip").style.display = "none";

@@ -70,10 +70,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="stepperCell" id="mFV-eK-463" customClass="StepperCell" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="71.5" width="540" height="43"/>
+                                <rect key="frame" x="0.0" y="71.5" width="540" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mFV-eK-463" id="dGs-5R-cCL">
-                                    <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name of property" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hys-ik-L0u">
@@ -84,7 +84,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kKt-KT-WJT">
-                                            <rect key="frame" x="426" y="7" width="94" height="29"/>
+                                            <rect key="frame" x="426" y="7.5" width="94" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="94" id="pCG-c4-Ul0"/>
                                                 <constraint firstAttribute="height" constant="29" id="tIb-aS-CwC"/>
@@ -94,7 +94,7 @@
                                             </connections>
                                         </stepper>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUa-yZ-I0W">
-                                            <rect key="frame" x="376" y="11" width="42" height="21"/>
+                                            <rect key="frame" x="376" y="11" width="42" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -115,7 +115,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="textFieldCell" id="Bjp-x3-KoR" customClass="TextFieldCell" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114.5" width="540" height="43.5"/>
+                                <rect key="frame" x="0.0" y="115" width="540" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bjp-x3-KoR" id="tfA-xO-yVO">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
@@ -152,7 +152,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pickerViewCell" rowHeight="60" id="R1s-13-6WX" customClass="PickerViewCell" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="158" width="540" height="60"/>
+                                <rect key="frame" x="0.0" y="158.5" width="540" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R1s-13-6WX" id="jDi-TT-7G9">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="60"/>
@@ -250,7 +250,7 @@
                             <outlet property="delegate" destination="GZa-UP-R7y" id="bE3-xM-uk9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Plugins" id="tSY-jt-Ws5">
+                    <navigationItem key="navigationItem" title="Behavior" id="tSY-jt-Ws5">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="KnX-0W-tcp">
                             <connections>
                                 <segue destination="90O-jl-elh" kind="show" id="2ZI-5s-R9L"/>
@@ -324,7 +324,7 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z90-eO-IIi">
-                                <rect key="frame" x="0.0" y="56" width="540" height="151"/>
+                                <rect key="frame" x="60" y="56" width="422" height="151"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="151" id="bta-Te-IyY"/>
                                 </constraints>
@@ -333,16 +333,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Z90-eO-IIi" firstAttribute="top" secondItem="sZz-N0-L8x" secondAttribute="top" id="0LM-6E-Li5"/>
-                            <constraint firstItem="Z90-eO-IIi" firstAttribute="leading" secondItem="sZz-N0-L8x" secondAttribute="leading" id="394-Ec-HfF"/>
+                            <constraint firstItem="Z90-eO-IIi" firstAttribute="leading" secondItem="sZz-N0-L8x" secondAttribute="leading" constant="60" id="394-Ec-HfF"/>
                             <constraint firstItem="wJt-WL-RTh" firstAttribute="centerX" secondItem="MDi-bt-QSu" secondAttribute="centerX" id="43l-xY-VSA"/>
                             <constraint firstItem="li0-IJ-IZw" firstAttribute="centerX" secondItem="MDi-bt-QSu" secondAttribute="centerX" id="4HN-TK-gjE"/>
                             <constraint firstItem="Was-Sz-r7M" firstAttribute="top" secondItem="ndg-tX-ZYm" secondAttribute="bottom" constant="40" id="7Cr-id-n11"/>
-                            <constraint firstItem="Z90-eO-IIi" firstAttribute="trailing" secondItem="sZz-N0-L8x" secondAttribute="trailing" id="BOk-G9-wZX"/>
+                            <constraint firstItem="Z90-eO-IIi" firstAttribute="trailing" secondItem="sZz-N0-L8x" secondAttribute="trailing" constant="-58" id="BOk-G9-wZX"/>
                             <constraint firstItem="8ln-rO-Ski" firstAttribute="top" secondItem="sZz-N0-L8x" secondAttribute="top" constant="40" id="CS8-T4-KSJ"/>
                             <constraint firstItem="sZz-N0-L8x" firstAttribute="trailing" secondItem="wJt-WL-RTh" secondAttribute="trailing" constant="60" id="DNE-9W-SHN"/>
                             <constraint firstItem="Was-Sz-r7M" firstAttribute="centerX" secondItem="MDi-bt-QSu" secondAttribute="centerX" id="FNZ-na-68P"/>
-                            <constraint firstItem="Z90-eO-IIi" firstAttribute="centerX" secondItem="ndg-tX-ZYm" secondAttribute="centerX" id="HLn-Mm-XU4"/>
-                            <constraint firstItem="Z90-eO-IIi" firstAttribute="leading" secondItem="sZz-N0-L8x" secondAttribute="leading" id="Kyf-EO-Chn"/>
+                            <constraint firstItem="Z90-eO-IIi" firstAttribute="centerX" secondItem="ndg-tX-ZYm" secondAttribute="centerX" constant="1" id="HLn-Mm-XU4"/>
+                            <constraint firstItem="Z90-eO-IIi" firstAttribute="leading" secondItem="sZz-N0-L8x" secondAttribute="leading" constant="60" id="Kyf-EO-Chn"/>
                             <constraint firstItem="wJt-WL-RTh" firstAttribute="top" secondItem="li0-IJ-IZw" secondAttribute="bottom" constant="8" id="Pm9-3b-sM0"/>
                             <constraint firstItem="Was-Sz-r7M" firstAttribute="top" secondItem="Z90-eO-IIi" secondAttribute="bottom" constant="8" id="Rfx-Qt-IGL"/>
                             <constraint firstItem="sZz-N0-L8x" firstAttribute="bottom" secondItem="wJt-WL-RTh" secondAttribute="bottom" id="SUA-8Z-19W"/>
@@ -356,7 +356,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sZz-N0-L8x"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New Plugin" id="suv-gv-IxX">
+                    <navigationItem key="navigationItem" title="New Custom Behavior" id="suv-gv-IxX">
                         <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="d61-aB-vBX">
                             <connections>
                                 <action selector="done:" destination="90O-jl-elh" id="l0G-gi-viU"/>
@@ -373,7 +373,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLH-fG-KfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956.52173913043487" y="1561.6071428571429"/>
+            <point key="canvasLocation" x="956.24999999999989" y="1560.9375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Buc-NB-7pN">
