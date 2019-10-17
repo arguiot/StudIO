@@ -40,10 +40,18 @@ extension PluginsVC {
     }
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let row = indexPath.row
+        let section = indexPath.section
+        
+        let cell = tableView.cellForRow(at: indexPath) as! PluginCell
+        let name = cell.name.text
         guard var plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else { return [] }
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            let plugin = plugins[row]
+            let t = plugins.filter { (el) -> Bool in
+                return el["name"] == name
+            }.first
+            
+            guard let plugin = t else { return }
             let path = URL(fileURLWithPath: plugin["path"] ?? "")
             
             do {

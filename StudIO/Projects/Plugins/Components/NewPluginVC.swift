@@ -51,7 +51,7 @@ class NewPluginVC: UIViewController {
             
             let pURL = URL(fileURLWithPath: p.path)
             
-            DispatchQueue.global().async {
+            DispatchQueue.main.async {
                 do {
                     try self.projects[self.selected].path.copy(to: p)
                     self.setUI(url: pURL.appendingPathComponent(name, isDirectory: true))
