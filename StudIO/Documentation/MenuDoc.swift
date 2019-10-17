@@ -176,7 +176,8 @@ extension MenuDocTableViewController {
         
         if let detailViewController = viewController.topViewController as? MarkdownVC {
             detailViewController.article = selectedProduct
-            navigationController?.pushViewController(detailViewController, animated: true)
+            detailViewController.navigationItem.hidesBackButton = false
+            splitViewController?.showDetailViewController(detailViewController, sender: self)
         }
         
         tableView.deselectRow(at: indexPath, animated: false)
