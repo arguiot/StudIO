@@ -1839,139 +1839,100 @@
 	var src_11 = src$1.Transaction;
 	var src_12 = src$1.Slot;
 
-	var styleMod = createCommonjsModule(function (module, exports) {
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.StyleModule = StyleModule;
-
-	function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-	function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
-
-	function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-	function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-	function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-	function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-	function _classCallCheck(instance, Constructor) { if (!_instanceof(instance, Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-	function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
 	function sym(name, random) {
-	  return typeof Symbol == "undefined" ? "__" + name + (random ? Math.floor(Math.random() * 1e8) : "") : random ? Symbol(name) : Symbol.for(name);
+	  return typeof Symbol == "undefined"
+	    ? "__" + name + (random ? Math.floor(Math.random() * 1e8) : "")
+	    : random ? Symbol(name) : Symbol.for(name)
 	}
 
-	var COUNT = sym("\u037C"),
-	    SET = sym("styleSet", 1),
-	    DATA = sym("data", 1);
-	var top = typeof commonjsGlobal == "undefined" ? window : commonjsGlobal; // :: (Object<Style>, number, ?{priority: ?number}) → Object<string>
-	// names for them. Instances of this class bind the property names
+	var COUNT = sym("\u037c"), SET = sym("styleSet", 1), RULES = sym("rules", 1);
+	var top = typeof global == "undefined" ? window : global;
+
+	// :: (Object<Style>, number) → StyleModule
+	// Instances of this class bind the property names
 	// from `spec` to CSS class names that assign the styles in the
 	// corresponding property values.
 	//
 	// A style module can only be used in a given DOM root after it has
 	// been _mounted_ there with `StyleModule.mount`.
 	//
-	// By default, rules are defined in the order in which they are
-	// mounted, making those mounted later take precedence in case of an
-	// otherwise equal selector precedence. You can pass 0 for low
-	// priority or 2 for high priority as second argument to explicitly
-	// move the rules above or below rules with default priority. Within a
-	// priority level, rules remain defined in mount order.
-	//
 	// Style modules should be created once and stored somewhere, as
 	// opposed to re-creating them every time you need them. The amount of
 	// CSS rules generated for a given DOM root is bounded by the amount
 	// of style modules that were used. To avoid leaking rules, don't
 	// create these dynamically, but treat them as one-time allocations.
-
-	function StyleModule(spec, options) {
-	  var priority = options && options.priority;
-	  if (priority == null) priority = 1;
-	  if (priority < 0 || priority > 2 || +priority != priority) throw new RangeError("Invalid priority: " + priority);
-	  this[DATA] = {
-	    rules: [],
-	    mounted: [],
-	    priority: priority
-	  };
+	function StyleModule(spec) {
+	  this[RULES] = [];
 	  top[COUNT] = top[COUNT] || 1;
-
 	  for (var name in spec) {
-	    var className = this[name] = "\u037C" + (top[COUNT]++).toString(36);
-	    renderStyle("." + className, spec[name], this[DATA].rules);
+	    var className = this[name] = "\u037c" + (top[COUNT]++).toString(36);
+	    renderStyle("." + className, spec[name], this[RULES]);
 	  }
-	} // :: (union<Document, ShadowRoot>, Object<string>)
-	//
-	// Mount the given module in the given DOM root, which ensures that
-	// the CSS rules defined by the module are available in that context.
-	//
-	// This function can be called multiple times with the same arguments
-	// cheaply—rules are only added to the document once per root.
-
-
-	StyleModule.mount = function (root, module) {
-	  var data = module[DATA];
-	  if (data.mounted.indexOf(root) > -1) return;
-	  (root[SET] || new StyleSet(root)).mount(data.rules, data.priority);
-	  data.mounted.push(root);
-	};
+	}
 
 	StyleModule.prototype = Object.create(null);
 
-	var StyleSet =
-	/*#__PURE__*/
-	function () {
-	  function StyleSet(root) {
-	    _classCallCheck(this, StyleSet);
+	// :: (union<Document, ShadowRoot>, union<[StyleModule], StyleModule>)
+	//
+	// Mount the given set of modules in the given DOM root, which ensures
+	// that the CSS rules defined by the module are available in that
+	// context.
+	//
+	// Rules are only added to the document once per root.
+	//
+	// Rule order will follow the order of the modules, so that rules from
+	// modules later in the array take precedence of those from earlier
+	// modules. If you call this function multiple times for the same root
+	// in a way that changes the order of already mounted modules, the old
+	// order will be changed.
+	StyleModule.mount = function(root, modules) {
+	  (root[SET] || new StyleSet(root)).mount(Array.isArray(modules) ? modules : [modules]);
+	};
 
+	class StyleSet {
+	  constructor(root) {
 	    this.root = root;
 	    root[SET] = this;
 	    this.styleTag = (root.ownerDocument || root).createElement("style");
 	    var target = root.head || root;
 	    target.insertBefore(this.styleTag, target.firstChild);
-	    this.insertPos = [0, 0, 0];
-	    this.rules = [];
+	    this.modules = [];
 	  }
 
-	  _createClass(StyleSet, [{
-	    key: "mount",
-	    value: function mount(rules, priority) {
-	      var _this$rules;
-
-	      var pos = this.insertPos[priority];
-
-	      (_this$rules = this.rules).splice.apply(_this$rules, [pos, 0].concat(_toConsumableArray(rules)));
-
-	      var sheet = this.styleTag.sheet;
-
-	      if (sheet) {
-	        for (var i = 0; i < rules.length; i++) {
-	          sheet.insertRule(rules[i], pos++);
-	        }
-	      } else {
-	        this.styleTag.textContent = this.rules.join("\n");
+	  mount(modules) {
+	    var sheet = this.styleTag.sheet, reset = !sheet;
+	    var pos = 0 /* Current rule offset */, j = 0; /* Index into this.modules */
+	    for (var i = 0; i < modules.length; i++) {
+	      var mod = modules[i], index = this.modules.indexOf(mod);
+	      if (index < j && index > -1) { // Ordering conflict
+	        this.modules.splice(index, 1);
+	        j--;
+	        index = -1;
+	        reordered = true;
 	      }
-
-	      for (var _i = priority; _i < this.insertPos.length; _i++) {
-	        this.insertPos[_i] += rules.length;
+	      if (index == -1) {
+	        this.modules.splice(j++, 0, mod);
+	        if (!reset) for (var k = 0; k < mod[RULES].length; k++)
+	          sheet.insertRule(mod[RULES][k], pos++);
+	      } else {
+	        while (j < index) pos += this.modules[j++][RULES].length;
+	        pos += mod[RULES].length;
+	        j++;
 	      }
 	    }
-	  }]);
 
-	  return StyleSet;
-	}();
+	    if (reset) {
+	      var text = "";
+	      for (var i = 0; i < this.modules.length; i++)
+	        text += this.modules[i][RULES].join("\n") + "\n";
+	      this.styleTag.textContent = text;
+	    }
+	  }
+	}
 
 	function renderStyle(selector, spec, output) {
-	  if (_typeof(spec) != "object") throw new RangeError("Expected style object, got " + JSON.stringify(spec));
+	  if (typeof spec != "object") throw new RangeError("Expected style object, got " + JSON.stringify(spec))
 	  var props = [];
-
 	  for (var prop in spec) {
 	    if (/^@/.test(prop)) {
 	      var local = [];
@@ -1980,15 +1941,14 @@
 	    } else if (/&/.test(prop)) {
 	      renderStyle(prop.replace(/&/g, selector), spec[prop], output);
 	    } else {
-	      if (_typeof(spec[prop]) == "object") throw new RangeError("The value of a property (" + prop + ") should be a primitive value.");
-	      props.push(prop.replace(/_.*/, "").replace(/[A-Z]/g, function (l) {
-	        return "-" + l.toLowerCase();
-	      }) + ": " + spec[prop]);
+	      if (typeof spec[prop] == "object") throw new RangeError("The value of a property (" + prop + ") should be a primitive value.")
+	      props.push(prop.replace(/_.*/, "").replace(/[A-Z]/g, l => "-" + l.toLowerCase()) + ": " + spec[prop]);
 	    }
 	  }
-
 	  if (props.length) output.push(selector + " {" + props.join("; ") + "}");
-	} // Style::Object<union<Style,string>>
+	}
+
+	// Style::Object<union<Style,string>>
 	//
 	// A style is an object that, in the simple case, maps CSS property
 	// names to strings holding their values, as in `{color: "red",
@@ -2013,10 +1973,10 @@
 	// styles defined inside the object that's the property's value. For
 	// example to create a media query you can do `{"@media screen and
 	// (min-width: 400px)": {...}}`.
-	});
 
-	unwrapExports(styleMod);
-	var styleMod_1 = styleMod.StyleModule;
+	var styleMod = /*#__PURE__*/Object.freeze({
+		StyleModule: StyleModule
+	});
 
 	var browser = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -7656,6 +7616,7 @@
 	var safari = typeof navigator != "undefined" && /Apple Computer/.test(navigator.vendor);
 	var gecko = typeof navigator != "undefined" && /Gecko\/\d+/.test(navigator.userAgent);
 	var mac = typeof navigator != "undefined" && /Mac/.test(navigator.platform);
+	var ie = typeof navigator != "undefined" && /MSIE \d|Trident\/(?:[7-9]|\d{2,})\..*rv:(\d+)/.exec(navigator.userAgent);
 	var brokenModifierNames = chrome && (mac || +chrome[1] < 57) || gecko && mac;
 
 	// Fill in the digit keys
@@ -7677,7 +7638,7 @@
 	  // Don't trust event.key in Chrome when there are modifiers until
 	  // they fix https://bugs.chromium.org/p/chromium/issues/detail?id=633838
 	  var ignoreKey = brokenModifierNames && (event.ctrlKey || event.altKey || event.metaKey) ||
-	    safari && event.shiftKey && event.key && event.key.length == 1;
+	    (safari || ie) && event.shiftKey && event.key && event.key.length == 1;
 	  var name = (!ignoreKey && event.key) ||
 	    (event.shiftKey ? shift : base)[event.keyCode] ||
 	    event.key || "Unidentified";
@@ -10612,6 +10573,8 @@
 			NotificationCenter.default.addObserver("registerPlugin", this.registerPlugin.bind(this));
 			NotificationCenter.default.addObserver("fontSize", this.fontSize.bind(this));
 
+			// Clearing view
+			this.clear();
 			if (ext == null && value == null) {
 				document.addEventListener("DOMContentLoaded", function() {
 					// Do something...
@@ -10670,6 +10633,8 @@
 						state: this.cm
 					});
 
+					this.clear();
+
 					document.querySelector("#editor").appendChild(view.dom);
 					document.querySelector(".tip").style.display = "none";
 					this.listenForAutomcompletion();
@@ -10720,6 +10685,7 @@
 			document.body.innerHTML = "<div id=editor></div>";
 		}
 		load(file) {
+			this.clear();
 			if (typeof this.cm == "undefined") {
 				setTimeout(function() {
 					this.load(file);

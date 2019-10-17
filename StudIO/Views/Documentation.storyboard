@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="241-Hp-ykn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="241-Hp-ykn">
     <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Details-->
+        <!--Documentation-->
         <scene sceneID="GxK-tq-8Y7">
             <objects>
                 <viewController id="IF0-cE-UVP" customClass="MarkdownVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,29 +31,29 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open a section" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2o-u4-09B">
-                                <rect key="frame" x="261.5" y="367" width="181" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="ZzF-RA-M8X"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="181" id="lb0-MX-9VM"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2o-u4-09B">
+                                <rect key="frame" x="123.5" y="375.5" width="457" height="67"/>
+                                <string key="text">Open a section
+Swipe from the left side of your screen</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="B2o-u4-09B" firstAttribute="centerY" secondItem="g3X-Yl-3Gy" secondAttribute="centerY" id="FYT-kG-VNb"/>
-                            <constraint firstItem="B2o-u4-09B" firstAttribute="centerX" secondItem="g3X-Yl-3Gy" secondAttribute="centerX" id="Fvc-RH-q51"/>
                             <constraint firstItem="paV-Ch-ATe" firstAttribute="leading" secondItem="3Zw-ag-a8K" secondAttribute="leading" constant="28" id="On5-3a-zqp"/>
+                            <constraint firstItem="B2o-u4-09B" firstAttribute="centerX" secondItem="paV-Ch-ATe" secondAttribute="centerX" id="VHq-7P-GVv"/>
                             <constraint firstAttribute="trailing" secondItem="paV-Ch-ATe" secondAttribute="trailing" constant="28" id="cQP-q3-Gqy"/>
                             <constraint firstItem="paV-Ch-ATe" firstAttribute="top" secondItem="3Zw-ag-a8K" secondAttribute="top" id="dYg-sI-4yj"/>
+                            <constraint firstItem="B2o-u4-09B" firstAttribute="centerY" secondItem="paV-Ch-ATe" secondAttribute="centerY" id="gMY-1d-9tQ"/>
                             <constraint firstItem="paV-Ch-ATe" firstAttribute="bottom" secondItem="3Zw-ag-a8K" secondAttribute="bottom" id="uq3-g9-clx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Zw-ag-a8K"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Details" leftItemsSupplementBackButton="YES" id="b5E-bS-7fl"/>
+                    <navigationItem key="navigationItem" title="Documentation" leftItemsSupplementBackButton="YES" id="YSo-eQ-bTD">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="AAZ-EW-uki"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="section" destination="B2o-u4-09B" id="Xqs-Ne-eTb"/>
                         <outlet property="textView" destination="paV-Ch-ATe" id="hmP-iD-ZNU"/>
@@ -61,7 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t6Q-tB-k3Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="647" y="377"/>
+            <point key="canvasLocation" x="646.875" y="376.5625"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3KP-w0-70p">
