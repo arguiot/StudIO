@@ -37,7 +37,7 @@ class NewPluginVC: UIViewController {
     @IBAction func checkPlugin(_ sender: Any) {
         loadingIndicator.isHidden = false
         loadingIndicator.startAnimating()
-        guard let url = URL(string: projects[selected].path.path) else {
+        guard URL(string: projects[selected].path.path) != nil else {
             return
         }
         do {
