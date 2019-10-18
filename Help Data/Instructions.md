@@ -25,17 +25,21 @@ Just pick an option, and you should be ready to go.
 
 Now, just navigate into the project, try some things (it shouldn’t be too hard to understand)
 
-## Plugins
+## Behaviour
 
-StudIO can be customized with the help of plugins. To respect the App Store review guidelines ([4.7](https://developer.apple.com/app-store/review/guidelines/#third-party-software)), all external code is executed inside a `WKWebView` with some restriction to protect user’s privacy and for some security reasons.
+StudIO can be customized with the help of repository created by the user. To respect the App Store review guidelines ([4.7](https://developer.apple.com/app-store/review/guidelines/#third-party-software)), all code is executed inside a `WKWebView` with some restriction to protect user’s privacy and for some security reasons.
 
-To add a plugin, first go back to the main screen and tap on the button with a square and a plus sign in it. Then it will show you a window, with the list of active plugins (will be empty if no plugins are installed), tap the + button on the right corner, and then type the git url of your plugin.
+To create a new behaviour, first go back to the main screen and tap on the button to create a new project. 
 
-> Here is a sample plugin: https://github.com/studio-code/Ubuntu-Theme
+> Try to clone this prepared repository: https://github.com/studio-code/Ubuntu-Theme
 
-Now, just tap on the black check button on the right of the text field, and wait until the plugin is downloaded. You should see an image and the plugin description appear as soon as this step is complete. Now, press the « Done » button on the top right corner, and the plugin should be installed.
+Once, the repository is cloned, you can check the code, or stay on the home screen and follow the instructions:
 
-> As the sample plugin is a theme, head back to the main screen, open the settings window and choose « Ubuntu Theme ». Now, when you will open a file in the editor screen, the feeling and the color theme should be different.
+Tap the button with a plus sign inside a square: it will show you a window, with the list of active behaviours (will be empty if no plugins are installed), tap the + button on the right corner, and then select the « Ubuntu Theme » repository.
+
+Now, just tap on the black check button on the right to preview and analyse the code in the repository. You should see an image and the behaviour description that will appear as soon as this step is complete. Now, press the « Done » button on the top right corner, and the behaviour should be installed.
+
+> As the sample behaviour is a theme, head back to the main screen, open the settings window and choose « Ubuntu Theme ». Now, when you will open a file in the editor screen, the feeling and the colour theme should be different.
 
 
 

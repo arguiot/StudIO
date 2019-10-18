@@ -159,3 +159,5 @@ DerivedData/
 # End of https://www.gitignore.io/api/node,xcode,macos,carthage
 
 .rpt2_cache
+yarn.lock
+package-lock.json
