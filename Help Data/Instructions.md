@@ -25,21 +25,3 @@ Just pick an option, and you should be ready to go.
 
 Now, just navigate into the project, try some things (it shouldn’t be too hard to understand)
 
-## Behaviour
-
-StudIO can be customized with the help of repository created by the user. To respect the App Store review guidelines ([4.7](https://developer.apple.com/app-store/review/guidelines/#third-party-software)), all code is executed inside a `WKWebView` with some restriction to protect user’s privacy and for some security reasons.
-
-To create a new behaviour, first go back to the main screen and tap on the button to create a new project. 
-
-> Try to clone this prepared repository: https://github.com/studio-code/Ubuntu-Theme
-
-Once, the repository is cloned, you can check the code, or stay on the home screen and follow the instructions:
-
-Tap the button with a plus sign inside a square: it will show you a window, with the list of active behaviours (will be empty if no plugins are installed), tap the + button on the right corner, and then select the « Ubuntu Theme » repository.
-
-Now, just tap on the black check button on the right to preview and analyse the code in the repository. You should see an image and the behaviour description that will appear as soon as this step is complete. Now, press the « Done » button on the top right corner, and the behaviour should be installed.
-
-> As the sample behaviour is a theme, head back to the main screen, open the settings window and choose « Ubuntu Theme ». Now, when you will open a file in the editor screen, the feeling and the colour theme should be different.
-
-
-

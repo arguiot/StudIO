@@ -1192,7 +1192,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2005;
+				CURRENT_PROJECT_VERSION = 2006;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1217,7 +1217,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2005;
+				CURRENT_PROJECT_VERSION = 2006;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1365,7 +1365,7 @@
 				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2005;
+				CURRENT_PROJECT_VERSION = 2006;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1395,7 +1395,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2005;
+				CURRENT_PROJECT_VERSION = 2006;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

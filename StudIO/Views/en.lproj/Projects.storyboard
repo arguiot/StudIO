@@ -70,10 +70,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="stepperCell" id="mFV-eK-463" customClass="StepperCell" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="71.5" width="540" height="43.5"/>
+                                <rect key="frame" x="0.0" y="71.5" width="540" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mFV-eK-463" id="dGs-5R-cCL">
-                                    <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name of property" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hys-ik-L0u">
@@ -84,7 +84,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kKt-KT-WJT">
-                                            <rect key="frame" x="426" y="7.5" width="94" height="29"/>
+                                            <rect key="frame" x="426" y="7" width="94" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="94" id="pCG-c4-Ul0"/>
                                                 <constraint firstAttribute="height" constant="29" id="tIb-aS-CwC"/>
@@ -94,7 +94,7 @@
                                             </connections>
                                         </stepper>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUa-yZ-I0W">
-                                            <rect key="frame" x="376" y="11" width="42" height="21.5"/>
+                                            <rect key="frame" x="376" y="11" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -115,7 +115,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="textFieldCell" id="Bjp-x3-KoR" customClass="TextFieldCell" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="115" width="540" height="43.5"/>
+                                <rect key="frame" x="0.0" y="114.5" width="540" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bjp-x3-KoR" id="tfA-xO-yVO">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
@@ -152,7 +152,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pickerViewCell" rowHeight="60" id="R1s-13-6WX" customClass="PickerViewCell" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="158.5" width="540" height="60"/>
+                                <rect key="frame" x="0.0" y="158" width="540" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R1s-13-6WX" id="jDi-TT-7G9">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="60"/>
@@ -208,14 +208,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pluginCell" id="eEq-k2-93s" customClass="PluginCell" customModule="StudIO" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="540" height="43"/>
+                                <rect key="frame" x="0.0" y="28" width="540" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eEq-k2-93s" id="qAz-vh-84f">
-                                    <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FFb-DD-3ji">
-                                            <rect key="frame" x="473" y="6" width="49" height="31"/>
+                                            <rect key="frame" x="473" y="6.5" width="49" height="31"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="47" id="Qei-h6-dpc"/>
                                                 <constraint firstAttribute="height" constant="31" id="nvU-td-VMq"/>
@@ -225,7 +225,7 @@
                                             </connections>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of the plugin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWV-MF-0yw">
-                                            <rect key="frame" x="20" y="11" width="146" height="21"/>
+                                            <rect key="frame" x="20" y="11" width="146" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -466,12 +466,6 @@
                                     <action selector="showSettings:" destination="uPa-ME-Fws" id="PnB-d7-rZr"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="plugins" id="dLK-z1-sl7">
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="showPlugins:" destination="uPa-ME-Fws" id="V23-I3-UwX"/>
-                                </connections>
-                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </collectionViewController>
@@ -501,7 +495,6 @@
     <resources>
         <image name="IntroCompletion" width="128" height="128"/>
         <image name="Repo-white" width="256" height="256"/>
-        <image name="plugins" width="18" height="18"/>
         <image name="settings" width="18" height="18"/>
     </resources>
 </document>
