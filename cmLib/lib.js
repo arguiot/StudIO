@@ -147,7 +147,7 @@ class editor {
 	}
 
 	clear() {
-		document.body.innerHTML = "<div id=editor></div>"
+		document.body.innerHTML = "<div class=\"tip\">Open a document</div><div id=\"editor\"></div>"
 	}
 	load(file) {
 		this.clear()
@@ -184,14 +184,16 @@ class editor {
 
 	listenForAutomcompletion() {
 		if (typeof this.c == "undefined") {
-			this.c = new completion(window.view.state.doc.text.join("\n"))
+			this.c = new completion(window.view.state.doc.toString())
 		} else if (typeof this.c.init != "undefined"){
-			this.c.init(window.view.state.doc.text.join("\n"))
+			this.c.init(window.view.state.doc.toString())
 		}
 		document.querySelector(".codemirror-content").addEventListener("input", function(e) {
-			const currentWord = this.c.getLastToken()
-			const suggestions = this.c.getSuggestions(currentWord[0], this.c.getContent(currentWord[0], currentWord[1]))
-			this.setCompletion(...suggestions)
+			setTimeout(function() {
+				const currentWord = this.c.getLastToken()
+				const suggestions = this.c.getSuggestions(currentWord[0], this.c.getContent(currentWord[0], currentWord[1]))
+				this.setCompletion(...suggestions)
+			}.bind(this), 0)
 		}.bind(this))
 	}
 	setCompletion(a, b, c) {
