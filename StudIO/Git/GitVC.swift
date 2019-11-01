@@ -126,7 +126,7 @@ class GitVC: UIViewController {
     
     @IBAction func pullAction(_ sender: Any) {
         let p = Push()
-        let rurl = repo?.directoryURL
+        guard let rurl = repo?.directoryURL else { return }
         SwiftSpinner.show("Pulling", animated: true).addTapHandler({
             SwiftSpinner.hide()
         })
@@ -139,7 +139,7 @@ class GitVC: UIViewController {
                 creds = p.creds(creds: git_cred)
             }
             
-            p.pull(rurl!, options: creds) { (transfer, stop) in
+            p.pull(rurl, options: creds) { (transfer, stop) in
                 let t = Double(transfer.pointee.received_objects) / Double(transfer.pointee.total_objects)
                 DispatchQueue.main.sync {
                     SwiftSpinner.show(progress: Double(t), title: "Pulling")

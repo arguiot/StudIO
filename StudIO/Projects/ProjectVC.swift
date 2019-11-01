@@ -35,6 +35,12 @@ class ProjectVC: UICollectionViewController {
         
         let button = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(openDucmentation(_:)))
         button.tintColor = .lightGray
+        
+        let behaviours = UIBarButtonItem(image: #imageLiteral(resourceName: "plugins"), style: .plain, target: self, action: #selector(openBehaviours(_:)))
+        behaviours.tintColor = .lightGray
+        if UserDefaults.standard.bool(forKey: "studio-behaviours") {
+            self.navigationItem.rightBarButtonItems?.append(behaviours)
+        }
         self.navigationItem.rightBarButtonItems?.append(button)
     }
     @IBAction func openDucmentation(_ sender: Any) {
@@ -42,7 +48,12 @@ class ProjectVC: UICollectionViewController {
         let vc = storyboard.instantiateInitialViewController()!
         self.navigationController?.present(vc, animated: true, completion: nil)
     }
-    
+    @IBAction func openBehaviours(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Projects", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "pluginsVC")
+        vc.modalPresentationStyle = .formSheet
+        self.navigationController?.present(vc, animated: true, completion: nil)
+    }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

@@ -24,6 +24,9 @@ extension WorkingDirMasterVC: UITableViewDragDelegate {
         
         let object = objects[indexPath.row]
         cell.file = object.name
+        if object.name == "studio-package.json" {
+            UserDefaults.standard.set(true, forKey: "studio-behaviours")
+        }
         cell.fileType = object.type
         cell.ident = object.ident
         
