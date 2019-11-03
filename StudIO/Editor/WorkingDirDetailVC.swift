@@ -67,6 +67,13 @@ class WorkingDirDetailVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadInterface(_:)), name: .init("reloadEditorMenu"), object: nil)
         // Double screen
         observe()
+        
+        let currentActivity = NSUserActivity(activityType: "com.ArthurG.StudIO.inProject")
+        guard let repo = self.repo else { return }
+        guard let path = try? repo.allRemotes().get().first?.URL else { return }
+        currentActivity.webpageURL = URL(string: path)
+        currentActivity.isEligibleForHandoff = true
+        currentActivity.becomeCurrent()
     }
     override func viewWillDisappear(_ animated: Bool) {
         save(nil) {
