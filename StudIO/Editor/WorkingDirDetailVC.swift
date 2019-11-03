@@ -19,6 +19,7 @@ class WorkingDirDetailVC: UIViewController {
     
     var secondWindow: UIWindow?
     
+    var currentActivity: NSUserActivity!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -68,7 +69,7 @@ class WorkingDirDetailVC: UIViewController {
         // Double screen
         observe()
         
-        let currentActivity = NSUserActivity(activityType: "com.ArthurG.StudIO.inProject")
+        currentActivity = NSUserActivity(activityType: "com.ArthurG.StudIO.inProject")
         guard let repo = self.repo else { return }
         guard let path = try? repo.allRemotes().get().first?.URL else { return }
         currentActivity.webpageURL = URL(string: path)
