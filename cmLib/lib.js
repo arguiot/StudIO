@@ -188,13 +188,12 @@ class editor {
 		} else if (typeof this.c.init != "undefined"){
 			this.c.init(window.view.state.doc.toString())
 		}
-		document.querySelector(".codemirror-content").addEventListener("input", function(e) {
-			setTimeout(function() {
-				const currentWord = this.c.getLastToken()
-				const suggestions = this.c.getSuggestions(currentWord[0], this.c.getContent(currentWord[0], currentWord[1]))
-				this.setCompletion(...suggestions)
-			}.bind(this), 0)
-		}.bind(this))
+		const parseAndPropose = async function() {
+			const currentWord = this.c.getLastToken()
+			const suggestions = this.c.getSuggestions(currentWord[0], this.c.getContent(currentWord[0], currentWord[1]))
+			this.setCompletion(...suggestions)
+		}.bind(this)
+		document.querySelector(".codemirror-content").addEventListener("input", () => parseAndPropose())
 	}
 	setCompletion(a, b, c) {
 		window.webkit.messageHandlers.completion.postMessage([a, b, c])
