@@ -36,6 +36,8 @@ class RootVC: UINavigationController, QuickActionSupport {
                 UIKeyCommand(input: "Z", modifierFlags: [.command], action: #selector(undo(_:)), discoverabilityTitle: "Undo"),
                 UIKeyCommand(input: "Z", modifierFlags: [.command, .shift], action: #selector(redo(_:)), discoverabilityTitle: "Redo"),
                 UIKeyCommand(input: "N", modifierFlags: [.command], action: #selector(newFile(_:)), discoverabilityTitle: "New File/Folder"),
+                UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags: [.command, .shift], action: #selector(moveLineUp(_:)), discoverabilityTitle: "Move Line Up"),
+                UIKeyCommand(input: UIKeyCommand.inputDownArrow, modifierFlags: [.command, .shift], action: #selector(moveLineDown(_:)), discoverabilityTitle: "Move Line Down")
             ]
             if editorFocussed == false {
                 keys.append(contentsOf: [
@@ -94,6 +96,18 @@ class RootVC: UINavigationController, QuickActionSupport {
         guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
         guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
         e.redo(send)
+    }
+    @objc func moveLineUp(_ send: Any) {
+        guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
+        guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
+        guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
+        e.editorView.moveLineUp()
+    }
+    @objc func moveLineDown(_ send: Any) {
+        guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
+        guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
+        guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
+        e.editorView.moveLineDown()
     }
     @objc func newFile(_ send: Any) {
         guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }

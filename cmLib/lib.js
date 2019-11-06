@@ -181,6 +181,32 @@ class editor {
 		}
 		document.execCommand('insertText', false, str)
 	}
+	moveLineDown() {
+		if (window.view.state.doc.toString() == "") return ""
+		const index = window.view.state.selection.ranges[0].anchor
+		let line = view.state.doc.lineAt(index)
+		const content = line.content
+		let nextLine = view.state.doc.lineAt(line.end + 1)
+		const transaction1 = view.state.t().replace(line.start, line.end, nextLine.content)
+		const midstate = transaction1.apply()
+		line = midstate.doc.lineAt(line.start)
+		nextLine = midstate.doc.lineAt(line.end + 1)
+		const transaction2 = midstate.t().replace(nextLine.start, nextLine.end, content)
+		window.view.setState(transaction2.apply())
+	}
+	moveLineUp() {
+		if (window.view.state.doc.toString() == "") return ""
+		const index = window.view.state.selection.ranges[0].anchor
+		let line = view.state.doc.lineAt(index)
+		const content = line.content
+		let nextLine = view.state.doc.lineAt(line.start - 1)
+		const transaction1 = view.state.t().replace(line.start, line.end, nextLine.content)
+		const midstate = transaction1.apply()
+		line = midstate.doc.lineAt(line.start)
+		nextLine = midstate.doc.lineAt(line.start - 1)
+		const transaction2 = midstate.t().replace(nextLine.start, nextLine.end, content)
+		window.view.setState(transaction2.apply())
+	}
 
 	listenForAutomcompletion() {
 		if (typeof this.c == "undefined") {
@@ -221,7 +247,7 @@ export default {
 				type: type
 			})
 
-			NotificationCenter.default.post(msg)
+			NotificationCenter.default.post(plugin)
 		})
 	},
 	plugin: plugin,

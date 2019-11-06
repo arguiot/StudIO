@@ -154,6 +154,16 @@ class Editor: UIView, WKUIDelegate {
             codeView.evaluateJavaScript("try{document.execCommand('redo')}catch(e){console.log(e)}", completionHandler: nil)
         }
     }
+    func moveLineDown() {
+        if codeView.isLoading == false {
+            codeView.evaluateJavaScript("try{window.e.moveLineDown()}catch(e){console.log(e)}", completionHandler: nil)
+        }
+    }
+    func moveLineUp() {
+        if codeView.isLoading == false {
+            codeView.evaluateJavaScript("try{window.e.moveLineUp()}catch(e){console.log(e)}", completionHandler: nil)
+        }
+    }
 }
 extension Editor: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

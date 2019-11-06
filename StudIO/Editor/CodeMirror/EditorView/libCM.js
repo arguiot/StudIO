@@ -10716,6 +10716,32 @@
 			}
 			document.execCommand('insertText', false, str);
 		}
+		moveLineDown() {
+			if (window.view.state.doc.toString() == "") return ""
+			var index = window.view.state.selection.ranges[0].anchor;
+			var line = view.state.doc.lineAt(index);
+			var content = line.content;
+			var nextLine = view.state.doc.lineAt(line.end + 1);
+			var transaction1 = view.state.t().replace(line.start, line.end, nextLine.content);
+			var midstate = transaction1.apply();
+			line = midstate.doc.lineAt(line.start);
+			nextLine = midstate.doc.lineAt(line.end + 1);
+			var transaction2 = midstate.t().replace(nextLine.start, nextLine.end, content);
+			window.view.setState(transaction2.apply());
+		}
+		moveLineUp() {
+			if (window.view.state.doc.toString() == "") return ""
+			var index = window.view.state.selection.ranges[0].anchor;
+			var line = view.state.doc.lineAt(index);
+			var content = line.content;
+			var nextLine = view.state.doc.lineAt(line.start - 1);
+			var transaction1 = view.state.t().replace(line.start, line.end, nextLine.content);
+			var midstate = transaction1.apply();
+			line = midstate.doc.lineAt(line.start);
+			nextLine = midstate.doc.lineAt(line.start - 1);
+			var transaction2 = midstate.t().replace(nextLine.start, nextLine.end, content);
+			window.view.setState(transaction2.apply());
+		}
 
 		listenForAutomcompletion() {
 			if (typeof this.c == "undefined") {
@@ -10751,8 +10777,12 @@
 		Completion: Completion,
 		add: function(obj, type) {
 			BufferCenter$1.default.addTask("execute", () => {
+				var plugin = new Notification("registerPlugin", {
+					obj: obj,
+					type: type
+				});
 
-				NotificationCenter.default.post(msg);
+				NotificationCenter.default.post(plugin);
 			});
 		},
 		plugin: StudIOPlugin,
