@@ -1859,14 +1859,22 @@
 	// Style modules should be created once and stored somewhere, as
 	// opposed to re-creating them every time you need them. The amount of
 	// CSS rules generated for a given DOM root is bounded by the amount
-	// of style modules that were used. To avoid leaking rules, don't
+	// of style modules that were used. So to avoid leaking rules, don't
 	// create these dynamically, but treat them as one-time allocations.
 	function StyleModule(spec) {
 	  this[RULES] = [];
 	  top[COUNT] = top[COUNT] || 1;
 	  for (var name in spec) {
-	    var className = this[name] = "\u037c" + (top[COUNT]++).toString(36);
-	    renderStyle("." + className, spec[name], this[RULES]);
+	    var style = spec[name], specificity = style.specificity || 0;
+	    var id = "\u037c" + (top[COUNT]++).toString(36);
+	    var selector = "." + id, className = id;
+	    for (var i = 0; i < specificity; i++) {
+	      var name = "\u037c_" + (i ? i.toString(36) : "");
+	      selector += "." + name;
+	      className += " " + name;
+	    }
+	    this[name] = className;
+	    renderStyle(selector, spec[name], this[RULES]);
 	  }
 	}
 
@@ -1908,7 +1916,6 @@
 	        this.modules.splice(index, 1);
 	        j--;
 	        index = -1;
-	        reordered = true;
 	      }
 	      if (index == -1) {
 	        this.modules.splice(j++, 0, mod);
@@ -1940,7 +1947,7 @@
 	      output.push(prop + " {" + local.join(" ") + "}");
 	    } else if (/&/.test(prop)) {
 	      renderStyle(prop.replace(/&/g, selector), spec[prop], output);
-	    } else {
+	    } else if (prop != "specificity") {
 	      if (typeof spec[prop] == "object") throw new RangeError("The value of a property (" + prop + ") should be a primitive value.")
 	      props.push(prop.replace(/_.*/, "").replace(/[A-Z]/g, l => "-" + l.toLowerCase()) + ": " + spec[prop]);
 	    }
