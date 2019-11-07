@@ -1,4 +1,4 @@
-github "alexaubry/BulletinBoard"
+github "alexaubry/BulletinBoard" "master"
 github "SwiftGit2/SwiftGit2"
 # github "libgit2/objective-git"
 binary "https://studiocode.app/other/objectivegit.json"

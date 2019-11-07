@@ -77,9 +77,11 @@ class CreateProject {
     }
     
     private func alert(_ str: String) {
-        let alert = UIAlertController(title: "Error", message: str, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
-        UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
-        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.sync {
+            let alert = UIAlertController(title: "Error", message: str, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
+            UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
     }
 }
