@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
     <device id="retina5_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -222,7 +222,6 @@ DQ
                                     <constraint firstAttribute="height" constant="30" id="ofZ-a6-t2N"/>
                                     <constraint firstAttribute="width" constant="200" id="tv5-wk-VGM"/>
                                 </constraints>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -241,7 +240,6 @@ DQ
                                     <constraint firstAttribute="width" constant="200" id="BOK-xl-HiL"/>
                                     <constraint firstAttribute="height" constant="30" id="Y7E-pt-BDn"/>
                                 </constraints>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -275,7 +273,6 @@ DQ
                                     <constraint firstAttribute="width" constant="200" id="ZML-R6-iMl"/>
                                     <constraint firstAttribute="height" constant="30" id="m1E-ZY-hfX"/>
                                 </constraints>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -359,7 +356,6 @@ DQ
                                     <constraint firstAttribute="width" constant="200" id="Lkm-8y-FH1"/>
                                     <constraint firstAttribute="height" constant="30" id="Mtu-Ya-Iy5"/>
                                 </constraints>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
@@ -463,7 +459,6 @@ DQ
                     <subviews>
                         <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ask your question here" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Poa-3S-WET">
                             <rect key="frame" x="53" y="10" width="341" height="40"/>
-                            <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -585,7 +580,7 @@ DQ
                             </connections>
                         </collectionView>
                     </subviews>
-                    <color key="backgroundColor" red="0.79607843137254897" green="0.80784313725490198" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                     <constraints>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="Poa-3S-WET" secondAttribute="bottom" constant="10" id="5Nf-DX-m1d"/>
                         <constraint firstItem="Aq1-as-fcK" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="17" id="Axr-kQ-Ah9"/>

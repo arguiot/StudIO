@@ -42,6 +42,8 @@ class EditorSplitVC: UISplitViewController {
     @objc func keyboardWillShow(_ notification: Notification) {
         let VC = self.viewControllers as! [UINavigationController]
         guard VC.first?.visibleViewController is WorkingDirDetailVC || VC.last?.visibleViewController is WorkingDirDetailVC else { return }
+        
+        accessory.backgroundColor = UIColor.create(light: UIColor(red: 203, green: 205, blue: 210, alpha: 1.0), dark: UIColor(red: 40, green: 40, blue: 40, alpha: 1.0))
         accessory.isHidden = false
         
         accessory.loader.isHidden = true
@@ -130,4 +132,21 @@ class EditorSplitVC: UISplitViewController {
         CompletionFeature(title: "*", type: .small),
         CompletionFeature(title: "/", type: .small),
     ]
+}
+
+
+extension UIColor {
+    public static func create(light lightColor: UIColor, dark darkColor: UIColor?) -> UIColor {
+        if #available(iOS 13.0, *) {
+            return UIColor { (traitCollection) -> UIColor in
+                if let darkColor = darkColor, traitCollection.userInterfaceStyle == .dark {
+                    return darkColor
+                } else {
+                    return lightColor
+                }
+            }
+        } else {
+            return lightColor
+        }
+    }
 }
