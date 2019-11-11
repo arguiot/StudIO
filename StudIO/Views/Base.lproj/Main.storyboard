@@ -671,6 +671,53 @@ DQ
             <point key="canvasLocation" x="707.24637681159425" y="-630.80357142857144"/>
         </scene>
         <!--Navigation Controller-->
+        <scene sceneID="dFp-2k-jCZ">
+            <objects>
+                <navigationController storyboardIdentifier="TerminalVC" id="Scj-6j-dKr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="f6E-bc-ri0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="csu-jB-WIO" kind="relationship" relationship="rootViewController" id="lsS-oG-LxS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vGb-Nn-zdy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1761" y="-641"/>
+        </scene>
+        <!--SSH-->
+        <scene sceneID="nBO-ik-hYV">
+            <objects>
+                <viewController id="csu-jB-WIO" customClass="TerminalVC" customModule="StudIO" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dy8-BN-Nu0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zz-WN-scT">
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5zz-WN-scT" firstAttribute="bottom" secondItem="3mx-74-sxf" secondAttribute="bottom" id="4PK-vh-qFY"/>
+                            <constraint firstItem="5zz-WN-scT" firstAttribute="leading" secondItem="3mx-74-sxf" secondAttribute="leading" id="Urx-nB-ahZ"/>
+                            <constraint firstItem="5zz-WN-scT" firstAttribute="top" secondItem="3mx-74-sxf" secondAttribute="top" id="ZZu-f9-slj"/>
+                            <constraint firstItem="5zz-WN-scT" firstAttribute="trailing" secondItem="3mx-74-sxf" secondAttribute="trailing" id="p5p-62-Mt1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3mx-74-sxf"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="SSH" id="9VF-vr-7DP"/>
+                    <connections>
+                        <outlet property="containerCodeView" destination="5zz-WN-scT" id="f9h-Re-5Q8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sEa-Kb-FIm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2597.1014492753625" y="-645.6521739130435"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
             <objects>
                 <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">

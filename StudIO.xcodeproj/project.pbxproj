@@ -144,6 +144,8 @@
 		68E59355223FA68D008C86C7 /* textField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E59354223FA68D008C86C7 /* textField.swift */; };
 		68E59357223FAEB9008C86C7 /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E59356223FAEB9008C86C7 /* colors.swift */; };
 		68F65C952310AC99001602AD /* MFixx.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68F65C942310AC99001602AD /* MFixx.ttf */; };
+		68F9BA002378E77D00C81974 /* TerminalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F9B9FF2378E77D00C81974 /* TerminalVC.swift */; };
+		68F9BA022378E7C400C81974 /* SwiftSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F9BA012378E7C400C81974 /* SwiftSH.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -307,6 +309,8 @@
 		68E59354223FA68D008C86C7 /* textField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textField.swift; sourceTree = "<group>"; };
 		68E59356223FAEB9008C86C7 /* colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
 		68F65C942310AC99001602AD /* MFixx.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MFixx.ttf; sourceTree = "<group>"; };
+		68F9B9FF2378E77D00C81974 /* TerminalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalVC.swift; sourceTree = "<group>"; };
+		68F9BA012378E7C400C81974 /* SwiftSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSH.framework; path = Carthage/Build/iOS/SwiftSH.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +332,7 @@
 				6858042B22AE6BD800F97488 /* Down.framework in Frameworks */,
 				687EC15B222AB46C00E6B3C3 /* SwiftGit2.framework in Frameworks */,
 				68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */,
+				68F9BA022378E7C400C81974 /* SwiftSH.framework in Frameworks */,
 				68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */,
 				68605EE2232AEE2D00077898 /* OneSignal.framework in Frameworks */,
 			);
@@ -346,6 +351,7 @@
 		68040210220EC67500789453 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68F9BA012378E7C400C81974 /* SwiftSH.framework */,
 				68605EE1232AEE2D00077898 /* OneSignal.framework */,
 				6858042A22AE6BD800F97488 /* Down.framework */,
 				682D03CA2283DA5D00F97BEA /* JASON.framework */,
@@ -650,6 +656,7 @@
 				6863DF8821B3FABB00911374 /* StudIO.entitlements */,
 				68CD1D6522AD10460025999D /* Documentation */,
 				6856C7A921B2786D00441767 /* Projects */,
+				68F9B9FE2378E74700C81974 /* SSH */,
 				684549C721CE279500CF5E80 /* Git */,
 				6856C79921B236C100441767 /* Editor */,
 				6856C79821B236B500441767 /* Menus */,
@@ -780,6 +787,14 @@
 				68E4544D21C276CB00F945A0 /* CreateFile.swift */,
 			);
 			path = "File System";
+			sourceTree = "<group>";
+		};
+		68F9B9FE2378E74700C81974 /* SSH */ = {
+			isa = PBXGroup;
+			children = (
+				68F9B9FF2378E77D00C81974 /* TerminalVC.swift */,
+			);
+			path = SSH;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1115,6 +1130,7 @@
 				682BCEE6233193A80086FAA4 /* AudioPlayer.swift in Sources */,
 				68A62CBF223CFFCB0040225E /* SnippetCell.swift in Sources */,
 				68879C182261FC7D002EDC5D /* CheatCodeVC.swift in Sources */,
+				68F9BA002378E77D00C81974 /* TerminalVC.swift in Sources */,
 				68B56363222BE87300B9E0DD /* DoubleScreen.swift in Sources */,
 				684F81BD220F03D90003B845 /* StepperCell.swift in Sources */,
 				689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */,

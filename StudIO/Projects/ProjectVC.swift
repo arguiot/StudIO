@@ -42,6 +42,16 @@ class ProjectVC: UICollectionViewController {
             self.navigationItem.rightBarButtonItems?.append(behaviours)
         }
         self.navigationItem.rightBarButtonItems?.append(button)
+        
+        let terminal = UIBarButtonItem(image: #imageLiteral(resourceName: "Terminal"), style: .plain, target: self, action: #selector(openTerminal(_:)))
+        terminal.tintColor = .lightGray
+        self.navigationItem.rightBarButtonItems?.append(terminal)
+    }
+    @IBAction func openTerminal(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "TerminalVC")
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(vc, animated: true, completion: nil)
     }
     @IBAction func openDucmentation(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Documentation", bundle: nil)
