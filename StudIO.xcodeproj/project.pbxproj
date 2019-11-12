@@ -146,6 +146,7 @@
 		68F65C952310AC99001602AD /* MFixx.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68F65C942310AC99001602AD /* MFixx.ttf */; };
 		68F9BA002378E77D00C81974 /* TerminalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F9B9FF2378E77D00C81974 /* TerminalVC.swift */; };
 		68F9BA022378E7C400C81974 /* SwiftSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F9BA012378E7C400C81974 /* SwiftSH.framework */; };
+		68F9BA06237A2BD700C81974 /* SSHView in Resources */ = {isa = PBXBuildFile; fileRef = 68F9BA05237A2BD700C81974 /* SSHView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -311,6 +312,7 @@
 		68F65C942310AC99001602AD /* MFixx.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MFixx.ttf; sourceTree = "<group>"; };
 		68F9B9FF2378E77D00C81974 /* TerminalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalVC.swift; sourceTree = "<group>"; };
 		68F9BA012378E7C400C81974 /* SwiftSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSH.framework; path = Carthage/Build/iOS/SwiftSH.framework; sourceTree = "<group>"; };
+		68F9BA05237A2BD700C81974 /* SSHView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SSHView; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -792,6 +794,7 @@
 		68F9B9FE2378E74700C81974 /* SSH */ = {
 			isa = PBXGroup;
 			children = (
+				68F9BA05237A2BD700C81974 /* SSHView */,
 				68F9B9FF2378E77D00C81974 /* TerminalVC.swift */,
 			);
 			path = SSH;
@@ -940,6 +943,7 @@
 				6863DF9121B5496200911374 /* BottomLine.xib in Resources */,
 				682BCEF9233194720086FAA4 /* gameOver.mp3 in Resources */,
 				686822EE21DB8DCA0036694B /* GitCommit.xib in Resources */,
+				68F9BA06237A2BD700C81974 /* SSHView in Resources */,
 				6856C7A121B249FB00441767 /* Icons.plist in Resources */,
 				684549C421CE218F00CF5E80 /* git.storyboard in Resources */,
 				682BCEFB233194720086FAA4 /* background.mov in Resources */,
@@ -997,6 +1001,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/JASON.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/OneSignal.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftSH.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
