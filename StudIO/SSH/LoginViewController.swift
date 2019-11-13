@@ -67,6 +67,8 @@ class LoginViewController: UIViewController {
             return
         }
         
+        segue.destination.modalPresentationStyle = .fullScreen
+        
         let userDefaults = UserDefaults.standard
         userDefaults.set(self.hostnameTextField.text, forKey: "hostname")
         userDefaults.set(self.portTextField.text, forKey: "port")

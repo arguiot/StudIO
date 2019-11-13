@@ -66,8 +66,24 @@ class ShellViewController: UIViewController, SSHViewController {
                 }
             }
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        self.textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         self.shell = try? SSHShell(host: self.hostname, port: self.port ?? 22, terminal: "vanilla")
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        self.textView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height - keyboardSize.height)
+        self.textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 50, right: 0)
+        self.view.layoutIfNeeded()
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.textView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        self.view.layoutIfNeeded()
     }
     
     override func viewDidAppear(_ animated: Bool) {
