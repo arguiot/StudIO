@@ -29,6 +29,17 @@ class SSHMainVC: UITableViewController {
     
     let data: [(name: String, segue: String)] = [("Shell", "OpenShell"), ("Command", "ExecCommand")]
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(goBack(_:)))
+    }
+    
+    @objc
+    func goBack(_ send: Any) {
+        guard let root = self.view.window?.rootViewController as? RootVC else { return }
+        root.dismiss(animated: true, completion: nil)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let loginViewController = segue.destination as? LoginViewController else {
             return
