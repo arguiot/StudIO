@@ -37,6 +37,10 @@
 body {
     margin: 0;
 }
+#terminal {
+    width: 100vw;
+    height: 100vh;
+}
 .xterm {
     font-feature-settings: "liga" 0;
     position: relative;

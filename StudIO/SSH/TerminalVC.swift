@@ -47,18 +47,20 @@ class TerminalVC: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScript
         XtermView.navigationDelegate = self
         
         setListen()
-        
-        login()
+        DispatchQueue.global().async {
+            self.login()
+        }
     }
     
     @objc func goBack(_ send: Any) {
+        SSH.disconnect(nil)
         guard let root = self.view.window?.rootViewController as? RootVC else { return }
         root.dismiss(animated: true, completion: nil)
     }
     var SSH: SSHShell!
     func login() {
         do {
-            SSH = try SSHShell(host: "new@sdf.org", port: 22)
+            SSH = try SSHShell(host: "tty.sdf.org", port: 22)
             SSH.withCallback { (data: Data?, error: Data?) in
                 if (error != nil) {
                     NSObject.alert(t: "Error", m: String(data: error!, encoding: .utf8) ?? "UNDEFINED")
@@ -68,14 +70,22 @@ class TerminalVC: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScript
                 }
             }
             .connect()
-            .authenticate(.none)
+            .authenticate(.byPassword(username: "arguiot", password: "gcmGY7eDhxOpRw"))
             .open { (error) in
                 if let error = error {
-                    print("\(error)")
+                    let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true)
+                    }
                 }
             }
         } catch {
-            NSObject.alert(t: "Error", m: error.localizedDescription)
+            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+            }
         }
         
     }
@@ -103,7 +113,11 @@ class TerminalVC: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScript
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard message.name == "sshData" else { return }
         guard let content = message.body as? String else { return }
-        SSH.write(Data(content.utf8))
+        SSH.write(Data(content.utf8)) { (error) in
+            if let error = error {
+                print("\(error)")
+            }
+        }
     }
 
 }
