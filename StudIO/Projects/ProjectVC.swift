@@ -50,7 +50,7 @@ class ProjectVC: UICollectionViewController {
     @IBAction func openTerminal(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "TerminalVC")
-        vc.modalPresentationStyle = .fullScreen
+        vc.modalPresentationStyle = .formSheet
         self.navigationController?.present(vc, animated: true, completion: nil)
     }
     @IBAction func openDucmentation(_ sender: Any) {
