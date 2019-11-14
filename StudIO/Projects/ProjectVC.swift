@@ -43,7 +43,7 @@ class ProjectVC: UICollectionViewController {
         }
         self.navigationItem.rightBarButtonItems?.append(button)
         
-        let terminal = UIBarButtonItem(image: #imageLiteral(resourceName: "Terminal").scaleImage(toSize: CGSize(width: 10, height: 10)), style: .plain, target: self, action: #selector(openTerminal(_:)))
+        let terminal = UIBarButtonItem(image: #imageLiteral(resourceName: "Terminal").scaleImage(toSize: CGSize(width: 12, height: 12)), style: .plain, target: self, action: #selector(openTerminal(_:)))
         terminal.tintColor = .lightGray
         self.navigationItem.rightBarButtonItems?.append(terminal)
     }

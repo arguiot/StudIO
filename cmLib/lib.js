@@ -1,22 +1,17 @@
-import libCM from "./libBin.js"
+// import libCM from "./libBin.js"
 
-const EditorState = libCM.EditorState
-const EditorView = libCM.EditorView
-const EditorSelection = libCM.EditorSelection
-const keymap = libCM.keymap
-const history = libCM.history
-const redo = libCM.redo
-const redoSelection = libCM.redoSelection
-const undo = libCM.undo
-const undoSelection = libCM.undoSelection
-const lineNumbers = libCM.lineNumbers
-const baseKeymap = libCM.baseKeymap
-const indentSelection = libCM.indentSelection
-const legacyMode = libCM.legacyMode
-const matchBrackets = libCM.matchBrackets
-const specialChars = libCM.specialChars
-const multipleSelections = libCM.multipleSelections
-const text = libCM.text
+import { EditorState, EditorSelection } from "../codemirror.next/state/"
+import { EditorView } from "../codemirror.next/view/"
+import { keymap } from "../codemirror.next/keymap/"
+import { history, redo, redoSelection, undo, undoSelection } from "../codemirror.next/history/"
+import { lineNumbers } from "../codemirror.next/gutter/"
+import { baseKeymap, indentSelection } from "../codemirror.next/commands/"
+import { legacyMode } from "../codemirror.next/legacy-modes/src/index.js"
+import { matchBrackets } from "../codemirror.next/matchbrackets/"
+import javascript from "../codemirror.next/lang-javascript"
+import { specialChars } from "../codemirror.next/special-chars/"
+import { multipleSelections } from "../codemirror.next/multiple-selections/"
+import { Text } from "../codemirror.next/doc/src/index.js"
 
 import completion from "./completion/index.js"
 import autocomplete from "./plugin/autocomplete.js"
@@ -80,7 +75,7 @@ class editor {
 						specialChars(),
 						multipleSelections(),
 						mode,
-						matchBrackets(),
+						// matchBrackets(),
 						keymap({
 							"Mod-z": undo,
 							"Mod-Shift-z": redo,
@@ -238,7 +233,7 @@ class editor {
 }
 export default {
 	editor: editor,
-	Text: text,
+	Text: Text,
 	Completion: completion,
 	add: function(obj, type) {
 		BufferCenter.default.addTask("execute", () => {
