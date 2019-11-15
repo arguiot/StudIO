@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "install": "cd ../codemirror.next && npm i",
-        "build": "rollup -c rollup.config.js && sed -i -e 's/javascript_1.default/javascript_1/g' ../StudIO/Editor/CodeMirror/EditorView/libCM.js && sed -i -e 's/const /var /g' ../StudIO/Editor/CodeMirror/EditorView/libCM.js && sed -i -e 's/let /var /g' ../StudIO/Editor/CodeMirror/EditorView/libCM.js && rm ../StudIO/Editor/CodeMirror/EditorView/libCM.js-e"
+        "build": "rollup -c rollup.config.js && sed -i -e 's/javascript_1.default/javascript_1/g' ../StudIO/Editor/CodeMirror/EditorView/libCM.js && rm ../StudIO/Editor/CodeMirror/EditorView/libCM.js-e"
     },
     "repository": {
         "type": "git",
