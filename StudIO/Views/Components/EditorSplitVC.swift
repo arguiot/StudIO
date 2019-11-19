@@ -43,7 +43,9 @@ class EditorSplitVC: UISplitViewController {
         let VC = self.viewControllers as! [UINavigationController]
         guard VC.first?.visibleViewController is WorkingDirDetailVC || VC.last?.visibleViewController is WorkingDirDetailVC else { return }
         
-        accessory.backgroundColor = UIColor.create(light: UIColor(red: 203, green: 205, blue: 210, alpha: 1.0), dark: UIColor(red: 40, green: 40, blue: 40, alpha: 1.0))
+        let color = UIColor.create(light: UIColor(red: 203 / 255, green: 205 / 255, blue: 210 / 255, alpha: 1.0), dark: UIColor(red: 40 / 255, green: 40 / 255, blue: 40 / 255, alpha: 1.0))
+        accessory.backgroundColor = color
+        accessory.completionView.backgroundColor = color
         accessory.isHidden = false
         
         accessory.loader.isHidden = true
