@@ -8,6 +8,9 @@ import { lineNumbers } from "../codemirror.next/gutter/"
 import { baseKeymap, indentSelection } from "../codemirror.next/commands/"
 import { legacyMode } from "../codemirror.next/legacy-modes/src/index.js"
 import { matchBrackets } from "../codemirror.next/matchbrackets/"
+import {foldCode, unfoldCode, codeFolding, foldGutter} from "../codemirror.next/fold"
+import {defaultHighlighter} from "../codemirror.next/highlight"
+import {search, defaultSearchKeymap} from "../codemirror.next/search"
 import javascript from "../codemirror.next/lang-javascript"
 import { specialChars } from "../codemirror.next/special-chars/"
 import { multipleSelections } from "../codemirror.next/multiple-selections/"
@@ -72,6 +75,9 @@ class editor {
 							history(),
 							specialChars(),
 							multipleSelections(),
+							foldGutter(),
+							defaultHighlighter,
+							search({keymap: defaultSearchKeymap}),
 							mode,
 							// matchBrackets(),
 							keymap({
@@ -97,6 +103,9 @@ class editor {
 							history(),
 							specialChars(),
 							multipleSelections(),
+							foldGutter(),
+							defaultHighlighter,
+							search({keymap: defaultSearchKeymap}),
 							// mode,
 							// matchBrackets(),
 							keymap({

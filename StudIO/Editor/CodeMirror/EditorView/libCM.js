@@ -17396,6 +17396,1026 @@
         return iter.done ? { start: startToken, matched: false } : null;
     }
 
+    const foldAnnotation = Annotation.define();
+    const defaultConfig = {
+        placeholderDOM: null,
+        placeholderText: "…"
+    };
+    const foldConfigBehavior = EditorView.extend.behavior({
+        combine(values) { return values.length ? values[0] : defaultConfig; }
+    });
+    window.beh = foldConfigBehavior;
+    const foldPlugin = ViewPlugin.create(view => new FoldPlugin(view)).decorations(p => p.decorations);
+    const codeFolding = EditorView.extend.unique((configs) => {
+        return [
+            foldPlugin.extension,
+            foldConfigBehavior(combineConfig(configs, defaultConfig)),
+            EditorView.extend.fallback(EditorView.theme(defaultStyle))
+        ];
+    }, {});
+    class FoldPlugin {
+        constructor(view) {
+            this.view = view;
+            this.decorations = Decoration.none;
+            let config = view.behavior(foldConfigBehavior);
+            this.widgetConfig = { config, class: this.placeholderClass };
+        }
+        get placeholderClass() {
+            return this.view.cssClass("foldPlaceholder");
+        }
+        update(update) {
+            this.decorations = this.decorations.map(update.changes);
+            for (let tr of update.transactions) {
+                let ann = tr.annotation(foldAnnotation);
+                if (ann)
+                    this.updateRanges(ann.fold || [], ann.unfold || []);
+            }
+            // Make sure widgets are redrawn with up-to-date classes
+            if (update.themeChanged && this.placeholderClass != this.widgetConfig.class) {
+                this.widgetConfig = { config: this.widgetConfig.config, class: this.placeholderClass };
+                let deco = [], iter = this.decorations.iter(), next;
+                while (next = iter.next())
+                    deco.push(Decoration.replace(next.from, next.to, { widget: new FoldWidget(this.widgetConfig) }));
+                this.decorations = Decoration.set(deco);
+            }
+        }
+        updateRanges(add, remove) {
+            this.decorations = this.decorations.update(add.map(({ from, to }) => Decoration.replace(from, to, { widget: new FoldWidget(this.widgetConfig) })), remove.length ? (from, to) => !remove.some(r => r.from == from && r.to == to) : null, remove.reduce((m, r) => Math.min(m, r.from), 1e8), remove.reduce((m, r) => Math.max(m, r.to), 0));
+        }
+        foldInside(from, to) {
+            let found = null;
+            this.decorations.between(from, to, (from, to) => found = ({ from, to }));
+            return found;
+        }
+    }
+    class FoldWidget extends WidgetType {
+        ignoreEvents() { return false; }
+        toDOM(view) {
+            let conf = this.value.config;
+            if (conf.placeholderDOM)
+                return conf.placeholderDOM();
+            let element = document.createElement("span");
+            element.textContent = conf.placeholderText;
+            // FIXME should this have a role? does it make sense to allow focusing by keyboard?
+            element.setAttribute("aria-label", view.phrase("folded code"));
+            element.title = view.phrase("unfold");
+            element.className = this.value.class;
+            element.onclick = event => {
+                let line = view.lineAt(view.posAtDOM(event.target));
+                let folded = view.plugin(foldPlugin).foldInside(line.from, line.to);
+                if (folded)
+                    view.dispatch(view.state.t().annotate(foldAnnotation({ unfold: [folded] })));
+                event.preventDefault();
+            };
+            return element;
+        }
+    }
+    const foldGutterDefaults = {
+        openText: "▼",
+        closedText: "▶"
+    };
+    class FoldMarker extends GutterMarker {
+        constructor(config, open) {
+            super();
+            this.config = config;
+            this.open = open;
+        }
+        eq(other) { return this.config == other.config && this.open == other.open; }
+        toDOM(view) {
+            let span = document.createElement("span");
+            span.textContent = this.open ? this.config.openText : this.config.closedText;
+            span.title = view.phrase(this.open ? "Fold line" : "Unfold line");
+            return span;
+        }
+    }
+    function foldGutter(config = {}) {
+        let fullConfig = fillConfig(config, foldGutterDefaults);
+        return [
+            new Gutter({
+                style: "foldGutter",
+                lineMarker(view, line) {
+                    // FIXME optimize this. At least don't run it for updates that
+                    // don't change anything relevant
+                    let plugin = view.plugin(foldPlugin);
+                    let folded = plugin.foldInside(line.from, line.to);
+                    if (folded)
+                        return new FoldMarker(fullConfig, false);
+                    if (view.state.behavior(EditorState.foldable).some(f => f(view.state, line.from, line.to)))
+                        return new FoldMarker(fullConfig, true);
+                    return null;
+                },
+                initialSpacer() {
+                    return new FoldMarker(fullConfig, false);
+                },
+                handleDOMEvents: {
+                    click: (view, line) => {
+                        let plugin = view.plugin(foldPlugin);
+                        let folded = plugin.foldInside(line.from, line.to);
+                        if (folded) {
+                            view.dispatch(view.state.t().annotate(foldAnnotation({ unfold: [folded] })));
+                            return true;
+                        }
+                        let range = view.state.behavior(EditorState.foldable)
+                            .reduce((value, f) => value || f(view.state, line.from, line.to), null);
+                        if (range) {
+                            view.dispatch(view.state.t().annotate(foldAnnotation({ fold: [range] })));
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+            }).extension,
+            codeFolding()
+        ];
+    }
+    const defaultStyle = {
+        foldPlaceholder: {
+            background: "#eee",
+            border: "1px solid silver",
+            color: "#888",
+            borderRadius: ".2em",
+            margin: "0 1px",
+            padding: "0 1px",
+            cursor: "pointer"
+        },
+        "gutterElement.foldGutter": {
+            padding: "0 1px",
+            cursor: "pointer"
+        }
+    };
+
+    const Inherit = 1;
+    /// A tag system defines a set of node (token) tags used for
+    /// highlighting. You'll usually want to use the
+    /// [default](#highlight.defaultTags) set, but it is possible to
+    /// define your own custom system when that doesn't fit your use case.
+    class TagSystem {
+        /// Define a tag system. Each tag identifies a type of syntactic
+        /// element, which can have a single type and any number of flags.
+        /// The `flags` argument should be an array of flag names, and the
+        /// `types` argument an array of type names. Type names may have a
+        /// `"name=parentName"` format to specify that this type is an
+        /// instance of some other type, which means that, if no styling for
+        /// the type itself is provided, it'll fall back to the parent
+        /// type's styling.
+        constructor(options) {
+            /// @internal
+            this.typeNames = [""];
+            /// A [node
+            /// prop](https://lezer.codemirror.net/docs/ref#tree.NodeProp) used
+            /// to associate styling tag information with syntax tree nodes.
+            this.prop = new tree_2();
+            this.flags = options.flags;
+            this.types = options.types;
+            this.flagMask = Math.pow(2, this.flags.length) - 1;
+            this.typeShift = this.flags.length + 1;
+            let parentNames = [undefined];
+            for (let type of options.types) {
+                let match = /^([\w\-]+)(?:=([\w-]+))?$/.exec(type);
+                if (!match)
+                    throw new RangeError("Invalid type name " + type);
+                this.typeNames.push(match[1]);
+                parentNames.push(match[2]);
+            }
+            this.parents = parentNames.map(name => {
+                if (name == null)
+                    return 0;
+                let id = this.typeNames.indexOf(name);
+                if (id < 0)
+                    throw new RangeError(`Unknown parent type '${name}' specified`);
+                return id;
+            });
+            if (this.flags.length > 29 || this.typeNames.length > Math.pow(2, 29 - this.flags.length))
+                throw new RangeError("Too many style tag flags to fit in a 30-bit integer");
+        }
+        /// Parse a tag name into a numeric ID. Only necessary if you are
+        /// manually defining [node properties](#highlight.TagSystem.prop)
+        /// for this system.
+        get(name) {
+            let value = name.charCodeAt(0) == 43 ? 1 : 0; // Check for leading '+'
+            for (let part of (value ? name.slice(1) : name).split(" "))
+                if (part) {
+                    let flag = this.flags.indexOf(part);
+                    if (flag > -1) {
+                        value += 1 << (flag + 1);
+                    }
+                    else {
+                        let typeID = this.typeNames.indexOf(part);
+                        if (typeID < 0)
+                            throw new RangeError(`Unknown tag type '${part}'`);
+                        if (value >> this.typeShift)
+                            throw new RangeError(`Multiple tag types specified in '${name}'`);
+                        value += typeID << this.typeShift;
+                    }
+                }
+            return value;
+        }
+        /// Create a
+        /// [`PropSource`](https://lezer.codemirror.net/docs/ref#tree.PropSource)
+        /// that adds node properties for this system. `tags` should map
+        /// node type
+        /// [selectors](https://lezer.codemirror.net/docs/ref#tree.NodeType^match)
+        /// to tag names.
+        add(tags) {
+            let match = tree_4.match(tags);
+            return this.prop.add((type) => {
+                let found = match(type);
+                return found == null ? undefined : this.get(found);
+            });
+        }
+        /// Create a highlighter extension for this system, styling the
+        /// given tags using the given CSS objects.
+        highlighter(spec) {
+            let styling = new Styling(this, spec);
+            let plugin = ViewPlugin.create(view => new Highlighter(view, this.prop, styling))
+                .decorations(h => h.decorations);
+            return [plugin.extension, EditorView.styleModule(styling.module)];
+        }
+        /// @internal
+        specificity(tag) {
+            let flags = tag & this.flagMask, spec = 0;
+            for (let i = 1; i <= this.flags.length; i++)
+                if (flags & (1 << i))
+                    spec++;
+            for (let type = tag >> (this.flags.length + 1); type; type = this.parents[type])
+                spec += 1000;
+            return spec;
+        }
+    }
+    /// The set of highlighting tags used by regular language packages and
+    /// themes.
+    const defaultTags = new TagSystem({
+        flags: ["invalid", "meta", "type2", "type3", "type4",
+            "link", "strong", "emphasis", "heading", "list", "quote",
+            "changed", "inserted", "deleted",
+            "definition", "constant", "control"],
+        types: [
+            "comment",
+            "lineComment=comment",
+            "blockComment=comment",
+            "name",
+            "variableName=name",
+            "typeName=name",
+            "propertyName=name",
+            "className=name",
+            "labelName=name",
+            "namespace=name",
+            "literal",
+            "string=literal",
+            "character=string",
+            "number=literal",
+            "integer=number",
+            "float=number",
+            "regexp=literal",
+            "escape=literal",
+            "color=literal",
+            "content",
+            "keyword",
+            "self=keyword",
+            "null=keyword",
+            "atom=keyword",
+            "unit=keyword",
+            "modifier=keyword",
+            "operatorKeyword=keyword",
+            "operator",
+            "derefOperator=operator",
+            "arithmeticOperator=operator",
+            "logicOperator=operator",
+            "bitwiseOperator=operator",
+            "compareOperator=operator",
+            "updateOperator=operator",
+            "typeOperator=operator",
+            "punctuation",
+            "separator=punctuation",
+            "bracket=punctuation",
+            "angleBracket=bracket",
+            "squareBracket=bracket",
+            "paren=bracket",
+            "brace=bracket"
+        ]
+    });
+    /// Used to add a set of tags to a language syntax via
+    /// [`Parser.withProps`](https://lezer.codemirror.net/docs/ref#lezer.Parser.withProps).
+    /// The argument object can use syntax node selectors (see
+    /// [`NodeType.match`](https://lezer.codemirror.net/docs/ref#tree.NodeType^match))
+    /// as property names, and tag names (in the [default tag
+    /// system](#highlight.defaultTags)) as values.
+    const styleTags = (tags) => defaultTags.add(tags);
+    /// Create a highlighter theme that adds the given styles to the given
+    /// tags. The spec's property names must be tag names, and the values
+    /// [`style-mod`](https://github.com/marijnh/style-mod#documentation)
+    /// style objects that define the CSS for that tag.
+    const highlighter = (spec) => defaultTags.highlighter(spec);
+    class StyleRule {
+        constructor(type, flags, specificity, cls) {
+            this.type = type;
+            this.flags = flags;
+            this.specificity = specificity;
+            this.cls = cls;
+        }
+    }
+    class Styling {
+        constructor(tags, spec) {
+            this.tags = tags;
+            this.cache = Object.create(null);
+            let modSpec = Object.create(null);
+            let nextCls = 0;
+            let rules = [];
+            for (let prop in spec) {
+                let tag = tags.get(prop);
+                let cls = "c" + nextCls++;
+                modSpec[cls] = spec[prop];
+                rules.push(new StyleRule(tag >> tags.typeShift, tag & tags.flagMask, tags.specificity(tag), cls));
+            }
+            this.rules = rules.sort((a, b) => b.specificity - a.specificity);
+            this.module = new StyleModule(modSpec);
+        }
+        match(tag) {
+            let known = this.cache[tag];
+            if (known != null)
+                return known;
+            let result = "";
+            let type = tag >> this.tags.typeShift, flags = tag & this.tags.flagMask;
+            for (;;) {
+                for (let rule of this.rules) {
+                    if (rule.type == type && (rule.flags & flags) == rule.flags) {
+                        if (result)
+                            result += " ";
+                        result += this.module[rule.cls];
+                        flags &= ~rule.flags;
+                        if (type)
+                            break;
+                    }
+                }
+                if (type)
+                    type = this.tags.parents[type];
+                else
+                    break;
+            }
+            return this.cache[tag] = result;
+        }
+    }
+    class Highlighter {
+        constructor(view, prop, styling) {
+            this.prop = prop;
+            this.styling = styling;
+            this.partialDeco = false;
+            this.syntax = null;
+            this.decorations = Decoration.none;
+            for (let s of view.state.behavior(EditorState.syntax)) {
+                this.syntax = s;
+                break;
+            }
+            this.buildDeco(view);
+        }
+        update(update) {
+            if (this.partialDeco || update.docChanged || update.viewportChanged)
+                this.buildDeco(update.view);
+        }
+        buildDeco(view) {
+            if (!this.syntax)
+                return;
+            let { from, to } = view.viewport;
+            let { tree, rest } = this.syntax.getTree(view.state, from, to);
+            this.partialDeco = !!rest;
+            if (rest)
+                view.waitFor(rest);
+            let tokens = [];
+            let start = from;
+            function flush(pos, style) {
+                if (pos > start && style)
+                    tokens.push(Decoration.mark(start, pos, { class: style }));
+                start = pos;
+            }
+            // The current node's own classes
+            let curClass = "";
+            let context = [];
+            let inherited = [];
+            tree.iterate({
+                from, to,
+                enter: (type, start) => {
+                    let inheritedClass = inherited.length ? inherited[inherited.length - 1] : "";
+                    let cls = inheritedClass;
+                    let style = type.prop(this.prop);
+                    if (style != null) {
+                        let val = this.styling.match(style);
+                        if (val) {
+                            if (cls)
+                                cls += " ";
+                            cls += val;
+                        }
+                        if (style & Inherit)
+                            inheritedClass = cls;
+                    }
+                    context.push(cls);
+                    if (inheritedClass)
+                        inherited.push(inheritedClass);
+                    if (cls != curClass) {
+                        flush(start, curClass);
+                        curClass = cls;
+                    }
+                },
+                leave: (_t, _s, end) => {
+                    context.pop();
+                    inherited.pop();
+                    let backTo = context.length ? context[context.length - 1] : "";
+                    if (backTo != curClass) {
+                        flush(Math.min(to, end), curClass);
+                        curClass = backTo;
+                    }
+                }
+            });
+            this.decorations = Decoration.set(tokens);
+        }
+    }
+    /// A default highlighter (works well with light themes).
+    const defaultHighlighter = highlighter({
+        invalid: { color: "#f00" },
+        keyword: { color: "#708" },
+        atom: { color: "#219" },
+        number: { color: "#164" },
+        string: { color: "#a11" },
+        character: { color: "#a11" },
+        regexp: { color: "#e40" },
+        escape: { color: "#e40" },
+        "variableName definition": { color: "#00f" },
+        typeName: { color: "#085" },
+        "propertyName definition": { color: "#00c" },
+        comment: { color: "#940" },
+        meta: { color: "#555" }
+    });
+
+    /// Enables the panel-managing extension.
+    function panels() {
+        // FIXME indirection to work around plugin ordering issues
+        return EditorView.extend.fallback(panelExt());
+    }
+    const panelExt = EditorView.extend.unique(() => {
+        return [panelPlugin.extension, EditorView.extend.fallback(EditorView.theme(defaultTheme))];
+    }, null);
+    /// Opening a panel is done by providing an object describing the
+    /// panel through this behavior.
+    const openPanel = EditorView.extend.behavior({
+        combine(specs) {
+            let top = [], bottom = [];
+            for (let spec of specs)
+                if (spec)
+                    (spec.top ? top : bottom).push(spec);
+            return { top: top.sort((a, b) => (a.pos || 0) - (b.pos || 0)),
+                bottom: bottom.sort((a, b) => (a.pos || 0) - (b.pos || 0)) };
+        }
+    });
+    const panelPlugin = ViewPlugin.create(view => new Panels(view)).behavior(EditorView.scrollMargins, p => p.scrollMargins());
+    class Panels {
+        constructor(view) {
+            this.themeChanged = false;
+            let { top, bottom } = view.behavior(openPanel);
+            this.top = new PanelGroup(view, true, top);
+            this.bottom = new PanelGroup(view, false, bottom);
+        }
+        update(update) {
+            let { top, bottom } = update.view.behavior(openPanel);
+            this.top.update(top);
+            this.bottom.update(bottom);
+            if (update.themeChanged)
+                this.themeChanged = true;
+        }
+        draw() {
+            this.top.draw(this.themeChanged);
+            this.bottom.draw(this.themeChanged);
+            this.themeChanged = false;
+        }
+        scrollMargins() {
+            return { top: this.top.scrollMargin(), bottom: this.bottom.scrollMargin() };
+        }
+    }
+    class Panel {
+        constructor(view, spec) {
+            this.dom = spec.dom;
+            this.style = spec.style || "";
+            this.baseClass = spec.dom.className;
+            this.setTheme(view);
+        }
+        setTheme(view) {
+            this.dom.className = this.baseClass + " " + view.cssClass("panel" + (this.style ? "." + this.style : ""));
+        }
+    }
+    class PanelGroup {
+        constructor(view, top, specs) {
+            this.view = view;
+            this.top = top;
+            this.specs = specs;
+            this.dom = null;
+            this.floating = false;
+            this.panels = specs.map(s => new Panel(view, s));
+            this.needsSync = this.panels.length > 0;
+        }
+        update(specs) {
+            if (specs != this.specs) {
+                this.panels = specs.map(s => new Panel(this.view, s));
+                this.specs = specs;
+                this.needsSync = true;
+            }
+        }
+        syncDOM() {
+            if (this.panels.length == 0) {
+                if (this.dom) {
+                    this.dom.remove();
+                    this.dom = null;
+                }
+                return;
+            }
+            if (!this.dom) {
+                this.dom = document.createElement("div");
+                this.dom.className = this.view.cssClass(this.top ? "panels.top" : "panels.bottom");
+                this.dom.style[this.top ? "top" : "bottom"] = "0";
+                this.view.dom.insertBefore(this.dom, this.top ? this.view.dom.firstChild : null);
+            }
+            let curDOM = this.dom.firstChild;
+            for (let panel of this.panels) {
+                if (panel.dom.parentNode == this.dom) {
+                    while (curDOM != panel.dom)
+                        curDOM = rm$1(curDOM);
+                    curDOM = curDOM.nextSibling;
+                }
+                else {
+                    this.dom.insertBefore(panel.dom, curDOM);
+                }
+            }
+            while (curDOM)
+                curDOM = rm$1(curDOM);
+        }
+        draw(themeChanged) {
+            if (this.needsSync) {
+                this.syncDOM();
+                this.needsSync = false;
+            }
+            if (themeChanged && this.dom) {
+                this.dom.className = this.view.cssClass(this.top ? "panels.top" : "panels.bottom");
+                for (let panel of this.panels)
+                    panel.setTheme(this.view);
+            }
+        }
+        scrollMargin() {
+            return !this.dom ? 0 : Math.max(0, this.top
+                ? this.dom.getBoundingClientRect().bottom - this.view.scrollDOM.getBoundingClientRect().top
+                : this.view.scrollDOM.getBoundingClientRect().bottom - this.dom.getBoundingClientRect().top);
+        }
+    }
+    function rm$1(node) {
+        let next = node.nextSibling;
+        node.remove();
+        return next;
+    }
+    const defaultTheme = {
+        panels: {
+            background: "#f5f5f5",
+            boxSizing: "border-box",
+            position: "sticky",
+            left: 0,
+            right: 0
+        },
+        "panels.top": {
+            borderBottom: "1px solid silver"
+        },
+        "panels.bottom": {
+            borderTop: "1px solid silver"
+        }
+    };
+
+    const basicNormalize = String.prototype.normalize ? x => x.normalize("NFKD") : x => x;
+    /// A search cursor provides an iterator over text matches in a
+    /// document.
+    class SearchCursor {
+        /// Create a text cursor. The query is the search string, `from` to
+        /// `to` provides the region to search.
+        ///
+        /// When `normalize` is given, it will be called, on both the query
+        /// string and the content it is matched against, before comparing.
+        /// You can, for example, create a case-insensitive search by
+        /// passing `s => s.toLowerCase()`.
+        ///
+        /// Text is always normalized with
+        /// [`.normalize("NFKD")`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize)
+        /// (when supported).
+        constructor(text, query, from = 0, to = text.length, normalize) {
+            this.text = text;
+            /// The current match (only holds a meaningful value after
+            /// [`next`](#search.SearchCursor.next) has been called and when
+            /// `done` is true).
+            this.value = { from: 0, to: 0 };
+            /// Whether the end of the iterated region has been reached.
+            this.done = false;
+            this.matches = [];
+            this.buffer = "";
+            this.bufferPos = 0;
+            this.iter = text.iterRange(from, to);
+            this.bufferStart = from;
+            this.normalize = normalize ? x => normalize(basicNormalize(x)) : basicNormalize;
+            this.query = this.normalize(query);
+        }
+        peek() {
+            if (this.bufferPos == this.buffer.length) {
+                this.bufferStart += this.buffer.length;
+                this.iter.next();
+                if (this.iter.done)
+                    return -1;
+                this.bufferPos = 0;
+                this.buffer = this.iter.value;
+            }
+            return this.buffer.charCodeAt(this.bufferPos);
+        }
+        /// Look for the next match. Updates the iterator's
+        /// [`value`](#search.SearchCursor.value) and
+        /// [`done`](#search.SearchCursor.done) properties. Should be called
+        /// at least once before using the cursor.
+        next() {
+            for (;;) {
+                let next = this.peek();
+                if (next < 0) {
+                    this.done = true;
+                    return this;
+                }
+                let str = String.fromCharCode(next), start = this.bufferStart + this.bufferPos;
+                this.bufferPos++;
+                for (;;) {
+                    let peek = this.peek();
+                    if (peek < 0 || !isExtendingChar(peek))
+                        break;
+                    this.bufferPos++;
+                    str += String.fromCharCode(peek);
+                }
+                let norm = this.normalize(str);
+                for (let i = 0, pos = start;; i++) {
+                    let code = norm.charCodeAt(i);
+                    let match = this.match(code, pos);
+                    if (match) {
+                        this.value = match;
+                        return this;
+                    }
+                    if (i == norm.length - 1)
+                        break;
+                    if (pos == start && i < str.length && str.charCodeAt(i) == code)
+                        pos++;
+                }
+            }
+        }
+        match(code, pos) {
+            let match = null;
+            for (let i = 0; i < this.matches.length; i += 2) {
+                let index = this.matches[i], keep = false;
+                if (this.query.charCodeAt(index) == code) {
+                    if (index == this.query.length - 1) {
+                        match = { from: this.matches[i + 1], to: pos + 1 };
+                    }
+                    else {
+                        this.matches[i]++;
+                        keep = true;
+                    }
+                }
+                if (!keep) {
+                    this.matches.splice(i, 2);
+                    i -= 2;
+                }
+            }
+            if (this.query.charCodeAt(0) == code) {
+                if (this.query.length == 1)
+                    match = { from: pos, to: pos + 1 };
+                else
+                    this.matches.push(1, pos);
+            }
+            return match;
+        }
+    }
+
+    class Query {
+        constructor(search, replace, caseInsensitive) {
+            this.search = search;
+            this.replace = replace;
+            this.caseInsensitive = caseInsensitive;
+        }
+        eq(other) {
+            return this.search == other.search && this.replace == other.replace && this.caseInsensitive == other.caseInsensitive;
+        }
+        cursor(doc, from = 0, to = doc.length) {
+            return new SearchCursor(doc, this.search, from, to, this.caseInsensitive ? x => x.toLowerCase() : undefined);
+        }
+        get valid() { return !!this.search; }
+    }
+    const searchPlugin = ViewPlugin.create(view => new SearchPlugin(view))
+        .decorations(p => p.decorations)
+        .behavior(openPanel, p => p.panel);
+    const searchAnnotation = Annotation.define();
+    class SearchPlugin {
+        constructor(view) {
+            this.view = view;
+            this.panel = null;
+            this.query = new Query("", "", false);
+            this.decorations = Decoration.none;
+        }
+        update(update) {
+            let ann = update.annotation(searchAnnotation);
+            if (ann) {
+                if (ann.query)
+                    this.query = ann.query;
+                if (ann.panel !== undefined)
+                    this.panel = ann.panel;
+            }
+            if (!this.query.search || !this.panel)
+                this.decorations = Decoration.none;
+            else if (ann || update.docChanged || update.transactions.some(tr => tr.selectionSet))
+                this.decorations = this.highlight(this.query, update.state, update.viewport);
+        }
+        highlight(query, state, viewport) {
+            let deco = [], cursor = query.cursor(state.doc, Math.max(0, viewport.from - query.search.length), Math.min(viewport.to + query.search.length, state.doc.length));
+            while (!cursor.next().done) {
+                let { from, to } = cursor.value;
+                let selected = state.selection.ranges.some(r => r.from == from && r.to == to);
+                deco.push(Decoration.mark(from, to, { class: this.view.cssClass(selected ? "searchMatch.selected" : "searchMatch") }));
+            }
+            return Decoration.set(deco);
+        }
+    }
+    const panelKeymap = EditorView.extend.behavior();
+    /// Create an extension that enables search/replace functionality.
+    /// This needs to be enabled for any of the search-related commands to
+    /// work.
+    const search = EditorView.extend.unique((configs) => {
+        let keys = Object.create(null), panelKeys = Object.create(null);
+        for (let conf of configs) {
+            if (conf.keymap)
+                for (let key of Object.keys(conf.keymap)) {
+                    let value = conf.keymap[key];
+                    if (keys[key] && keys[key] != value)
+                        throw new Error("Conflicting keys for search extension");
+                    keys[key] = value;
+                    panelKeys[key] = value;
+                }
+            if (conf.panelKeymap)
+                for (let key of Object.keys(conf.panelKeymap)) {
+                    panelKeys[key] = conf.panelKeymap[key];
+                }
+        }
+        return [
+            keymap(keys),
+            panelKeymap(new NormalizedKeymap(panelKeys)),
+            searchPlugin.extension,
+            panels(),
+            EditorView.extend.fallback(EditorView.theme(theme$1))
+        ];
+    }, {});
+    function beforeCommand(view) {
+        let plugin = view.plugin(searchPlugin);
+        if (!plugin)
+            return false;
+        if (!plugin.panel) {
+            openSearchPanel(view);
+            return true;
+        }
+        if (!plugin.query.valid)
+            return false;
+        return plugin;
+    }
+    /// Open the search panel if it isn't already open, and move the
+    /// selection to the first match after the current primary selection.
+    /// Will wrap around to the start of the document when it reaches the
+    /// end.
+    const findNext = view => {
+        let plugin = beforeCommand(view);
+        if (typeof plugin == "boolean")
+            return plugin;
+        let cursor = plugin.query.cursor(view.state.doc, view.state.selection.primary.from + 1).next();
+        if (cursor.done) {
+            cursor = plugin.query.cursor(view.state.doc, 0, view.state.selection.primary.from).next();
+            if (cursor.done)
+                return false;
+        }
+        view.dispatch(view.state.t().setSelection(EditorSelection.single(cursor.value.from, cursor.value.to)).scrollIntoView());
+        return true;
+    };
+    const FindPrevChunkSize = 10000;
+    // Searching in reverse is, rather than implementing inverted search
+    // cursor, done by scanning chunk after chunk forward.
+    function findPrevInRange(query, doc, from, to) {
+        for (let pos = to;;) {
+            let start = Math.max(from, pos - FindPrevChunkSize - query.search.length);
+            let cursor = query.cursor(doc, start, pos), range = null;
+            while (!cursor.next().done)
+                range = cursor.value;
+            if (range)
+                return range;
+            if (start == from)
+                return null;
+            pos -= FindPrevChunkSize;
+        }
+    }
+    /// Move the selection to the previous instance of the search query,
+    /// before the current primary selection. Will wrap past the start
+    /// of the document to start searching at the end again.
+    const findPrevious = view => {
+        let plugin = beforeCommand(view);
+        if (typeof plugin == "boolean")
+            return plugin;
+        let { state } = view, { query } = plugin;
+        let range = findPrevInRange(query, state.doc, 0, state.selection.primary.to - 1) ||
+            findPrevInRange(query, state.doc, state.selection.primary.from + 1, state.doc.length);
+        if (!range)
+            return false;
+        view.dispatch(state.t().setSelection(EditorSelection.single(range.from, range.to)).scrollIntoView());
+        return true;
+    };
+    /// Select all instances of the search query.
+    const selectMatches = view => {
+        let plugin = beforeCommand(view);
+        if (typeof plugin == "boolean")
+            return plugin;
+        let cursor = plugin.query.cursor(view.state.doc), ranges = [];
+        while (!cursor.next().done)
+            ranges.push(new SelectionRange(cursor.value.from, cursor.value.to));
+        if (!ranges.length)
+            return false;
+        view.dispatch(view.state.t().setSelection(EditorSelection.create(ranges)));
+        return true;
+    };
+    /// Replace the next instance of the search query.
+    const replaceNext = view => {
+        let plugin = beforeCommand(view);
+        if (typeof plugin == "boolean")
+            return plugin;
+        let cursor = plugin.query.cursor(view.state.doc, view.state.selection.primary.to).next();
+        if (cursor.done) {
+            cursor = plugin.query.cursor(view.state.doc, 0, view.state.selection.primary.from).next();
+            if (cursor.done)
+                return false;
+        }
+        view.dispatch(view.state.t()
+            .replace(cursor.value.from, cursor.value.to, plugin.query.replace)
+            .setSelection(EditorSelection.single(cursor.value.from, cursor.value.from + plugin.query.replace.length))
+            .scrollIntoView());
+        return true;
+    };
+    /// Replace all instances of the search query with the given
+    /// replacement.
+    const replaceAll = view => {
+        let plugin = beforeCommand(view);
+        if (typeof plugin == "boolean")
+            return plugin;
+        let cursor = plugin.query.cursor(view.state.doc), tr = view.state.t();
+        while (!cursor.next().done) {
+            let { from, to } = cursor.value;
+            tr.replace(tr.changes.mapPos(from, 1), tr.changes.mapPos(to, -1), plugin.query.replace);
+        }
+        if (!tr.docChanged)
+            return false;
+        view.dispatch(tr);
+        return true;
+    };
+    /// Default search-related bindings.
+    ///
+    ///  * Mod-f: [`findNext`](#search.findNext)
+    ///  * Mod-h: [`replaceNext`](#search.replaceNext)
+    ///  * F3: [`findNext`](#search.findNext)
+    ///  * Shift-F3: [`findPrevious`](#search.findPrevious)
+    const defaultSearchKeymap = {
+        "Mod-f": findNext,
+        "Mod-h": replaceNext,
+        "F3": findNext,
+        "Shift-F3": findPrevious
+    };
+    /// Make sure the search panel is open and focused.
+    const openSearchPanel = view => {
+        let plugin = view.plugin(searchPlugin);
+        if (!plugin)
+            return false;
+        if (!plugin.panel) {
+            let panel = buildPanel({
+                view,
+                keymap: view.behavior(panelKeymap)[0],
+                query: plugin.query,
+                updateQuery(query) {
+                    if (!query.eq(plugin.query))
+                        view.dispatch(view.state.t().annotate(searchAnnotation({ query })));
+                }
+            });
+            view.dispatch(view.state.t().annotate(searchAnnotation({ panel: { dom: panel, pos: 80, style: "search" } })));
+        }
+        if (plugin.panel)
+            plugin.panel.dom.querySelector("[name=search]").select();
+        return true;
+    };
+    /// Close the search panel.
+    const closeSearchPanel = view => {
+        let plugin = view.plugin(searchPlugin);
+        if (!plugin || !plugin.panel)
+            return false;
+        if (plugin.panel.dom.contains(view.root.activeElement))
+            view.focus();
+        view.dispatch(view.state.t().annotate(searchAnnotation({ panel: null })));
+        return true;
+    };
+    function elt(name, props = null, children = []) {
+        let e = document.createElement(name);
+        if (props)
+            for (let prop in props) {
+                let value = props[prop];
+                if (typeof value == "string")
+                    e.setAttribute(prop, value);
+                else
+                    e[prop] = value;
+            }
+        for (let child of children)
+            e.appendChild(typeof child == "string" ? document.createTextNode(child) : child);
+        return e;
+    }
+    function buildPanel(conf) {
+        function p(phrase) { return conf.view.phrase(phrase); }
+        let searchField = elt("input", {
+            value: conf.query.search,
+            placeholder: p("Find"),
+            "aria-label": p("Find"),
+            name: "search",
+            onchange: update,
+            onkeyup: update
+        });
+        let replaceField = elt("input", {
+            value: conf.query.replace,
+            placeholder: p("Replace"),
+            "aria-label": p("Replace"),
+            name: "replace",
+            onchange: update,
+            onkeyup: update
+        });
+        let caseField = elt("input", {
+            type: "checkbox",
+            name: "case",
+            checked: !conf.query.caseInsensitive,
+            onchange: update
+        });
+        function update() {
+            conf.updateQuery(new Query(searchField.value, replaceField.value, !caseField.checked));
+        }
+        function keydown(e) {
+            let mapped = conf.keymap.get(e);
+            if (mapped && mapped(conf.view)) {
+                e.preventDefault();
+            }
+            else if (e.keyCode == 27) {
+                e.preventDefault();
+                closeSearchPanel(conf.view);
+            }
+            else if (e.keyCode == 13 && e.target == searchField) {
+                e.preventDefault();
+                (e.shiftKey ? findPrevious : findNext)(conf.view);
+            }
+            else if (e.keyCode == 13 && e.target == replaceField) {
+                e.preventDefault();
+                replaceNext(conf.view);
+            }
+        }
+        let panel = elt("div", { onkeydown: keydown }, [
+            searchField,
+            elt("button", { name: "next", onclick: () => findNext(conf.view) }, [p("next")]),
+            elt("button", { name: "prev", onclick: () => findPrevious(conf.view) }, [p("previous")]),
+            elt("button", { name: "select", onclick: () => selectMatches(conf.view) }, [p("all")]),
+            elt("label", null, [caseField, "match case"]),
+            elt("br"),
+            replaceField,
+            elt("button", { name: "replace", onclick: () => replaceNext(conf.view) }, [p("replace")]),
+            elt("button", { name: "replaceAll", onclick: () => replaceAll(conf.view) }, [p("replace all")]),
+            elt("button", { name: "close", onclick: () => closeSearchPanel(conf.view), "aria-label": p("close") }, ["×"])
+        ]);
+        return panel;
+    }
+    const theme$1 = {
+        "panel.search": {
+            padding: "2px 6px 4px",
+            position: "relative",
+            "& [name=close]": {
+                position: "absolute",
+                top: "0",
+                right: "4px",
+                background: "inherit",
+                border: "none",
+                font: "inherit",
+                padding: 0,
+                margin: 0
+            },
+            "& input, & button": {
+                verticalAlign: "middle",
+                marginRight: ".5em"
+            },
+            "& label": {
+                fontSize: "80%"
+            }
+        },
+        searchMatch: {
+            background: "#ffa"
+        },
+        "searchMatch.selected": {
+            background: "#fca"
+        }
+    };
+
     var dist = createCommonjsModule(function (module, exports) {
 
     Object.defineProperty(exports, '__esModule', { value: true });
@@ -18869,307 +19889,6 @@
     unwrapExports(dist$1);
     var dist_1$1 = dist$1.parser;
 
-    const Inherit = 1;
-    /// A tag system defines a set of node (token) tags used for
-    /// highlighting. You'll usually want to use the
-    /// [default](#highlight.defaultTags) set, but it is possible to
-    /// define your own custom system when that doesn't fit your use case.
-    class TagSystem {
-        /// Define a tag system. Each tag identifies a type of syntactic
-        /// element, which can have a single type and any number of flags.
-        /// The `flags` argument should be an array of flag names, and the
-        /// `types` argument an array of type names. Type names may have a
-        /// `"name=parentName"` format to specify that this type is an
-        /// instance of some other type, which means that, if no styling for
-        /// the type itself is provided, it'll fall back to the parent
-        /// type's styling.
-        constructor(options) {
-            /// @internal
-            this.typeNames = [""];
-            /// A [node
-            /// prop](https://lezer.codemirror.net/docs/ref#tree.NodeProp) used
-            /// to associate styling tag information with syntax tree nodes.
-            this.prop = new tree_2();
-            this.flags = options.flags;
-            this.types = options.types;
-            this.flagMask = Math.pow(2, this.flags.length) - 1;
-            this.typeShift = this.flags.length + 1;
-            let parentNames = [undefined];
-            for (let type of options.types) {
-                let match = /^([\w\-]+)(?:=([\w-]+))?$/.exec(type);
-                if (!match)
-                    throw new RangeError("Invalid type name " + type);
-                this.typeNames.push(match[1]);
-                parentNames.push(match[2]);
-            }
-            this.parents = parentNames.map(name => {
-                if (name == null)
-                    return 0;
-                let id = this.typeNames.indexOf(name);
-                if (id < 0)
-                    throw new RangeError(`Unknown parent type '${name}' specified`);
-                return id;
-            });
-            if (this.flags.length > 29 || this.typeNames.length > Math.pow(2, 29 - this.flags.length))
-                throw new RangeError("Too many style tag flags to fit in a 30-bit integer");
-        }
-        /// Parse a tag name into a numeric ID. Only necessary if you are
-        /// manually defining [node properties](#highlight.TagSystem.prop)
-        /// for this system.
-        get(name) {
-            let value = name.charCodeAt(0) == 43 ? 1 : 0; // Check for leading '+'
-            for (let part of (value ? name.slice(1) : name).split(" "))
-                if (part) {
-                    let flag = this.flags.indexOf(part);
-                    if (flag > -1) {
-                        value += 1 << (flag + 1);
-                    }
-                    else {
-                        let typeID = this.typeNames.indexOf(part);
-                        if (typeID < 0)
-                            throw new RangeError(`Unknown tag type '${part}'`);
-                        if (value >> this.typeShift)
-                            throw new RangeError(`Multiple tag types specified in '${name}'`);
-                        value += typeID << this.typeShift;
-                    }
-                }
-            return value;
-        }
-        /// Create a
-        /// [`PropSource`](https://lezer.codemirror.net/docs/ref#tree.PropSource)
-        /// that adds node properties for this system. `tags` should map
-        /// node type
-        /// [selectors](https://lezer.codemirror.net/docs/ref#tree.NodeType^match)
-        /// to tag names.
-        add(tags) {
-            let match = tree_4.match(tags);
-            return this.prop.add((type) => {
-                let found = match(type);
-                return found == null ? undefined : this.get(found);
-            });
-        }
-        /// Create a highlighter extension for this system, styling the
-        /// given tags using the given CSS objects.
-        highlighter(spec) {
-            let styling = new Styling(this, spec);
-            let plugin = ViewPlugin.create(view => new Highlighter(view, this.prop, styling))
-                .decorations(h => h.decorations);
-            return [plugin.extension, EditorView.styleModule(styling.module)];
-        }
-        /// @internal
-        specificity(tag) {
-            let flags = tag & this.flagMask, spec = 0;
-            for (let i = 1; i <= this.flags.length; i++)
-                if (flags & (1 << i))
-                    spec++;
-            for (let type = tag >> (this.flags.length + 1); type; type = this.parents[type])
-                spec += 1000;
-            return spec;
-        }
-    }
-    /// The set of highlighting tags used by regular language packages and
-    /// themes.
-    const defaultTags = new TagSystem({
-        flags: ["invalid", "meta", "type2", "type3", "type4",
-            "link", "strong", "emphasis", "heading", "list", "quote",
-            "changed", "inserted", "deleted",
-            "definition", "constant", "control"],
-        types: [
-            "comment",
-            "lineComment=comment",
-            "blockComment=comment",
-            "name",
-            "variableName=name",
-            "typeName=name",
-            "propertyName=name",
-            "className=name",
-            "labelName=name",
-            "namespace=name",
-            "literal",
-            "string=literal",
-            "character=string",
-            "number=literal",
-            "integer=number",
-            "float=number",
-            "regexp=literal",
-            "escape=literal",
-            "color=literal",
-            "content",
-            "keyword",
-            "self=keyword",
-            "null=keyword",
-            "atom=keyword",
-            "unit=keyword",
-            "modifier=keyword",
-            "operatorKeyword=keyword",
-            "operator",
-            "derefOperator=operator",
-            "arithmeticOperator=operator",
-            "logicOperator=operator",
-            "bitwiseOperator=operator",
-            "compareOperator=operator",
-            "updateOperator=operator",
-            "typeOperator=operator",
-            "punctuation",
-            "separator=punctuation",
-            "bracket=punctuation",
-            "angleBracket=bracket",
-            "squareBracket=bracket",
-            "paren=bracket",
-            "brace=bracket"
-        ]
-    });
-    /// Used to add a set of tags to a language syntax via
-    /// [`Parser.withProps`](https://lezer.codemirror.net/docs/ref#lezer.Parser.withProps).
-    /// The argument object can use syntax node selectors (see
-    /// [`NodeType.match`](https://lezer.codemirror.net/docs/ref#tree.NodeType^match))
-    /// as property names, and tag names (in the [default tag
-    /// system](#highlight.defaultTags)) as values.
-    const styleTags = (tags) => defaultTags.add(tags);
-    /// Create a highlighter theme that adds the given styles to the given
-    /// tags. The spec's property names must be tag names, and the values
-    /// [`style-mod`](https://github.com/marijnh/style-mod#documentation)
-    /// style objects that define the CSS for that tag.
-    const highlighter = (spec) => defaultTags.highlighter(spec);
-    class StyleRule {
-        constructor(type, flags, specificity, cls) {
-            this.type = type;
-            this.flags = flags;
-            this.specificity = specificity;
-            this.cls = cls;
-        }
-    }
-    class Styling {
-        constructor(tags, spec) {
-            this.tags = tags;
-            this.cache = Object.create(null);
-            let modSpec = Object.create(null);
-            let nextCls = 0;
-            let rules = [];
-            for (let prop in spec) {
-                let tag = tags.get(prop);
-                let cls = "c" + nextCls++;
-                modSpec[cls] = spec[prop];
-                rules.push(new StyleRule(tag >> tags.typeShift, tag & tags.flagMask, tags.specificity(tag), cls));
-            }
-            this.rules = rules.sort((a, b) => b.specificity - a.specificity);
-            this.module = new StyleModule(modSpec);
-        }
-        match(tag) {
-            let known = this.cache[tag];
-            if (known != null)
-                return known;
-            let result = "";
-            let type = tag >> this.tags.typeShift, flags = tag & this.tags.flagMask;
-            for (;;) {
-                for (let rule of this.rules) {
-                    if (rule.type == type && (rule.flags & flags) == rule.flags) {
-                        if (result)
-                            result += " ";
-                        result += this.module[rule.cls];
-                        flags &= ~rule.flags;
-                        if (type)
-                            break;
-                    }
-                }
-                if (type)
-                    type = this.tags.parents[type];
-                else
-                    break;
-            }
-            return this.cache[tag] = result;
-        }
-    }
-    class Highlighter {
-        constructor(view, prop, styling) {
-            this.prop = prop;
-            this.styling = styling;
-            this.partialDeco = false;
-            this.syntax = null;
-            this.decorations = Decoration.none;
-            for (let s of view.state.behavior(EditorState.syntax)) {
-                this.syntax = s;
-                break;
-            }
-            this.buildDeco(view);
-        }
-        update(update) {
-            if (this.partialDeco || update.docChanged || update.viewportChanged)
-                this.buildDeco(update.view);
-        }
-        buildDeco(view) {
-            if (!this.syntax)
-                return;
-            let { from, to } = view.viewport;
-            let { tree, rest } = this.syntax.getTree(view.state, from, to);
-            this.partialDeco = !!rest;
-            if (rest)
-                view.waitFor(rest);
-            let tokens = [];
-            let start = from;
-            function flush(pos, style) {
-                if (pos > start && style)
-                    tokens.push(Decoration.mark(start, pos, { class: style }));
-                start = pos;
-            }
-            // The current node's own classes
-            let curClass = "";
-            let context = [];
-            let inherited = [];
-            tree.iterate({
-                from, to,
-                enter: (type, start) => {
-                    let inheritedClass = inherited.length ? inherited[inherited.length - 1] : "";
-                    let cls = inheritedClass;
-                    let style = type.prop(this.prop);
-                    if (style != null) {
-                        let val = this.styling.match(style);
-                        if (val) {
-                            if (cls)
-                                cls += " ";
-                            cls += val;
-                        }
-                        if (style & Inherit)
-                            inheritedClass = cls;
-                    }
-                    context.push(cls);
-                    if (inheritedClass)
-                        inherited.push(inheritedClass);
-                    if (cls != curClass) {
-                        flush(start, curClass);
-                        curClass = cls;
-                    }
-                },
-                leave: (_t, _s, end) => {
-                    context.pop();
-                    inherited.pop();
-                    let backTo = context.length ? context[context.length - 1] : "";
-                    if (backTo != curClass) {
-                        flush(Math.min(to, end), curClass);
-                        curClass = backTo;
-                    }
-                }
-            });
-            this.decorations = Decoration.set(tokens);
-        }
-    }
-    /// A default highlighter (works well with light themes).
-    const defaultHighlighter = highlighter({
-        invalid: { color: "#f00" },
-        keyword: { color: "#708" },
-        atom: { color: "#219" },
-        number: { color: "#164" },
-        string: { color: "#a11" },
-        character: { color: "#a11" },
-        regexp: { color: "#e40" },
-        escape: { color: "#e40" },
-        "variableName definition": { color: "#00f" },
-        typeName: { color: "#085" },
-        "propertyName definition": { color: "#00c" },
-        comment: { color: "#940" },
-        meta: { color: "#555" }
-    });
-
     const statementIndent = continuedIndent({ except: /^{/ });
     /// A syntax provider based on the [Lezer JavaScript
     /// parser](https://github.com/lezer-parser/javascript), extended with
@@ -19867,6 +20586,9 @@
     							history(),
     							specialChars(),
     							multipleSelections(),
+    							foldGutter(),
+    							defaultHighlighter,
+    							search({keymap: defaultSearchKeymap}),
     							mode,
     							// matchBrackets(),
     							keymap({
@@ -19892,6 +20614,9 @@
     							history(),
     							specialChars(),
     							multipleSelections(),
+    							foldGutter(),
+    							defaultHighlighter,
+    							search({keymap: defaultSearchKeymap}),
     							// mode,
     							// matchBrackets(),
     							keymap({
