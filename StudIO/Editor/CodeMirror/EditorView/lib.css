@@ -8,10 +8,10 @@ body {
 }
 
 .codemirror {
-	width: 100vw;
-	height: 100vh;
-	margin: 0;
-	overflow: auto;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow: auto;
 }
 
 .tip {
@@ -52,4 +52,23 @@ body {
 
 .cm-header-6 {
     font-size: 90%;
+}
+
+.codemirror-panel-search {
+    background: #1e1e1e;
+    font-size: 20px;
+    font-family: arial;
+}
+
+.codemirror-panel-search input {
+    background: black;
+    color: white;
+}
+
+.codemirror-panel-search button {
+    background: #555;
+    padding: 10px;
+    color: white;
+    border-radius: 2px;
+    border: 1px solid black;
 }
