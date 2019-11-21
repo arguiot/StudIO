@@ -5,18 +5,9 @@
 
 function ExportedMode(cmCfg, modeCfg) {
 	var htmlModeMissing = true
-	try {
-		var htmlMode = CodeMirror.getMode(cmCfg, "text/html");
-		htmlModeMissing = htmlMode.name == "null"
-	} catch(e) {}
-	
+
 	function getMode(name) {
-		if (CodeMirror.findModeByName) {
-			var found = CodeMirror.findModeByName(name);
-			if (found) name = found.mime || found.mimes[0];
-		}
-		var mode = CodeMirror.getMode(cmCfg, name);
-		return mode.name == "null" ? null : mode;
+		return null;
 	}
 
 	// Should characters that affect highlighting be highlighted separate?
@@ -122,17 +113,9 @@ function ExportedMode(cmCfg, modeCfg) {
 		// Reset state.indentedCode
 		state.indentedCode = false;
 		if (state.f == htmlBlock) {
-			var exit = htmlModeMissing
-			if (!exit) {
-				var inner = CodeMirror.innerMode(htmlMode, state.htmlState)
-				exit = inner.mode.name == "xml" && inner.state.tagStart === null &&
-					(!inner.state.context && inner.state.tokenize.isInText)
-			}
-			if (exit) {
-				state.f = inlineNormal;
-				state.block = blockNormal;
-				state.htmlState = null;
-			}
+			state.f = inlineNormal;
+			state.block = blockNormal;
+			state.htmlState = null;
 		}
 		// Reset state.trailingSpace
 		state.trailingSpace = 0;
@@ -231,18 +214,6 @@ function ExportedMode(cmCfg, modeCfg) {
 			state.f = state.inline;
 			if (modeCfg.highlightFormatting) state.formatting = ["list", "list-" + listType];
 			return getType(state);
-		} else if (firstTokenOnLine && state.indentation <= maxNonCodeIndentation && (match = stream.match(fencedCodeRE, true))) {
-			state.quote = 0;
-			state.fencedEndRE = new RegExp(match[1] + "+ *$");
-			// try switching mode
-			state.localMode = modeCfg.fencedCodeBlockHighlighting && getMode(match[2]);
-			if (state.localMode) state.localState = CodeMirror.startState(state.localMode);
-			state.f = state.block = local;
-			if (modeCfg.highlightFormatting) state.formatting = "code-block";
-			state.code = -1
-			return getType(state);
-			// SETEXT has lowest block-scope precedence after HR, so check it after
-			//  the others (code, blockquote, list...)
 		} else if (
 			// if setext set, indicates line after ---/===
 			state.setext || (
@@ -278,44 +249,8 @@ function ExportedMode(cmCfg, modeCfg) {
 	}
 
 	function htmlBlock(stream, state) {
-		var style = htmlMode.token(stream, state.htmlState);
-		if (!htmlModeMissing) {
-			var inner = CodeMirror.innerMode(htmlMode, state.htmlState)
-			if ((inner.mode.name == "xml" && inner.state.tagStart === null &&
-					(!inner.state.context && inner.state.tokenize.isInText)) ||
-				(state.md_inside && stream.current().indexOf(">") > -1)) {
-				state.f = inlineNormal;
-				state.block = blockNormal;
-				state.htmlState = null;
-			}
-		}
-		return style;
+		return null
 	}
-
-	function local(stream, state) {
-		var currListInd = state.listStack[state.listStack.length - 1] || 0;
-		var hasExitedList = state.indentation < currListInd;
-		var maxFencedEndInd = currListInd + 3;
-		if (state.fencedEndRE && state.indentation <= maxFencedEndInd && (hasExitedList || stream.match(state.fencedEndRE))) {
-			if (modeCfg.highlightFormatting) state.formatting = "code-block";
-			var returnType;
-			if (!hasExitedList) returnType = getType(state)
-			state.localMode = state.localState = null;
-			state.block = blockNormal;
-			state.f = inlineNormal;
-			state.fencedEndRE = null;
-			state.code = 0
-			state.thisLine.fencedCodeEnd = true;
-			if (hasExitedList) return switchBlock(stream, state, state.block);
-			return returnType;
-		} else if (state.localMode) {
-			return state.localMode.token(stream, state.localState);
-		} else {
-			stream.skipToEnd();
-			return tokenTypes.code;
-		}
-	}
-
 	// Inline
 	function getType(state) {
 		var styles = [];
@@ -562,17 +497,6 @@ function ExportedMode(cmCfg, modeCfg) {
 			return type + tokenTypes.linkEmail;
 		}
 
-		if (modeCfg.xml && ch === '<' && stream.match(/^(!--|\?|!\[CDATA\[|[a-z][a-z0-9-]*(?:\s+[a-z_:.\-]+(?:\s*=\s*[^>]+)?)*\s*(?:>|$))/i, false)) {
-			var end = stream.string.indexOf(">", stream.pos);
-			if (end != -1) {
-				var atts = stream.string.substring(stream.start, end);
-				if (/markdown\s*=\s*('|"){0,1}1('|"){0,1}/.test(atts)) state.md_inside = true;
-			}
-			stream.backUp(1);
-			state.htmlState = CodeMirror.startState(htmlMode);
-			return switchBlock(stream, state, htmlBlock);
-		}
-
 		if (modeCfg.xml && ch === '<' && stream.match(/^\/\w*?>/)) {
 			state.md_inside = false;
 			return "tag";
@@ -700,7 +624,7 @@ function ExportedMode(cmCfg, modeCfg) {
 	}
 
 	function getLinkHrefInside(endChar) {
-		return function(stream, state) {
+		return function (stream, state) {
 			var ch = stream.next();
 
 			if (ch === endChar) {
@@ -760,7 +684,7 @@ function ExportedMode(cmCfg, modeCfg) {
 	}
 
 	var mode = {
-		startState: function() {
+		startState: function () {
 			return {
 				f: blockNormal,
 
@@ -800,7 +724,7 @@ function ExportedMode(cmCfg, modeCfg) {
 			};
 		},
 
-		copyState: function(s) {
+		copyState: function (s) {
 			return {
 				f: s.f,
 
@@ -840,7 +764,7 @@ function ExportedMode(cmCfg, modeCfg) {
 			};
 		},
 
-		token: function(stream, state) {
+		token: function (stream, state) {
 
 			// Reset state.formatting
 			state.formatting = false;
@@ -879,7 +803,7 @@ function ExportedMode(cmCfg, modeCfg) {
 			return state.f(stream, state);
 		},
 
-		innerMode: function(state) {
+		innerMode: function (state) {
 			if (state.block == htmlBlock) return {
 				state: state.htmlState,
 				mode: htmlMode
@@ -894,7 +818,7 @@ function ExportedMode(cmCfg, modeCfg) {
 			};
 		},
 
-		indent: function(state, textAfter, line) {
+		indent: function (state, textAfter, line) {
 			if (state.block == htmlBlock && htmlMode.indent) return htmlMode.indent(state.htmlState, textAfter, line)
 			if (state.localState && state.localMode.indent) return state.localMode.indent(state.localState, textAfter, line)
 			return CodeMirror.Pass
