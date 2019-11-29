@@ -81,8 +81,10 @@ class GitVC: UIViewController {
             SwiftSpinner.hide()
         })
         DispatchQueue.global().async {
-            let email = UserDefaults.standard.string(forKey: "email") ?? ""
-            let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
+            let keychain = KeychainSwift()
+            keychain.synchronizable = true
+            let email = keychain.get("email") ?? ""
+            let passwd = keychain.get("password") ?? ""
             var creds: NSDictionary? = [:]
             if (email != "" || passwd != "") {
                 do {
@@ -131,8 +133,10 @@ class GitVC: UIViewController {
             SwiftSpinner.hide()
         })
         DispatchQueue.global().async {
-            let email = UserDefaults.standard.string(forKey: "email") ?? ""
-            let passwd = UserDefaults.standard.string(forKey: "password") ?? ""
+            let keychain = KeychainSwift()
+            keychain.synchronizable = true
+            let email = keychain.get("email") ?? ""
+            let passwd = keychain.get("password") ?? ""
             var creds: NSDictionary? = [:]
             if (email != "" || passwd != "") {
                 let git_cred = try? GTCredential(userName: email, password: passwd)

@@ -52,10 +52,12 @@ class LoginViewController: UIViewController {
         
         let userDefaults = UserDefaults.standard
         userDefaults.register(defaults: [ "auth": 0 ])
+        let keychain = KeychainSwift()
+        keychain.synchronizable = true
         self.hostnameTextField.text = userDefaults.string(forKey: "hostname")
         self.portTextField.text = userDefaults.string(forKey: "port")
-        self.usernameTextField.text = userDefaults.string(forKey: "username")
-        self.passwordTextField.text = userDefaults.string(forKey: "password")
+        self.usernameTextField.text = keychain.get("username")
+        self.passwordTextField.text = keychain.get("password")
         self.authenticationMethodControl.selectedSegmentIndex = userDefaults.integer(forKey: "auth")
         self.authenticationMethodControl.sendActions(for: .valueChanged)
         
@@ -70,10 +72,12 @@ class LoginViewController: UIViewController {
         segue.destination.modalPresentationStyle = .fullScreen
         
         let userDefaults = UserDefaults.standard
+        let keychain = KeychainSwift()
+        keychain.synchronizable = true
         userDefaults.set(self.hostnameTextField.text, forKey: "hostname")
         userDefaults.set(self.portTextField.text, forKey: "port")
-        userDefaults.set(self.usernameTextField.text, forKey: "username")
-        userDefaults.set(self.passwordTextField.text, forKey: "password")
+        keychain.set(self.usernameTextField.text ?? "", forKey: "username")
+        keychain.set(self.passwordTextField.text ?? "", forKey: "password")
         userDefaults.set(self.authenticationMethodControl.selectedSegmentIndex, forKey: "auth")
         userDefaults.synchronize()
         
