@@ -40,7 +40,6 @@ extension PluginsVC {
     }
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let row = indexPath.row
-        let section = indexPath.section
         
         let cell = tableView.cellForRow(at: indexPath) as! PluginCell
         let name = cell.name.text
