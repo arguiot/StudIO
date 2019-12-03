@@ -48,6 +48,7 @@
 	</dict>
 	<key>NSUserActivityTypes</key>
 	<array>
+		<string>com.ArthurG.StudIO.openFile</string>
 		<string>com.ArthurG.StudIO.inProject</string>
 	</array>
 	<key>UIAppFonts</key>

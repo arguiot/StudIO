@@ -128,7 +128,11 @@ extension WorkingDirMasterVC: UITableViewDragDelegate {
             guard let f = object.path as? File else { return out }
             let p = f.path
             let url = URL(fileURLWithPath: p)
-            
+            userActivity.userInfo = [
+                "type": "file",
+                "project": self.LoadManager?.project.path ?? "",
+                "url": url
+            ]
             let provider = NSItemProvider(contentsOf: url)
             provider?.registerObject(userActivity, visibility: .all)
             
@@ -139,7 +143,11 @@ extension WorkingDirMasterVC: UITableViewDragDelegate {
             guard let f = object.path as? Folder else { return out }
             let p = f.path
             let url = URL(fileURLWithPath: p)
-            
+            userActivity.userInfo = [
+                "type": "folder",
+                "project": self.LoadManager?.project.path ?? "",
+                "url": url
+            ]
             let provider = NSItemProvider(contentsOf: url)
             provider?.registerObject(userActivity, visibility: .all)
             
