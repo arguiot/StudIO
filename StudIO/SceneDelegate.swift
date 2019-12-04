@@ -35,11 +35,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func configure(window: UIWindow?, with activity: NSUserActivity) -> Bool {
         if activity.title == "openFile" {
             guard let infos = activity.userInfo else { return false }
-            guard let project = infos["project"] else { return false }
-            let storyboard = UIStoryboard(name: "Projects", bundle: nil)
-            guard let vc = storyboard.instantiateInitialViewController() as? RootVC else { return false }
+            guard let project = infos["project"] as? String else { return false }
+            guard let vc = window?.rootViewController as? RootVC else { return false }
             guard let projects = vc.topViewController as? ProjectVC else { return false }
             // Select project and open it.
+            let a = projects.project.firstIndex { (p) -> Bool in
+                return p.path.path == project
+            }
+            guard let i = a else { return false }
+            projects.collectionView.selectItem(at: IndexPath(row: i, section: 0), animated: false, scrollPosition: .top)
             return true
         }
         return false
