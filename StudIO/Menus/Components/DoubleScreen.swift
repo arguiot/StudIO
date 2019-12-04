@@ -25,8 +25,13 @@ extension WorkingDirMasterVC {
             let path = LoadManager!.project.path
             let repo = try! Repository.at(URL(fileURLWithPath: path)).get()
             controller.repo = repo
-            
-            controller.detailItem = (sender as! MenuCellStruct).path as? File
+            if sender is MenuCellStruct {
+                controller.detailItem = (sender as! MenuCellStruct).path as? File
+            } else if sender is URL {
+                guard let file = try? File(path: (sender as! URL).path) else { return }
+                controller.detailItem = file
+            }
+           
             controller.navigationItem.leftItemsSupplementBackButton = true
             guard let button = splitViewController?.displayModeButtonItem else { return }
             controller.navigationItem.leftBarButtonItems = [button]

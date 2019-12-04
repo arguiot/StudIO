@@ -43,7 +43,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return p.path.path == project
             }
             guard let i = a else { return false }
-            projects.collectionView.selectItem(at: IndexPath(row: i, section: 0), animated: false, scrollPosition: .top)
+            projects.hasToOpen = true
+            guard let path = infos["url"] as? URL else { return false }
+            projects.args = [
+                "indexPath": IndexPath(row: i, section: 0),
+                "path": path
+            ]
             return true
         }
         return false

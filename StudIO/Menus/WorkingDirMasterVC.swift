@@ -15,7 +15,10 @@ class WorkingDirMasterVC: UITableViewController {
     var detailViewController: WorkingDirDetailVC? = nil
     var objects = [MenuCellStruct]()
     var LoadManager: LoadFilesMenu?
-
+    
+    var hasToOpen = false
+    var args: [String: Any]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -41,6 +44,11 @@ class WorkingDirMasterVC: UITableViewController {
         
         // Automatically reload files
         NotificationCenter.default.addObserver(self, selector: #selector(reloadInterface(_:)), name: .init("reloadEditorMenu"), object: nil)
+        
+        if hasToOpen {
+            guard let path = args?["path"] as? URL else { return }
+            self.performSegue(withIdentifier: "showEditor", sender: path)
+        }
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         UIApplication.shared.statusBarStyle = .lightContent

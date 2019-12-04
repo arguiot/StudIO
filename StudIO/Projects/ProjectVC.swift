@@ -15,7 +15,8 @@ class ProjectVC: UICollectionViewController {
     
     var project: [Project] = LoadProjects().getProjects()
     
-    
+    var hasToOpen = false
+    var args: [String: Any]?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +47,11 @@ class ProjectVC: UICollectionViewController {
         let terminal = UIBarButtonItem(image: #imageLiteral(resourceName: "Terminal").scaleImage(toSize: CGSize(width: 10, height: 10)), style: .plain, target: self, action: #selector(openTerminal(_:)))
         terminal.tintColor = .lightGray
         self.navigationItem.rightBarButtonItems?.append(terminal)
+        
+        if hasToOpen {
+            guard let indexPath = args?["indexPath"] as? IndexPath else { return }
+            self.prepareSegue(indexPath: indexPath)
+        }
     }
     @IBAction func openTerminal(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -66,6 +72,10 @@ class ProjectVC: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        prepareSegue(indexPath: indexPath)
+    }
+    
+    func prepareSegue(indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateInitialViewController()
         vc?.modalPresentationStyle = .fullScreen
@@ -78,30 +88,27 @@ class ProjectVC: UICollectionViewController {
             navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
             splitViewController.delegate = appDelegate
             
-            if let indexPath = collectionView.indexPathsForSelectedItems {
-                var row: Int
-                if indexPath.count == 0 {
-                    row = collectionViewKeyCommandsController.focussedIndexPath?.last ?? 0
-                } else {
-                    row = indexPath[0].row
-                }
-                let master = splitViewController.viewControllers.first as! UINavigationController
-                let m = master.topViewController as! WorkingDirMasterVC
-                m.title = project[row].name
-                m.LoadManager = LoadFilesMenu(p: project[row].path)
-                
-                // repo
-                let editor = splitViewController.viewControllers.last as! UINavigationController
-                let e = editor.topViewController as! WorkingDirDetailVC
-                let p = self.project[row].path
-                let path = URL(fileURLWithPath: p.path)
-                let repo = Repository.at(path)
-                switch repo {
-                case .success(let r):
-                    e.repo = r
-                case .failure(let error):
-                    NSObject.alert(t: "Couldn't transfer repo", m: error.localizedDescription)
-                }
+            let row = indexPath.row
+            let master = splitViewController.viewControllers.first as! UINavigationController
+            let m = master.topViewController as! WorkingDirMasterVC
+            m.title = project[row].name
+            m.LoadManager = LoadFilesMenu(p: project[row].path)
+            
+            if hasToOpen {
+                m.hasToOpen = true
+                m.args = self.args
+            }
+            // repo
+            let editor = splitViewController.viewControllers.last as! UINavigationController
+            let e = editor.topViewController as! WorkingDirDetailVC
+            let p = self.project[row].path
+            let path = URL(fileURLWithPath: p.path)
+            let repo = Repository.at(path)
+            switch repo {
+            case .success(let r):
+                e.repo = r
+            case .failure(let error):
+                NSObject.alert(t: "Couldn't transfer repo", m: error.localizedDescription)
             }
         }
         
