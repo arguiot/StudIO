@@ -116,6 +116,9 @@ extension WorkingDirMasterVC: UITableViewDragDelegate {
     
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        
+        detailViewController?.save() // saving before doing anything stupid
+        
         var out = [UIDragItem]()
         let object = objects[indexPath.row]
         
@@ -140,20 +143,7 @@ extension WorkingDirMasterVC: UITableViewDragDelegate {
             item.localObject = object
             out.append(item)
         case .folder:
-            guard let f = object.path as? Folder else { return out }
-            let p = f.path
-            let url = URL(fileURLWithPath: p)
-            userActivity.userInfo = [
-                "type": "folder",
-                "project": self.LoadManager?.project.path ?? "",
-                "url": url
-            ]
-            let provider = NSItemProvider(contentsOf: url)
-            provider?.registerObject(userActivity, visibility: .all)
-            
-            let item = UIDragItem(itemProvider: provider!)
-            item.localObject = object
-            out.append(item)
+            return out
         }
         
         return out
