@@ -77,11 +77,20 @@ class Editor: UIView, WKUIDelegate {
         let arr = lang.split(separator: ".")
         let ext = String(arr.last ?? "").uppercased()
         highlightExt = ext
+        
+        let img = ["PNG", "JPG", "JPEG"]
         if codeView.isLoading == false {
             self.setListen()
-            codeView.evaluateJavaScript("try{StudIO_loadFile('\(content ?? "")', '\(ext)')}catch(e){console.log(e)}") { (result, error) in
-//                print(result, error)
+            if (img.contains(ext)) {
+                codeView.evaluateJavaScript("try{StudIO_loadImg('\(content ?? "")', '\(ext)')}catch(e){console.log(e)}") { (result, error) in
+                //                print(result, error)
+                }
+            } else {
+                codeView.evaluateJavaScript("try{StudIO_loadFile('\(content ?? "")', '\(ext)')}catch(e){console.log(e)}") { (result, error) in
+                //                print(result, error)
+                }
             }
+            
         }
     }
     func getData(_ handler: @escaping (Data?, Error?) -> Void) {

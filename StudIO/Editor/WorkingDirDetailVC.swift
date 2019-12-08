@@ -144,14 +144,21 @@ class WorkingDirDetailVC: UIViewController {
     }
     
     func codeEditor(_ str: String) {
-        guard let c = editorView else { return }
-        guard let content = try? file?.read().base64EncodedString() else { return }
+        let arr = str.split(separator: ".")
+        let ext = String(arr[arr.count - 1]).uppercased()
         
+        guard let c = editorView else { return }
+        guard var content = try? file?.read().base64EncodedString() else { return }
+        let img = ["PNG", "JPG", "JPEG"]
+        if img.contains(ext) {
+            guard let path = file?.path else { return }
+            let image = UIImage(contentsOfFile: path)
+            guard let data = image?.jpegData(compressionQuality: 0.4) else { return }
+            content = data.base64EncodedString() 
+        }
         c.loadFile(withContent: content, lang: str)
         c.fileName = str
         
-        let arr = str.split(separator: ".")
-        let ext = String(arr[arr.count - 1]).uppercased()
         
         guard let editorSplit = self.splitViewController as? EditorSplitVC else { return }
         editorSplit.accessory.extension = ext
