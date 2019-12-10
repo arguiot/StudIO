@@ -579,12 +579,26 @@ DQ
                                 <outlet property="delegate" destination="H1p-Uh-vWS" id="9P1-gN-3hK"/>
                             </connections>
                         </collectionView>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oF7-jv-KL7">
+                            <rect key="frame" x="369" y="13.666666666666664" width="45" height="33"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="45" id="hc4-aC-8Ax"/>
+                                <constraint firstAttribute="height" constant="33" id="nF5-eX-2yz"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <state key="normal" image="eye"/>
+                            <connections>
+                                <action selector="openPreview:" destination="QTT-vS-s35" eventType="touchUpInside" id="3kL-Mz-Cgh"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                     <constraints>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="Poa-3S-WET" secondAttribute="bottom" constant="10" id="5Nf-DX-m1d"/>
                         <constraint firstItem="Aq1-as-fcK" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="17" id="Axr-kQ-Ah9"/>
                         <constraint firstItem="iRH-Qa-oVU" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="5" id="Can-hn-Bi9"/>
+                        <constraint firstItem="oF7-jv-KL7" firstAttribute="trailing" secondItem="VVK-Fb-8vw" secondAttribute="trailing" id="Nsg-dH-sCl"/>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="iRH-Qa-oVU" secondAttribute="bottom" constant="5" id="RGF-Tk-1d5"/>
                         <constraint firstItem="Poa-3S-WET" firstAttribute="leading" secondItem="7vl-a8-6Jr" secondAttribute="trailing" constant="8" id="cak-Ak-d29"/>
                         <constraint firstItem="7vl-a8-6Jr" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="5" id="crf-PE-bpQ"/>
@@ -594,6 +608,7 @@ DQ
                         <constraint firstItem="7vl-a8-6Jr" firstAttribute="leading" secondItem="VVK-Fb-8vw" secondAttribute="leading" id="nG5-FC-XZb"/>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="trailing" secondItem="Poa-3S-WET" secondAttribute="trailing" constant="20" id="poj-l1-W42"/>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="7vl-a8-6Jr" secondAttribute="bottom" constant="10" id="tQZ-1c-xiG"/>
+                        <constraint firstItem="oF7-jv-KL7" firstAttribute="centerY" secondItem="QTT-vS-s35" secondAttribute="centerY" id="yAd-Jq-XVb"/>
                         <constraint firstItem="Poa-3S-WET" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="10" id="zSm-ns-nrB"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="VVK-Fb-8vw"/>
@@ -601,6 +616,7 @@ DQ
                         <outlet property="bulb" destination="7vl-a8-6Jr" id="pSw-Eh-gRW"/>
                         <outlet property="completionView" destination="iRH-Qa-oVU" id="YfW-Kb-fZN"/>
                         <outlet property="loader" destination="Aq1-as-fcK" id="ZC0-uN-F48"/>
+                        <outlet property="preview" destination="oF7-jv-KL7" id="h8L-kp-BsU"/>
                         <outlet property="questionInput" destination="Poa-3S-WET" id="Rym-rl-T6l"/>
                     </connections>
                 </view>
@@ -1021,6 +1037,7 @@ DQ
     <resources>
         <image name="IntroCompletion" width="128" height="128"/>
         <image name="bulb" width="384" height="384"/>
+        <image name="eye" width="68" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mXQ-Ca-nUI"/>

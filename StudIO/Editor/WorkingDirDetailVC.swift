@@ -161,7 +161,7 @@ class WorkingDirDetailVC: UIViewController {
         
         
         guard let editorSplit = self.splitViewController as? EditorSplitVC else { return }
-        editorSplit.accessory.extension = ext
+        editorSplit.accessory.extension = ext.lowercased()
         
         c.highlightExt = ext
         

@@ -14,12 +14,39 @@ class SmartKeyboard: UIView {
     @IBOutlet weak var loader: UIActivityIndicatorView!
     
     @IBOutlet weak var bulb: UIButton!
+    @IBOutlet weak var preview: UIButton!
     @IBOutlet weak var questionInput: UITextField!
     
     @IBOutlet weak var completionView: UICollectionView!
     var state = false
     
-    var `extension` = "js"
+    var `extension` = "js" {
+        didSet {
+            let previews = ["md", "tex"]
+            if previews.contains(self.extension) {
+                self.preview.isHidden = false
+            }
+        }
+    }
+    var pstate = false
+    @IBAction func openPreview(_ sender: Any) {
+        if pstate == true {
+            pstate = false
+            if #available(iOS 13.0, *) {
+                self.preview.tintColor = .label
+            } else {
+                self.preview.tintColor = .black
+            }
+            
+            NotificationCenter.default.post(name: .init("disablePreview"), object: nil, userInfo: nil)
+        } else {
+            pstate = true
+            self.preview.tintColor = .blue
+            
+            NotificationCenter.default.post(name: .init("enablePreview"), object: nil, userInfo: nil)
+            
+        }
+    }
     @IBAction func cheatCode(_ sender: Any) {
         questionInput.isHidden = state
         completionView.isHidden = !state
@@ -40,7 +67,11 @@ class SmartKeyboard: UIView {
             UIView.animate(withDuration: 0.5, animations: {
                 self.questionInput.center.y += self.bounds.height
                 self.questionInput.alpha = 0
-                self.bulb.tintColor = .black
+                if #available(iOS 13.0, *) {
+                    self.bulb.tintColor = .label
+                } else {
+                    self.bulb.tintColor = .black
+                }
             }) { (done) in
                 self.questionInput.center.y -= self.bounds.height
                 self.questionInput.text = ""

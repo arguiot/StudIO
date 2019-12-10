@@ -133,6 +133,7 @@ class EditorSplitVC: UISplitViewController {
         CompletionFeature(title: "-", type: .small),
         CompletionFeature(title: "*", type: .small),
         CompletionFeature(title: "/", type: .small),
+        CompletionFeature(title: "\\", type: .small)
     ]
 }
 

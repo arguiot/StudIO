@@ -327,7 +327,7 @@ class ProjectVC: UICollectionViewController {
                 let username = textField?.text
                 alert?.dismiss(animated: true, completion: nil)
                 //1. Create the alert controller.
-                let alert = UIAlertController(title: "Password".localized(), message: "Please enter your git password".localized(), preferredStyle: .alert)
+                let alert = UIAlertController(title: "Password".localized(), message: "Please enter your git password (or 2FA token)".localized(), preferredStyle: .alert)
                 
                 //2. Add the text field. You can configure it however you need.
                 alert.addTextField { (textField) in

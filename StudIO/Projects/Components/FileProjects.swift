@@ -54,7 +54,7 @@ class CreateProject {
                 let p = Project(project: name, path: f)
                 handler(p)
             case .failure(let error):
-                alert(error.localizedDescription )
+                alert(error.localizedDescription)
                 if f.files.count == 0 || f.subfolders.count == 0 {
                     try? f.delete()
                 }

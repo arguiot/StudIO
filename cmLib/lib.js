@@ -181,6 +181,12 @@ class editor {
 		}
 		document.execCommand('insertText', false, str)
 	}
+	enablePreview() {
+
+	}
+	disablePreview() {
+		
+	}
 	moveLineDown() {
 		if (window.view.state.doc.toString() == "") return ""
 		const index = window.view.state.selection.ranges[0].anchor
