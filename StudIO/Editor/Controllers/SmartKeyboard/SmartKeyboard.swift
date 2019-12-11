@@ -25,6 +25,16 @@ class SmartKeyboard: UIView {
             let previews = ["md", "tex"]
             if previews.contains(self.extension) {
                 self.preview.isHidden = false
+                let color = UIColor.create(light: UIColor(red: 203 / 255, green: 205 / 255, blue: 210 / 255, alpha: 1.0), dark: UIColor(red: 40 / 255, green: 40 / 255, blue: 40 / 255, alpha: 1.0))
+                self.preview.backgroundColor = color
+                
+                self.pstate = false
+                if #available(iOS 13.0, *) {
+                    self.preview.tintColor = .label
+                } else {
+                    self.preview.tintColor = .black
+                }
+                
             } else {
                 self.preview.isHidden = true
             }

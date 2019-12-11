@@ -66,6 +66,8 @@ class WorkingDirDetailVC: UIViewController {
         // Listen for events
         NotificationCenter.default.addObserver(self, selector: #selector(insertSnippet(notification:)), name: .init("insertSnippet"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadInterface(_:)), name: .init("reloadEditorMenu"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enablePreview(notification:)), name: .init("enablePreview"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(disablePreview(notification:)), name: .init("disab;ePreview"), object: nil)
         // Double screen
         observe()
         

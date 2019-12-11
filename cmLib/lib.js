@@ -192,11 +192,12 @@ class editor {
 		document.body.innerHTML = "<div class=\"tip\">Loading</div>"
 		script.onload = () => {
 			if (ext == "tex") {
-				const pdftex = new PDFTeX();
+				// const pdftex = new PDFTeX();
 				const latex_code = window.view.state.doc.toString()
-				pdftex.compile(latex_code).then(pdf => {
-					window.location = pdf
-				})
+				// pdftex.compile(latex_code).then(pdf => {
+				// 	window.location = pdf
+				// })
+				window.location = `https://latexonline.cc/compile?text=${encodeURIComponent(latex_code)}`
 			} else if (ext == "md") {
 				const converter = new showdown.Converter()
 				const text = window.view.state.doc.toString()

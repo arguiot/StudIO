@@ -10731,11 +10731,12 @@
 			document.body.innerHTML = "<div class=\"tip\">Loading</div>";
 			script.onload = () => {
 				if (ext == "tex") {
-					var pdftex = new PDFTeX();
+					// var pdftex = new PDFTeX();
 					var latex_code = window.view.state.doc.toString();
-					pdftex.compile(latex_code).then(pdf => {
-						window.location = pdf;
-					});
+					// pdftex.compile(latex_code).then(pdf => {
+					// 	window.location = pdf
+					// })
+					window.location = `https://latexonline.cc/compile?text=${encodeURIComponent(latex_code)}`;
 				} else if (ext == "md") {
 					var converter = new showdown.Converter();
 					var text = window.view.state.doc.toString();
