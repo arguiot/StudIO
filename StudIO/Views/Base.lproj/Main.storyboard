@@ -481,8 +481,23 @@ DQ
                                 <constraint firstAttribute="height" constant="20" id="un0-bT-lbw"/>
                             </constraints>
                         </activityIndicatorView>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oF7-jv-KL7">
+                            <rect key="frame" x="344" y="5" width="70" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="70" id="hc4-aC-8Ax"/>
+                                <constraint firstAttribute="height" constant="50" id="nF5-eX-2yz"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <state key="normal" image="eye">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                            </state>
+                            <connections>
+                                <action selector="openPreview:" destination="QTT-vS-s35" eventType="touchUpInside" id="3kL-Mz-Cgh"/>
+                            </connections>
+                        </button>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iRH-Qa-oVU">
-                            <rect key="frame" x="53" y="5" width="341" height="50"/>
+                            <rect key="frame" x="53" y="5" width="361" height="50"/>
                             <color key="backgroundColor" red="0.79607843140000001" green="0.80784313730000001" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wc0-ku-PDe">
                                 <size key="itemSize" width="50" height="50"/>
@@ -579,19 +594,6 @@ DQ
                                 <outlet property="delegate" destination="H1p-Uh-vWS" id="9P1-gN-3hK"/>
                             </connections>
                         </collectionView>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oF7-jv-KL7">
-                            <rect key="frame" x="369" y="13.666666666666664" width="45" height="33"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="45" id="hc4-aC-8Ax"/>
-                                <constraint firstAttribute="height" constant="33" id="nF5-eX-2yz"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <state key="normal" image="eye"/>
-                            <connections>
-                                <action selector="openPreview:" destination="QTT-vS-s35" eventType="touchUpInside" id="3kL-Mz-Cgh"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                     <constraints>
@@ -604,7 +606,7 @@ DQ
                         <constraint firstItem="7vl-a8-6Jr" firstAttribute="top" secondItem="VVK-Fb-8vw" secondAttribute="top" constant="5" id="crf-PE-bpQ"/>
                         <constraint firstItem="Aq1-as-fcK" firstAttribute="leading" secondItem="VVK-Fb-8vw" secondAttribute="leading" constant="12" id="dgb-nD-oSg"/>
                         <constraint firstItem="iRH-Qa-oVU" firstAttribute="leading" secondItem="7vl-a8-6Jr" secondAttribute="trailing" constant="8" id="gMd-Pb-Aez"/>
-                        <constraint firstItem="VVK-Fb-8vw" firstAttribute="trailing" secondItem="iRH-Qa-oVU" secondAttribute="trailing" constant="20" id="hiQ-m3-pNW"/>
+                        <constraint firstItem="VVK-Fb-8vw" firstAttribute="trailing" secondItem="iRH-Qa-oVU" secondAttribute="trailing" id="hiQ-m3-pNW"/>
                         <constraint firstItem="7vl-a8-6Jr" firstAttribute="leading" secondItem="VVK-Fb-8vw" secondAttribute="leading" id="nG5-FC-XZb"/>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="trailing" secondItem="Poa-3S-WET" secondAttribute="trailing" constant="20" id="poj-l1-W42"/>
                         <constraint firstItem="VVK-Fb-8vw" firstAttribute="bottom" secondItem="7vl-a8-6Jr" secondAttribute="bottom" constant="10" id="tQZ-1c-xiG"/>

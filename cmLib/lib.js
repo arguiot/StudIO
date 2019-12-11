@@ -26,6 +26,7 @@ import {
 	NotificationCenter
 } from "./components/broadcast.js"
 import BufferCenter from "./components/buffer.js"
+import expand from './components/emmet.es.js';
 
 class editor {
 	constructor(ext, value, settings) {
@@ -260,6 +261,11 @@ class editor {
 	}
 	setCompletion(a, b, c) {
 		window.webkit.messageHandlers.completion.postMessage([a, b, c])
+	}
+
+	expandEmmet(src) {
+		const text = expand(src)
+		this.insertSnippet(text)
 	}
 
 	registerPlugin({
