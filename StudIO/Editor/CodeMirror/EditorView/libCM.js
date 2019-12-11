@@ -10583,7 +10583,7 @@
 			// Clearing view
 			this.clear();
 			if (ext == null && value == null) {
-				document.addEventListener("DOMContentLoaded", function() {
+				document.addEventListener("DOMContentLoaded", function () {
 					// Do something...
 				});
 			} else {
@@ -10593,13 +10593,13 @@
 				}
 
 				var script = document.createElement('script');
-				script.onload = function() {
+				script.onload = function () {
 					var m = null;
 					try {
 						m = ExportedMode({
 							indentUnit: 2
 						});
-					} catch(e) {
+					} catch (e) {
 						if (typeof ExportedMode != "undefined") {
 							m = ExportedMode({
 								indentUnit: 2
@@ -10628,7 +10628,9 @@
 							keymap$1({
 								"Mod-z": undo,
 								"Mod-Shift-z": redo,
-								"Mod-u": function(view) { return undoSelection(view) || true },
+								"Mod-u": function (view) {
+									return undoSelection(view) || true
+								},
 								[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
 								"Ctrl-y": isMac ? undefined : redo,
 								"Shift-Tab": indentSelection
@@ -10694,7 +10696,7 @@
 		load(file) {
 			this.clear();
 			if (typeof this.cm == "undefined") {
-				setTimeout(function() {
+				setTimeout(function () {
 					this.load(file);
 				}.bind(this), 16); // Waiting 16ms (~ 1 frame) before rendering for letting WKWebView parse and process everything. Otherwise, we do it again and again.
 			} else {
@@ -10722,6 +10724,37 @@
 				}
 			}
 			document.execCommand('insertText', false, str);
+		}
+		enablePreview(ext) {
+			// Load TexLive.js
+			var script = document.createElement('script');
+			document.body.innerHTML = "<div class=\"tip\">Loading</div>";
+			script.onload = () => {
+				if (ext == "tex") {
+					var pdftex = new PDFTeX();
+					var latex_code = window.view.state.doc.toString();
+					pdftex.compile(latex_code).then(pdf => {
+						window.location = pdf;
+					});
+				} else if (ext == "md") {
+					var converter = new showdown.Converter();
+					var text = window.view.state.doc.toString();
+					var html = converter.makeHtml(text);
+					document.body.innerHTML = "<div class=\"markdown-body\">Loading</div>";
+					document.querySelector(".markdown-body").innerHTML = html;
+				}
+			};
+			if (ext == "tex") {
+				script.src = `TexLive/pdftex.js`;
+			} else if (ext == "md") {
+				script.src = `./showdown.js`;
+				var link = document.createElement('link');
+				link.rel = "stylesheet";
+				link.href = "./ghmd.css";
+				document.head.appendChild(link);
+			}
+
+			document.head.appendChild(script);
 		}
 		moveLineDown() {
 			if (window.view.state.doc.toString() == "") return ""
@@ -10753,10 +10786,10 @@
 		listenForAutomcompletion() {
 			if (typeof this.c == "undefined") {
 				this.c = new Completion(window.view.state.doc.toString());
-			} else if (typeof this.c.init != "undefined"){
+			} else if (typeof this.c.init != "undefined") {
 				this.c.init(window.view.state.doc.toString());
 			}
-			var parseAndPropose = async function() {
+			var parseAndPropose = async function () {
 				var currentWord = this.c.getLastToken();
 				var suggestions = this.c.getSuggestions(currentWord[0], this.c.getContent(currentWord[0], currentWord[1]));
 				this.setCompletion(...suggestions);
@@ -10767,7 +10800,10 @@
 			window.webkit.messageHandlers.completion.postMessage([a, b, c]);
 		}
 
-		registerPlugin({ obj, type }) {
+		registerPlugin({
+			obj,
+			type
+		}) {
 			this.plugins.push(new obj(type));
 			if (type == "hint") {
 				this.c = this.plugins[this.plugins.length - 1];
@@ -10782,7 +10818,7 @@
 		editor: editor,
 		Text: text$1,
 		Completion: Completion,
-		add: function(obj, type) {
+		add: function (obj, type) {
 			BufferCenter$1.default.addTask("execute", () => {
 				var plugin = new Notification("registerPlugin", {
 					obj: obj,

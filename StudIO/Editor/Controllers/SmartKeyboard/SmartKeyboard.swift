@@ -25,6 +25,8 @@ class SmartKeyboard: UIView {
             let previews = ["md", "tex"]
             if previews.contains(self.extension) {
                 self.preview.isHidden = false
+            } else {
+                self.preview.isHidden = true
             }
         }
     }

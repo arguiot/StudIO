@@ -21,7 +21,10 @@ const text = libCM.text
 import completion from "./completion/index.js"
 import autocomplete from "./plugin/autocomplete.js"
 import plugin from "./plugin/plugin.js"
-import {Notification, NotificationCenter} from "./components/broadcast.js"
+import {
+	Notification,
+	NotificationCenter
+} from "./components/broadcast.js"
 import BufferCenter from "./components/buffer.js"
 
 class editor {
@@ -39,7 +42,7 @@ class editor {
 		// Clearing view
 		this.clear()
 		if (ext == null && value == null) {
-			document.addEventListener("DOMContentLoaded", function() {
+			document.addEventListener("DOMContentLoaded", function () {
 				// Do something...
 			})
 		} else {
@@ -49,13 +52,13 @@ class editor {
 			}
 
 			const script = document.createElement('script');
-			script.onload = function() {
+			script.onload = function () {
 				var m = null
 				try {
 					m = ExportedMode({
 						indentUnit: 2
 					})
-				} catch(e) {
+				} catch (e) {
 					if (typeof ExportedMode != "undefined") {
 						m = ExportedMode({
 							indentUnit: 2
@@ -84,7 +87,9 @@ class editor {
 						keymap({
 							"Mod-z": undo,
 							"Mod-Shift-z": redo,
-							"Mod-u": function(view) { return undoSelection(view) || true },
+							"Mod-u": function (view) {
+								return undoSelection(view) || true
+							},
 							[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
 							"Ctrl-y": isMac ? undefined : redo,
 							"Shift-Tab": indentSelection
@@ -152,7 +157,7 @@ class editor {
 	load(file) {
 		this.clear()
 		if (typeof this.cm == "undefined") {
-			setTimeout(function() {
+			setTimeout(function () {
 				this.load(file)
 			}.bind(this), 16) // Waiting 16ms (~ 1 frame) before rendering for letting WKWebView parse and process everything. Otherwise, we do it again and again.
 		} else {
@@ -181,11 +186,36 @@ class editor {
 		}
 		document.execCommand('insertText', false, str)
 	}
-	enablePreview() {
+	enablePreview(ext) {
+		// Load TexLive.js
+		const script = document.createElement('script');
+		document.body.innerHTML = "<div class=\"tip\">Loading</div>"
+		script.onload = () => {
+			if (ext == "tex") {
+				const pdftex = new PDFTeX();
+				const latex_code = window.view.state.doc.toString()
+				pdftex.compile(latex_code).then(pdf => {
+					window.location = pdf
+				})
+			} else if (ext == "md") {
+				const converter = new showdown.Converter()
+				const text = window.view.state.doc.toString()
+				const html = converter.makeHtml(text);
+				document.body.innerHTML = "<div class=\"markdown-body\">Loading</div>"
+				document.querySelector(".markdown-body").innerHTML = html
+			}
+		}
+		if (ext == "tex") {
+			script.src = `TexLive/pdftex.js`;
+		} else if (ext == "md") {
+			script.src = `./showdown.js`;
+			const link = document.createElement('link');
+			link.rel = "stylesheet"
+			link.href = "./ghmd.css"
+			document.head.appendChild(link);
+		}
 
-	}
-	disablePreview() {
-		
+		document.head.appendChild(script);
 	}
 	moveLineDown() {
 		if (window.view.state.doc.toString() == "") return ""
@@ -217,10 +247,10 @@ class editor {
 	listenForAutomcompletion() {
 		if (typeof this.c == "undefined") {
 			this.c = new completion(window.view.state.doc.toString())
-		} else if (typeof this.c.init != "undefined"){
+		} else if (typeof this.c.init != "undefined") {
 			this.c.init(window.view.state.doc.toString())
 		}
-		const parseAndPropose = async function() {
+		const parseAndPropose = async function () {
 			const currentWord = this.c.getLastToken()
 			const suggestions = this.c.getSuggestions(currentWord[0], this.c.getContent(currentWord[0], currentWord[1]))
 			this.setCompletion(...suggestions)
@@ -231,7 +261,10 @@ class editor {
 		window.webkit.messageHandlers.completion.postMessage([a, b, c])
 	}
 
-	registerPlugin({ obj, type }) {
+	registerPlugin({
+		obj,
+		type
+	}) {
 		this.plugins.push(new obj(type))
 		if (type == "hint") {
 			this.c = this.plugins[this.plugins.length - 1]
@@ -246,7 +279,7 @@ export default {
 	editor: editor,
 	Text: text,
 	Completion: completion,
-	add: function(obj, type) {
+	add: function (obj, type) {
 		BufferCenter.default.addTask("execute", () => {
 			const plugin = new Notification("registerPlugin", {
 				obj: obj,

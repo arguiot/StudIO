@@ -127,36 +127,4 @@ extension WorkingDirDetailVC {
             }
         }
     }
-    @objc func enablePreview(notification: Notification) {
-        let js = """
-        try {
-            window.e.enablePreview()
-        } catch(e) {
-            console.log(e)
-        }
-        """
-        DispatchQueue.main.async {
-            self.editorView.codeView.evaluateJavaScript(js) { (result, error) in
-                if error != nil {
-                    NSObject.alert(t: "Preview error", m: error?.localizedDescription ?? "Couldn't load preview")
-                }
-            }
-        }
-    }
-    @objc func disablePreview(notification: Notification) {
-        let js = """
-        try {
-            window.e.disablePreview()
-        } catch(e) {
-            console.log(e)
-        }
-        """
-        DispatchQueue.main.async {
-            self.editorView.codeView.evaluateJavaScript(js) { (result, error) in
-                if error != nil {
-                    NSObject.alert(t: "Preview error", m: error?.localizedDescription ?? "Couldn't disable preview")
-                }
-            }
-        }
-    }
 }
