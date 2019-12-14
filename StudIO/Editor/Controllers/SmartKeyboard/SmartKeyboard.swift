@@ -22,7 +22,7 @@ class SmartKeyboard: UIView {
     
     var `extension` = "js" {
         didSet {
-            let previews = ["md", "tex"]
+            let previews = ["md", "tex", "html"]
             if previews.contains(self.extension) {
                 self.preview.isHidden = false
                 let color = UIColor.create(light: UIColor(red: 203 / 255, green: 205 / 255, blue: 210 / 255, alpha: 1.0), dark: UIColor(red: 40 / 255, green: 40 / 255, blue: 40 / 255, alpha: 1.0))

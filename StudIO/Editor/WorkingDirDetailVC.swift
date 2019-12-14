@@ -277,6 +277,16 @@ class WorkingDirDetailVC: UIViewController {
         self.save()
         guard let c = editorView else { return }
         guard let ext = c.highlightExt?.lowercased() else { return }
+        
+        if ext == "html" {
+            guard let allow = self.repo?.directoryURL else { return }
+            guard let path = self.file?.path else { return }
+            let fURL = URL(fileURLWithPath: path)
+            self.editorView.codeView.loadFileURL(fURL, allowingReadAccessTo: allow)
+            
+            return
+        }
+        
         let js = """
         try {
             window.e.enablePreview("\(ext)")
