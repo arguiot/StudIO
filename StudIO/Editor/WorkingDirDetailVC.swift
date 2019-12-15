@@ -67,7 +67,8 @@ class WorkingDirDetailVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(insertSnippet(notification:)), name: .init("insertSnippet"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadInterface(_:)), name: .init("reloadEditorMenu"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(enablePreview(notification:)), name: .init("enablePreview"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(disablePreview(notification:)), name: .init("disab;ePreview"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(disablePreview(notification:)), name: .init("disablePreview"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(emmet(notification:)), name: .init("emmet"), object: nil)
         // Double screen
         observe()
         
@@ -304,5 +305,23 @@ class WorkingDirDetailVC: UIViewController {
     }
     @objc func disablePreview(notification: Notification) {
         self.reloadInterface(notification)
+    }
+    @objc func emmet(notification: Notification) {
+        guard let data = notification.userInfo?["data"] as? String else { return }
+        
+        let js = """
+        try {
+            window.e.expandEmmet("\(data)")
+        } catch(e) {
+            console.log(e)
+        }
+        """
+        DispatchQueue.main.async {
+            self.editorView.codeView.evaluateJavaScript(js) { (result, error) in
+                if error != nil {
+                    NSObject.alert(t: "Preview error", m: error?.localizedDescription ?? "Couldn't load preview")
+                }
+            }
+        }
     }
 }

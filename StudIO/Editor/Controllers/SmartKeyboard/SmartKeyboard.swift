@@ -96,6 +96,15 @@ class SmartKeyboard: UIView {
         loader.isHidden = false
         loader.startAnimating()
         
+        if self.extension == "html" {
+            NotificationCenter.default.post(name: .init("emmet"), object: nil, userInfo: ["data": questionInput.text ?? ""])
+            
+            self.bulb.isHidden = false
+            self.loader.isHidden = true
+            self.loader.stopAnimating()
+            
+            return
+        }
         let cht = ChtSH()
         let url = cht.getLink(question: questionInput.text ?? "", language: self.extension, comments: true)
         DispatchQueue.global().async {

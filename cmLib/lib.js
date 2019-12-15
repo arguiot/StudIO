@@ -265,7 +265,8 @@ class editor {
 
 	expandEmmet(src) {
 		const text = expand(src)
-		this.insertSnippet(text)
+		const b64 = btoaUTF8(text)
+		this.insertSnippet(b64)
 	}
 
 	registerPlugin({

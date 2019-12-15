@@ -15428,7 +15428,8 @@
 
 		expandEmmet(src) {
 			var text = expandAbbreviation(src);
-			this.insertSnippet(text);
+			var b64 = btoaUTF8(text);
+			this.insertSnippet(b64);
 		}
 
 		registerPlugin({
