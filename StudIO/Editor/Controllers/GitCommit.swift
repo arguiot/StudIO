@@ -15,6 +15,9 @@ class GitCommit: UIView {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commitStrip: UITextView!
     
+    @IBOutlet weak var commitTitle: UILabel!
+    @IBOutlet weak var commitButton: UIButton!
+    
     var repo: Repository?
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,17 +55,22 @@ class GitCommit: UIView {
             contentView.frame = CGRect(x: 400 - screenSize.width, y: self.bounds.minY, width: screenSize.width, height: self.bounds.height)
         }
     }
+    var ks: CGRect?
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            ks = keyboardSize
             if self.frame.origin.y == 0 {
                 self.frame.origin.y -= keyboardSize.height
+                self.tableView.contentInset = UIEdgeInsets(top: keyboardSize.height, left: 0, bottom: 0, right: 0)
             }
+            
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.frame.origin.y != 0 {
             self.frame.origin.y = 0
+            self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
     
@@ -165,8 +173,6 @@ class GitCommit: UIView {
     
     // properties
     var status: [[String: String]] = []
-    
-    @IBOutlet weak var commitButton: UIButton!
     func checkButton() {
         if status.count == 0 {
             commitButton.isEnabled = false

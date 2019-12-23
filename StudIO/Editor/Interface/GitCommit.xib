@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GitCommit" customModule="StudIO" customModuleProvider="target">
             <connections>
-                <outlet property="commitButton" destination="cAq-1C-seb" id="pBp-Qt-lqE"/>
+                <outlet property="commitButton" destination="cAq-1C-seb" id="hZg-UF-a50"/>
                 <outlet property="commitStrip" destination="ROZ-Bb-67o" id="HU9-UY-5GF"/>
+                <outlet property="commitTitle" destination="RfX-dS-JHQ" id="Qd9-ID-dDX"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="hmS-Qr-dt1"/>
                 <outlet property="tableView" destination="c15-bd-wGm" id="FnM-Mo-bPE"/>
             </connections>
