@@ -24,3 +24,6 @@ You should now see an action sheet that ask you wether you want to **Clone a rep
 This time, select **Clone a repository**
 
 Then, please specify your repository’s URL (and the credentials if the project is private). Just wait a bit, and you should be done: your project should appear in the project list.
+
+### Private repositories
+For private repositories, you have the option to clone the repository with custom credentials. Select clone, and then you should see an option to enter your credentials. Make sure you enter the correct username (email in most cases) and password (If you have 2 factor authentification enabled, paste a valid token instead of your password).

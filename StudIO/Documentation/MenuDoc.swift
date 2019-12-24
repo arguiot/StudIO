@@ -89,6 +89,7 @@ class MenuDocTableViewController: BaseDocTableViewController {
         articles = [
             MenuDocTableViewController.Article(path: baseURL.appendingPathComponent("Home.md"), name: "Home"),
             MenuDocTableViewController.Article(path: baseURL.appendingPathComponent("Create-a-project.md"), name: "Create a project"),
+            MenuDocTableViewController.Article(path: baseURL.appendingPathComponent("SmartKeyboard.md"), name: "Using the completion bar"),
             MenuDocTableViewController.Article(path: baseURL.appendingPathComponent("Use-snippets.md"), name: "Use snippets"),
             MenuDocTableViewController.Article(path: baseURL.appendingPathComponent("Create-a-Theme.md"), name: "Create a custom theme"),
             MenuDocTableViewController.Article(path: baseURL.appendingPathComponent("Using-Git.md"), name: "Using the git system")
