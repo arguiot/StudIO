@@ -100,7 +100,7 @@ class ProjectVC: UICollectionViewController {
             }
             // repo
             let editor = splitViewController.viewControllers.last as! UINavigationController
-            let e = editor.topViewController as! WorkingDirDetailVC
+            let e = editor.topViewController as! DetailVC
             let p = self.project[row].path
             let path = URL(fileURLWithPath: p.path)
             let repo = Repository.at(path)

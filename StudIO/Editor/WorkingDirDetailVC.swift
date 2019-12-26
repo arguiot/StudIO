@@ -44,7 +44,8 @@ class DetailVC: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+//        fatalError("init(coder:) has not been implemented")
     }
     
     func configureView() {
@@ -150,8 +151,8 @@ class DetailVC: UIViewController {
             }
         }
         
-        
-        guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return }
+        guard let url = repo?.directoryURL else { return }
+        guard let r = try? GTRepository(url: url) else { return }
         guard let branch = try? r.currentBranch() else { return }
         guard let commit = try? branch.targetCommit() else { return }
         b?.setup(commit: commit)

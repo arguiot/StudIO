@@ -16,7 +16,7 @@ extension WorkingDirMasterVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showEditor" {
             let Ncontroller = segue.destination as! UINavigationController
-            let c = Ncontroller.topViewController as! WorkingDirDetailVC
+            let c = Ncontroller.topViewController as! DetailVC
             
             // Repo
             let path = LoadManager!.project.path
