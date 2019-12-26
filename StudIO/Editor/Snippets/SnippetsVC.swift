@@ -102,7 +102,7 @@ class SnippetsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 }
 
 
-extension WorkingDirDetailVC {
+extension DetailVC {
     @objc func insertSnippet(notification: Notification) {
         let d = notification.userInfo
         let snippet = d?["selected"] as! Snippet

@@ -60,8 +60,8 @@ class WorkingDirMasterVC: UITableViewController {
     }
     @objc
     func goBack(_ send: Any) {
-        let controller = detailViewController
-        controller?.save() // save before quitting
+        guard let controller = detailViewController?.visibleViewController as? DetailVC else { return }
+        controller.save() // save before quitting
         
         guard let root = self.view.window?.rootViewController as? RootVC else { return }
         root.dismiss(animated: true, completion: nil)
@@ -145,7 +145,8 @@ class WorkingDirMasterVC: UITableViewController {
     }
     
     func move(file: File, path: String) {
-        detailViewController?.save() // saving before doing anything
+        guard let visible = detailViewController?.visibleViewController as? DetailVC else { return }
+        visible.save() // saving before doing anything
         
         let s = path.split(separator: "/")
         let n = String(s.last!)

@@ -16,30 +16,35 @@ extension WorkingDirMasterVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showEditor" {
             let Ncontroller = segue.destination as! UINavigationController
-            let controller = Ncontroller.topViewController as! WorkingDirDetailVC
-            detailViewController = controller
-            
-            controller.save() // saving before opening file
+            let c = Ncontroller.topViewController as! WorkingDirDetailVC
             
             // Repo
             let path = LoadManager!.project.path
-            let repo = try! Repository.at(URL(fileURLWithPath: path)).get()
-            controller.repo = repo
+            guard let repo = try? Repository.at(URL(fileURLWithPath: path)).get() else { return }
+            // File
+            var detailItem: File!
             if sender is MenuCellStruct {
-                controller.detailItem = (sender as! MenuCellStruct).path as? File
+                guard let file = (sender as! MenuCellStruct).path as? File else { return }
+                detailItem = file
             } else if sender is URL {
                 guard let file = try? File(path: (sender as! URL).path) else { return }
-                controller.detailItem = file
+                detailItem = file
             }
-           
-            controller.navigationItem.leftItemsSupplementBackButton = true
+            
+            let controller = DetailVC(file: detailItem, repo: repo)
+            detailViewController?.viewControllers.append(controller)
+            detailViewController?.activateTab(controller)
+            
+            controller.save() // saving before opening file
+            
+            c.navigationItem.leftItemsSupplementBackButton = true
             guard let button = splitViewController?.displayModeButtonItem else { return }
-            controller.navigationItem.leftBarButtonItems = [button]
+            c.navigationItem.leftBarButtonItems = [button]
         }
     }
 }
 
-extension WorkingDirDetailVC {
+extension DetailVC {
     func observe() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleScreenConnectNotification), name: UIScreen.didConnectNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleScreenDisconnectNotification), name: UIScreen.didDisconnectNotification, object: nil)

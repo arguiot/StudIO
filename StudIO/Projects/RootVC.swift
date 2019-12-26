@@ -65,13 +65,15 @@ class RootVC: UINavigationController, QuickActionSupport {
         guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
         guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
         guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
-        e.save()
+        guard let v = e.visibleViewController as? DetailVC else { return }
+        v.save()
     }
     @objc func showSnippet(_ send: Any) {
         guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
         guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
         guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
-        e.showSnippet(send)
+        guard let v = e.visibleViewController as? DetailVC else { return }
+        v.showSnippet(send)
     }
     @objc func gitPanel(_ send: Any) {
         guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
@@ -101,13 +103,15 @@ class RootVC: UINavigationController, QuickActionSupport {
         guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
         guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
         guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
-        e.editorView.moveLineUp()
+        guard let v = e.visibleViewController as? DetailVC else { return }
+        v.editorView.moveLineUp()
     }
     @objc func moveLineDown(_ send: Any) {
         guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
         guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
         guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
-        e.editorView.moveLineDown()
+        guard let v = e.visibleViewController as? DetailVC else { return }
+        v.editorView.moveLineDown()
     }
     @objc func newFile(_ send: Any) {
         guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }

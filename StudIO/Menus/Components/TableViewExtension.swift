@@ -116,8 +116,8 @@ extension WorkingDirMasterVC: UITableViewDragDelegate {
     
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        
-        detailViewController?.save() // saving before doing anything stupid
+        guard let visible = detailViewController?.visibleViewController as? DetailVC else { return [] }
+        visible.save() // saving before doing anything stupid
         
         var out = [UIDragItem]()
         let object = objects[indexPath.row]

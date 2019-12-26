@@ -111,6 +111,8 @@
 		68A62CBD223CD46C0040225E /* snippetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A62CBC223CD46B0040225E /* snippetController.swift */; };
 		68A62CBF223CFFCB0040225E /* SnippetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A62CBE223CFFCB0040225E /* SnippetCell.swift */; };
 		68A62CC1223D01D20040225E /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A62CC0223D01D20040225E /* Snippet.swift */; };
+		68AAA0D223B510A5008069B9 /* TabView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AAA0D123B510A5008069B9 /* TabView.framework */; };
+		68AAA0D623B51126008069B9 /* DetailTabContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AAA0D523B51126008069B9 /* DetailTabContainer.swift */; };
 		68AE8B88233FD4100029B29A /* MenuDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AE8B87233FD4100029B29A /* MenuDoc.swift */; };
 		68AE8B8A233FD4990029B29A /* ResultsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AE8B89233FD4990029B29A /* ResultsTableController.swift */; };
 		68AE8B8C233FD6FC0029B29A /* TableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68AE8B8B233FD6F50029B29A /* TableCell.xib */; };
@@ -277,6 +279,8 @@
 		68A62CBC223CD46B0040225E /* snippetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = snippetController.swift; sourceTree = "<group>"; };
 		68A62CBE223CFFCB0040225E /* SnippetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCell.swift; sourceTree = "<group>"; };
 		68A62CC0223D01D20040225E /* Snippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
+		68AAA0D123B510A5008069B9 /* TabView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TabView.framework; path = Carthage/Build/iOS/TabView.framework; sourceTree = "<group>"; };
+		68AAA0D523B51126008069B9 /* DetailTabContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTabContainer.swift; sourceTree = "<group>"; };
 		68AE8B87233FD4100029B29A /* MenuDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDoc.swift; sourceTree = "<group>"; };
 		68AE8B89233FD4990029B29A /* ResultsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableController.swift; sourceTree = "<group>"; };
 		68AE8B8B233FD6F50029B29A /* TableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableCell.xib; sourceTree = "<group>"; };
@@ -341,6 +345,7 @@
 				68F9BA022378E7C400C81974 /* SwiftSH.framework in Frameworks */,
 				68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */,
 				68605EE2232AEE2D00077898 /* OneSignal.framework in Frameworks */,
+				68AAA0D223B510A5008069B9 /* TabView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +362,7 @@
 		68040210220EC67500789453 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68AAA0D123B510A5008069B9 /* TabView.framework */,
 				68F9BA012378E7C400C81974 /* SwiftSH.framework */,
 				68605EE1232AEE2D00077898 /* OneSignal.framework */,
 				6858042A22AE6BD800F97488 /* Down.framework */,
@@ -476,6 +482,7 @@
 				6863DF8D21B5491A00911374 /* Controllers */,
 				6863DF8C21B5490D00911374 /* Interface */,
 				689BDC2021B22F7800D88AAB /* WorkingDirDetailVC.swift */,
+				68AAA0D523B51126008069B9 /* DetailTabContainer.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -1007,6 +1014,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/OneSignal.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftSH.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TabView.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
@@ -1142,6 +1150,7 @@
 				68CD1D6722AD12440025999D /* BaseDocTableViewController.swift in Sources */,
 				68C2BC03228044480088C39F /* PluginsVC.swift in Sources */,
 				682BCEE6233193A80086FAA4 /* AudioPlayer.swift in Sources */,
+				68AAA0D623B51126008069B9 /* DetailTabContainer.swift in Sources */,
 				68A62CBF223CFFCB0040225E /* SnippetCell.swift in Sources */,
 				68879C182261FC7D002EDC5D /* CheatCodeVC.swift in Sources */,
 				68B56363222BE87300B9E0DD /* DoubleScreen.swift in Sources */,
@@ -1228,7 +1237,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1254,7 +1263,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1403,7 +1412,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = StudIO/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1434,7 +1443,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = StudIO/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
