@@ -1,0 +1,56 @@
+{
+  "stickers" : [
+    {
+      "filename" : "open-source.sticker"
+    },
+    {
+      "filename" : "text-editors.sticker"
+    },
+    {
+      "filename" : "python.sticker"
+    },
+    {
+      "filename" : "ruby.sticker"
+    },
+    {
+      "filename" : "php.sticker"
+    },
+    {
+      "filename" : "linux.sticker"
+    },
+    {
+      "filename" : "git.sticker"
+    },
+    {
+      "filename" : "angular2.sticker"
+    },
+    {
+      "filename" : "react-js.sticker"
+    },
+    {
+      "filename" : "JavaScript.sticker"
+    },
+    {
+      "filename" : "Nodejs-Seeklogo.sticker"
+    },
+    {
+      "filename" : "Swift_logo.svg.sticker"
+    },
+    {
+      "filename" : "ProType.sticker"
+    },
+    {
+      "filename" : "StudIO.sticker"
+    },
+    {
+      "filename" : "Parrot.Live.sticker"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "grid-size" : "regular"
+  }
+}

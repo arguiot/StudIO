@@ -101,6 +101,8 @@
 		68879C182261FC7D002EDC5D /* CheatCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68879C172261FC7D002EDC5D /* CheatCodeVC.swift */; };
 		6890AD31223E42CF00D6EDBD /* ColorSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6890AD30223E42CF00D6EDBD /* ColorSlider.framework */; };
 		6890AD33223E431700D6EDBD /* NewSnippetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6890AD32223E431700D6EDBD /* NewSnippetVC.swift */; };
+		68920FB723B6BDB900AEA330 /* Stickers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68920FB623B6BDB900AEA330 /* Stickers.xcassets */; };
+		68920FBB23B6BDB900AEA330 /* StudIO Stickers.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 68920FB423B6BDAE00AEA330 /* StudIO Stickers.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		689BDC1D21B22F7800D88AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1C21B22F7800D88AAB /* AppDelegate.swift */; };
 		689BDC1F21B22F7800D88AAB /* WorkingDirMasterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC1E21B22F7800D88AAB /* WorkingDirMasterVC.swift */; };
 		689BDC2121B22F7800D88AAB /* WorkingDirDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BDC2021B22F7800D88AAB /* WorkingDirDetailVC.swift */; };
@@ -159,6 +161,13 @@
 			remoteGlobalIDString = 68605ED4232AEC3800077898;
 			remoteInfo = OneSignalNotificationServiceExtension;
 		};
+		68920FB923B6BDB900AEA330 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 689BDC1121B22F7800D88AAB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68920FB323B6BDAE00AEA330;
+			remoteInfo = "StudIO Stickers";
+		};
 		68B4B2DB224F6A4A00036712 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 689BDC1121B22F7800D88AAB /* Project object */;
@@ -176,6 +185,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				68605EDC232AEC3800077898 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+				68920FBB23B6BDB900AEA330 /* StudIO Stickers.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +275,9 @@
 		68879C172261FC7D002EDC5D /* CheatCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheatCodeVC.swift; sourceTree = "<group>"; };
 		6890AD30223E42CF00D6EDBD /* ColorSlider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ColorSlider.framework; path = Carthage/Build/iOS/ColorSlider.framework; sourceTree = "<group>"; };
 		6890AD32223E431700D6EDBD /* NewSnippetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSnippetVC.swift; sourceTree = "<group>"; };
+		68920FB423B6BDAE00AEA330 /* StudIO Stickers.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "StudIO Stickers.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68920FB623B6BDB900AEA330 /* Stickers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Stickers.xcassets; sourceTree = "<group>"; };
+		68920FB823B6BDB900AEA330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		689BDC1921B22F7800D88AAB /* StudIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689BDC1C21B22F7800D88AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		689BDC1E21B22F7800D88AAB /* WorkingDirMasterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingDirMasterVC.swift; sourceTree = "<group>"; };
@@ -631,12 +644,22 @@
 			path = SmartKeyboard;
 			sourceTree = "<group>";
 		};
+		68920FB523B6BDAE00AEA330 /* StudIO Stickers */ = {
+			isa = PBXGroup;
+			children = (
+				68920FB623B6BDB900AEA330 /* Stickers.xcassets */,
+				68920FB823B6BDB900AEA330 /* Info.plist */,
+			);
+			path = "StudIO Stickers";
+			sourceTree = "<group>";
+		};
 		689BDC1021B22F7800D88AAB = {
 			isa = PBXGroup;
 			children = (
 				689BDC1B21B22F7800D88AAB /* StudIO */,
 				68B4B2D7224F6A4A00036712 /* StudIO UI Tests */,
 				68605ED6232AEC3800077898 /* OneSignalNotificationServiceExtension */,
+				68920FB523B6BDAE00AEA330 /* StudIO Stickers */,
 				689BDC1A21B22F7800D88AAB /* Products */,
 				68040210220EC67500789453 /* Frameworks */,
 			);
@@ -648,6 +671,7 @@
 				689BDC1921B22F7800D88AAB /* StudIO.app */,
 				68B4B2D6224F6A4A00036712 /* StudIO UI Tests.xctest */,
 				68605ED5232AEC3800077898 /* OneSignalNotificationServiceExtension.appex */,
+				68920FB423B6BDAE00AEA330 /* StudIO Stickers.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -826,6 +850,21 @@
 			productReference = 68605ED5232AEC3800077898 /* OneSignalNotificationServiceExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		68920FB323B6BDAE00AEA330 /* StudIO Stickers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68920FBE23B6BDB900AEA330 /* Build configuration list for PBXNativeTarget "StudIO Stickers" */;
+			buildPhases = (
+				68920FB223B6BDAE00AEA330 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "StudIO Stickers";
+			productName = "StudIO Stickers";
+			productReference = 68920FB423B6BDAE00AEA330 /* StudIO Stickers.appex */;
+			productType = "com.apple.product-type.app-extension.messages-sticker-pack";
+		};
 		689BDC1821B22F7800D88AAB /* StudIO */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 689BDC2D21B22F7C00D88AAB /* Build configuration list for PBXNativeTarget "StudIO" */;
@@ -842,6 +881,7 @@
 			);
 			dependencies = (
 				68605EDB232AEC3800077898 /* PBXTargetDependency */,
+				68920FBA23B6BDB900AEA330 /* PBXTargetDependency */,
 			);
 			name = StudIO;
 			productName = StudIO;
@@ -879,6 +919,9 @@
 					68605ED4232AEC3800077898 = {
 						CreatedOnToolsVersion = 11.0;
 					};
+					68920FB323B6BDAE00AEA330 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
 					689BDC1821B22F7800D88AAB = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
@@ -915,6 +958,7 @@
 				68B079332216B27100772FC6 /* Periphery */,
 				68B4B2D5224F6A4A00036712 /* StudIO UI Tests */,
 				68605ED4232AEC3800077898 /* OneSignalNotificationServiceExtension */,
+				68920FB323B6BDAE00AEA330 /* StudIO Stickers */,
 			);
 		};
 /* End PBXProject section */
@@ -924,6 +968,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68920FB223B6BDAE00AEA330 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68920FB723B6BDB900AEA330 /* Stickers.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1174,6 +1226,11 @@
 			target = 68605ED4232AEC3800077898 /* OneSignalNotificationServiceExtension */;
 			targetProxy = 68605EDA232AEC3800077898 /* PBXContainerItemProxy */;
 		};
+		68920FBA23B6BDB900AEA330 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68920FB323B6BDAE00AEA330 /* StudIO Stickers */;
+			targetProxy = 68920FB923B6BDB900AEA330 /* PBXContainerItemProxy */;
+		};
 		68B4B2DC224F6A4A00036712 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 689BDC1821B22F7800D88AAB /* StudIO */;
@@ -1234,7 +1291,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1260,11 +1317,42 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		68920FBC23B6BDB900AEA330 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73CCF549YB;
+				INFOPLIST_FILE = "StudIO Stickers/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ArthurG.StudIO.StudIO-Stickers";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		68920FBD23B6BDB900AEA330 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73CCF549YB;
+				INFOPLIST_FILE = "StudIO Stickers/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ArthurG.StudIO.StudIO-Stickers";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1408,7 +1496,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = StudIO/Git/ObjectiveGit/Header.h;
@@ -1439,7 +1527,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = StudIO/Git/ObjectiveGit/Header.h;
@@ -1512,6 +1600,15 @@
 			buildConfigurations = (
 				68605EDE232AEC3800077898 /* Debug */,
 				68605EDF232AEC3800077898 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68920FBE23B6BDB900AEA330 /* Build configuration list for PBXNativeTarget "StudIO Stickers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68920FBC23B6BDB900AEA330 /* Debug */,
+				68920FBD23B6BDB900AEA330 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
