@@ -264,7 +264,7 @@ class ProjectVC: UICollectionViewController {
         return BLTNItemManager(rootItem: page)
     }
     
-    var creds: Credentials = .default
+    var creds: GTCredential?
     
     func clone(_ page: TextFieldBulletinPage) -> BLTNPageItem {
         page.descriptionText = "Enter the Git repository URL you would like to clone.".localized()
@@ -339,7 +339,7 @@ class ProjectVC: UICollectionViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
                     let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
                     let password = textField?.text
-                    self.creds = .plaintext(username: username ?? "", password: password ?? "")
+                    self.creds = try? .init(userName: username ?? "", password: password ?? "")
                     alert?.dismiss(animated: true, completion: nil)
                     
                     if presented != nil {

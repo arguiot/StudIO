@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -36,6 +36,7 @@
 		681DF61C227ECB9B00023DD9 /* LargeCompleletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681DF61B227ECB9B00023DD9 /* LargeCompleletionCell.swift */; };
 		681DF61E227ECBEB00023DD9 /* CompletionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681DF61D227ECBEB00023DD9 /* CompletionFeature.swift */; };
 		6823A97221C4A22000EA0A2E /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6856C7A821B2773F00441767 /* octicons.ttf */; };
+		68244C0E23D1157800F50B5C /* ExceptionCatcher in Frameworks */ = {isa = PBXBuildFile; productRef = 68244C0D23D1157800F50B5C /* ExceptionCatcher */; };
 		682BCEE4233193890086FAA4 /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BCEE3233193890086FAA4 /* GameVC.swift */; };
 		682BCEE6233193A80086FAA4 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BCEE5233193A80086FAA4 /* AudioPlayer.swift */; };
 		682BCEE8233193D20086FAA4 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BCEE7233193D20086FAA4 /* GameScene.swift */; };
@@ -350,6 +351,7 @@
 				68B56367222CBB2600B9E0DD /* Zip.framework in Frameworks */,
 				6858042B22AE6BD800F97488 /* Down.framework in Frameworks */,
 				687EC15B222AB46C00E6B3C3 /* SwiftGit2.framework in Frameworks */,
+				68244C0E23D1157800F50B5C /* ExceptionCatcher in Frameworks */,
 				68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */,
 				68F9BA022378E7C400C81974 /* SwiftSH.framework in Frameworks */,
 				68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */,
@@ -884,6 +886,9 @@
 				68920FBA23B6BDB900AEA330 /* PBXTargetDependency */,
 			);
 			name = StudIO;
+			packageProductDependencies = (
+				68244C0D23D1157800F50B5C /* ExceptionCatcher */,
+			);
 			productName = StudIO;
 			productReference = 689BDC1921B22F7800D88AAB /* StudIO.app */;
 			productType = "com.apple.product-type.application";
@@ -950,6 +955,9 @@
 				Base,
 			);
 			mainGroup = 689BDC1021B22F7800D88AAB;
+			packageReferences = (
+				68244C0C23D1157800F50B5C /* XCRemoteSwiftPackageReference "ExceptionCatcher" */,
+			);
 			productRefGroup = 689BDC1A21B22F7800D88AAB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1278,7 +1286,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1291,7 +1299,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1304,7 +1312,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1317,7 +1325,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1332,9 +1340,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				INFOPLIST_FILE = "StudIO Stickers/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ArthurG.StudIO.StudIO-Stickers";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1347,9 +1357,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				INFOPLIST_FILE = "StudIO Stickers/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ArthurG.StudIO.StudIO-Stickers";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1484,7 +1496,7 @@
 				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1496,7 +1508,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = StudIO/Git/ObjectiveGit/Header.h;
@@ -1515,7 +1527,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1527,7 +1539,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = StudIO/Git/ObjectiveGit/Header.h;
@@ -1650,6 +1662,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		68244C0C23D1157800F50B5C /* XCRemoteSwiftPackageReference "ExceptionCatcher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/ExceptionCatcher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		68244C0D23D1157800F50B5C /* ExceptionCatcher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68244C0C23D1157800F50B5C /* XCRemoteSwiftPackageReference "ExceptionCatcher" */;
+			productName = ExceptionCatcher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 689BDC1121B22F7800D88AAB /* Project object */;
 }
