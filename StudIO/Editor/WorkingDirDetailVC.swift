@@ -11,7 +11,7 @@ import SwiftGit2
 
 class WorkingDirDetailVC: UIViewController {
 
-    @IBOutlet weak var bottomLine: BottomLine!
+    @IBOutlet weak var bottomLine: BottomLine?
     @IBOutlet weak var editorView: Editor!
     
     var file: File?
@@ -112,7 +112,7 @@ class WorkingDirDetailVC: UIViewController {
             _ = try? f.write(data: d)
             DispatchQueue.main.async {
                 self.editorView?.getLangName({ str in
-                    self.bottomLine.language.text = str
+                    self.bottomLine?.language.text = str
                 })
             }
             guard let c = callback else { return }
@@ -174,7 +174,7 @@ class WorkingDirDetailVC: UIViewController {
             "theme": UserDefaults.standard.string(forKey: "studio-editor-theme") ?? "monokai"
             ])
         
-        self.bottomLine.setupLanguage(str)
+        self.bottomLine?.setupLanguage(str)
         
         // Second display
         if UIScreen.screens.count > 1 {
@@ -182,12 +182,12 @@ class WorkingDirDetailVC: UIViewController {
         }
     }
     func bottomView(_ str: String = "") {
-        let b = bottomLine
+        guard let b = bottomLine else { return }
         
         DispatchQueue.global().async {
             guard let text = try? self.file?.readSize() else { return }
             DispatchQueue.main.async {
-                b?.sizeString.text = text
+                b.sizeString.text = text
             }
         }
         
@@ -195,7 +195,7 @@ class WorkingDirDetailVC: UIViewController {
         guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return }
         guard let branch = try? r.currentBranch() else { return }
         guard let commit = try? branch.targetCommit() else { return }
-        b?.setup(commit: commit)
+        b.setup(commit: commit)
     }
     
     @IBAction func updatedBar() {
