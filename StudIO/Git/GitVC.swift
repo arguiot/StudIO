@@ -206,20 +206,16 @@ class GitVC: UIViewController {
     }
     
 }
-
+// MARK: Picker View
 extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard let branches = repo?.localBranches() else { return 1 }
-        if let b = try? branches.get() {
-            return b.count
-        } else {
-            return 1
-        }
-        
+        guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return 0 }
+        guard let branches = try? r.branches() else { return 0 }
+        return branches.count
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let d = NSAttributedString(string: "master", attributes: [.foregroundColor: UIColor.white])
@@ -231,8 +227,10 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         do {
             let r = try GTRepository(url: (repo?.directoryURL)!)
-            let branches = try r.localBranches()
-            let oid = branches[row].reference
+            let branches = try r.branches()
+            let branch = branches[row]
+            let oid = branch.reference
+            
             try r.checkoutReference(oid, options: .init(strategy: .safe))
         } catch {
             NSObject.alert(t: "Checkout issue", m: error.localizedDescription)
@@ -240,23 +238,21 @@ extension GitVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     func selectCorrectB() {
         guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return }
-        guard let branches = repo?.localBranches() else { return }
-        if let b = try? branches.get() {
-            let name = ((try? r.currentBranch().shortName) as String??)
-            let ns = b.map { $0.shortName }
-            let i = ns.firstIndex(of: name ?? "")
-            guard let ind = i else { return }
-            if (ind == 0) {
-                let lb = try? r.localBranches()
-                let ref = lb![0].reference
-                do {
-                    try r.checkoutReference(ref, options: GTCheckoutOptions(strategy: .safe))
-                } catch {
-                    print(error.localizedDescription)
-                }
-                
+        guard let branches = try? r.branches() else { return }
+        guard let ref = try? r.currentBranch().oid?.sha else { return }
+        let ns = branches.map { $0.oid?.sha }
+        let i = ns.firstIndex(of: ref)
+        guard let ind = i else { return }
+        if (ind == 0) {
+            guard let lb = try? r.localBranches() else { return }
+            let ref = lb[0].reference
+            do {
+                try r.checkoutReference(ref, options: GTCheckoutOptions(strategy: .safe))
+            } catch {
+                print(error.localizedDescription)
             }
-            branchPicker.selectRow(ind, inComponent: 0, animated: true)
+            
         }
+        branchPicker.selectRow(ind, inComponent: 0, animated: true)
     }
 }

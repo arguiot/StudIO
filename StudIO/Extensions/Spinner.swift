@@ -130,7 +130,8 @@ public class SwiftSpinner: UIView {
         #if EXTENSION
         return customSuperview
         #else
-        return customSuperview ?? UIApplication.shared.keyWindow
+        let window = UIApplication.shared.keyWindow ?? UIApplication.shared.windows.first
+        return customSuperview ?? window
         #endif
     }
     

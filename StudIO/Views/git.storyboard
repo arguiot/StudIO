@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="grP-rr-E8W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="grP-rr-E8W">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -155,6 +155,16 @@
                                     <segue destination="rpw-nl-egQ" kind="presentation" modalPresentationStyle="fullScreen" id="vba-D1-s5x"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCx-Gc-5Gq">
+                                <rect key="frame" x="24" y="328" width="327" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="ofr-iu-LWL"/>
+                                </constraints>
+                                <string key="text">Please make sure that you enter your credentials correctly: it's a known issue that when not entered correctly, the app may crash.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -167,6 +177,7 @@
                             <constraint firstItem="Xv2-pZ-XGY" firstAttribute="leading" secondItem="RLp-Aa-Dwi" secondAttribute="trailing" constant="8" id="8ak-Ce-urQ"/>
                             <constraint firstItem="mbf-0N-wpg" firstAttribute="leading" secondItem="g0h-90-UnF" secondAttribute="leading" id="9P8-xb-Sa7"/>
                             <constraint firstItem="mvI-Mh-lRm" firstAttribute="top" secondItem="dEW-7s-xb7" secondAttribute="bottom" constant="13" id="Ad2-n0-IIW"/>
+                            <constraint firstItem="XCx-Gc-5Gq" firstAttribute="top" secondItem="efC-Zr-29d" secondAttribute="bottom" constant="8" id="B5B-f2-iYh"/>
                             <constraint firstItem="iAY-Cs-NSh" firstAttribute="centerX" secondItem="3E8-c9-FJV" secondAttribute="centerX" id="CZe-ir-23N"/>
                             <constraint firstItem="1Tv-NN-Xrq" firstAttribute="top" secondItem="dEW-7s-xb7" secondAttribute="bottom" constant="72" id="ECo-in-8Se"/>
                             <constraint firstItem="RLp-Aa-Dwi" firstAttribute="top" secondItem="F02-iu-N8D" secondAttribute="bottom" constant="50" id="JZY-kM-cAc"/>
@@ -175,7 +186,9 @@
                             <constraint firstItem="efC-Zr-29d" firstAttribute="leading" secondItem="6s6-dv-87s" secondAttribute="leading" constant="24" id="P76-2K-9of"/>
                             <constraint firstItem="RLp-Aa-Dwi" firstAttribute="leading" secondItem="6s6-dv-87s" secondAttribute="leading" constant="24" id="PJa-uy-kF1"/>
                             <constraint firstItem="2BN-ch-gMc" firstAttribute="trailing" secondItem="6s6-dv-87s" secondAttribute="trailing" id="Puk-EF-mi4"/>
+                            <constraint firstItem="6s6-dv-87s" firstAttribute="trailing" secondItem="XCx-Gc-5Gq" secondAttribute="trailing" constant="24" id="RCB-CO-RU1"/>
                             <constraint firstItem="1Tv-NN-Xrq" firstAttribute="leading" secondItem="iAY-Cs-NSh" secondAttribute="trailing" constant="8" id="Voz-4X-XkR"/>
+                            <constraint firstItem="XCx-Gc-5Gq" firstAttribute="centerX" secondItem="3E8-c9-FJV" secondAttribute="centerX" id="WFG-4A-yi3"/>
                             <constraint firstItem="iAY-Cs-NSh" firstAttribute="top" secondItem="dEW-7s-xb7" secondAttribute="bottom" constant="72" id="a52-yo-Irq"/>
                             <constraint firstItem="Xj0-At-g2R" firstAttribute="top" secondItem="dEW-7s-xb7" secondAttribute="bottom" constant="8" id="bK9-de-vzj"/>
                             <constraint firstItem="Xv2-pZ-XGY" firstAttribute="leading" secondItem="RLp-Aa-Dwi" secondAttribute="trailing" constant="8" id="gpS-k4-2Q1"/>
@@ -189,6 +202,7 @@
                             <constraint firstItem="F02-iu-N8D" firstAttribute="top" secondItem="dEW-7s-xb7" secondAttribute="bottom" constant="72" id="shG-70-8xU"/>
                             <constraint firstItem="g0h-90-UnF" firstAttribute="leading" secondItem="6s6-dv-87s" secondAttribute="leading" constant="16" id="tdV-Vc-dGJ"/>
                             <constraint firstItem="dEW-7s-xb7" firstAttribute="top" secondItem="6s6-dv-87s" secondAttribute="top" id="yCz-1o-wX2"/>
+                            <constraint firstItem="XCx-Gc-5Gq" firstAttribute="leading" secondItem="6s6-dv-87s" secondAttribute="leading" constant="24" id="zu8-2h-ju3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6s6-dv-87s"/>
                     </view>
