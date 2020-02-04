@@ -13,13 +13,13 @@ import SafariServices
 import OneSignal
 
 class GitVC: UIViewController {
-
+    
     @IBOutlet weak var branchPicker: UIPickerView!
     
     var repo: Repository?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         branchPicker.tintColor = .white
         let keychain = KeychainSwift()
@@ -94,18 +94,26 @@ class GitVC: UIViewController {
                     NSObject.alert(t: "Cred issue", m: error.localizedDescription)
                 }
             }
-            p.push(rurl, options: creds) { (current, total, bytes, stop) in
-                print(current, total, bytes, stop)
-                DispatchQueue.main.sync {
-                    SwiftSpinner.show(progress: Double(current) / Double(total), title: "Pushing")
-                }
-                if stop.pointee.boolValue == true || current == total {
+            do {
+                try p.push(rurl, options: creds) { (current, total, bytes, stop) in
+                    print(current, total, bytes, stop)
                     DispatchQueue.main.sync {
-                        SwiftSpinner.show(duration: 1.0, title: "Success")
-                        self.reload()
+                        SwiftSpinner.show(progress: Double(current) / Double(total), title: "Pushing")
+                    }
+                    if stop.pointee.boolValue == true || current == total {
+                        DispatchQueue.main.sync {
+                            SwiftSpinner.show(duration: 1.0, title: "Success")
+                            self.reload()
+                        }
                     }
                 }
+            } catch {
+                DispatchQueue.main.sync {
+                    SwiftSpinner.show(duration: 30.0, title: "Error: \(error.localizedDescription)")
+                    NSObject.alert(t: "Couldn't pull", m: error.localizedDescription)
+                }
             }
+            
         }
         
         self.reload()
@@ -142,20 +150,27 @@ class GitVC: UIViewController {
                 let git_cred = try? GTCredential(userName: email, password: passwd)
                 creds = p.creds(creds: git_cred)
             }
-            
-            p.pull(rurl, options: creds) { (transfer, stop) in
-                let t = Double(transfer.pointee.received_objects) / Double(transfer.pointee.total_objects)
-                DispatchQueue.main.sync {
-                    SwiftSpinner.show(progress: Double(t), title: "Pulling")
-                }
-                
-                if stop.pointee.boolValue == true || transfer.pointee.received_objects == transfer.pointee.total_objects {
+            do {
+                try p.pull(rurl, options: creds) { (transfer, stop) in
+                    let t = Double(transfer.pointee.received_objects) / Double(transfer.pointee.total_objects)
                     DispatchQueue.main.sync {
-                        SwiftSpinner.hide()
-                        self.reload()
+                        SwiftSpinner.show(progress: Double(t), title: "Pulling")
+                    }
+                    
+                    if stop.pointee.boolValue == true || transfer.pointee.received_objects == transfer.pointee.total_objects {
+                        DispatchQueue.main.sync {
+                            SwiftSpinner.hide()
+                            self.reload()
+                        }
                     }
                 }
+            }  catch {
+                DispatchQueue.main.sync {
+                    SwiftSpinner.show(duration: 30.0, title: "Error: \(error.localizedDescription)")
+                    NSObject.alert(t: "Couldn't pull", m: error.localizedDescription)
+                }
             }
+            
         }
         
         self.reload()
@@ -182,14 +197,14 @@ class GitVC: UIViewController {
         keychain.set(passwd.text!, forKey: "password")
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
     @IBOutlet weak var nbranch: UITextField!
     @IBAction func newBranch(_ sender: Any) {
         let name = nbranch.text

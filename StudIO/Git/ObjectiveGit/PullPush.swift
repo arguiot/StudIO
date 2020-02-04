@@ -10,30 +10,20 @@ import UIKit
 import SwiftGit2
 
 class Push: NSObject {
-    func push(_ url: URL, options: NSDictionary?, progress: ((UInt32, UInt32, Int, UnsafeMutablePointer<ObjCBool>) -> Void)?) -> Bool {
-        do {
-            let repo = try GTRepository(url: url)
-            let branche = try repo.currentBranch()
-            let remotes = try repo.remoteNames()
-            let remote = try GTRemote(name: remotes[0], in: repo)
-            try repo.push(branche, to: remote, withOptions: options as? [AnyHashable : Any], progress: progress)
-        } catch {
-            NSObject.alert(t: "Couldn't push", m: error.localizedDescription)
-        }
-        return true
+    func push(_ url: URL, options: NSDictionary?, progress: ((UInt32, UInt32, Int, UnsafeMutablePointer<ObjCBool>) -> Void)?) throws {
+        let repo = try GTRepository(url: url)
+        let branche = try repo.currentBranch()
+        let remotes = try repo.remoteNames()
+        let remote = try GTRemote(name: remotes[0], in: repo)
+        try repo.push(branche, to: remote, withOptions: options as? [AnyHashable : Any], progress: progress)
     }
     
-    func pull(_ url: URL, options: NSDictionary?, progress: @escaping (UnsafePointer<git_transfer_progress>, UnsafeMutablePointer<ObjCBool>) -> ()) -> Bool {
-        do {
-            let repo = try GTRepository(url: url)
-            let branche = try repo.currentBranch()
-            let remotes = try repo.remoteNames()
-            let remote = try GTRemote(name: remotes[0], in: repo)
-            try repo.pull(branche, from: remote, withOptions: options as? [AnyHashable : Any], progress: progress)
-        } catch {
-            NSObject.alert(t: "Couldn't pull", m: error.localizedDescription)
-        }
-        return true
+    func pull(_ url: URL, options: NSDictionary?, progress: @escaping (UnsafePointer<git_transfer_progress>, UnsafeMutablePointer<ObjCBool>) -> ()) throws {
+        let repo = try GTRepository(url: url)
+        let branche = try repo.currentBranch()
+        let remotes = try repo.remoteNames()
+        let remote = try GTRemote(name: remotes[0], in: repo)
+        try repo.pull(branche, from: remote, withOptions: options as? [AnyHashable : Any], progress: progress)
     }
     func creds(creds: GTCredential?) -> NSDictionary? {
         let gtcp = GTCredentialProvider { (type, a, b) -> GTCredential? in
