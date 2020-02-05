@@ -27,6 +27,10 @@ import UIKit
 import SwiftSH
 
 class ShellViewController: UIViewController, SSHViewController {
+    var publicKey: String?
+    
+    var privateKey: String?
+    
     
     @IBOutlet var textView: UITextView!
     
@@ -49,7 +53,9 @@ class ShellViewController: UIViewController, SSHViewController {
         self.textView.isSelectable = false
         
         if self.requiresAuthentication {
-            if let password = self.password {
+            if let pub = publicKey, let pri = privateKey, let password = self.password {
+                self.authenticationChallenge = .byPublicKeyFromMemory(username: self.username, password: password, publicKey: Data(pub.utf8), privateKey: Data(pri.utf8))
+            } else if let password = self.password {
                 self.authenticationChallenge = .byPassword(username: self.username, password: password)
             } else {
                 self.authenticationChallenge = .byKeyboardInteractive(username: self.username) { [unowned self] challenge in

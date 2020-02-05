@@ -32,7 +32,8 @@ protocol SSHViewController: class {
     var port: UInt16? { get set }
     var username: String! { get set }
     var password: String? { get set }
-    
+    var publicKey: String? { get set }
+    var privateKey: String? { get set }
 }
 
 class LoginViewController: UIViewController {
@@ -42,6 +43,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var portTextField: UITextField!
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet weak var publicKeyTextView: UITextView!
+    @IBOutlet weak var privateKeyTextView: UITextView!
     @IBOutlet var authenticationMethodControl: UISegmentedControl!
     
     var segue: String!
@@ -58,6 +61,8 @@ class LoginViewController: UIViewController {
         self.portTextField.text = userDefaults.string(forKey: "port")
         self.usernameTextField.text = keychain.get("username")
         self.passwordTextField.text = keychain.get("password")
+        self.publicKeyTextView.text = keychain.get("publicKey") ?? "Please paste (and replace this text) here your public key"
+        self.privateKeyTextView.text = keychain.get("privateKey") ?? "Please paste (and replace this text) here your private key"
         self.authenticationMethodControl.selectedSegmentIndex = userDefaults.integer(forKey: "auth")
         self.authenticationMethodControl.sendActions(for: .valueChanged)
         
@@ -78,6 +83,8 @@ class LoginViewController: UIViewController {
         userDefaults.set(self.portTextField.text, forKey: "port")
         keychain.set(self.usernameTextField.text ?? "", forKey: "username")
         keychain.set(self.passwordTextField.text ?? "", forKey: "password")
+        keychain.set(self.publicKeyTextView.text, forKey: "publicKey")
+        keychain.set(self.privateKeyTextView.text, forKey: "privateKey")
         userDefaults.set(self.authenticationMethodControl.selectedSegmentIndex, forKey: "auth")
         userDefaults.synchronize()
         
@@ -90,6 +97,10 @@ class LoginViewController: UIViewController {
         if let portString = self.portTextField.text, let port = UInt16(portString), port > 0 {
             viewController.port = port
         }
+        if self.authenticationMethodControl.selectedSegmentIndex == 3 { // Public SSH Key
+            viewController.publicKey = self.publicKeyTextView.text
+            viewController.privateKey = self.privateKeyTextView.text
+        }
     }
     
     @IBAction func tapBackground() {
@@ -100,7 +111,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func authenticationMethodChanged() {
-        self.passwordTextField.isEnabled = self.authenticationMethodControl.selectedSegmentIndex == 1
+        let i = self.authenticationMethodControl.selectedSegmentIndex
+        self.passwordTextField.isEnabled =  i == 1 || i == 3
         self.usernameTextField.returnKeyType = self.passwordTextField.isEnabled ? .next : .go
     }
     
