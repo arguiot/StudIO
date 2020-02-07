@@ -1,4 +1,5 @@
-github "alexaubry/BulletinBoard" "master"
+# github "alexaubry/BulletinBoard" "master"
+github "Piidro/BulletinBoard" "fix/ipad-split-view"
 github "SwiftGit2/SwiftGit2"
 # github "libgit2/objective-git"
 binary "https://studiocode.app/other/objectivegit.json"
