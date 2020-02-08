@@ -128,6 +128,8 @@ class NewPluginVC: UIViewController {
             self.state = true
             self.pluginUrl = url
         } catch {
+            pluginTextView.isHidden = false
+            pluginTextView.text = error.localizedDescription
             NSObject.alert(t: "Couldn't load plugin", m: error.localizedDescription)
         }
     }

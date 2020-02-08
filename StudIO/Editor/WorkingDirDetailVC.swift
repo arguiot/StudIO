@@ -159,6 +159,12 @@ class WorkingDirDetailVC: UIViewController {
             guard let data = image?.jpegData(compressionQuality: 0.4) else { return }
             content = data.base64EncodedString() 
         }
+        c.settings([
+            "fontSize": UserDefaults.standard.string(forKey: "studio-font-size") ?? "26",
+            "lineWrapping": UserDefaults.standard.string(forKey: "studio-line-wrapping") ?? "false",
+            "theme": UserDefaults.standard.string(forKey: "studio-editor-theme") ?? "monokai"
+        ])
+        
         c.loadFile(withContent: content, lang: str)
         c.fileName = str
         
@@ -168,11 +174,7 @@ class WorkingDirDetailVC: UIViewController {
         
         c.highlightExt = ext
         
-        c.settings([
-            "fontSize": UserDefaults.standard.string(forKey: "studio-font-size") ?? "26",
-            "lineWrapping": UserDefaults.standard.string(forKey: "studio-line-wrapping") ?? "false",
-            "theme": UserDefaults.standard.string(forKey: "studio-editor-theme") ?? "monokai"
-            ])
+        
         
         self.bottomLine?.setupLanguage(str)
         

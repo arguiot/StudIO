@@ -76,27 +76,34 @@ class editor {
 
 				let isMac = /Mac/.test(navigator.platform)
 
+				let exts = [
+					lineNumbers(),
+					history(),
+					specialChars(),
+					multipleSelections(),
+					mode,
+					matchBrackets(),
+					keymap({
+						"Mod-z": undo,
+						"Mod-Shift-z": redo,
+						"Mod-u": function (view) {
+							return undoSelection(view) || true
+						},
+						[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
+						"Ctrl-y": isMac ? undefined : redo,
+						"Shift-Tab": indentSelection
+					}),
+					keymap(baseKeymap),
+				]
+				if (typeof ExternalMode != "undefined") {
+					exts.push(legacyMode({
+						mode: ExternalMode()
+					}))
+				}
+
 				this.cm = EditorState.create({
 					doc: atobUTF8(value),
-					extensions: [
-						lineNumbers(),
-						history(),
-						specialChars(),
-						multipleSelections(),
-						mode,
-						matchBrackets(),
-						keymap({
-							"Mod-z": undo,
-							"Mod-Shift-z": redo,
-							"Mod-u": function (view) {
-								return undoSelection(view) || true
-							},
-							[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
-							"Ctrl-y": isMac ? undefined : redo,
-							"Shift-Tab": indentSelection
-						}),
-						keymap(baseKeymap),
-					]
+					extensions: exts
 				})
 				let view = window.view = new EditorView({
 					state: this.cm

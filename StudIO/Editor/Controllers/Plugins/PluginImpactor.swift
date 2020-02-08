@@ -63,7 +63,13 @@ extension Editor {
     func injectPlugin(url: URL) {
         guard let content = try? String(contentsOf: url) else { return }
         if codeView.isLoading == false {
-            codeView.evaluateJavaScript(content)   { (result, error) in
+            let jsString = """
+            var script = document.createElement('script');
+            script.type = "text/javascript"
+            script.innerHTML = window.atobUTF8('\(content.data(using: .utf8)?.base64EncodedString() ?? "")');
+            document.head.appendChild(script);
+            """
+            codeView.evaluateJavaScript(jsString)   { (result, error) in
                 if error != nil {
                     print(error!)
                 }

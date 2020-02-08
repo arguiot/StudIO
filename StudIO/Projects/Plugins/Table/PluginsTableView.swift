@@ -39,8 +39,6 @@ extension PluginsVC {
         return true
     }
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let row = indexPath.row
-        
         let cell = tableView.cellForRow(at: indexPath) as! PluginCell
         let name = cell.name.text
         guard var plugins = UserDefaults.standard.array(forKey: "plugins") as? [[String: String]] else { return [] }
@@ -59,7 +57,8 @@ extension PluginsVC {
             } catch {
                 print("Couldn't delete folder", error.localizedDescription)
             }
-            let _ = plugins.remove(at: row)
+            guard let i = plugins.firstIndex(of: plugin) else { return }
+            let _ = plugins.remove(at: i)
             UserDefaults.standard.set(plugins, forKey: "plugins")
             
             self.load()

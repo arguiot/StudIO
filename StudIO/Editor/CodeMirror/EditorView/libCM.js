@@ -15241,27 +15241,34 @@
 
 					var isMac = /Mac/.test(navigator.platform);
 
+					var exts = [
+						lineNumbers(),
+						history$1(),
+						specialChars$2(),
+						multipleSelections$1(),
+						mode,
+						matchBrackets(),
+						keymap$1({
+							"Mod-z": undo,
+							"Mod-Shift-z": redo,
+							"Mod-u": function (view) {
+								return undoSelection(view) || true
+							},
+							[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
+							"Ctrl-y": isMac ? undefined : redo,
+							"Shift-Tab": indentSelection
+						}),
+						keymap$1(baseKeymap),
+					];
+					if (typeof ExternalMode != "undefined") {
+						exts.push(legacyMode({
+							mode: ExternalMode()
+						}));
+					}
+
 					this.cm = EditorState.create({
 						doc: atobUTF8(value),
-						extensions: [
-							lineNumbers(),
-							history$1(),
-							specialChars$2(),
-							multipleSelections$1(),
-							mode,
-							matchBrackets(),
-							keymap$1({
-								"Mod-z": undo,
-								"Mod-Shift-z": redo,
-								"Mod-u": function (view) {
-									return undoSelection(view) || true
-								},
-								[isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
-								"Ctrl-y": isMac ? undefined : redo,
-								"Shift-Tab": indentSelection
-							}),
-							keymap$1(baseKeymap),
-						]
+						extensions: exts
 					});
 					var view = window.view = new EditorView({
 						state: this.cm

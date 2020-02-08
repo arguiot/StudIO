@@ -99,6 +99,9 @@ class StudIOPackageReader {
     }
     private func parse(json j: String) -> PackageFile? {
         let json = JSON(j)
+        if json.object == nil {
+            return nil
+        }
         let file = PackageFile(json: json)
         return file
     }
