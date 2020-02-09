@@ -15237,6 +15237,15 @@
 					var mode = legacyMode({
 						mode: m
 					});
+
+					if (typeof ExternalMode != "undefined") {
+						mode = legacyMode({
+							mode: ExternalMode({
+								indentUnit: 2
+							}, {})
+						});
+					}
+
 					this.mode = mode;
 
 					var isMac = /Mac/.test(navigator.platform);
@@ -15260,11 +15269,6 @@
 						}),
 						keymap$1(baseKeymap),
 					];
-					if (typeof ExternalMode != "undefined") {
-						exts.push(legacyMode({
-							mode: ExternalMode()
-						}));
-					}
 
 					this.cm = EditorState.create({
 						doc: atobUTF8(value),
