@@ -319,6 +319,9 @@ class ProjectVC: UICollectionViewController {
             //2. Add the text field. You can configure it however you need.
             alert.addTextField { (textField) in
                 textField.placeholder = "username".localized()
+                let keychain = KeychainSwift()
+                keychain.synchronizable = true
+                textField.text = keychain.get("email")
             }
             
             // 3. Grab the value from the text field, and print it when the user clicks OK.
@@ -332,6 +335,9 @@ class ProjectVC: UICollectionViewController {
                 //2. Add the text field. You can configure it however you need.
                 alert.addTextField { (textField) in
                     textField.placeholder = "password".localized()
+                    let keychain = KeychainSwift()
+                    keychain.synchronizable = true
+                    textField.text = keychain.get("password")
                     textField.isSecureTextEntry = true
                 }
                 
@@ -339,6 +345,15 @@ class ProjectVC: UICollectionViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
                     let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
                     let password = textField?.text
+                    let keychain = KeychainSwift()
+                    keychain.synchronizable = true
+                    if let u = username {
+                        keychain.set(u, forKey: "email")
+                    }
+                    if let p = password {
+                        keychain.set(p, forKey: "password")
+                    }
+                    
                     self.creds = try? .init(userName: username ?? "", password: password ?? "")
                     alert?.dismiss(animated: true, completion: nil)
                     
