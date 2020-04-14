@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="./skulpt.min.js" type="text/javascript"></script>
+    <script src="./skulpt-stdlib.js" type="text/javascript"></script>
+    <meta charset="utf8">
+    <title>StudIO - code</title>
+    <link rel="stylesheet" href="./lib/codemirror6.css">
+    <link rel="stylesheet" href="./python.css">
+</head>
+
+<body>
+
+    <h3>Try This</h3>
+
+    <div id="editor"></div>
+    <script type="text/javascript">
+        var CodeMirror = {} // For extension finding
+    </script>
+    <script src="./base64.js" charset="utf-8"></script>
+    <script src="mode/meta.js" charset="utf-8"></script>
+    <script src="./libCM.js"></script>
+    <script src="./runtime.js" charset="utf-8"></script>
+    
+    <script type="text/javascript">
+        // output functions are configurable.  This one just appends some text
+        // to a pre element.
+        function outf(text) {
+            var mypre = document.getElementById("output");
+            mypre.innerHTML = mypre.innerHTML + text;
+        }
+
+        function builtinRead(x) {
+            if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                throw "File not found: '" + x + "'";
+            return Sk.builtinFiles["files"][x];
+        }
+
+        // Here's everything you need to run a python program in skulpt
+        // grab the code from your textarea
+        // get a reference to your pre element for output
+        // configure the output function
+        // call Sk.importMainWithBody()
+        function runit() {
+            if (typeof window.view == "undefined") {
+                return
+            }
+            var prog = window.view.state.doc.toString();
+            var mypre = document.getElementById("output");
+            mypre.innerHTML = '';
+            Sk.pre = "output";
+            Sk.configure({
+                output: outf,
+                read: builtinRead
+            });
+            (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
+            var myPromise = Sk.misceval.asyncToPromise(function () {
+                return Sk.importMainWithBody("<stdin>", false, prog, true);
+            });
+            myPromise.then(function (mod) {
+                    console.log('success');
+                },
+                function (err) {
+                    outf(err.toString());
+                });
+        }
+    </script>
+
+    <button type="button" onclick="runit()">Run</button>
+    <pre id="output"></pre>
+    <!-- If you want turtle graphics include a canvas -->
+    <div id="mycanvas"></div>
+
+</body>
+
+</html>

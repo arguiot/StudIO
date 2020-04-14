@@ -288,6 +288,14 @@ class WorkingDirDetailVC: UIViewController {
             self.editorView.codeView.loadFileURL(fURL, allowingReadAccessTo: allow)
             
             return
+        } else if ext == "py" {
+            let url = Bundle.main.url(forResource: "python", withExtension: "html", subdirectory: "EditorView")!
+            
+            self.editorView.codeView.loadFileURL(url, allowingReadAccessTo: url)
+            let request = URLRequest(url: url)
+            self.editorView.codeView.load(request)
+            
+            self.codeEditor((file?.name)!)
         }
         
         let js = """

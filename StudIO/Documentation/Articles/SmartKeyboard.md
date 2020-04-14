@@ -5,7 +5,7 @@ When you edit your source code, a bar will automatically show up on top of your 
 
 ## Smart Completion & Preview
 
-On the left of the bar, you can see a grey bulb icon. When you tap on it, the bar will change appearence. Thus a text field should appear with a button on the right to activate the preview (available for HTML, Markdown and LaTeX). 
+On the left of the bar, you can see a grey bulb icon. When you tap on it, the bar will change appearence. Thus a text field should appear with a button on the right to activate the preview (available for HTML, Markdown, LaTeX (experimental) and Python (experimental) ). 
 
 Similar to snippets, you can (in most languages) type in the bar a question in natural language (a bit like on Google, DuckDuckGo, ...) and StudIO will work out the solution to your problem. Please note however that this feature is only available with internet (StudIO uses online resources), but no data is stored on our servers. You can try by typing `for loop` or `load an image from a server`
 
