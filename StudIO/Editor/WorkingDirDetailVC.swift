@@ -116,7 +116,10 @@ class WorkingDirDetailVC: UIViewController {
                 return
             }
             guard let d = data else { return }
-            guard d != hash else { return }
+            guard d != hash else {
+                callback?() // Safe
+                return
+            }
             _ = try? f.write(data: d)
             DispatchQueue.main.async {
                 self.editorView?.getLangName({ str in
