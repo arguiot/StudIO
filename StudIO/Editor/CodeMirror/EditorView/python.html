@@ -15,6 +15,11 @@
     <h3>Try This</h3>
 
     <div id="editor"></div>
+    <button type="button" onclick="runit()">▶</button>
+    <pre id="output"></pre>
+    <!-- If you want turtle graphics include a canvas -->
+    <div id="mycanvas"></div>
+
     <script type="text/javascript">
         var CodeMirror = {} // For extension finding
     </script>
@@ -66,12 +71,6 @@
                 });
         }
     </script>
-
-    <button type="button" onclick="runit()">Run</button>
-    <pre id="output"></pre>
-    <!-- If you want turtle graphics include a canvas -->
-    <div id="mycanvas"></div>
-
 </body>
 
 </html>

@@ -80,7 +80,7 @@ class WorkingDirDetailVC: UIViewController {
         currentActivity.becomeCurrent()
     }
     override func viewWillDisappear(_ animated: Bool) {
-        save(nil) {
+        try? save(nil) {
 //            self.editorView.codeView = nil
         }
     }
@@ -97,11 +97,19 @@ class WorkingDirDetailVC: UIViewController {
         }
     }
     @objc func saveButton(_ sender: Any? = nil) {
-        save()
+        try? save()
     }
-    @objc func save(_ sender: Any? = nil, _ callback: (() -> Void)? = nil) {
-        guard let f = self.file else { return }
-        guard let hash = try? f.read() else { return }
+    
+    enum SaveError: LocalizedError {
+        case noFile
+        case read
+    }
+    @objc func save(_ sender: Any? = nil, _ callback: (() -> Void)? = nil) throws {
+        guard let f = self.file else {
+            callback?() // To open the file. If there is no file, there is nothing to worry
+            return
+        }
+        let hash = try f.read()
         editorView?.getData({ data, error  in
             if error != nil {
                 NSObject.alert(t: "Code wasn't saved", m: error!.localizedDescription)
@@ -193,8 +201,8 @@ class WorkingDirDetailVC: UIViewController {
             }
         }
         
-        
-        guard let r = try? GTRepository(url: (repo?.directoryURL)!) else { return }
+        guard let dir = repo?.directoryURL else { return }
+        guard let r = try? GTRepository(url: dir) else { return }
         guard let branch = try? r.currentBranch() else { return }
         guard let commit = try? branch.targetCommit() else { return }
         b.setup(commit: commit)
@@ -227,22 +235,22 @@ class WorkingDirDetailVC: UIViewController {
     }
     
     @objc func gitPanel(_ sender: Any?) {
-        save()
-        
-        guard let p = editorView?.gitPanel else { return }
-        
-        let screenSize = UIScreen.main.bounds
-        if p.contentView.frame.width > screenSize.width {
-            p.contentView.frame = CGRect(x: 400 - screenSize.width, y: p.bounds.minY, width: screenSize.width, height: p.bounds.height)
+        try? save(self) {
+            guard let p = self.editorView?.gitPanel else { return }
+            
+            let screenSize = UIScreen.main.bounds
+            if p.contentView.frame.width > screenSize.width {
+                p.contentView.frame = CGRect(x: 400 - screenSize.width, y: p.bounds.minY, width: screenSize.width, height: p.bounds.height)
+            }
+            
+            if p.isHidden == true {
+                p.reloadProperties()
+            }
+            p.isHidden = !(p.isHidden)
+            
+            let split = self.splitViewController as! EditorSplitVC
+            split.HideSmartKeyboard()
         }
-        
-        if p.isHidden == true {
-            p.reloadProperties()
-        }
-        p.isHidden = !(p.isHidden)
-        
-        let split = self.splitViewController as! EditorSplitVC
-        split.HideSmartKeyboard()
     }
     
     @objc func undo(_ sender: Any?) {
@@ -270,45 +278,48 @@ class WorkingDirDetailVC: UIViewController {
     }
     
     @objc func reloadInterface(_ notification: Notification) {
-        save()
-        guard let f = self.file else { return }
-        self.editorView.initialisation()
-        self.bottomView(f.name)
-        self.codeEditor(f.name)
+        try? save(self) {
+            guard let f = self.file else { return }
+            self.editorView.initialisation()
+            self.bottomView(f.name)
+            self.codeEditor(f.name)
+        }
+        
     }
     @objc func enablePreview(notification: Notification) {
-        self.save()
-        guard let c = editorView else { return }
-        guard let ext = c.highlightExt?.lowercased() else { return }
-        
-        if ext == "html" {
-            guard let allow = self.repo?.directoryURL else { return }
-            guard let path = self.file?.path else { return }
-            let fURL = URL(fileURLWithPath: path)
-            self.editorView.codeView.loadFileURL(fURL, allowingReadAccessTo: allow)
+        try? self.save(self) {
+            guard let c = self.editorView else { return }
+            guard let ext = c.highlightExt?.lowercased() else { return }
             
-            return
-        } else if ext == "py" {
-            let url = Bundle.main.url(forResource: "python", withExtension: "html", subdirectory: "EditorView")!
+            if ext == "html" {
+                guard let allow = self.repo?.directoryURL else { return }
+                guard let path = self.file?.path else { return }
+                let fURL = URL(fileURLWithPath: path)
+                self.editorView.codeView.loadFileURL(fURL, allowingReadAccessTo: allow)
+                
+                return
+            } else if ext == "py" {
+                let url = Bundle.main.url(forResource: "python", withExtension: "html", subdirectory: "EditorView")!
+                
+                self.editorView.codeView.loadFileURL(url, allowingReadAccessTo: url)
+                let request = URLRequest(url: url)
+                self.editorView.codeView.load(request)
+                
+                self.codeEditor((self.file?.name)!)
+            }
             
-            self.editorView.codeView.loadFileURL(url, allowingReadAccessTo: url)
-            let request = URLRequest(url: url)
-            self.editorView.codeView.load(request)
-            
-            self.codeEditor((file?.name)!)
-        }
-        
-        let js = """
-        try {
-            window.e.enablePreview("\(ext)")
-        } catch(e) {
-            console.log(e)
-        }
-        """
-        DispatchQueue.main.async {
-            self.editorView.codeView.evaluateJavaScript(js) { (result, error) in
-                if error != nil {
-                    NSObject.alert(t: "Preview error", m: error?.localizedDescription ?? "Couldn't load preview")
+            let js = """
+            try {
+                window.e.enablePreview("\(ext)")
+            } catch(e) {
+                console.log(e)
+            }
+            """
+            DispatchQueue.main.async {
+                self.editorView.codeView.evaluateJavaScript(js) { (result, error) in
+                    if error != nil {
+                        NSObject.alert(t: "Preview error", m: error?.localizedDescription ?? "Couldn't load preview")
+                    }
                 }
             }
         }

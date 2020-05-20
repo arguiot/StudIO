@@ -6,9 +6,11 @@ body {
     /* background: #272822; */
     /* color: #eee; */
 }
+
 * {
     z-index: 0;
 }
+
 .markdown-body {
     box-sizing: border-box;
     min-width: 200px;
@@ -30,6 +32,7 @@ body {
     margin: 0;
     overflow: auto;
 }
+
 #output {
     width: 100vw;
     height: 50vh;
@@ -45,6 +48,12 @@ button {
     position: absolute;
     top: 50vh;
     right: 5px;
+    font-size: 24px;
+    border-radius: 100%;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 14px;
 }
 
 /* Markdown */

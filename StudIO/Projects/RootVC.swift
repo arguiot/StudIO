@@ -65,7 +65,7 @@ class RootVC: UINavigationController, QuickActionSupport {
         guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }
         guard let editor = splitViewController.viewControllers.last as? UINavigationController else { return }
         guard let e = editor.topViewController as? WorkingDirDetailVC else { return }
-        e.save()
+        try? e.save()
     }
     @objc func showSnippet(_ send: Any) {
         guard let splitViewController = self.presentedViewController as? EditorSplitVC else { return }

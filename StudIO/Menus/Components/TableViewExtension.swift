@@ -117,7 +117,7 @@ extension WorkingDirMasterVC: UITableViewDragDelegate {
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         
-        detailViewController?.save() // saving before doing anything stupid
+        try? detailViewController?.save() // saving before doing anything stupid
         
         var out = [UIDragItem]()
         let object = objects[indexPath.row]

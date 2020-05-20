@@ -61,11 +61,11 @@ class WorkingDirMasterVC: UITableViewController {
     @objc
     func goBack(_ send: Any) {
         let controller = detailViewController
-        controller?.save() // save before quitting
-        
-        guard let root = self.view.window?.rootViewController as? RootVC else { return }
-        root.dismiss(animated: true, completion: nil)
-        root.status = false
+        try? controller?.save(nil) { // save before quitting
+            guard let root = self.view.window?.rootViewController as? RootVC else { return }
+            root.dismiss(animated: true, completion: nil)
+            root.status = false
+        }
     }
     
     var newFileManager: BLTNItemManager?
@@ -145,22 +145,22 @@ class WorkingDirMasterVC: UITableViewController {
     }
     
     func move(file: File, path: String) {
-        detailViewController?.save() // saving before doing anything
-        
-        let s = path.split(separator: "/")
-        let n = String(s.last!)
-        let subfolder = s.dropLast()
-        var l = LoadManager!.project
-        subfolder.forEach { (str) in
-            let n = String(str)
-            let sf = try? l.createSubfolderIfNeeded(withName: n)
-            l = sf!
-        }
-        try? file.rename(to: n, keepExtension: false)
-        try? file.move(to: l)
-        let fpath = URL(fileURLWithPath: LoadManager!.project.path)
-        if let repo = try? Repository.at(fpath).get() {
-            _ = repo.add(path: path)
+        try? detailViewController?.save(nil) { // saving before doing anything
+            let s = path.split(separator: "/")
+            let n = String(s.last!)
+            let subfolder = s.dropLast()
+            var l = self.LoadManager!.project
+            subfolder.forEach { (str) in
+                let n = String(str)
+                let sf = try? l.createSubfolderIfNeeded(withName: n)
+                l = sf!
+            }
+            try? file.rename(to: n, keepExtension: false)
+            try? file.move(to: l)
+            let fpath = URL(fileURLWithPath: self.LoadManager!.project.path)
+            if let repo = try? Repository.at(fpath).get() {
+                _ = repo.add(path: path)
+            }
         }
     }
     

@@ -15329,7 +15329,7 @@
 		clear() {
 			document.body.innerHTML = "<div class=\"tip\">Open a document</div><div id=\"editor\"></div>";
 			if (window.Sk != "undefined") {
-				document.body.innerHTML += "<button type=\"button\" onclick=\"runit()\">Run</button><pre id=\"output\"></pre><div id=\"mycanvas\"></div>";
+				document.body.innerHTML += "<button type=\"button\" onclick=\"runit()\">▶</button><pre id=\"output\"></pre><div id=\"mycanvas\"></div>";
 			}
 		}
 		load(file) {
