@@ -75,6 +75,7 @@ class GitCommit: UIView {
     }
     
     @IBAction func commit(_ sender: Any) {
+        self.endEditing(true)
         DispatchQueue.global().sync {
             let keychain = KeychainSwift()
             keychain.synchronizable = true
