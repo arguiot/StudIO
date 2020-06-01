@@ -108,7 +108,9 @@ class GitCommit: UIView {
                         a = Array(entry.keys)[entry.keys.count - 1]
                     }
                     if entry[a] == "true" {
-                        try index.addFile(a)
+                        if (try? index.addFile(a)) == nil {
+                            try index.removeFile(a) // Can happen for deleted files
+                        }
                     }
                 }
                 try index.write()
@@ -269,7 +271,7 @@ extension GitCommit: UITableViewDelegate, UITableViewDataSource {
             
             let index = try r.index()
             try index.addFile(title)
-            let HEAD = try r.lookUpObject(byRevParse: "HEAD") as! GTCommit
+            guard let HEAD = try r.lookUpObject(byRevParse: "HEAD") as? GTCommit else { return nil }
             let entry = try HEAD.tree?.entry(withPath: title)
             let blob = try GTBlob(treeEntry: entry!)
             let size = Double(blob.size())

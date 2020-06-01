@@ -55,7 +55,6 @@
 		682BCF032331949A0086FAA4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682BCEFF2331949A0086FAA4 /* MainViewController.swift */; };
 		682CF2A22243B15700207563 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CF2A12243B15700207563 /* Gist.swift */; };
 		682CF2A42243B1EE00207563 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CF2A32243B1EE00207563 /* Regex.swift */; };
-		682D03CB2283DA5D00F97BEA /* JASON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682D03CA2283DA5D00F97BEA /* JASON.framework */; };
 		682D03CD2283DA8900F97BEA /* StudIOPackageReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D03CC2283DA8900F97BEA /* StudIOPackageReader.swift */; };
 		6835AEEE2221188300A0C379 /* QuickActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6835AEED2221188300A0C379 /* QuickActions.swift */; };
 		6835AEF022211F3100A0C379 /* RootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6835AEEF22211F3100A0C379 /* RootVC.swift */; };
@@ -114,6 +113,7 @@
 		68A62CBD223CD46C0040225E /* snippetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A62CBC223CD46B0040225E /* snippetController.swift */; };
 		68A62CBF223CFFCB0040225E /* SnippetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A62CBE223CFFCB0040225E /* SnippetCell.swift */; };
 		68A62CC1223D01D20040225E /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A62CC0223D01D20040225E /* Snippet.swift */; };
+		68A8015F248546A000F22E96 /* JASON in Frameworks */ = {isa = PBXBuildFile; productRef = 68A8015E248546A000F22E96 /* JASON */; };
 		68AE8B88233FD4100029B29A /* MenuDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AE8B87233FD4100029B29A /* MenuDoc.swift */; };
 		68AE8B8A233FD4990029B29A /* ResultsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AE8B89233FD4990029B29A /* ResultsTableController.swift */; };
 		68AE8B8C233FD6FC0029B29A /* TableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68AE8B8B233FD6F50029B29A /* TableCell.xib */; };
@@ -346,13 +346,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				682D03CB2283DA5D00F97BEA /* JASON.framework in Frameworks */,
 				6890AD31223E42CF00D6EDBD /* ColorSlider.framework in Frameworks */,
 				68B56367222CBB2600B9E0DD /* Zip.framework in Frameworks */,
 				6858042B22AE6BD800F97488 /* Down.framework in Frameworks */,
 				687EC15B222AB46C00E6B3C3 /* SwiftGit2.framework in Frameworks */,
 				68244C0E23D1157800F50B5C /* ExceptionCatcher in Frameworks */,
 				68040217220EC67800789453 /* ObjectiveGit.framework in Frameworks */,
+				68A8015F248546A000F22E96 /* JASON in Frameworks */,
 				68F9BA022378E7C400C81974 /* SwiftSH.framework in Frameworks */,
 				68040212220EC67500789453 /* BLTNBoard.framework in Frameworks */,
 				68605EE2232AEE2D00077898 /* OneSignal.framework in Frameworks */,
@@ -888,6 +888,7 @@
 			name = StudIO;
 			packageProductDependencies = (
 				68244C0D23D1157800F50B5C /* ExceptionCatcher */,
+				68A8015E248546A000F22E96 /* JASON */,
 			);
 			productName = StudIO;
 			productReference = 689BDC1921B22F7800D88AAB /* StudIO.app */;
@@ -957,6 +958,7 @@
 			mainGroup = 689BDC1021B22F7800D88AAB;
 			packageReferences = (
 				68244C0C23D1157800F50B5C /* XCRemoteSwiftPackageReference "ExceptionCatcher" */,
+				68A8015D248546A000F22E96 /* XCRemoteSwiftPackageReference "JASON" */,
 			);
 			productRefGroup = 689BDC1A21B22F7800D88AAB /* Products */;
 			projectDirPath = "";
@@ -1063,7 +1065,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Zip.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ColorSlider.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/JASON.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/OneSignal.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftSH.framework",
@@ -1672,6 +1673,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		68A8015D248546A000F22E96 /* XCRemoteSwiftPackageReference "JASON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/delba/JASON";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1679,6 +1688,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 68244C0C23D1157800F50B5C /* XCRemoteSwiftPackageReference "ExceptionCatcher" */;
 			productName = ExceptionCatcher;
+		};
+		68A8015E248546A000F22E96 /* JASON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68A8015D248546A000F22E96 /* XCRemoteSwiftPackageReference "JASON" */;
+			productName = JASON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
