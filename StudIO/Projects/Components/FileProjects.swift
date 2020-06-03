@@ -102,7 +102,7 @@ class CreateProject {
         return component
     }
     func deleteProject(name: String) {
-        try! home.subfolder(atPath: name).delete()
+        try? home.subfolder(atPath: name).delete()
     }
     
     private func alert(_ str: String) {

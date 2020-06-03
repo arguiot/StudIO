@@ -54,13 +54,27 @@ class GitCommit: UIView {
         if contentView.frame.width > screenSize.width {
             contentView.frame = CGRect(x: 400 - screenSize.width, y: self.bounds.minY, width: screenSize.width, height: self.bounds.height)
         }
+        let toolbar = UIToolbar(frame: CGRect(origin: .zero, size: CGSize(width: self.frame.size.width, height: 30)))
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissKeyboard(_:)))
+        
+        toolbar.setItems([flexSpace, doneBtn], animated: false)
+        toolbar.sizeToFit()
+        
+        self.commitStrip.inputAccessoryView = toolbar
     }
+    
+    @objc func dismissKeyboard(_ sender: Any?) {
+        self.endEditing(true)
+    }
+    
     var ks: CGRect?
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             ks = keyboardSize
             if self.frame.origin.y == 0 {
-                self.frame.origin.y -= keyboardSize.height
+                self.frame.origin.y -= keyboardSize.height - 60 // SmartKeyboard's height
                 self.tableView.contentInset = UIEdgeInsets(top: keyboardSize.height, left: 0, bottom: 0, right: 0)
             }
             
