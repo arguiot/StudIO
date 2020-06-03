@@ -60,8 +60,13 @@ class WorkingDirMasterVC: UITableViewController {
     }
     @objc
     func goBack(_ send: Any) {
-        let controller = detailViewController
-        try? controller?.save(nil) { // save before quitting
+        guard let controller = detailViewController else { // If there is no detail, then there is no file...
+            guard let root = self.view.window?.rootViewController as? RootVC else { return }
+            root.dismiss(animated: true, completion: nil)
+            root.status = false
+            return
+        }
+        try? controller.save(nil) { // save before quitting
             guard let root = self.view.window?.rootViewController as? RootVC else { return }
             root.dismiss(animated: true, completion: nil)
             root.status = false
