@@ -31,8 +31,8 @@ class LoadProjects {
 }
 class CreateProject {
     let home = Folder.icloud
-    func newLocalProject(name: String) -> Project {
-        let f = try! home.createSubfolder(named: name)
+    func newLocalProject(name: String) throws -> Project {
+        let f = try home.createSubfolder(named: name)
         let url = URL(fileURLWithPath: f.path)
         do {
             try GTRepository.initializeEmpty(atFileURL: url, options: nil)

@@ -70,6 +70,9 @@ class WorkingDirMasterVC: UITableViewController {
             guard let root = self.view.window?.rootViewController as? RootVC else { return }
             root.dismiss(animated: true, completion: nil)
             root.status = false
+            
+            guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            delegate.processCompleted(nil)
         }
     }
     

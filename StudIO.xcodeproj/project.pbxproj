@@ -62,6 +62,9 @@
 		6835AEFE2221273D00A0C379 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6835AEFD2221273D00A0C379 /* Localize.swift */; };
 		6835AEFF22212AE100A0C379 /* Projects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6835AF0122212AE100A0C379 /* Projects.storyboard */; };
 		6838E26422477DDB00BF1A44 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838E26322477DDB00BF1A44 /* Services.swift */; };
+		68397A7C24B243EB00837581 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68397A7B24B243EB00837581 /* Utils.swift */; };
+		68397A7E24B2443B00837581 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68397A7D24B2443B00837581 /* UserDefaultsKeys.swift */; };
+		68397A8024B2444E00837581 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68397A7F24B2444E00837581 /* Review.swift */; };
 		683CF2652247A9D400EB75FC /* GitLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683CF2642247A9D400EB75FC /* GitLab.swift */; };
 		683CF2672248F81900EB75FC /* Obfuscator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683CF2662248F81900EB75FC /* Obfuscator.swift */; };
 		684549C421CE218F00CF5E80 /* git.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 684549C321CE218F00CF5E80 /* git.storyboard */; };
@@ -234,6 +237,9 @@
 		6835AEFD2221273D00A0C379 /* Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
 		6835AF0022212AE100A0C379 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Projects.storyboard; sourceTree = "<group>"; };
 		6838E26322477DDB00BF1A44 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		68397A7B24B243EB00837581 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		68397A7D24B2443B00837581 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		68397A7F24B2444E00837581 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		683CF2642247A9D400EB75FC /* GitLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitLab.swift; sourceTree = "<group>"; };
 		683CF2662248F81900EB75FC /* Obfuscator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obfuscator.swift; sourceTree = "<group>"; };
 		684549C321CE218F00CF5E80 /* git.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = git.storyboard; sourceTree = "<group>"; };
@@ -452,6 +458,16 @@
 				6835AEFD2221273D00A0C379 /* Localize.swift */,
 			);
 			path = Language;
+			sourceTree = "<group>";
+		};
+		68397A7A24B243DA00837581 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				68397A7B24B243EB00837581 /* Utils.swift */,
+				68397A7D24B2443B00837581 /* UserDefaultsKeys.swift */,
+				68397A7F24B2444E00837581 /* Review.swift */,
+			);
+			path = Reviews;
 			sourceTree = "<group>";
 		};
 		684549C721CE279500CF5E80 /* Git */ = {
@@ -681,6 +697,7 @@
 		689BDC1B21B22F7800D88AAB /* StudIO */ = {
 			isa = PBXGroup;
 			children = (
+				68397A7A24B243DA00837581 /* Reviews */,
 				682BCEE22331935D0086FAA4 /* Easter Egg */,
 				68DEC2CA2321B94600DB7BE5 /* Settings.bundle */,
 				6835AEF1222124ED00A0C379 /* Language */,
@@ -1137,6 +1154,7 @@
 				686822F021DB8E130036694B /* GitCommit.swift in Sources */,
 				68C2BC06228044A40088C39F /* PluginsTableView.swift in Sources */,
 				68A62CBD223CD46C0040225E /* snippetController.swift in Sources */,
+				68397A7C24B243EB00837581 /* Utils.swift in Sources */,
 				683CF2652247A9D400EB75FC /* GitLab.swift in Sources */,
 				6863DF9721B68F1700911374 /* EditorSplitVC.swift in Sources */,
 				682BCF002331949A0086FAA4 /* SetButtons.swift in Sources */,
@@ -1180,6 +1198,7 @@
 				68C2BC0C2281A7230088C39F /* NewPluginVC.swift in Sources */,
 				683CF2672248F81900EB75FC /* Obfuscator.swift in Sources */,
 				68E59357223FAEB9008C86C7 /* colors.swift in Sources */,
+				68397A8024B2444E00837581 /* Review.swift in Sources */,
 				6808B18121BD1D8200811058 /* Files.swift in Sources */,
 				6808B18321BD1E5200811058 /* FileProjects.swift in Sources */,
 				6856C7B221B27A8000441767 /* ProjectCell.swift in Sources */,
@@ -1188,6 +1207,7 @@
 				68838534220FD4D100330B45 /* iCloudFiles.swift in Sources */,
 				68E4544E21C276CB00F945A0 /* CreateFile.swift in Sources */,
 				68E64F4E237B8CF6000D0AFB /* ShellViewController.swift in Sources */,
+				68397A7E24B2443B00837581 /* UserDefaultsKeys.swift in Sources */,
 				6838E26422477DDB00BF1A44 /* Services.swift in Sources */,
 				6856C7AB21B2788900441767 /* ProjectVC.swift in Sources */,
 				6835AEF022211F3100A0C379 /* RootVC.swift in Sources */,
@@ -1287,7 +1307,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1300,7 +1320,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1313,7 +1333,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1326,7 +1346,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1341,11 +1361,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				INFOPLIST_FILE = "StudIO Stickers/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ArthurG.StudIO.StudIO-Stickers";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1358,11 +1378,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				INFOPLIST_FILE = "StudIO Stickers/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ArthurG.StudIO.StudIO-Stickers";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1497,7 +1517,7 @@
 				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1509,7 +1529,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = StudIO/Git/ObjectiveGit/Header.h;
@@ -1528,7 +1548,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = StudIO/StudIO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 73CCF549YB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1540,7 +1560,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArthurG.StudIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = StudIO/Git/ObjectiveGit/Header.h;

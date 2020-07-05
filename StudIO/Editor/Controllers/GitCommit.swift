@@ -142,6 +142,9 @@ class GitCommit: UIView {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.reloadProperties()
+                    
+                    guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                    delegate.processCompleted(nil)
                 }
             } catch {
                 NSObject.alert(t: "Commit error", m: error.localizedDescription)

@@ -245,9 +245,15 @@ class ProjectVC: UICollectionViewController {
                 if name != "" {
                     item.manager?.dismissBulletin(animated: true)
                     let n = CreateProject()
-                    let p = n.newLocalProject(name: name)
+                    guard let p = try? n.newLocalProject(name: name) else {
+                        NSObject.alert(t: "Local Project", m: "A problem occured when creating your project")
+                        return
+                    }
                     self.project.append(p)
                     self.collectionView.reloadData()
+                    
+                    guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                    delegate.processCompleted(nil)
                 }
                 
             }
@@ -293,6 +299,9 @@ class ProjectVC: UICollectionViewController {
                         DispatchQueue.main.async {
                             item.manager?.dismissBulletin(animated: true)
                             self.collectionView.reloadData()
+                            
+                            guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                            delegate.processCompleted(nil)
                         }
                     })
                     
