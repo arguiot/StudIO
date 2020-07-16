@@ -22,6 +22,10 @@ class WorkingDirMasterVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Refreshing
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(goBack(_:)))
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
@@ -171,8 +175,12 @@ class WorkingDirMasterVC: UITableViewController {
             }
         }
     }
+    @objc func refresh(sender: Any? = nil) {
+        self.reloadInterface(nil)
+        self.refreshControl?.endRefreshing()
+    }
     
-    @objc func reloadInterface(_ notification: Notification) {
+    @objc func reloadInterface(_ notification: Notification?) {
         guard let url = notification.userInfo?["url"] as? URL else {
             objects = LoadManager?.loadProject() ?? []
             self.tableView.reloadData()

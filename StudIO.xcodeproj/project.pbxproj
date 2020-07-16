@@ -155,6 +155,7 @@
 		68E64F50237B8D13000D0AFB /* SSHMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E64F4F237B8D13000D0AFB /* SSHMainVC.swift */; };
 		68F65C952310AC99001602AD /* MFixx.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68F65C942310AC99001602AD /* MFixx.ttf */; };
 		68F9BA022378E7C400C81974 /* SwiftSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F9BA012378E7C400C81974 /* SwiftSH.framework */; };
+		68FA9DED24BCEB3500A4FCF3 /* FindAndReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA9DEC24BCEB3500A4FCF3 /* FindAndReplace.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -337,6 +338,7 @@
 		68E64F4F237B8D13000D0AFB /* SSHMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSHMainVC.swift; sourceTree = "<group>"; };
 		68F65C942310AC99001602AD /* MFixx.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MFixx.ttf; sourceTree = "<group>"; };
 		68F9BA012378E7C400C81974 /* SwiftSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSH.framework; path = Carthage/Build/iOS/SwiftSH.framework; sourceTree = "<group>"; };
+		68FA9DEC24BCEB3500A4FCF3 /* FindAndReplace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindAndReplace.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -834,6 +836,7 @@
 				68E4544921C1276B00F945A0 /* CellStruct.swift */,
 				68E4544B21C127F400F945A0 /* LoadFiles.swift */,
 				68E4544D21C276CB00F945A0 /* CreateFile.swift */,
+				68FA9DEC24BCEB3500A4FCF3 /* FindAndReplace.swift */,
 			);
 			path = "File System";
 			sourceTree = "<group>";
@@ -1165,6 +1168,7 @@
 				68B5635F222BBB6000B9E0DD /* FolderItem.swift in Sources */,
 				689BDC2121B22F7800D88AAB /* WorkingDirDetailVC.swift in Sources */,
 				6852C24E21BB542000FA40DC /* Editor.swift in Sources */,
+				68FA9DED24BCEB3500A4FCF3 /* FindAndReplace.swift in Sources */,
 				68BD16952211735000C5F321 /* SettingsTableView.swift in Sources */,
 				6856C79F21B23E3800441767 /* FileCell.swift in Sources */,
 				68E64F50237B8D13000D0AFB /* SSHMainVC.swift in Sources */,
