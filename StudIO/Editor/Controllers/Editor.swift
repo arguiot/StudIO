@@ -94,11 +94,13 @@ class Editor: UIView, WKUIDelegate {
         }
     }
     func getData(_ handler: @escaping (Data?, Error?) -> Void) {
-        if codeView.isLoading == false {
-            codeView.evaluateJavaScript("window.e.save()") { (result, error) in
-                let str = result as? String
-                let data = Data(base64Encoded: str ?? "")
-                handler(data, error)
+        DispatchQueue.main.async {
+            if self.codeView.isLoading == false {
+                self.codeView.evaluateJavaScript("window.e.save()") { (result, error) in
+                    let str = result as? String
+                    let data = Data(base64Encoded: str ?? "")
+                    handler(data, error)
+                }
             }
         }
     }

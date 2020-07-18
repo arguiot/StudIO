@@ -11,11 +11,36 @@ import Foundation
 struct FindAndReplace {
     var base: Folder
     
-    func replace(in: File, for: String, with: String) {
+    var error: Any? = nil
+    
+    mutating func replace(for pattern: String, with template: String) {
         NotificationCenter.default.post(name: .init("save"), object: nil)
+        // Subfolders
         base.makeSubfolderSequence(recursive: true, includeHidden: false).forEach { folder in
-            folder.files.forEach { file in
-                
+            for file in folder.files {
+                do {
+                    var content = try? file.readAsString()
+                    if content == nil {
+                        continue
+                    }
+                    content = content!.replace(pattern: pattern, template: template)
+                    try file.write(string: content!)
+                } catch {
+                    self.error = error
+                }
+            }
+        }
+        // All root files
+        for file in base.files {
+            do {
+                var content = try? file.readAsString()
+                if content == nil {
+                    continue
+                }
+                content = content!.replace(pattern: pattern, template: template)
+                try file.write(string: content!)
+            } catch {
+                self.error = error
             }
         }
     }

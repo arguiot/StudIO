@@ -29,7 +29,9 @@ class WorkingDirMasterVC: UITableViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(goBack(_:)))
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        navigationItem.rightBarButtonItem = addButton
+        let findAndReplace = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(findAndReplace(_:)))
+        navigationItem.rightBarButtonItems = [addButton, findAndReplace]
+        
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? WorkingDirDetailVC
@@ -78,6 +80,63 @@ class WorkingDirMasterVC: UITableViewController {
             guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
             delegate.processCompleted(nil)
         }
+    }
+    
+    @objc
+    func findAndReplace(_ send: Any) {
+        let title = "Find and Replace".localized()
+        let page = TextFieldBulletinPage(title: title)
+        let desc = "Find and replace an expression in each file of your project.".localized()
+        page.descriptionText = desc
+        page.placeholder = "Old Expression".localized()
+        page.actionButtonTitle = "Find".localized()
+        page.checkURL = false
+        var expression = ""
+        page.textInputHandler = { item, string in
+            expression = string!
+        }
+        page.actionHandler = { (item: BLTNActionItem) in
+            let replacePage = TextFieldBulletinPage(title: title)
+            replacePage.descriptionText = desc
+            replacePage.placeholder = "New Expression".localized()
+            replacePage.actionButtonTitle = "Replace".localized()
+            replacePage.checkURL = false
+            var replacement = ""
+            replacePage.textInputHandler = { item, string in
+                replacement = string!
+            }
+            replacePage.actionHandler = { (item: BLTNActionItem) in
+                item.manager?.displayActivityIndicator()
+                DispatchQueue.global().async {
+                    guard let project = self.LoadManager?.project else {
+                        NSObject.alert(t: "Find and Replace", m: "Error loading the project object")
+                        DispatchQueue.main.sync {
+                            item.manager?.dismissBulletin(animated: true)
+                        }
+                        return
+                    }
+                    guard expression != "" else {
+                        NSObject.alert(t: "Find and Replace", m: "Old Expression is empty")
+                        DispatchQueue.main.sync {
+                            item.manager?.dismissBulletin(animated: true)
+                        }
+                        return
+                    }
+                    var far = FindAndReplace(base: project)
+                    far.replace(for: expression, with: replacement)
+                    if let e = far.error as? Error {
+                        NSObject.alert(t: "Find and Replace", m: e.localizedDescription)
+                    }
+                    DispatchQueue.main.sync {
+                        item.manager?.dismissBulletin(animated: true)
+                    }
+                }
+            }
+            page.next = replacePage
+            item.manager?.displayNextItem()
+        }
+        newFileManager = BLTNItemManager(rootItem: page)
+        newFileManager?.showBulletin(above: self)
     }
     
     var newFileManager: BLTNItemManager?
