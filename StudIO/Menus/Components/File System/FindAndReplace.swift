@@ -13,7 +13,7 @@ struct FindAndReplace {
     
     func replace(in: File, for: String, with: String) {
         NotificationCenter.default.post(name: .init("save"), object: nil)
-        base.subfolders.recursive.forEach { folder in
+        base.makeSubfolderSequence(recursive: true, includeHidden: false).forEach { folder in
             folder.files.forEach { file in
                 
             }

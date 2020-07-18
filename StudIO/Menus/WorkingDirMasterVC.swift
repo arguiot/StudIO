@@ -25,7 +25,7 @@ class WorkingDirMasterVC: UITableViewController {
         
         // Refreshing
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
-        
+        self.refreshControl?.tintColor = .white
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(goBack(_:)))
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
@@ -181,7 +181,7 @@ class WorkingDirMasterVC: UITableViewController {
     }
     
     @objc func reloadInterface(_ notification: Notification?) {
-        guard let url = notification.userInfo?["url"] as? URL else {
+        guard let url = notification?.userInfo?["url"] as? URL else {
             objects = LoadManager?.loadProject() ?? []
             self.tableView.reloadData()
             return
