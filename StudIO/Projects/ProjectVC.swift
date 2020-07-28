@@ -77,42 +77,41 @@ class ProjectVC: UICollectionViewController {
     
     func prepareSegue(indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController()
-        vc?.modalPresentationStyle = .fullScreen
+        guard let vc = storyboard.instantiateInitialViewController() else { return }
+        vc.modalPresentationStyle = .fullScreen
         
         // MARK: Prepare
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        if let splitViewController = vc as? EditorSplitVC {
-            let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
-            navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-            splitViewController.delegate = appDelegate
-            
-            let row = indexPath.row
-            let master = splitViewController.viewControllers.first as! UINavigationController
-            let m = master.topViewController as! WorkingDirMasterVC
-            m.title = project[row].name
-            m.LoadManager = LoadFilesMenu(p: project[row].path)
-            
-            if hasToOpen {
-                m.hasToOpen = true
-                m.args = self.args
-            }
-            // repo
-            let editor = splitViewController.viewControllers.last as! UINavigationController
-            let e = editor.topViewController as! WorkingDirDetailVC
-            let p = self.project[row].path
-            let path = URL(fileURLWithPath: p.path)
-            let repo = Repository.at(path)
-            switch repo {
-            case .success(let r):
-                e.repo = r
-            case .failure(let error):
-                NSObject.alert(t: "Couldn't transfer repo", m: error.localizedDescription)
-            }
+        guard let splitViewController = vc as? EditorSplitVC else { return }
+        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
+        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+        splitViewController.delegate = appDelegate
+        
+        let row = indexPath.row
+        let master = splitViewController.viewControllers.first as! UINavigationController
+        let m = master.topViewController as! WorkingDirMasterVC
+        m.title = project[row].name
+        m.LoadManager = LoadFilesMenu(p: project[row].path)
+        
+        if hasToOpen {
+            m.hasToOpen = true
+            m.args = self.args
+        }
+        // repo
+        let editor = splitViewController.viewControllers.last as! UINavigationController
+        let e = editor.topViewController as! WorkingDirDetailVC
+        let p = self.project[row].path
+        let path = URL(fileURLWithPath: p.path)
+        let repo = Repository.at(path)
+        switch repo {
+        case .success(let r):
+            e.repo = r
+        case .failure(let error):
+            NSObject.alert(t: "Couldn't transfer repo", m: error.localizedDescription)
         }
         
-        self.present(vc!, animated: true) {
+        self.present(splitViewController, animated: true) {
             guard let root = self.navigationController as? RootVC else { return }
             root.status = true
             guard let splitViewController = root.presentedViewController as? EditorSplitVC else { return }
