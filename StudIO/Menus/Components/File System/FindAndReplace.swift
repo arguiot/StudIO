@@ -19,12 +19,10 @@ struct FindAndReplace {
         base.makeSubfolderSequence(recursive: true, includeHidden: false).forEach { folder in
             for file in folder.files {
                 do {
-                    var content = try? file.readAsString()
-                    if content == nil {
-                        continue
-                    }
-                    content = content!.replace(pattern: pattern, template: template)
-                    try file.write(string: content!)
+                    guard let content = try? file.readAsString() else { continue }
+                    let new = content.replace(pattern: pattern, template: template)
+                    guard new != content else { continue }
+                    try file.write(string: new)
                 } catch {
                     self.error = error
                 }
@@ -33,15 +31,16 @@ struct FindAndReplace {
         // All root files
         for file in base.files {
             do {
-                var content = try? file.readAsString()
-                if content == nil {
-                    continue
-                }
-                content = content!.replace(pattern: pattern, template: template)
-                try file.write(string: content!)
+                guard let content = try? file.readAsString() else { continue }
+                let new = content.replace(pattern: pattern, template: template)
+                guard new != content else { continue }
+                try file.write(string: new)
             } catch {
                 self.error = error
             }
+        }
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .init("reloadEditorMenu"), object: nil)
         }
     }
 }

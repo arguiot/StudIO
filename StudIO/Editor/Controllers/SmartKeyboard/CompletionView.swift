@@ -81,6 +81,10 @@ extension Editor: WKScriptMessageHandler {
                 }
             }
             editorVC.accessory.completionView.reloadData()
+        case "error":
+                // You should actually handle the error :)
+                let error = (message.body as? [String: Any])?["message"] as? String ?? "unknown"
+                print("JavaScript error: \(error)")
         default:
             break
         }

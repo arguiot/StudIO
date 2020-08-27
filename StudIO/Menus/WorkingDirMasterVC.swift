@@ -86,7 +86,7 @@ class WorkingDirMasterVC: UITableViewController {
     func findAndReplace(_ send: Any) {
         let title = "Find and Replace".localized()
         let page = TextFieldBulletinPage(title: title)
-        let desc = "Find and replace an expression in each file of your project.".localized()
+        let desc = "Find and replace a RegEx expression in each file of your project.".localized()
         page.descriptionText = desc
         page.placeholder = "Old Expression".localized()
         page.actionButtonTitle = "Find".localized()

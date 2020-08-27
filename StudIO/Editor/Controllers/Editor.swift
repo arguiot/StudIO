@@ -42,6 +42,10 @@ class Editor: UIView, WKUIDelegate {
         let webConfiguration = WKWebViewConfiguration()
         let customFrame = CGRect.init(origin: .zero, size: .init(width: 0.0, height: self.containerCodeView.frame.size.height))
         
+        let controller = WKUserContentController()
+        controller.add(self, name: "error")
+        webConfiguration.userContentController = controller
+        
         self.codeView = WKWebView (frame: customFrame , configuration: webConfiguration)
         codeView.translatesAutoresizingMaskIntoConstraints = false
         

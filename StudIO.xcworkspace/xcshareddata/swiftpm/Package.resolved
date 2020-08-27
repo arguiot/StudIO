@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ExceptionCatcher",
+        "repositoryURL": "https://github.com/sindresorhus/ExceptionCatcher.git",
+        "state": {
+          "branch": null,
+          "revision": "3787f25119e1406b4c5e47fc654626a9d5d7e111",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "JASON",
+        "repositoryURL": "https://github.com/delba/JASON",
+        "state": {
+          "branch": "master",
+          "revision": "47d06b3f650867afd0a1fa8379d5b590855246db",
+          "version": null
+        }
+      },
+      {
+        "package": "SwiftGit2",
+        "repositoryURL": "https://github.com/kareman/SwiftGit2",
+        "state": {
+          "branch": "spm-binary-target",
+          "revision": "f9e8f6275b431a778414b4ae0ba43828b19268ca",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

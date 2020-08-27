@@ -20,7 +20,7 @@ extension WorkingDirMasterVC: UITableViewDragDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell", for: indexPath) as! FileCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell", for: indexPath) as? FileCell else { return .init() }
         
         let object = objects[indexPath.row]
         cell.file = object.name

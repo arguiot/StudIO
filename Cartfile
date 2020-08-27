@@ -1,10 +1,10 @@
-github "alexaubry/BulletinBoard"
+# github "alexaubry/BulletinBoard"
 # github "Piidro/BulletinBoard" "fix/ipad-split-view"
-github "kareman/SwiftGit2" "Swift5.3"
+# github "kareman/SwiftGit2" "Swift5.3"
 # github "libgit2/objective-git"
 binary "https://studiocode.app/other/objectivegit.json"
-github "mflint/Zip" "swift5"
-github "gizmosachin/ColorSlider" >= 4.4
-github "iwasrobbed/Down" "master"
-github "OneSignal/OneSignal-iOS-SDK"
+# github "mflint/Zip" "swift5"
+# github "gizmosachin/ColorSlider" >= 4.4
+# github "iwasrobbed/Down" "master"
+# github "OneSignal/OneSignal-iOS-SDK"
 github "Frugghi/SwiftSH" "master"
