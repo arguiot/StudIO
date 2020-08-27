@@ -1,0 +1,32 @@
+PODS:
+  - BulletinBoard (4.1.2)
+  - ColorSlider (4.4)
+  - Down (0.9.3)
+  - OneSignal (2.15.3)
+  - Zip (1.1.0)
+
+DEPENDENCIES:
+  - BulletinBoard (~> 4.1)
+  - ColorSlider (~> 4.4)
+  - Down (~> 0.9)
+  - OneSignal (< 3.0, >= 2.11.2)
+  - Zip (~> 1.1)
+
+SPEC REPOS:
+  trunk:
+    - BulletinBoard
+    - ColorSlider
+    - Down
+    - OneSignal
+    - Zip
+
+SPEC CHECKSUMS:
+  BulletinBoard: 1c0cb191b6c6245d08f51bd2445f1e36414ec0ed
+  ColorSlider: 9a888e65b871fa1e6a26fadebf4931c949935681
+  Down: 4553b984236807e384fa0ef7c7e360ef9f7c425d
+  OneSignal: d85b81aa313ed8040522b884f556267883d652c2
+  Zip: 8877eede3dda76bcac281225c20e71c25270774c
+
+PODFILE CHECKSUM: 64ad49f45d6315854ac42d55621d2269de49b37a
+
+COCOAPODS: 1.9.3

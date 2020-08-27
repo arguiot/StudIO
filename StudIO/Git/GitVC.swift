@@ -64,6 +64,9 @@ class GitVC: UIViewController {
             webhook.content = "https://webhook.studiocode.app/?id=\(id)"
             webhook.actionButtonTitle = "Continue"
             webhook.actionHandler = { (item: BLTNActionItem) in
+                // Copy
+                UIPasteboard.general.string = "https://webhook.studiocode.app/?id=\(id)"
+                
                 item.manager?.dismissBulletin()
                 self.openURL(item)
             }
