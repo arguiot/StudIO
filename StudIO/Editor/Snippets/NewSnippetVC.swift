@@ -28,7 +28,7 @@ class NewSnippetVC: UIViewController {
     
     
     func setupColorSlider() {
-        let colorSlider = ColorSlider(orientation: .horizontal, previewSide: .right)
+        let colorSlider = ColorSlider(orientation: .horizontal, previewSide: .top)
         colorSlider.frame = CGRect(x: 0, y: 0, width: 200, height: 30)
         colorSlider.addTarget(self, action: #selector(changedColor(_:)), for: .valueChanged)
         
