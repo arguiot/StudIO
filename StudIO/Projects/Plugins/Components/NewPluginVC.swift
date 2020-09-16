@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftGit2
 
 class NewPluginVC: UIViewController {
 

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftGit2
 
 extension WorkingDirMasterVC {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

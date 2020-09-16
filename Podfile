@@ -19,6 +19,7 @@ target 'StudIO' do
   pod 'OneSignal', '>= 2.11.2', '< 3.0'
   pod 'Zip', '~> 1.1'
   pod 'Down', '~> 0.9'
+  pod 'JASON', '~> 3.0'
   
   target 'StudIO UI Tests' do
     # Pods for testing

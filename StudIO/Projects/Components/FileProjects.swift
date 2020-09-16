@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftGit2
 import ExceptionCatcher
 
 class LoadProjects {

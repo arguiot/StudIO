@@ -8,7 +8,6 @@
 
 import UIKit
 import BLTNBoard
-import SwiftGit2
 import Zip
 
 class ProjectVC: UICollectionViewController {

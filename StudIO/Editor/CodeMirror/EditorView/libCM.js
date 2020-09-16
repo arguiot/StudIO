@@ -2,12 +2,12 @@
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
 	(global = global || self, global.StudIO = factory());
-}(this, function () { 'use strict';
+}(this, (function () { 'use strict';
 
-	var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 	function unwrapExports (x) {
-		return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
+		return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 	}
 
 	function createCommonjsModule(fn, module) {
@@ -16,6 +16,7 @@
 
 	var char_1 = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.charType = exports.CharType = exports.isWordChar = exports.isExtendingChar = void 0;
 	var extendingChars = /[\u0300-\u036f\u0483-\u0489\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7\u0610-\u061a\u064b-\u065e\u0670\u06d6-\u06dc\u06de-\u06e4\u06e7\u06e8\u06ea-\u06ed\u0711\u0730-\u074a\u0b82\u0bbe\u0bc0\u0bcd\u0bd7\u0d3e\u0d41-\u0d44\u0d4d\u0d57\u0d62\u0d63\u0e31\u0e34-\u0e3a\u0e47-\u0e4e\u0eb1\u0eb4-\u0eb9\u0ebb\u0ebc\u0ec8-\u0ecd\u180b-\u180d\u18a9\u200c\u200d]/;
 	try {
 	    extendingChars = new RegExp("\\p{Grapheme_Extend}", "u");
@@ -60,13 +61,14 @@
 	});
 
 	unwrapExports(char_1);
-	var char_2 = char_1.isExtendingChar;
-	var char_3 = char_1.isWordChar;
-	var char_4 = char_1.CharType;
-	var char_5 = char_1.charType;
+	var char_2 = char_1.charType;
+	var char_3 = char_1.CharType;
+	var char_4 = char_1.isWordChar;
+	var char_5 = char_1.isExtendingChar;
 
 	var column = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.findColumn = exports.countColumn = void 0;
 
 	function countColumn(string, n, tabSize) {
 	    for (var i = 0; i < string.length; i++) {
@@ -94,8 +96,8 @@
 	});
 
 	unwrapExports(column);
-	var column_1 = column.countColumn;
-	var column_2 = column.findColumn;
+	var column_1 = column.findColumn;
+	var column_2 = column.countColumn;
 
 	var text = createCommonjsModule(function (module, exports) {
 	var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
@@ -112,6 +114,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.Line = exports.joinLines = exports.splitLines = exports.Text = void 0;
 	// The base size of a leaf node
 	var BASE_LEAF = 512;
 	// The max size of a leaf node
@@ -214,12 +217,12 @@
 	    }
 	    Object.defineProperty(TextLeaf.prototype, "lines", {
 	        get: function () { return this.text.length; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(TextLeaf.prototype, "children", {
 	        get: function () { return null; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    TextLeaf.prototype.replaceInner = function (from, to, text, length) {
@@ -628,12 +631,12 @@
 	    };
 	    Object.defineProperty(PartialTextCursor.prototype, "lineBreak", {
 	        get: function () { return this.cursor.lineBreak; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(PartialTextCursor.prototype, "done", {
 	        get: function () { return this.limit < 0; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return PartialTextCursor;
@@ -662,7 +665,7 @@
 	    };
 	    Object.defineProperty(LineCursor.prototype, "lineBreak", {
 	        get: function () { return false; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return LineCursor;
@@ -679,7 +682,7 @@
 	    }
 	    Object.defineProperty(Line.prototype, "length", {
 	        get: function () { return this.end - this.start; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Line.prototype.slice = function (from, to) {
@@ -733,42 +736,33 @@
 	});
 
 	unwrapExports(text);
-	var text_1 = text.Text;
-	var text_2 = text.splitLines;
-	var text_3 = text.joinLines;
-	var text_4 = text.Line;
+	var text_1 = text.Line;
+	var text_2 = text.joinLines;
+	var text_3 = text.splitLines;
+	var text_4 = text.Text;
 
 	var src = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
 
-	exports.isExtendingChar = char_1.isExtendingChar;
-	exports.isWordChar = char_1.isWordChar;
-	exports.charType = char_1.charType;
-	exports.CharType = char_1.CharType;
+	Object.defineProperty(exports, "isExtendingChar", { enumerable: true, get: function () { return char_1.isExtendingChar; } });
+	Object.defineProperty(exports, "isWordChar", { enumerable: true, get: function () { return char_1.isWordChar; } });
+	Object.defineProperty(exports, "charType", { enumerable: true, get: function () { return char_1.charType; } });
+	Object.defineProperty(exports, "CharType", { enumerable: true, get: function () { return char_1.CharType; } });
 
-	exports.countColumn = column.countColumn;
-	exports.findColumn = column.findColumn;
+	Object.defineProperty(exports, "countColumn", { enumerable: true, get: function () { return column.countColumn; } });
+	Object.defineProperty(exports, "findColumn", { enumerable: true, get: function () { return column.findColumn; } });
 
-	exports.Line = text.Line;
-	exports.Text = text.Text;
-	exports.splitLines = text.splitLines;
-	exports.joinLines = text.joinLines;
+	Object.defineProperty(exports, "Line", { enumerable: true, get: function () { return text.Line; } });
+	Object.defineProperty(exports, "Text", { enumerable: true, get: function () { return text.Text; } });
+	Object.defineProperty(exports, "splitLines", { enumerable: true, get: function () { return text.splitLines; } });
+	Object.defineProperty(exports, "joinLines", { enumerable: true, get: function () { return text.joinLines; } });
 	});
 
 	unwrapExports(src);
-	var src_1 = src.isExtendingChar;
-	var src_2 = src.isWordChar;
-	var src_3 = src.charType;
-	var src_4 = src.CharType;
-	var src_5 = src.countColumn;
-	var src_6 = src.findColumn;
-	var src_7 = src.Line;
-	var src_8 = src.Text;
-	var src_9 = src.splitLines;
-	var src_10 = src.joinLines;
 
 	var selection = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.EditorSelection = exports.SelectionRange = void 0;
 
 	var SelectionRange = /** @class */ (function () {
 	    function SelectionRange(anchor, head) {
@@ -778,17 +772,17 @@
 	    }
 	    Object.defineProperty(SelectionRange.prototype, "from", {
 	        get: function () { return Math.min(this.anchor, this.head); },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(SelectionRange.prototype, "to", {
 	        get: function () { return Math.max(this.anchor, this.head); },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(SelectionRange.prototype, "empty", {
 	        get: function () { return this.anchor == this.head; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    SelectionRange.prototype.map = function (mapping) {
@@ -856,7 +850,7 @@
 	    };
 	    Object.defineProperty(EditorSelection.prototype, "primary", {
 	        get: function () { return this.ranges[this.primaryIndex]; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    EditorSelection.prototype.asSingle = function () {
@@ -921,11 +915,19 @@
 	});
 
 	unwrapExports(selection);
-	var selection_1 = selection.SelectionRange;
-	var selection_2 = selection.EditorSelection;
+	var selection_1 = selection.EditorSelection;
+	var selection_2 = selection.SelectionRange;
 
 	var extension = createCommonjsModule(function (module, exports) {
+	var __spreadArrays = (commonjsGlobal && commonjsGlobal.__spreadArrays) || function () {
+	    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+	    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+	        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+	            r[k] = a[j];
+	    return r;
+	};
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.fillConfig = exports.combineConfig = exports.BehaviorStore = exports.Extension = exports.Slot = void 0;
 	var Slot = /** @class */ (function () {
 	    // @internal
 	    function Slot(/* @internal */ type, 
@@ -1090,7 +1092,7 @@
 	            if (ext.id != this)
 	                continue;
 	            var sub = first ? this.subs(ours.map(function (s) { return s.value; }), ext.priority) : none;
-	            extensions.splice.apply(extensions, [i, 1].concat(sub));
+	            extensions.splice.apply(extensions, __spreadArrays([i, 1], sub));
 	            first = false;
 	            i += sub.length - 1;
 	        }
@@ -1189,11 +1191,11 @@
 	});
 
 	unwrapExports(extension);
-	var extension_1 = extension.Slot;
-	var extension_2 = extension.Extension;
+	var extension_1 = extension.fillConfig;
+	var extension_2 = extension.combineConfig;
 	var extension_3 = extension.BehaviorStore;
-	var extension_4 = extension.combineConfig;
-	var extension_5 = extension.fillConfig;
+	var extension_4 = extension.Extension;
+	var extension_5 = extension.Slot;
 
 	var change = createCommonjsModule(function (module, exports) {
 	var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
@@ -1210,6 +1212,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.ChangedRange = exports.ChangeSet = exports.Change = exports.ChangeDesc = exports.MapMode = void 0;
 	var empty = [];
 	var MapMode;
 	(function (MapMode) {
@@ -1226,7 +1229,7 @@
 	    }
 	    Object.defineProperty(ChangeDesc.prototype, "invertedDesc", {
 	        get: function () { return new ChangeDesc(this.from, this.from + this.length, this.to - this.from); },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    ChangeDesc.prototype.mapPos = function (pos, bias, mode) {
@@ -1275,7 +1278,7 @@
 	    };
 	    Object.defineProperty(Change.prototype, "desc", {
 	        get: function () { return new ChangeDesc(this.from, this.to, this.length); },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Change.prototype.toJSON = function () {
@@ -1308,7 +1311,7 @@
 	        get: function () {
 	            return this.changes.length;
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    ChangeSet.prototype.getMirror = function (n) {
@@ -1408,7 +1411,7 @@
 	                return this;
 	            return new ChangeSet(this.changes.map(function (ch) { return ch.desc; }), this.mirror);
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    ChangeSet.prototype.toJSON = function () {
@@ -1472,7 +1475,7 @@
 	    };
 	    Object.defineProperty(ChangedRange.prototype, "lenDiff", {
 	        get: function () { return (this.toB - this.fromB) - (this.toA - this.fromA); },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    ChangedRange.mapPos = function (pos, bias, changes) {
@@ -1495,14 +1498,15 @@
 	});
 
 	unwrapExports(change);
-	var change_1 = change.MapMode;
-	var change_2 = change.ChangeDesc;
+	var change_1 = change.ChangedRange;
+	var change_2 = change.ChangeSet;
 	var change_3 = change.Change;
-	var change_4 = change.ChangeSet;
-	var change_5 = change.ChangedRange;
+	var change_4 = change.ChangeDesc;
+	var change_5 = change.MapMode;
 
 	var transaction = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.Transaction = void 0;
 
 
 
@@ -1523,7 +1527,7 @@
 	            var last = this.docs.length - 1;
 	            return last < 0 ? this.startState.doc : this.docs[last];
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Transaction.prototype.addMeta = function () {
@@ -1589,14 +1593,14 @@
 	        get: function () {
 	            return (this.flags & FLAG_SELECTION_SET) > 0;
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(Transaction.prototype, "docChanged", {
 	        get: function () {
 	            return this.changes.length > 0;
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Transaction.prototype.scrollIntoView = function () {
@@ -1608,7 +1612,7 @@
 	        get: function () {
 	            return (this.flags & FLAG_SCROLL_INTO_VIEW) > 0;
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Transaction.prototype.ensureOpen = function () {
@@ -1655,6 +1659,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.StateField = exports.EditorState = exports.StateExtension = void 0;
 
 
 
@@ -1730,19 +1735,19 @@
 	    };
 	    Object.defineProperty(EditorState.prototype, "tabSize", {
 	        get: function () { return this.config.tabSize; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(EditorState.prototype, "multipleSelections", {
 	        get: function () { return this.config.multipleSelections; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    EditorState.prototype.joinLines = function (text) { return src.joinLines(text, this.config.lineSeparator || undefined); };
 	    EditorState.prototype.splitLines = function (text) { return src.splitLines(text, this.config.lineSeparator || undefined); };
 	    Object.defineProperty(EditorState.prototype, "behavior", {
 	        get: function () { return this.config.behavior; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    // FIXME plugin state serialization
@@ -1800,44 +1805,32 @@
 	});
 
 	unwrapExports(state);
-	var state_1 = state.StateExtension;
+	var state_1 = state.StateField;
 	var state_2 = state.EditorState;
-	var state_3 = state.StateField;
+	var state_3 = state.StateExtension;
 
 	var src$1 = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
 
-	exports.EditorState = state.EditorState;
-	exports.StateField = state.StateField;
-	exports.StateExtension = state.StateExtension;
+	Object.defineProperty(exports, "EditorState", { enumerable: true, get: function () { return state.EditorState; } });
+	Object.defineProperty(exports, "StateField", { enumerable: true, get: function () { return state.StateField; } });
+	Object.defineProperty(exports, "StateExtension", { enumerable: true, get: function () { return state.StateExtension; } });
 
-	exports.EditorSelection = selection.EditorSelection;
-	exports.SelectionRange = selection.SelectionRange;
+	Object.defineProperty(exports, "EditorSelection", { enumerable: true, get: function () { return selection.EditorSelection; } });
+	Object.defineProperty(exports, "SelectionRange", { enumerable: true, get: function () { return selection.SelectionRange; } });
 
-	exports.Change = change.Change;
-	exports.ChangeDesc = change.ChangeDesc;
-	exports.ChangeSet = change.ChangeSet;
-	exports.MapMode = change.MapMode;
-	exports.ChangedRange = change.ChangedRange;
+	Object.defineProperty(exports, "Change", { enumerable: true, get: function () { return change.Change; } });
+	Object.defineProperty(exports, "ChangeDesc", { enumerable: true, get: function () { return change.ChangeDesc; } });
+	Object.defineProperty(exports, "ChangeSet", { enumerable: true, get: function () { return change.ChangeSet; } });
+	Object.defineProperty(exports, "MapMode", { enumerable: true, get: function () { return change.MapMode; } });
+	Object.defineProperty(exports, "ChangedRange", { enumerable: true, get: function () { return change.ChangedRange; } });
 
-	exports.Transaction = transaction.Transaction;
+	Object.defineProperty(exports, "Transaction", { enumerable: true, get: function () { return transaction.Transaction; } });
 
-	exports.Slot = extension.Slot;
+	Object.defineProperty(exports, "Slot", { enumerable: true, get: function () { return extension.Slot; } });
 	});
 
 	unwrapExports(src$1);
-	var src_1$1 = src$1.EditorState;
-	var src_2$1 = src$1.StateField;
-	var src_3$1 = src$1.StateExtension;
-	var src_4$1 = src$1.EditorSelection;
-	var src_5$1 = src$1.SelectionRange;
-	var src_6$1 = src$1.Change;
-	var src_7$1 = src$1.ChangeDesc;
-	var src_8$1 = src$1.ChangeSet;
-	var src_9$1 = src$1.MapMode;
-	var src_10$1 = src$1.ChangedRange;
-	var src_11 = src$1.Transaction;
-	var src_12 = src$1.Slot;
 
 	function sym(name, random) {
 	  return typeof Symbol == "undefined"
@@ -1845,57 +1838,56 @@
 	    : random ? Symbol(name) : Symbol.for(name)
 	}
 
-	var COUNT = sym("\u037c"), SET = sym("styleSet", 1), RULES = sym("rules", 1);
+	var COUNT = sym("\u037c"), SET = sym("styleSet", 1), DATA = sym("data", 1);
 	var top = typeof global == "undefined" ? window : global;
 
-	// :: (Object<Style>, number) → StyleModule
-	// Instances of this class bind the property names
+	// :: (Object<Style>, number, ?{priority: ?number}) → Object<string>
+	// names for them. Instances of this class bind the property names
 	// from `spec` to CSS class names that assign the styles in the
 	// corresponding property values.
 	//
 	// A style module can only be used in a given DOM root after it has
 	// been _mounted_ there with `StyleModule.mount`.
 	//
+	// By default, rules are defined in the order in which they are
+	// mounted, making those mounted later take precedence in case of an
+	// otherwise equal selector precedence. You can pass 0 for low
+	// priority or 2 for high priority as second argument to explicitly
+	// move the rules above or below rules with default priority. Within a
+	// priority level, rules remain defined in mount order.
+	//
 	// Style modules should be created once and stored somewhere, as
 	// opposed to re-creating them every time you need them. The amount of
 	// CSS rules generated for a given DOM root is bounded by the amount
-	// of style modules that were used. So to avoid leaking rules, don't
+	// of style modules that were used. To avoid leaking rules, don't
 	// create these dynamically, but treat them as one-time allocations.
-	function StyleModule(spec) {
-	  this[RULES] = [];
+	function StyleModule(spec, options) {
+	  var priority = options && options.priority;
+	  if (priority == null) priority = 1;
+	  if (priority < 0 || priority > 2 || +priority != priority) throw new RangeError("Invalid priority: " + priority)
+	  this[DATA] = {rules: [], mounted: [], priority};
 	  top[COUNT] = top[COUNT] || 1;
 	  for (var name in spec) {
-	    var style = spec[name], specificity = style.specificity || 0;
-	    var id = "\u037c" + (top[COUNT]++).toString(36);
-	    var selector = "." + id, className = id;
-	    for (var i = 0; i < specificity; i++) {
-	      var name = "\u037c_" + (i ? i.toString(36) : "");
-	      selector += "." + name;
-	      className += " " + name;
-	    }
-	    this[name] = className;
-	    renderStyle(selector, spec[name], this[RULES]);
+	    var className = this[name] = "\u037c" + (top[COUNT]++).toString(36);
+	    renderStyle("." + className, spec[name], this[DATA].rules);
 	  }
 	}
 
-	StyleModule.prototype = Object.create(null);
-
-	// :: (union<Document, ShadowRoot>, union<[StyleModule], StyleModule>)
+	// :: (union<Document, ShadowRoot>, Object<string>)
 	//
-	// Mount the given set of modules in the given DOM root, which ensures
-	// that the CSS rules defined by the module are available in that
-	// context.
+	// Mount the given module in the given DOM root, which ensures that
+	// the CSS rules defined by the module are available in that context.
 	//
-	// Rules are only added to the document once per root.
-	//
-	// Rule order will follow the order of the modules, so that rules from
-	// modules later in the array take precedence of those from earlier
-	// modules. If you call this function multiple times for the same root
-	// in a way that changes the order of already mounted modules, the old
-	// order will be changed.
-	StyleModule.mount = function(root, modules) {
-	  (root[SET] || new StyleSet(root)).mount(Array.isArray(modules) ? modules : [modules]);
+	// This function can be called multiple times with the same arguments
+	// cheaply—rules are only added to the document once per root.
+	StyleModule.mount = function(root, module) {
+	  var data = module[DATA];
+	  if (data.mounted.indexOf(root) > -1) return
+	  ;(root[SET] || new StyleSet(root)).mount(data.rules, data.priority);
+	  data.mounted.push(root);
 	};
+
+	StyleModule.prototype = Object.create(null);
 
 	class StyleSet {
 	  constructor(root) {
@@ -1904,36 +1896,22 @@
 	    this.styleTag = (root.ownerDocument || root).createElement("style");
 	    var target = root.head || root;
 	    target.insertBefore(this.styleTag, target.firstChild);
-	    this.modules = [];
+	    this.insertPos = [0, 0, 0];
+	    this.rules = [];
 	  }
 
-	  mount(modules) {
-	    var sheet = this.styleTag.sheet, reset = !sheet;
-	    var pos = 0 /* Current rule offset */, j = 0; /* Index into this.modules */
-	    for (var i = 0; i < modules.length; i++) {
-	      var mod = modules[i], index = this.modules.indexOf(mod);
-	      if (index < j && index > -1) { // Ordering conflict
-	        this.modules.splice(index, 1);
-	        j--;
-	        index = -1;
-	      }
-	      if (index == -1) {
-	        this.modules.splice(j++, 0, mod);
-	        if (!reset) for (var k = 0; k < mod[RULES].length; k++)
-	          sheet.insertRule(mod[RULES][k], pos++);
-	      } else {
-	        while (j < index) pos += this.modules[j++][RULES].length;
-	        pos += mod[RULES].length;
-	        j++;
-	      }
+	  mount(rules, priority) {
+	    var pos = this.insertPos[priority]
+	    ;this.rules.splice(pos, 0, ...rules);
+	    var sheet = this.styleTag.sheet;
+	    if (sheet) {
+	      for (var i = 0; i < rules.length; i++)
+	        sheet.insertRule(rules[i], pos++);
+	    } else {
+	      this.styleTag.textContent = this.rules.join("\n");
 	    }
-
-	    if (reset) {
-	      var text = "";
-	      for (var i = 0; i < this.modules.length; i++)
-	        text += this.modules[i][RULES].join("\n") + "\n";
-	      this.styleTag.textContent = text;
-	    }
+	    for (var i = priority; i < this.insertPos.length; i++)
+	      this.insertPos[i] += rules.length;
 	  }
 	}
 
@@ -1947,7 +1925,7 @@
 	      output.push(prop + " {" + local.join(" ") + "}");
 	    } else if (/&/.test(prop)) {
 	      renderStyle(prop.replace(/&/g, selector), spec[prop], output);
-	    } else if (prop != "specificity") {
+	    } else {
 	      if (typeof spec[prop] == "object") throw new RangeError("The value of a property (" + prop + ") should be a primitive value.")
 	      props.push(prop.replace(/_.*/, "").replace(/[A-Z]/g, l => "-" + l.toLowerCase()) + ": " + spec[prop]);
 	    }
@@ -1982,6 +1960,7 @@
 	// (min-width: 400px)": {...}}`.
 
 	var styleMod = /*#__PURE__*/Object.freeze({
+		__proto__: null,
 		StyleModule: StyleModule
 	});
 
@@ -2017,6 +1996,7 @@
 
 	var dom = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.DOMSelection = exports.scrollRectIntoView = exports.maxOffset = exports.domIndex = exports.isEquivalentPosition = exports.clientRectsFor = exports.hasSelection = exports.selectionCollapsed = void 0;
 
 	// Work around Chrome issue https://bugs.chromium.org/p/chromium/issues/detail?id=447523
 	// (isCollapsed inappropriately returns true in shadow dom)
@@ -2181,14 +2161,14 @@
 	});
 
 	unwrapExports(dom);
-	var dom_1 = dom.selectionCollapsed;
-	var dom_2 = dom.hasSelection;
-	var dom_3 = dom.clientRectsFor;
-	var dom_4 = dom.isEquivalentPosition;
-	var dom_5 = dom.domIndex;
-	var dom_6 = dom.maxOffset;
-	var dom_7 = dom.scrollRectIntoView;
-	var dom_8 = dom.DOMSelection;
+	var dom_1 = dom.DOMSelection;
+	var dom_2 = dom.scrollRectIntoView;
+	var dom_3 = dom.maxOffset;
+	var dom_4 = dom.domIndex;
+	var dom_5 = dom.isEquivalentPosition;
+	var dom_6 = dom.clientRectsFor;
+	var dom_7 = dom.hasSelection;
+	var dom_8 = dom.selectionCollapsed;
 
 	var contentview = createCommonjsModule(function (module, exports) {
 	var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
@@ -2204,7 +2184,15 @@
 	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	    };
 	})();
+	var __spreadArrays = (commonjsGlobal && commonjsGlobal.__spreadArrays) || function () {
+	    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+	    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+	        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+	            r[k] = a[j];
+	    return r;
+	};
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.DocChildCursor = exports.ChildCursor = exports.ContentView = exports.DOMPos = void 0;
 
 	var DOMPos = /** @class */ (function () {
 	    function DOMPos(node, offset, precise) {
@@ -2227,21 +2215,21 @@
 	    }
 	    Object.defineProperty(ContentView.prototype, "overrideDOMText", {
 	        get: function () { return null; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(ContentView.prototype, "posAtStart", {
 	        get: function () {
 	            return this.parent ? this.parent.posBefore(this) : 0;
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(ContentView.prototype, "posAtEnd", {
 	        get: function () {
 	            return this.posAtStart + this.length;
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    ContentView.prototype.posBefore = function (view) {
@@ -2343,9 +2331,7 @@
 	            }
 	            pos = end + child.breakAfter;
 	        }
-	        return { from: fromStart, to: toEnd,
-	            startDOM: (fromI ? this.children[fromI - 1].dom.nextSibling : null) || this.dom.firstChild,
-	            endDOM: toI < this.children.length - 1 ? this.children[toI + 1].dom : null };
+	        return { from: fromStart, to: toEnd, startDOM: (fromI ? this.children[fromI - 1].dom.nextSibling : null) || this.dom.firstChild, endDOM: toI < this.children.length - 1 ? this.children[toI + 1].dom : null };
 	    };
 	    // FIXME track precise dirty ranges, to avoid full DOM sync on every touched node?
 	    ContentView.prototype.markDirty = function (andParent) {
@@ -2385,7 +2371,7 @@
 	                v = parent_4;
 	            }
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    ContentView.prototype.replaceChildren = function (from, to, children) {
@@ -2394,7 +2380,7 @@
 	        this.markDirty();
 	        for (var i = from; i < to; i++)
 	            this.children[i].parent = null;
-	        (_a = this.children).splice.apply(_a, [from, to - from].concat(children));
+	        (_a = this.children).splice.apply(_a, __spreadArrays([from, to - from], children));
 	        for (var i = 0; i < children.length; i++)
 	            children[i].setParent(this);
 	    };
@@ -2485,13 +2471,14 @@
 	});
 
 	unwrapExports(contentview);
-	var contentview_1 = contentview.DOMPos;
-	var contentview_2 = contentview.ContentView;
-	var contentview_3 = contentview.ChildCursor;
-	var contentview_4 = contentview.DocChildCursor;
+	var contentview_1 = contentview.DocChildCursor;
+	var contentview_2 = contentview.ChildCursor;
+	var contentview_3 = contentview.ContentView;
+	var contentview_4 = contentview.DOMPos;
 
 	var attributes = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.updateAttrs = exports.attrsEq = exports.combineAttrs = void 0;
 	function combineAttrs(source, target) {
 	    for (var name_1 in source) {
 	        if (name_1 == "class" && target.class)
@@ -2534,9 +2521,9 @@
 	});
 
 	unwrapExports(attributes);
-	var attributes_1 = attributes.combineAttrs;
+	var attributes_1 = attributes.updateAttrs;
 	var attributes_2 = attributes.attrsEq;
-	var attributes_3 = attributes.updateAttrs;
+	var attributes_3 = attributes.combineAttrs;
 
 	var inlineview = createCommonjsModule(function (module, exports) {
 	var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
@@ -2553,6 +2540,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.CompositionView = exports.WidgetView = exports.TextView = exports.InlineView = void 0;
 
 
 
@@ -2565,7 +2553,7 @@
 	    InlineView.prototype.match = function (other) { return false; };
 	    Object.defineProperty(InlineView.prototype, "children", {
 	        get: function () { return none; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    InlineView.prototype.getSide = function () { return 0; };
@@ -2586,7 +2574,7 @@
 	    }
 	    Object.defineProperty(TextView.prototype, "length", {
 	        get: function () { return this.text.length; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    TextView.prototype.createDOM = function (textDOM) {
@@ -2735,7 +2723,7 @@
 	            var state = top.state, text = state && state.doc, start = this.posAtStart;
 	            return text ? text.sliceLines(start, start + this.length) : [""];
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    WidgetView.prototype.domAtPos = function (pos) {
@@ -2765,7 +2753,7 @@
 	    CompositionView.prototype.ignoreMutation = function () { return false; };
 	    Object.defineProperty(CompositionView.prototype, "overrideDOMText", {
 	        get: function () { return null; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    CompositionView.prototype.coordsAt = function (pos) { return textCoords(this.widget.value.text, pos); };
@@ -2775,10 +2763,10 @@
 	});
 
 	unwrapExports(inlineview);
-	var inlineview_1 = inlineview.InlineView;
-	var inlineview_2 = inlineview.TextView;
-	var inlineview_3 = inlineview.WidgetView;
-	var inlineview_4 = inlineview.CompositionView;
+	var inlineview_1 = inlineview.CompositionView;
+	var inlineview_2 = inlineview.WidgetView;
+	var inlineview_3 = inlineview.TextView;
+	var inlineview_4 = inlineview.InlineView;
 
 	var blockview = createCommonjsModule(function (module, exports) {
 	var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
@@ -2795,6 +2783,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.BlockWidgetView = exports.LineView = void 0;
 
 
 
@@ -2993,8 +2982,7 @@
 	                return null;
 	            totalWidth += rects[0].width;
 	        }
-	        return { lineHeight: this.dom.getBoundingClientRect().height,
-	            charWidth: totalWidth / this.length };
+	        return { lineHeight: this.dom.getBoundingClientRect().height, charWidth: totalWidth / this.length };
 	    };
 	    LineView.prototype.coordsAt = function (pos) {
 	        for (var off = 0, i = 0; i < this.children.length; i++) {
@@ -3008,7 +2996,7 @@
 	    LineView.prototype.match = function (other) { return false; };
 	    Object.defineProperty(LineView.prototype, "type", {
 	        get: function () { return 0 /* Text */; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return LineView;
@@ -3052,7 +3040,7 @@
 	    };
 	    Object.defineProperty(BlockWidgetView.prototype, "children", {
 	        get: function () { return none; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    BlockWidgetView.prototype.sync = function () {
@@ -3065,7 +3053,7 @@
 	        get: function () {
 	            return this.parent ? this.parent.state.doc.sliceLines(this.posAtStart, this.posAtEnd) : [""];
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    BlockWidgetView.prototype.domBoundsAround = function () { return null; };
@@ -3087,11 +3075,19 @@
 	});
 
 	unwrapExports(blockview);
-	var blockview_1 = blockview.LineView;
-	var blockview_2 = blockview.BlockWidgetView;
+	var blockview_1 = blockview.BlockWidgetView;
+	var blockview_2 = blockview.LineView;
 
 	var rangeset = createCommonjsModule(function (module, exports) {
+	var __spreadArrays = (commonjsGlobal && commonjsGlobal.__spreadArrays) || function () {
+	    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+	    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+	        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+	            r[k] = a[j];
+	    return r;
+	};
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.RangeSet = exports.Range = exports.RangeValue = void 0;
 	var RangeValue = /** @class */ (function () {
 	    function RangeValue() {
 	    }
@@ -3124,12 +3120,12 @@
 	        /** @internal Here so that we can put active ranges on a heap
 	         * and take them off at their end */
 	        get: function () { return this.to; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(Range.prototype, "heapSide", {
 	        get: function () { return this.value.endSide; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return Range;
@@ -3456,12 +3452,12 @@
 	    Object.defineProperty(LocalSet.prototype, "heapPos", {
 	        // Used to make this conform to Heapable
 	        get: function () { return this.ranges[this.index].from + this.offset; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(LocalSet.prototype, "heapSide", {
 	        get: function () { return this.ranges[this.index].value.startSide; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return LocalSet;
@@ -3652,7 +3648,7 @@
 	                var range = _a[_i];
 	                insertSorted(local, range.move(off));
 	            }
-	            children.splice.apply(children, [i, 1].concat(child.children));
+	            children.splice.apply(children, __spreadArrays([i, 1], child.children));
 	        }
 	        else if (child.children.length == 0 && i < children.length - 1 &&
 	            (next = children[i + 1]).size + child.size <= BASE_NODE_SIZE &&
@@ -3742,14 +3738,14 @@
 	        get: function () {
 	            return this.pointTo > -FAR ? this.pointTo : this.heap.length ? this.heap[0].heapPos : FAR;
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(ComparisonSide.prototype, "nextSide", {
 	        get: function () {
 	            return this.pointTo > -FAR ? this.point.endSide : this.heap.length ? this.heap[0].heapSide : FAR;
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return ComparisonSide;
@@ -3937,9 +3933,9 @@
 	});
 
 	unwrapExports(rangeset);
-	var rangeset_1 = rangeset.RangeValue;
+	var rangeset_1 = rangeset.RangeSet;
 	var rangeset_2 = rangeset.Range;
-	var rangeset_3 = rangeset.RangeSet;
+	var rangeset_3 = rangeset.RangeValue;
 
 	var decoration = createCommonjsModule(function (module, exports) {
 	var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
@@ -3956,6 +3952,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.heightRelevantDecorations = exports.findChangedRanges = exports.joinRanges = exports.PointDecoration = exports.LineDecoration = exports.MarkDecoration = exports.Decoration = exports.WidgetType = void 0;
 
 
 
@@ -3971,14 +3968,14 @@
 	    };
 	    Object.defineProperty(WidgetType.prototype, "estimatedHeight", {
 	        get: function () { return -1; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    WidgetType.prototype.ignoreEvent = function (event) { return true; };
 	    Object.defineProperty(WidgetType.prototype, "customView", {
 	        // @internal
 	        get: function () { return null; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return WidgetType;
@@ -4004,12 +4001,12 @@
 	    }
 	    Object.defineProperty(Decoration.prototype, "point", {
 	        get: function () { return false; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(Decoration.prototype, "heightRelevant", {
 	        get: function () { return false; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Decoration.mark = function (from, to, spec) {
@@ -4088,7 +4085,7 @@
 	    }
 	    Object.defineProperty(LineDecoration.prototype, "point", {
 	        get: function () { return true; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    LineDecoration.prototype.map = function (mapping, pos) {
@@ -4110,7 +4107,7 @@
 	    }
 	    Object.defineProperty(PointDecoration.prototype, "point", {
 	        get: function () { return true; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(PointDecoration.prototype, "type", {
@@ -4118,12 +4115,12 @@
 	        get: function () {
 	            return this.startSide < this.endSide ? 3 /* WidgetRange */ : this.startSide < 0 ? 1 /* WidgetBefore */ : 2 /* WidgetAfter */;
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(PointDecoration.prototype, "heightRelevant", {
 	        get: function () { return this.block || !!this.widget && this.widget.estimatedHeight >= 5; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    PointDecoration.prototype.map = function (mapping, from, to) {
@@ -4230,14 +4227,14 @@
 	});
 
 	unwrapExports(decoration);
-	var decoration_1 = decoration.WidgetType;
-	var decoration_2 = decoration.Decoration;
-	var decoration_3 = decoration.MarkDecoration;
-	var decoration_4 = decoration.LineDecoration;
-	var decoration_5 = decoration.PointDecoration;
-	var decoration_6 = decoration.joinRanges;
-	var decoration_7 = decoration.findChangedRanges;
-	var decoration_8 = decoration.heightRelevantDecorations;
+	var decoration_1 = decoration.heightRelevantDecorations;
+	var decoration_2 = decoration.findChangedRanges;
+	var decoration_3 = decoration.joinRanges;
+	var decoration_4 = decoration.PointDecoration;
+	var decoration_5 = decoration.LineDecoration;
+	var decoration_6 = decoration.MarkDecoration;
+	var decoration_7 = decoration.Decoration;
+	var decoration_8 = decoration.WidgetType;
 
 	var buildview = createCommonjsModule(function (module, exports) {
 	var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
@@ -4254,6 +4251,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.ContentBuilder = void 0;
 
 
 
@@ -4404,6 +4402,7 @@
 
 	var viewport = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.Viewport = exports.ViewportState = void 0;
 	function visiblePixelRange(dom, paddingTop) {
 	    var rect = dom.getBoundingClientRect();
 	    var top = Math.max(0, Math.min(innerHeight, rect.top)), bottom = Math.max(0, Math.min(innerHeight, rect.bottom));
@@ -4491,11 +4490,12 @@
 	});
 
 	unwrapExports(viewport);
-	var viewport_1 = viewport.ViewportState;
-	var viewport_2 = viewport.Viewport;
+	var viewport_1 = viewport.Viewport;
+	var viewport_2 = viewport.ViewportState;
 
 	var domobserver = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.DOMObserver = void 0;
 
 
 	var observeOptions = {
@@ -4727,6 +4727,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.HeightMap = exports.BlockInfo = exports.MeasuredHeights = exports.HeightOracle = void 0;
 
 
 	var wrappingWhiteSpace = ["pre-wrap", "normal", "pre-line"];
@@ -4801,7 +4802,7 @@
 	    }
 	    Object.defineProperty(MeasuredHeights.prototype, "more", {
 	        get: function () { return this.index < this.heights.length; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return MeasuredHeights;
@@ -4817,12 +4818,12 @@
 	    }
 	    Object.defineProperty(BlockInfo.prototype, "to", {
 	        get: function () { return this.from + this.length; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(BlockInfo.prototype, "bottom", {
 	        get: function () { return this.top + this.height; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    // @internal
@@ -4846,7 +4847,7 @@
 	    Object.defineProperty(HeightMap.prototype, "outdated", {
 	        get: function () { return (this.flags & 2 /* Outdated */) > 0; },
 	        set: function (value) { this.flags = (value ? 2 /* Outdated */ : 0) | (this.flags & ~2 /* Outdated */); },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    HeightMap.prototype.setHeight = function (oracle, height) {
@@ -4963,7 +4964,6 @@
 	    };
 	    HeightMapBlock.prototype.updateHeight = function (oracle, offset, force, measured) {
 	        if (offset === void 0) { offset = 0; }
-	        if (force === void 0) { force = false; }
 	        if (measured && measured.from <= offset && measured.more)
 	            this.setHeight(oracle, measured.heights[measured.index++]);
 	        this.outdated = false;
@@ -5110,7 +5110,7 @@
 	    }
 	    Object.defineProperty(HeightMapBranch.prototype, "break", {
 	        get: function () { return this.flags & 1 /* Break */; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    HeightMapBranch.prototype.blockAt = function (height, doc, top, offset) {
@@ -5249,7 +5249,7 @@
 	        get: function () {
 	            return this.covering && this.nodes[this.nodes.length - 1] == this.covering;
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    NodeBuilder.prototype.span = function (from, to) {
@@ -5351,10 +5351,10 @@
 	});
 
 	unwrapExports(heightmap);
-	var heightmap_1 = heightmap.HeightOracle;
-	var heightmap_2 = heightmap.MeasuredHeights;
-	var heightmap_3 = heightmap.BlockInfo;
-	var heightmap_4 = heightmap.HeightMap;
+	var heightmap_1 = heightmap.HeightMap;
+	var heightmap_2 = heightmap.BlockInfo;
+	var heightmap_3 = heightmap.MeasuredHeights;
+	var heightmap_4 = heightmap.HeightOracle;
 
 	var extension$1 = createCommonjsModule(function (module, exports) {
 	var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
@@ -5371,6 +5371,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.getField = exports.ViewUpdate = exports.focusChange = exports.styleModule = exports.viewPlugin = exports.dragMovesSelection = exports.clickAddsSelectionRange = exports.handleDOMEvents = exports.viewField = exports.ViewExtension = exports.ViewField = void 0;
 
 
 
@@ -5384,7 +5385,7 @@
 	    }
 	    Object.defineProperty(ViewField.prototype, "extension", {
 	        get: function () { return exports.viewField(this); },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    ViewField.decorations = function (_a) {
@@ -5448,7 +5449,7 @@
 	    }
 	    Object.defineProperty(ViewUpdate.prototype, "viewport", {
 	        get: function () { return this.view.viewport; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    ViewUpdate.prototype.prevField = function (field, defaultValue) {
@@ -5458,14 +5459,14 @@
 	        get: function () {
 	            return this.prevViewport.eq(this.view.viewport);
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(ViewUpdate.prototype, "docChanged", {
 	        get: function () {
 	            return this.transactions.some(function (tr) { return tr.docChanged; });
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    ViewUpdate.prototype.getMeta = function (type) {
@@ -5495,17 +5496,17 @@
 	});
 
 	unwrapExports(extension$1);
-	var extension_2$1 = extension$1.ViewField;
-	var extension_3$1 = extension$1.ViewExtension;
-	var extension_4$1 = extension$1.viewField;
-	var extension_5$1 = extension$1.handleDOMEvents;
-	var extension_6 = extension$1.clickAddsSelectionRange;
+	var extension_2$1 = extension$1.getField;
+	var extension_3$1 = extension$1.ViewUpdate;
+	var extension_4$1 = extension$1.focusChange;
+	var extension_5$1 = extension$1.styleModule;
+	var extension_6 = extension$1.viewPlugin;
 	var extension_7 = extension$1.dragMovesSelection;
-	var extension_8 = extension$1.viewPlugin;
-	var extension_9 = extension$1.styleModule;
-	var extension_10 = extension$1.focusChange;
-	var extension_11 = extension$1.ViewUpdate;
-	var extension_12 = extension$1.getField;
+	var extension_8 = extension$1.clickAddsSelectionRange;
+	var extension_9 = extension$1.handleDOMEvents;
+	var extension_10 = extension$1.viewField;
+	var extension_11 = extension$1.ViewExtension;
+	var extension_12 = extension$1.ViewField;
 
 	var docview = createCommonjsModule(function (module, exports) {
 	var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
@@ -5522,6 +5523,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.computeCompositionDeco = exports.DocView = void 0;
 
 
 
@@ -5573,22 +5575,22 @@
 	    }
 	    Object.defineProperty(DocView.prototype, "length", {
 	        get: function () { return this.state.doc.length; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(DocView.prototype, "state", {
 	        get: function () { return this.view.state; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(DocView.prototype, "viewport", {
 	        get: function () { return this.view.viewport; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(DocView.prototype, "root", {
 	        get: function () { return this.view.root; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    DocView.prototype.init = function (state) {
@@ -6084,7 +6086,7 @@
 	    };
 	    Object.defineProperty(GapWidget.prototype, "estimatedHeight", {
 	        get: function () { return this.value; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return GapWidget;
@@ -6184,7 +6186,7 @@
 	    CompositionWidget.prototype.ignoreEvent = function () { return false; };
 	    Object.defineProperty(CompositionWidget.prototype, "customView", {
 	        get: function () { return inlineview.CompositionView; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return CompositionWidget;
@@ -6209,11 +6211,12 @@
 	});
 
 	unwrapExports(docview);
-	var docview_1 = docview.DocView;
-	var docview_2 = docview.computeCompositionDeco;
+	var docview_1 = docview.computeCompositionDeco;
+	var docview_2 = docview.DocView;
 
 	var cursor = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.posAtCoords = exports.LineContext = exports.movePos = void 0;
 
 
 
@@ -6615,12 +6618,13 @@
 	});
 
 	unwrapExports(cursor);
-	var cursor_1 = cursor.movePos;
+	var cursor_1 = cursor.posAtCoords;
 	var cursor_2 = cursor.LineContext;
-	var cursor_3 = cursor.posAtCoords;
+	var cursor_3 = cursor.movePos;
 
 	var input = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.InputState = void 0;
 
 
 
@@ -7018,6 +7022,7 @@
 
 	var domchange = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.applyDOMChange = void 0;
 
 
 
@@ -7231,6 +7236,7 @@
 
 	var editorview = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.styles = exports.EditorView = void 0;
 
 
 
@@ -7386,7 +7392,7 @@
 	        get: function () {
 	            return this.docView.heightMap.height + this.docView.paddingTop + this.docView.paddingBottom;
 	        },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    EditorView.prototype.movePos = function (start, direction, granularity, action) {
@@ -7401,12 +7407,12 @@
 	    EditorView.prototype.coordsAtPos = function (pos) { return this.docView.coordsAt(pos); };
 	    Object.defineProperty(EditorView.prototype, "defaultCharacterWidth", {
 	        get: function () { return this.docView.heightOracle.charWidth; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    Object.defineProperty(EditorView.prototype, "defaultLineHeight", {
 	        get: function () { return this.docView.heightOracle.lineHeight; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    EditorView.prototype.startMouseSelection = function (event, update) {
@@ -7485,53 +7491,37 @@
 	});
 
 	unwrapExports(editorview);
-	var editorview_1 = editorview.EditorView;
-	var editorview_2 = editorview.styles;
+	var editorview_1 = editorview.styles;
+	var editorview_2 = editorview.EditorView;
 
 	var src$2 = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
 
-	exports.EditorView = editorview.EditorView;
+	Object.defineProperty(exports, "EditorView", { enumerable: true, get: function () { return editorview.EditorView; } });
 
-	exports.ViewExtension = extension$1.ViewExtension;
-	exports.ViewField = extension$1.ViewField;
-	exports.handleDOMEvents = extension$1.handleDOMEvents;
-	exports.viewPlugin = extension$1.viewPlugin;
-	exports.styleModule = extension$1.styleModule;
-	exports.focusChange = extension$1.focusChange;
-	exports.ViewUpdate = extension$1.ViewUpdate;
-	exports.clickAddsSelectionRange = extension$1.clickAddsSelectionRange;
-	exports.dragMovesSelection = extension$1.dragMovesSelection;
+	Object.defineProperty(exports, "ViewExtension", { enumerable: true, get: function () { return extension$1.ViewExtension; } });
+	Object.defineProperty(exports, "ViewField", { enumerable: true, get: function () { return extension$1.ViewField; } });
+	Object.defineProperty(exports, "handleDOMEvents", { enumerable: true, get: function () { return extension$1.handleDOMEvents; } });
+	Object.defineProperty(exports, "viewPlugin", { enumerable: true, get: function () { return extension$1.viewPlugin; } });
+	Object.defineProperty(exports, "styleModule", { enumerable: true, get: function () { return extension$1.styleModule; } });
+	Object.defineProperty(exports, "focusChange", { enumerable: true, get: function () { return extension$1.focusChange; } });
+	Object.defineProperty(exports, "ViewUpdate", { enumerable: true, get: function () { return extension$1.ViewUpdate; } });
+	Object.defineProperty(exports, "clickAddsSelectionRange", { enumerable: true, get: function () { return extension$1.clickAddsSelectionRange; } });
+	Object.defineProperty(exports, "dragMovesSelection", { enumerable: true, get: function () { return extension$1.dragMovesSelection; } });
 
-	exports.Viewport = viewport.Viewport;
+	Object.defineProperty(exports, "Viewport", { enumerable: true, get: function () { return viewport.Viewport; } });
 
-	exports.Decoration = decoration.Decoration;
-	exports.WidgetType = decoration.WidgetType;
+	Object.defineProperty(exports, "Decoration", { enumerable: true, get: function () { return decoration.Decoration; } });
+	Object.defineProperty(exports, "WidgetType", { enumerable: true, get: function () { return decoration.WidgetType; } });
 
-	exports.BlockInfo = heightmap.BlockInfo;
+	Object.defineProperty(exports, "BlockInfo", { enumerable: true, get: function () { return heightmap.BlockInfo; } });
 
-	exports.DOMPos = contentview.DOMPos;
+	Object.defineProperty(exports, "DOMPos", { enumerable: true, get: function () { return contentview.DOMPos; } });
 
-	exports.Slot = extension.Slot;
+	Object.defineProperty(exports, "Slot", { enumerable: true, get: function () { return extension.Slot; } });
 	});
 
 	unwrapExports(src$2);
-	var src_1$2 = src$2.EditorView;
-	var src_2$2 = src$2.ViewExtension;
-	var src_3$2 = src$2.ViewField;
-	var src_4$2 = src$2.handleDOMEvents;
-	var src_5$2 = src$2.viewPlugin;
-	var src_6$2 = src$2.styleModule;
-	var src_7$2 = src$2.focusChange;
-	var src_8$2 = src$2.ViewUpdate;
-	var src_9$2 = src$2.clickAddsSelectionRange;
-	var src_10$2 = src$2.dragMovesSelection;
-	var src_11$1 = src$2.Viewport;
-	var src_12$1 = src$2.Decoration;
-	var src_13 = src$2.WidgetType;
-	var src_14 = src$2.BlockInfo;
-	var src_15 = src$2.DOMPos;
-	var src_16 = src$2.Slot;
 
 	var base = {
 	  8: "Backspace",
@@ -7588,7 +7578,6 @@
 	  222: "'",
 	  229: "q"
 	};
-	var base_1 = base;
 
 	var shift = {
 	  48: ")",
@@ -7601,7 +7590,7 @@
 	  55: "&",
 	  56: "*",
 	  57: "(",
-	  59: ";",
+	  59: ":",
 	  61: "+",
 	  173: "_",
 	  186: ":",
@@ -7617,7 +7606,6 @@
 	  222: "\"",
 	  229: "Q"
 	};
-	var shift_1 = shift;
 
 	var chrome = typeof navigator != "undefined" && /Chrome\/(\d+)/.exec(navigator.userAgent);
 	var safari = typeof navigator != "undefined" && /Apple Computer/.test(navigator.vendor);
@@ -7641,7 +7629,7 @@
 	// For each code that doesn't have a shift-equivalent, copy the base name
 	for (var code in base) if (!shift.hasOwnProperty(code)) shift[code] = base[code];
 
-	var keyName = function(event) {
+	function keyName(event) {
 	  // Don't trust event.key in Chrome when there are modifiers until
 	  // they fix https://bugs.chromium.org/p/chromium/issues/detail?id=633838
 	  var ignoreKey = brokenModifierNames && (event.ctrlKey || event.altKey || event.metaKey) ||
@@ -7658,16 +7646,18 @@
 	  if (name == "Right") name = "ArrowRight";
 	  if (name == "Down") name = "ArrowDown";
 	  return name
-	};
+	}
 
-	var w3cKeyname = {
-		base: base_1,
-		shift: shift_1,
+	var index_es = /*#__PURE__*/Object.freeze({
+		__proto__: null,
+		base: base,
+		shift: shift,
 		keyName: keyName
-	};
+	});
 
 	var keymap = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.keymap = void 0;
 
 
 	var mac = typeof navigator != "undefined" ? /Mac/.test(navigator.platform) : false;
@@ -7752,13 +7742,13 @@
 	}); };
 	function keydownHandler(map) {
 	    return function (view, event) {
-	        var name = w3cKeyname.keyName(event), isChar = name.length == 1 && name != " ";
+	        var name = index_es.keyName(event), isChar = name.length == 1 && name != " ";
 	        var direct = map[modifiers(name, event, !isChar)];
 	        var baseName;
 	        if (direct && direct(view))
 	            return true;
 	        if (isChar && (event.shiftKey || event.altKey || event.metaKey) &&
-	            (baseName = w3cKeyname.base[event.keyCode]) && baseName != name) {
+	            (baseName = index_es.base[event.keyCode]) && baseName != name) {
 	            var fromCode = map[modifiers(baseName, event, true)];
 	            if (fromCode && fromCode(view))
 	                return true;
@@ -7773,6 +7763,7 @@
 
 	var core = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.HistoryState = void 0;
 
 	var Item = /** @class */ (function () {
 	    function Item(map, inverted, selection) {
@@ -7784,7 +7775,7 @@
 	    }
 	    Object.defineProperty(Item.prototype, "isChange", {
 	        get: function () { return this.inverted != null; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return Item;
@@ -7908,6 +7899,7 @@
 
 	var history = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.undoSelectionDepth = exports.redoSelectionDepth = exports.redoDepth = exports.undoDepth = exports.closeHistory = exports.redoSelection = exports.undoSelection = exports.redo = exports.undo = exports.history = exports.closeHistorySlot = void 0;
 
 
 
@@ -7995,17 +7987,17 @@
 	});
 
 	unwrapExports(history);
-	var history_1 = history.closeHistorySlot;
-	var history_2 = history.history;
-	var history_3 = history.undo;
-	var history_4 = history.redo;
-	var history_5 = history.undoSelection;
+	var history_1 = history.undoSelectionDepth;
+	var history_2 = history.redoSelectionDepth;
+	var history_3 = history.redoDepth;
+	var history_4 = history.undoDepth;
+	var history_5 = history.closeHistory;
 	var history_6 = history.redoSelection;
-	var history_7 = history.closeHistory;
-	var history_8 = history.undoDepth;
-	var history_9 = history.redoDepth;
-	var history_10 = history.redoSelectionDepth;
-	var history_11 = history.undoSelectionDepth;
+	var history_7 = history.undoSelection;
+	var history_8 = history.redo;
+	var history_9 = history.undo;
+	var history_10 = history.history;
+	var history_11 = history.closeHistorySlot;
 
 	var src$3 = createCommonjsModule(function (module, exports) {
 	var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
@@ -8022,6 +8014,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.lineNumbers = exports.lineNumberMarkers = exports.gutter = exports.GutterMarker = void 0;
 
 
 
@@ -8152,7 +8145,7 @@
 	    };
 	    Object.defineProperty(GutterView.prototype, "styles", {
 	        get: function () { return styles; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return GutterView;
@@ -8273,13 +8266,14 @@
 	});
 
 	unwrapExports(src$3);
-	var src_3$3 = src$3.GutterMarker;
-	var src_4$3 = src$3.gutter;
-	var src_5$3 = src$3.lineNumberMarkers;
-	var src_6$3 = src$3.lineNumbers;
+	var src_3 = src$3.lineNumbers;
+	var src_4 = src$3.lineNumberMarkers;
+	var src_5 = src$3.gutter;
+	var src_6 = src$3.GutterMarker;
 
 	var commands = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.baseKeymap = exports.macBaseKeymap = exports.pcBaseKeymap = exports.indentSelection = exports.insertNewlineAndIndent = exports.deleteCharForward = exports.deleteCharBackward = exports.selectAll = exports.selectDocEnd = exports.selectDocStart = exports.extendLineEnd = exports.extendLineStart = exports.extendLineDown = exports.extendLineUp = exports.extendWordRight = exports.extendWordLeft = exports.extendCharRight = exports.extendCharLeft = exports.moveLineEnd = exports.moveLineStart = exports.moveLineDown = exports.moveLineUp = exports.moveWordRight = exports.moveWordLeft = exports.moveCharRight = exports.moveCharLeft = void 0;
 
 	function moveSelection(view, dir, granularity) {
 	    var transaction = view.state.t().forEachRange(function (range) {
@@ -8467,35 +8461,36 @@
 	});
 
 	unwrapExports(commands);
-	var commands_1 = commands.moveCharLeft;
-	var commands_2 = commands.moveCharRight;
-	var commands_3 = commands.moveWordLeft;
-	var commands_4 = commands.moveWordRight;
-	var commands_5 = commands.moveLineUp;
-	var commands_6 = commands.moveLineDown;
-	var commands_7 = commands.moveLineStart;
-	var commands_8 = commands.moveLineEnd;
-	var commands_9 = commands.extendCharLeft;
-	var commands_10 = commands.extendCharRight;
-	var commands_11 = commands.extendWordLeft;
-	var commands_12 = commands.extendWordRight;
-	var commands_13 = commands.extendLineUp;
-	var commands_14 = commands.extendLineDown;
-	var commands_15 = commands.extendLineStart;
-	var commands_16 = commands.extendLineEnd;
-	var commands_17 = commands.selectDocStart;
-	var commands_18 = commands.selectDocEnd;
-	var commands_19 = commands.selectAll;
-	var commands_20 = commands.deleteCharBackward;
-	var commands_21 = commands.deleteCharForward;
-	var commands_22 = commands.insertNewlineAndIndent;
-	var commands_23 = commands.indentSelection;
-	var commands_24 = commands.pcBaseKeymap;
-	var commands_25 = commands.macBaseKeymap;
-	var commands_26 = commands.baseKeymap;
+	var commands_1 = commands.baseKeymap;
+	var commands_2 = commands.macBaseKeymap;
+	var commands_3 = commands.pcBaseKeymap;
+	var commands_4 = commands.indentSelection;
+	var commands_5 = commands.insertNewlineAndIndent;
+	var commands_6 = commands.deleteCharForward;
+	var commands_7 = commands.deleteCharBackward;
+	var commands_8 = commands.selectAll;
+	var commands_9 = commands.selectDocEnd;
+	var commands_10 = commands.selectDocStart;
+	var commands_11 = commands.extendLineEnd;
+	var commands_12 = commands.extendLineStart;
+	var commands_13 = commands.extendLineDown;
+	var commands_14 = commands.extendLineUp;
+	var commands_15 = commands.extendWordRight;
+	var commands_16 = commands.extendWordLeft;
+	var commands_17 = commands.extendCharRight;
+	var commands_18 = commands.extendCharLeft;
+	var commands_19 = commands.moveLineEnd;
+	var commands_20 = commands.moveLineStart;
+	var commands_21 = commands.moveLineDown;
+	var commands_22 = commands.moveLineUp;
+	var commands_23 = commands.moveWordRight;
+	var commands_24 = commands.moveWordLeft;
+	var commands_25 = commands.moveCharRight;
+	var commands_26 = commands.moveCharLeft;
 
 	var misc = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.countColumn = void 0;
 	// Counts the column offset in a string, taking tabs into account.
 	// Used mostly to find indentation.
 	function countColumn(string, end, tabSize, startIndex, startValue) {
@@ -8521,6 +8516,7 @@
 
 	var stringstream = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.StringStream = void 0;
 
 	// STRING STREAM
 	// Fed to the mode parsers, provides helper functions to make
@@ -8636,6 +8632,7 @@
 
 	var stringstreamcursor = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.StringStreamCursor = void 0;
 
 	var StringStreamCursor = /** @class */ (function () {
 	    function StringStreamCursor(text, offset, tabSize) {
@@ -8664,6 +8661,7 @@
 
 	var util = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.copyState = exports.readToken = void 0;
 	function readToken(mode, stream, state) {
 	    for (var i = 0; i < 10; i++) {
 	        //if (inner) inner[0] = innerMode(mode, state).mode
@@ -8692,11 +8690,19 @@
 	});
 
 	unwrapExports(util);
-	var util_1 = util.readToken;
-	var util_2 = util.copyState;
+	var util_1 = util.copyState;
+	var util_2 = util.readToken;
 
 	var src$4 = createCommonjsModule(function (module, exports) {
+	var __spreadArrays = (commonjsGlobal && commonjsGlobal.__spreadArrays) || function () {
+	    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+	    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+	        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+	            r[k] = a[j];
+	    return r;
+	};
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.legacyMode = void 0;
 
 
 
@@ -8785,7 +8791,7 @@
 	    StateCache.prototype.storeStates = function (from, to, states) {
 	        var _a;
 	        var start = this.findIndex(from), end = this.findIndex(to);
-	        (_a = this.states).splice.apply(_a, [start, end - start].concat(states));
+	        (_a = this.states).splice.apply(_a, __spreadArrays([start, end - start], states));
 	        if (from <= this.frontier)
 	            this.frontier = Math.max(this.frontier, to);
 	    };
@@ -8892,10 +8898,11 @@
 	});
 
 	unwrapExports(src$4);
-	var src_3$4 = src$4.legacyMode;
+	var src_3$1 = src$4.legacyMode;
 
 	var matchbrackets = createCommonjsModule(function (module, exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.matchBrackets = exports.scanForBracket = void 0;
 
 
 
@@ -9003,8 +9010,8 @@
 	});
 
 	unwrapExports(matchbrackets);
-	var matchbrackets_1 = matchbrackets.scanForBracket;
-	var matchbrackets_2 = matchbrackets.matchBrackets;
+	var matchbrackets_1 = matchbrackets.matchBrackets;
+	var matchbrackets_2 = matchbrackets.scanForBracket;
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
 
@@ -9882,6 +9889,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.specialChars = void 0;
 
 
 
@@ -10001,7 +10009,7 @@
 	    };
 	    Object.defineProperty(SpecialCharHighlighter.prototype, "styles", {
 	        get: function () { return style; },
-	        enumerable: true,
+	        enumerable: false,
 	        configurable: true
 	    });
 	    return SpecialCharHighlighter;
@@ -10100,6 +10108,7 @@
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.multipleSelections = void 0;
 
 
 
@@ -15481,4 +15490,4 @@
 
 	return lib;
 
-}));
+})));

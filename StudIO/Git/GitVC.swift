@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftGit2
 import BLTNBoard
 import SafariServices
 import OneSignal

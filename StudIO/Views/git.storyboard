@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="grP-rr-E8W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="grP-rr-E8W">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -41,7 +42,7 @@
                                     <outlet property="delegate" destination="grP-rr-E8W" id="YVf-vJ-mZk"/>
                                 </connections>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F02-iu-N8D">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F02-iu-N8D">
                                 <rect key="frame" x="0.0" y="172" width="145" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Fdg-P1-6nC"/>
@@ -54,7 +55,7 @@
                                     <action selector="pushAction:" destination="grP-rr-E8W" eventType="touchUpInside" id="rGG-HY-4Xp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAY-Cs-NSh">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAY-Cs-NSh">
                                 <rect key="frame" x="153" y="172" width="69" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="eCI-O3-OPM"/>
@@ -67,7 +68,7 @@
                                     <action selector="fetch:" destination="grP-rr-E8W" eventType="touchUpInside" id="mum-cv-g6A"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Tv-NN-Xrq">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Tv-NN-Xrq">
                                 <rect key="frame" x="230" y="172" width="145" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="PaV-Hz-69N"/>
@@ -80,20 +81,9 @@
                                     <action selector="pullAction:" destination="grP-rr-E8W" eventType="touchUpInside" id="oMo-i1-bm4"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RLp-Aa-Dwi">
-                                <rect key="frame" x="24" y="252" width="69" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="jDY-My-8Fk"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
-                                <connections>
-                                    <action selector="HideSmartKeyboard" destination="RWA-dU-hGN" eventType="editingDidEnd" id="E74-GF-n50"/>
-                                    <action selector="setGitName:" destination="grP-rr-E8W" eventType="editingDidEnd" id="2tu-by-t0w"/>
-                                </connections>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xv2-pZ-XGY">
                                 <rect key="frame" x="101" y="252" width="250" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="YKU-DF-mOL"/>
                                     <constraint firstAttribute="height" constant="30" id="mvX-2M-GFf"/>
@@ -107,6 +97,7 @@
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="efC-Zr-29d">
                                 <rect key="frame" x="24" y="290" width="250" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="5ev-Up-vUT"/>
                                     <constraint firstAttribute="height" constant="30" id="bUA-K7-lyx"/>
@@ -146,7 +137,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BN-ch-gMc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BN-ch-gMc">
                                 <rect key="frame" x="0.0" y="567" width="375" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="LBV-Ly-XLn"/>
@@ -162,10 +153,24 @@
                                 </constraints>
                                 <string key="text">Please make sure that you enter your credentials correctly: it's a known issue that when not entered correctly, the app may crash.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RLp-Aa-Dwi">
+                                <rect key="frame" x="24" y="252" width="69" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jDY-My-8Fk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <connections>
+                                    <action selector="HideSmartKeyboard" destination="RWA-dU-hGN" eventType="editingDidEnd" id="E74-GF-n50"/>
+                                    <action selector="setGitName:" destination="grP-rr-E8W" eventType="editingDidEnd" id="2tu-by-t0w"/>
+                                </connections>
+                            </textField>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6s6-dv-87s"/>
                         <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iAY-Cs-NSh" firstAttribute="leading" secondItem="F02-iu-N8D" secondAttribute="trailing" constant="8" id="04x-fn-HwB"/>
@@ -204,7 +209,6 @@
                             <constraint firstItem="dEW-7s-xb7" firstAttribute="top" secondItem="6s6-dv-87s" secondAttribute="top" id="yCz-1o-wX2"/>
                             <constraint firstItem="XCx-Gc-5Gq" firstAttribute="leading" secondItem="6s6-dv-87s" secondAttribute="leading" constant="24" id="zu8-2h-ju3"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6s6-dv-87s"/>
                     </view>
                     <connections>
                         <outlet property="branchPicker" destination="dEW-7s-xb7" id="dO8-4U-VY6"/>
@@ -229,4 +233,9 @@
             <point key="canvasLocation" x="712" y="327"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

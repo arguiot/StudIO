@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftGit2
 
 class Push: NSObject {
     func push(_ url: URL, options: NSDictionary?, progress: ((UInt32, UInt32, Int, UnsafeMutablePointer<ObjCBool>) -> Void)?) throws {

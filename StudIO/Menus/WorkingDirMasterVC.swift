@@ -8,7 +8,6 @@
 
 import UIKit
 import BLTNBoard
-import SwiftGit2
 
 class WorkingDirMasterVC: UITableViewController {
 
