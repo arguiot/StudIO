@@ -1,0 +1,24 @@
+/* 
+  Language.strings
+  StudIO
+
+  Created by ktnk-dev on 10/8/21.
+  All rights eaten, I still want eat.
+*/
+"Clone Repo" = "Клонировать репозиторий";
+"Local Repo" = "Локальный репозиторий";
+"Clone using custom credentials" = "Клонировать репозиторий используя пользовательские учетные данные";
+"Create" = "Создать";
+"Done" = "Готово";
+"Enter the Git repository URL you would like to clone." = "Введите URL вашего Git репозитория, который вы хотите клонировать";
+"File name" = "Имя файла";
+"Move / Rename" = "Перенести / Переименовать";
+"Move / Rename file" = "Перенести / Переименовать файл";
+"Move or rename your file using the path below." = "Перенесите или переименуйте ваш файл используя патч ниже";
+"New File" = "Новый файл";
+"Password" = "Пароль";
+"Please enter your git password" = "Введите пароль от вашего git аккаунта";
+"Please enter your git username" = "Введите имя вашего git аккаунта";
+"Username" = "Имя пользователя";
+"password" = "пароль";
+"username" = "имя пользователя";
