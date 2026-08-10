@@ -110,7 +110,12 @@ class editor {
 					extensions: exts
 				})
 				let view = window.view = new EditorView({
-					state: this.cm
+					state: this.cm,
+					contentAttributes: {
+						autocorrect: "off",
+						autocapitalize: "off",
+						spellcheck: false
+					}
 				})
 
 				this.clear()
